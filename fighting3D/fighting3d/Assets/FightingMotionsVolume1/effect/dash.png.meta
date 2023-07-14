@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59d20a2feb999bd42ac943c5f004a6fb
+guid: ae6185cad13908549ae1ecc215dc4695
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thrust_attack_0
+      name: dash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6579978cdf48951438e7e89ae807c8c6
-      internalID: -1014374406
+      spriteID: 2398d919222f5524f84c00a64503f9d0
+      internalID: -945239409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_1
+      name: dash_1
       rect:
         serializedVersion: 2
         x: 240
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0002e2084e1e904297ec5a649b6a4c4
-      internalID: 2061195745
+      spriteID: 18071799b788bfc4e9c3579443e2ca2c
+      internalID: 249792724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_2
+      name: dash_2
       rect:
         serializedVersion: 2
         x: 0
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dd8fb12bcee3f243b9cadf0f1a6f148
-      internalID: 938925387
+      spriteID: faf5f9f2299da024c9d029b9e40a5a8f
+      internalID: -1652262813
       vertices: []
       indices: 
       edges: []
@@ -184,7 +184,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 31dd4e90f24db61419b4143bb4866718
+    spriteID: 92c27a890d50e5b41b617bef716172a5
     internalID: 0
     vertices: []
     indices: 
@@ -192,9 +192,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      thrust_attack_0: -1014374406
-      thrust_attack_1: 2061195745
-      thrust_attack_2: 938925387
+      dash_0: -945239409
+      dash_1: 249792724
+      dash_2: -1652262813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

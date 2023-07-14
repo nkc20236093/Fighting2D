@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59d20a2feb999bd42ac943c5f004a6fb
+guid: 34490074c8aff9a449ceda40b1c58a44
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thrust_attack_0
+      name: jump_type_2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 240
-        height: 240
+        y: 268
+        width: 266
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6579978cdf48951438e7e89ae807c8c6
-      internalID: -1014374406
+      spriteID: b113c03af34cdbc498d0c6e5f0f219a9
+      internalID: 762138202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_1
+      name: jump_type_2_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 240
-        height: 240
+        x: 266
+        y: 268
+        width: 266
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0002e2084e1e904297ec5a649b6a4c4
-      internalID: 2061195745
+      spriteID: 19ec3dd1a105f774d8a17bfaf03694e3
+      internalID: 489011473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_2
+      name: jump_type_2_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 240
-        height: 240
+        x: 532
+        y: 268
+        width: 266
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +175,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dd8fb12bcee3f243b9cadf0f1a6f148
-      internalID: 938925387
+      spriteID: be8562635cef6f844851163c30a3e63b
+      internalID: -435213075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_type_2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 266
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b1b5277ec163d45a3658e3d9d1767b
+      internalID: 14295329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_type_2_4
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 2
+        width: 266
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce8ed62da6c79343b1337c8f23515e0
+      internalID: 1546791840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_type_2_5
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 2
+        width: 266
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96e145357d2bd324bb2c57fcc77b5289
+      internalID: 1948521425
       vertices: []
       indices: 
       edges: []
@@ -184,7 +247,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 31dd4e90f24db61419b4143bb4866718
+    spriteID: 6c9f5326038c71b42a8d9897622f14cb
     internalID: 0
     vertices: []
     indices: 
@@ -192,9 +255,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      thrust_attack_0: -1014374406
-      thrust_attack_1: 2061195745
-      thrust_attack_2: 938925387
+      jump_type_2_0: 762138202
+      jump_type_2_1: 489011473
+      jump_type_2_2: -435213075
+      jump_type_2_3: 14295329
+      jump_type_2_4: 1546791840
+      jump_type_2_5: 1948521425
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

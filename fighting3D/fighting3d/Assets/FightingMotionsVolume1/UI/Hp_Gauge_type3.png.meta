@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59d20a2feb999bd42ac943c5f004a6fb
+guid: 0d03fa0214464ce468f406449089d262
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thrust_attack_0
+      name: Hp_Gauge_type3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 240
-        height: 240
+        y: 125
+        width: 512
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6579978cdf48951438e7e89ae807c8c6
-      internalID: -1014374406
+      spriteID: 63f60993d69d88847a345dc0047592dd
+      internalID: 1035887376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_1
+      name: Hp_Gauge_type3_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 240
-        height: 240
+        x: 512
+        y: 125
+        width: 512
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0002e2084e1e904297ec5a649b6a4c4
-      internalID: 2061195745
+      spriteID: 3b9c611b2fe7f634daab0a048690f3d3
+      internalID: -925479436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thrust_attack_2
+      name: Hp_Gauge_type3_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 240
-        height: 240
+        y: 79
+        width: 512
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +175,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dd8fb12bcee3f243b9cadf0f1a6f148
-      internalID: 938925387
+      spriteID: 71954a9c724b6f84cbbeb1de26c47027
+      internalID: -550370750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hp_Gauge_type3_3
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 79
+        width: 512
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515541cf4bc567840b05462dc71e223b
+      internalID: 61673313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hp_Gauge_type3_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 33
+        width: 512
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5590d0228badbea439751b50d891f4d5
+      internalID: 1899684355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hp_Gauge_type3_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 33
+        width: 512
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9927b55583e8554b8c551f5c09eb848
+      internalID: 1136062537
       vertices: []
       indices: 
       edges: []
@@ -184,7 +247,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 31dd4e90f24db61419b4143bb4866718
+    spriteID: a0978897f4176a24098ebc155b01e383
     internalID: 0
     vertices: []
     indices: 
@@ -192,9 +255,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      thrust_attack_0: -1014374406
-      thrust_attack_1: 2061195745
-      thrust_attack_2: 938925387
+      Hp_Gauge_type3_0: 1035887376
+      Hp_Gauge_type3_1: -925479436
+      Hp_Gauge_type3_2: -550370750
+      Hp_Gauge_type3_3: 61673313
+      Hp_Gauge_type3_4: 1899684355
+      Hp_Gauge_type3_5: 1136062537
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
