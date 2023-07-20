@@ -15,7 +15,7 @@ C:/Github/Fighting3D/fighting3D/fighting3d
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51419
+53354
 Successfully changed project path to: C:/Github/Fighting3D/fighting3D/fighting3d
 C:/Github/Fighting3D/fighting3D/fighting3d
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ C:/Github/Fighting3D/fighting3D/fighting3d
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [5616] Host "[IP] 172.18.82.191 [Port] 0 [Flags] 2 [Guid] 2149366346 [EditorId] 2149366346 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [10572] Host "[IP] 172.18.82.191 [Port] 0 [Flags] 2 [Guid] 262190151 [EditorId] 262190151 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [5616] Host "[IP] 172.18.82.191 [Port] 0 [Flags] 2 [Guid] 2149366346 [EditorId] 2149366346 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [10572] Host "[IP] 172.18.82.191 [Port] 0 [Flags] 2 [Guid] 262190151 [EditorId] 262190151 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 6.21 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 12.06 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.2.13f1 (5f5de2657605)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/Resources/UnitySubsystems
@@ -67,44 +67,44 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56508
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56844
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.005739 seconds.
-- Loaded All Assemblies, in  0.331 seconds
+Registered in 0.013413 seconds.
+- Loaded All Assemblies, in  0.967 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 271 ms
+Android Extension - Scanning For ADB Devices 1374 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.542 seconds
+- Finished resetting the current domain, in  2.722 seconds
 Domain Reload Profiling:
-	ReloadAssembly (186ms)
-		BeginReloadAssembly (80ms)
+	ReloadAssembly (545ms)
+		BeginReloadAssembly (237ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
 		LoadAllAssembliesAndSetupDomain (0ms)
-			LoadAssemblies (78ms)
+			LoadAssemblies (234ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (138ms)
-				TypeCache.Initialize (137ms)
-					TypeCache.ScanAssembly (134ms)
+			SetupTypeCache (413ms)
+				TypeCache.Initialize (412ms)
+					TypeCache.ScanAssembly (407ms)
 				ResolveRequiredComponents (1ms)
 		FinalizeReload (0ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (0ms)
-			SetupLoadedEditorAssemblies (484ms)
+			SetupLoadedEditorAssemblies (2472ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (349ms)
+				InitializePlatformSupportModulesInManaged (1583ms)
 				SetLoadedEditorAssemblies (3ms)
 				RefreshPlugins (0ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (81ms)
-				ProcessInitializeOnLoadMethodAttributes (50ms)
+				ProcessInitializeOnLoadAttributes (739ms)
+				ProcessInitializeOnLoadMethodAttributes (146ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -114,49 +114,49 @@ Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.644 seconds
-Refreshing native plugins compatible for Editor in 2.04 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.776 seconds
+Refreshing native plugins compatible for Editor in 2.59 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.435 seconds
+- Finished resetting the current domain, in  0.589 seconds
 Domain Reload Profiling:
-	ReloadAssembly (216ms)
-		BeginReloadAssembly (146ms)
+	ReloadAssembly (195ms)
+		BeginReloadAssembly (113ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (26ms)
-		LoadAllAssembliesAndSetupDomain (427ms)
-			LoadAssemblies (230ms)
+			CreateAndSetChildDomain (24ms)
+		LoadAllAssembliesAndSetupDomain (578ms)
+			LoadAssemblies (261ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (265ms)
-				TypeCache.Initialize (249ms)
-					TypeCache.ScanAssembly (245ms)
-				ResolveRequiredComponents (3ms)
+			SetupTypeCache (366ms)
+				TypeCache.Initialize (332ms)
+					TypeCache.ScanAssembly (327ms)
+				ResolveRequiredComponents (8ms)
 		FinalizeReload (0ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (0ms)
-			SetupLoadedEditorAssemblies (278ms)
+			SetupLoadedEditorAssemblies (417ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (4ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (3ms)
 				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (193ms)
-				ProcessInitializeOnLoadMethodAttributes (15ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (256ms)
+				ProcessInitializeOnLoadMethodAttributes (67ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 2.27 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.01 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3099 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 34 unused Assets / (66.3 KB). Loaded Objects now: 3565.
-Memory consumption went from 113.5 MB to 113.4 MB.
-Total: 2.500100 ms (FindLiveObjects: 0.251600 ms CreateObjectMapping: 0.169300 ms MarkObjects: 1.973400 ms  DeleteObjects: 0.104700 ms)
+Unloading 5606 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 76 unused Assets / (0.8 MB). Loaded Objects now: 6064.
+Memory consumption went from 195.8 MB to 195.0 MB.
+Total: 4.208600 ms (FindLiveObjects: 0.415900 ms CreateObjectMapping: 0.249400 ms MarkObjects: 3.203200 ms  DeleteObjects: 0.333300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -172,171 +172,59 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 16286.926624 seconds.
-  path: Assets/FightingMotionsVolume1/Back/title.jpg
-  artifactKey: Guid(f5b2d13b6c08c1e4fb73956166d6ab87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/Back/title.jpg using Guid(f5b2d13b6c08c1e4fb73956166d6ab87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c0add69fb79a8b9c4abb5b93e74517f') in 0.045519 seconds
+  Time since last request: 2834.058804 seconds.
+  path: Assets/UniVRM-0.112.0_6a46.unitypackage
+  artifactKey: Guid(5c0ab0f60b9a522419ff8d7e504d6774) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniVRM-0.112.0_6a46.unitypackage using Guid(5c0ab0f60b9a522419ff8d7e504d6774) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeae530d4c1693553befa589c618adb4') in 0.009053 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 84.298609 seconds.
-  path: Assets/FightingMotionsVolume1/Animator/BlueGuy_Animator.controller
-  artifactKey: Guid(4737e6302c9030246ae91eff65c36dbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/Animator/BlueGuy_Animator.controller using Guid(4737e6302c9030246ae91eff65c36dbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef2735747aa3b465b22549d97896ed7a') in 0.022670 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 130
-========================================================================
-Received Import Request.
-  Time since last request: 185.140309 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2
-  artifactKey: Guid(e8076811c0049e94b954290a7550242d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2 using Guid(e8076811c0049e94b954290a7550242d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d2470a4e976de0c0cec58b25da7ce99') in 0.000905 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 1.614940 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri
-  artifactKey: Guid(9bd2c1dc44a6ed04da8818c074d59fcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri using Guid(9bd2c1dc44a6ed04da8818c074d59fcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd4c553d0ec46e072041e1d3be13bc72') in 0.000632 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 8.008850 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙03.bmp
-  artifactKey: Guid(6628598a12f42454483ee92a962abe64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙03.bmp using Guid(6628598a12f42454483ee92a962abe64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea412385f7929e83714122ff4b74f445') in 0.019405 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1.017555 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙04.bmp
-  artifactKey: Guid(54d962c33b3f45041ba6e776153ff73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙04.bmp using Guid(54d962c33b3f45041ba6e776153ff73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e88f07ceafb7f2fe8be0c9cdd2c7a5c') in 0.014967 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1.525896 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙06.bmp
-  artifactKey: Guid(d62fa1c4c681ffc4c8da974f9e6d885d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙06.bmp using Guid(d62fa1c4c681ffc4c8da974f9e6d885d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83422ea05db139c7ee4e981b6695f89d') in 0.013178 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 3.536097 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）06.bmp
-  artifactKey: Guid(f0e9d40fb079b334ba97dbc18c5c986a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）06.bmp using Guid(f0e9d40fb079b334ba97dbc18c5c986a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fa9488f92bf731f89f2a5db65c66188') in 0.015485 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 39.201160 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙01.bmp
-  artifactKey: Guid(59ba477e5ffe4c24ca5f224e51f925b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙01.bmp using Guid(59ba477e5ffe4c24ca5f224e51f925b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c72018a14052cfff3416502b82fcc88') in 0.016766 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 21.743994 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙02.bmp
-  artifactKey: Guid(c3f33c2be97a87e4780f4929c45ed8c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙02.bmp using Guid(c3f33c2be97a87e4780f4929c45ed8c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34a1dae3852eaa69432866e196b37796') in 0.016085 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 24.643730 seconds.
-  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙05.bmp
-  artifactKey: Guid(fe6614500c7857b49934a726084e5a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙05.bmp using Guid(fe6614500c7857b49934a726084e5a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75ed16c4052ee14e7ad1f7093644c847') in 0.013961 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 374.647652 seconds.
-  path: Assets/FightingMotionsVolume1/FBX/idle_Tiramis.fbx
-  artifactKey: Guid(243b013a8548d9344b2e92934493d476) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/FBX/idle_Tiramis.fbx using Guid(243b013a8548d9344b2e92934493d476) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b60c17e5b106fbf6fe3afa160db37348') in 0.197990 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 54
-========================================================================
-Received Import Request.
-  Time since last request: 4.346283 seconds.
-  path: Assets/FightingMotionsVolume1/FBX/knockdown_loop_A.fbx
-  artifactKey: Guid(3ff1228a6fef1834f96812bc96c1d41b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/FBX/knockdown_loop_A.fbx using Guid(3ff1228a6fef1834f96812bc96c1d41b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '386ee9a07ffaef3db9d7b3b4c23d8a2b') in 0.040453 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 54
-========================================================================
-Received Import Request.
-  Time since last request: 28.243627 seconds.
-  path: Assets/FightingMotionsVolume1/Scenes
-  artifactKey: Guid(a435cd4442072c843bf2ca9d95fdf4ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/Scenes using Guid(a435cd4442072c843bf2ca9d95fdf4ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73cc919738d714873d3e4b96996074ab') in 0.006962 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 25.373205 seconds.
-  path: Assets/FightingMotionsVolume1/FBX/idle_A.fbx
-  artifactKey: Guid(6c88f17ac7ff45543a0878e71288c038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/FBX/idle_A.fbx using Guid(6c88f17ac7ff45543a0878e71288c038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84f0efc1f50b8f7166617db10abb85e9') in 0.030594 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 54
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.632 seconds
-Refreshing native plugins compatible for Editor in 3.37 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.826 seconds
+Refreshing native plugins compatible for Editor in 4.94 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.044 seconds
+- Finished resetting the current domain, in  1.131 seconds
 Domain Reload Profiling:
-	ReloadAssembly (183ms)
-		BeginReloadAssembly (125ms)
+	ReloadAssembly (235ms)
+		BeginReloadAssembly (145ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (38ms)
-		LoadAllAssembliesAndSetupDomain (448ms)
-			LoadAssemblies (221ms)
+			CreateAndSetChildDomain (51ms)
+		LoadAllAssembliesAndSetupDomain (588ms)
+			LoadAssemblies (302ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (278ms)
-				TypeCache.Initialize (274ms)
-					TypeCache.ScanAssembly (263ms)
-				ResolveRequiredComponents (4ms)
+			SetupTypeCache (338ms)
+				TypeCache.Initialize (321ms)
+					TypeCache.ScanAssembly (307ms)
+				ResolveRequiredComponents (8ms)
 		FinalizeReload (0ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (0ms)
-			SetupLoadedEditorAssemblies (445ms)
+			SetupLoadedEditorAssemblies (440ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (26ms)
-				SetLoadedEditorAssemblies (8ms)
+				InitializePlatformSupportModulesInManaged (19ms)
+				SetLoadedEditorAssemblies (5ms)
 				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (79ms)
-				ProcessInitializeOnLoadAttributes (302ms)
-				ProcessInitializeOnLoadMethodAttributes (24ms)
-				AfterProcessingInitializeOnLoad (5ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (277ms)
+				ProcessInitializeOnLoadMethodAttributes (62ms)
+				AfterProcessingInitializeOnLoad (6ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (8ms)
-Refreshing native plugins compatible for Editor in 2.92 ms, found 3 plugins.
+			AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 2.59 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3091 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 25 unused Assets / (30.6 KB). Loaded Objects now: 3583.
-Memory consumption went from 118.9 MB to 118.9 MB.
-Total: 3.127300 ms (FindLiveObjects: 0.342300 ms CreateObjectMapping: 0.257700 ms MarkObjects: 2.467900 ms  DeleteObjects: 0.057700 ms)
+Unloading 5670 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (0.7 MB). Loaded Objects now: 6222.
+Memory consumption went from 178.0 MB to 177.3 MB.
+Total: 5.401900 ms (FindLiveObjects: 0.509500 ms CreateObjectMapping: 0.414400 ms MarkObjects: 4.030800 ms  DeleteObjects: 0.445100 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -353,9 +241,78 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 65.810116 seconds.
-  path: Assets/FightingMotionsVolume1/FBX/hp_straight_left_A.fbx
-  artifactKey: Guid(e0ad8083c895ff74ea01f55b82884971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FightingMotionsVolume1/FBX/hp_straight_left_A.fbx using Guid(e0ad8083c895ff74ea01f55b82884971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '553b268393041fdea237c2299e36c220') in 0.115649 seconds
+  Time since last request: 110.830140 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.MetaObject
+  artifactKey: Guid(e90ef6c15986aa7449c2911b8438026e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.MetaObject using Guid(e90ef6c15986aa7449c2911b8438026e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bd0e6777eed1e97f329a46f849372d5') in 0.003482 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 54
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.659746 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.prefab
+  artifactKey: Guid(0bded7cd636b83440b04890cb03962fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.prefab using Guid(0bded7cd636b83440b04890cb03962fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b401381036e264f0b3a1f59d54f574d0') in 0.851660 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 264
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Github\Fighting3D\fighting3D\fighting3d\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.704 seconds
+Refreshing native plugins compatible for Editor in 2.89 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.136 seconds
+Domain Reload Profiling:
+	ReloadAssembly (199ms)
+		BeginReloadAssembly (131ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (46ms)
+		LoadAllAssembliesAndSetupDomain (501ms)
+			LoadAssemblies (229ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (319ms)
+				TypeCache.Initialize (311ms)
+					TypeCache.ScanAssembly (304ms)
+				ResolveRequiredComponents (8ms)
+		FinalizeReload (0ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (0ms)
+			SetupLoadedEditorAssemblies (430ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (28ms)
+				SetLoadedEditorAssemblies (4ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (62ms)
+				ProcessInitializeOnLoadAttributes (246ms)
+				ProcessInitializeOnLoadMethodAttributes (83ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 4.01 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5670 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (0.7 MB). Loaded Objects now: 6233.
+Memory consumption went from 184.1 MB to 183.4 MB.
+Total: 3.529800 ms (FindLiveObjects: 0.608700 ms CreateObjectMapping: 0.306200 ms MarkObjects: 2.317700 ms  DeleteObjects: 0.295500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
