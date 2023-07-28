@@ -1684,6 +1684,7 @@ GameObject:
   - component: {fileID: 747599085160719701}
   - component: {fileID: 2273942540521739634}
   - component: {fileID: 8928431001764545220}
+  - component: {fileID: -6112624275579628702}
   m_Layer: 0
   m_Name: "\u5408\u540C\u4F01\u753B_\u7537\u30AD\u30E3\u30E9\uFF11"
   m_TagString: Untagged
@@ -1970,6 +1971,18 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 9
+--- !u!114 &-6112624275579628702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075726142189510553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e1c23a2197047408a31302b9254ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5121195898254716747
 GameObject:
   m_ObjectHideFlags: 0
