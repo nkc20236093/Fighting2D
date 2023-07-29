@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class otoko_chara_Controller : MonoBehaviour
 {
+    //各初期ステータス
+
+    //HP
+    int hp = 10;
+    //攻撃力
+    int attack = 10;
+    //素早さ
+    int speed = 10;
+    //スタミナ
+    int stamina = 10;
+    //賢さ
+    int cleverness = 10;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
