@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class otoko_chara_Controller : MonoBehaviour
 {
+    //RigidBodyを変数に保存
+    Rigidbody rigidbody;
+
     //各初期ステータス
 
     //HP
@@ -20,12 +23,17 @@ public class otoko_chara_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        Application.targetFrameRate = 60;
+        this.rigidbody = GetComponent < Rigidbody > ();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //変数にHorizontal・Verticalを代入
+        float sayuu = Input.GetAxisRaw("Horizontal");
+        float jouge = Input.GetAxisRaw("Vertical");
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -48,15 +56,16 @@ public class otoko_chara_Controller : MonoBehaviour
         {
 
         }
-        //横移動(スティック or 矢印キー)
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        //横移動(スティック or 左右矢印キー)
+        if (sayuu != 0)
         {
 
         }
-        //縦移動(スティック or 矢印キー)
-        if (Input.GetAxisRaw("Vertical") != 0)
-        {
 
+        //ジャンプ(スティック or 上矢印キー)
+        if (jouge != 0)
+        {
+            this.rigidbody.AddForce(transform.up * jouge);
         }
     }
 }
