@@ -1685,6 +1685,7 @@ GameObject:
   - component: {fileID: 2273942540521739634}
   - component: {fileID: 8928431001764545220}
   - component: {fileID: -6112624275579628702}
+  - component: {fileID: 8665822821737317919}
   m_Layer: 0
   m_Name: "\u5408\u540C\u4F01\u753B_\u7537\u30AD\u30E3\u30E9\uFF11"
   m_TagString: Untagged
@@ -1983,6 +1984,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e1c23a2197047408a31302b9254ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &8665822821737317919
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075726142189510553}
+  serializedVersion: 4
+  m_Mass: 65
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5121195898254716747
 GameObject:
   m_ObjectHideFlags: 0

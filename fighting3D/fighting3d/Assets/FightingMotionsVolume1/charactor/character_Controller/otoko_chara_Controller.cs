@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class otoko_chara_Controller : MonoBehaviour
 {
+    //移動の変数
+    float sayuu;
+    float jouge;
+
+    //左右用の移動方向変数
+    Vector3 sayuu_houkou = Vector3.zero;
+
     //RigidBodyを変数に保存
     Rigidbody rigidbody;
+
+    //ジャンプの速度を設定
+    private const float _velocity = 5.0f;
+
+    //着地状態を管理
+    private bool _isGrounded;
 
     //各初期ステータス
 
@@ -25,6 +38,8 @@ public class otoko_chara_Controller : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         this.rigidbody = GetComponent < Rigidbody > ();
+        //最初は着地してない状態
+        _isGrounded = false;
     }
 
     // Update is called once per frame
@@ -32,8 +47,8 @@ public class otoko_chara_Controller : MonoBehaviour
     {
 
         //変数にHorizontal・Verticalを代入
-        float sayuu = Input.GetAxisRaw("Horizontal");
-        float jouge = Input.GetAxisRaw("Vertical");
+        sayuu = Input.GetAxisRaw("Horizontal");
+        jouge = Input.GetAxisRaw("Vertical");
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -62,10 +77,34 @@ public class otoko_chara_Controller : MonoBehaviour
 
         }
 
-        //ジャンプ(スティック or 上矢印キー)
-        if (jouge != 0)
+        //ジャンプ(スティック or 上矢印キー(Wキー))
+
+        //着地状態か確認
+        if (_isGrounded == true)
         {
-            this.rigidbody.AddForce(transform.up * jouge);
+            //ジャンプ(スティック or 上矢印キー(Wキー))が押されてるか確認
+            if (jouge != 0)
+            {
+                //ジャンプの方向を上向きのベクトルに設定
+                Vector3 jump_vector = Vector3.up;
+
+                //ジャンプの速度を計算
+                Vector3 jump_velocity = jump_vector * _velocity;
+
+                //上向きの速度を設定
+                rigidbody.velocity = jump_velocity;
+
+                //地面から離れるので着地状態を書き換え
+                _isGrounded = false;
+            }
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        //着地を検出したので着地状態を書き換え
+        if (other.gameObject.tag == "jimen")
+        {
+            _isGrounded = true;
         }
     }
 }
