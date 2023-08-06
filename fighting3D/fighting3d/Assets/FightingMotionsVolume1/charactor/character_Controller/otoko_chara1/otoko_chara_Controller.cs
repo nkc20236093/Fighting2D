@@ -17,7 +17,7 @@ public class otoko_chara_Controller : MonoBehaviour
     //Rayを宣言
     Ray ray;
     //レイを飛ばす距離
-    float distance = 0.5f;
+    public float distance = 0.5f;
     //レイが何かに当たった時の情報
     RaycastHit hit;
     //レイを発射する位置
@@ -28,9 +28,13 @@ public class otoko_chara_Controller : MonoBehaviour
     float jouge;
 
     //ジャンプパワー（統一予定）
-    float jump_power = 1.05f;
+    float jump_power = 5f;
     //2段ジャンプ禁止用
     public bool jump_stop = false;
+
+
+    //移動（総合）スピード
+    Vector3 speed_origin;
 
     //CharacterControllerを宣言
     public CharacterController characterController;
@@ -98,6 +102,7 @@ public class otoko_chara_Controller : MonoBehaviour
                 jump_stop = false;
                 jump_isGrounded = true;
                 Debug.Log("jimen");
+                speed_origin = Vector3.zero;
             }
             else
             {
@@ -112,6 +117,7 @@ public class otoko_chara_Controller : MonoBehaviour
         transform.position = Pos;
 
         //変数にHorizontal・Verticalを代入
+        var idou = new Vector3(sayuu, jouge, 0);
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
         //以下基本動作
@@ -140,7 +146,10 @@ public class otoko_chara_Controller : MonoBehaviour
         if (sayuu != 0)
         {
             Debug.Log("sayuu");
-            transform.Translate(new Vector3(0,0,sayuu) * now_speed * Time.deltaTime);
+            //transform.LookAt(transform.position + idou);
+            speed_origin.x = idou.normalized.x * 2;
+            speed_origin.y = idou.normalized.y * 2;
+            //Vector3 yoko = new Vector3(0,0,sayuu) * now_speed * Time.deltaTime;
         }
 
         //ジャンプ(スティック or 上矢印キー(Wキー)
@@ -151,10 +160,11 @@ public class otoko_chara_Controller : MonoBehaviour
                 Debug.Log("ジャンプ");
                 //地面から離れるので着地状態を書き換え
                 jump_isGrounded = false;
-                //Y軸の速度を代入
-                Jump_velocity = jump_power;
-                jump_stop = true;
+            //Y軸の速度を代入
+            //Jump_velocity = jump_power;
+            speed_origin.y = jump_power;
             }
-        characterController.Move(new Vector3(0, Jump_velocity, 0) * Time.deltaTime);
+        speed_origin.y += Physics.gravity.y * Time.deltaTime;
+        characterController.Move(new Vector3((speed_origin.x*-1), speed_origin.y, 0) * Time.deltaTime);
     }
 }
