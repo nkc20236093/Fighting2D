@@ -7,6 +7,7 @@ public class otoko_chara_Controller : MonoBehaviour
     //xとyの移動制限
     float xleft = 3.5f, xright = -3.5f;
     float ydown = 5f, yup = 9f;
+
     //通常スピード
     float normal_speed = 50;
     //ダッシュスピード
@@ -30,7 +31,8 @@ public class otoko_chara_Controller : MonoBehaviour
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
-    public bool jump_stop = false;
+    public bool jump_stop = false; //false = 禁止
+                                   //true  = 許可
 
 
     //移動（総合）スピード
@@ -46,8 +48,9 @@ public class otoko_chara_Controller : MonoBehaviour
     float Jump_velocity = 5.0f;
 
     //着地状態を管理
-    public bool jump_isGrounded;  //着地してない=false
-                              　　//着地してる  =true
+    public bool jump_isGrounded = false; //最初は着地してない状態 
+                                         //着地してない=false
+                                         //着地してる  =true
 
     //各初期ステータス
 
@@ -69,13 +72,14 @@ public class otoko_chara_Controller : MonoBehaviour
         now_speed = normal_speed;
 
         Application.targetFrameRate = 60;
-        //最初は着地してない状態
-        jump_isGrounded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //常に重力をかける
+        //characterController.Move(new Vector3(0, Physics.gravity.y, 0));
+
         //レイを発射する位置の調整
         rayPos = transform.position + new Vector3(0, 0.25f, 0);
         //レイを下に飛ばす
@@ -83,7 +87,7 @@ public class otoko_chara_Controller : MonoBehaviour
         //デバッグ用のレイを発光
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
-        //ジャンプしてない間、重力をかける
+        ////ジャンプしてない間、重力をかける
         Jump_velocity += Physics.gravity.y * Time.deltaTime;
         Debug.Log("重力");
 
@@ -99,7 +103,7 @@ public class otoko_chara_Controller : MonoBehaviour
             //レイが地面にヒットしてるか確認
             if (hit.collider.tag == "jimen")
             {
-                jump_stop = false;
+                jump_stop = true;
                 jump_isGrounded = true;
                 Debug.Log("jimen");
                 speed_origin = Vector3.zero;
@@ -146,24 +150,23 @@ public class otoko_chara_Controller : MonoBehaviour
         if (sayuu != 0)
         {
             Debug.Log("sayuu");
-            //transform.LookAt(transform.position + idou);
             speed_origin.x = idou.normalized.x * 2;
             speed_origin.y = idou.normalized.y * 2;
-            //Vector3 yoko = new Vector3(0,0,sayuu) * now_speed * Time.deltaTime;
         }
 
         //ジャンプ(スティック or 上矢印キー(Wキー)
 
         //地面についてたら&ジャンプ(スティック or 上矢印キー(Wキー))が押されてるか確認&2段ジャンプ禁止
-        if (jouge > 0 && !jump_stop && jump_isGrounded == true) 
-            {
-                Debug.Log("ジャンプ");
-                //地面から離れるので着地状態を書き換え
-                jump_isGrounded = false;
-            //Y軸の速度を代入
-            //Jump_velocity = jump_power;
+        if (jouge > 0 && jump_stop && jump_isGrounded == true) 
+        {
+            Debug.Log("ジャンプ");
             speed_origin.y = jump_power;
-            }
+            //地面から離れるので着地状態を書き換え
+            jump_isGrounded = false;
+            //地面から離れるのでjump_stopをfalseに切り替え
+            jump_stop = false;
+        }
+
         speed_origin.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(new Vector3((speed_origin.x*-1), speed_origin.y, 0) * Time.deltaTime);
     }
