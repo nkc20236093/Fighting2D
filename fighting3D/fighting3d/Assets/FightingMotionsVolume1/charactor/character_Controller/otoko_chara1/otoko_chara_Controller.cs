@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class otoko_chara_Controller : MonoBehaviour
 {
+    //プレイヤーの移動方向・速度の変数
+    Vector3 PlayerVector;
+
     //xとyの移動制限
     float xleft = 3.5f, xright = -3.5f;
     float ydown = 5f, yup = 9f;
@@ -13,12 +16,12 @@ public class otoko_chara_Controller : MonoBehaviour
     //ダッシュスピード
     float dash_speed;
     //現在のスピードモード
-    float now_speed = 10;
+    float now_speed;
  
     //Rayを宣言
     Ray ray;
     //レイを飛ばす距離
-    public float distance = 0.5f;
+    public float distance = 0.001f;
     //レイが何かに当たった時の情報
     RaycastHit hit;
     //レイを発射する位置
@@ -81,21 +84,17 @@ public class otoko_chara_Controller : MonoBehaviour
     void Update()
     {
         //レイを発射する位置の調整
-        rayPos = transform.position + new Vector3(0, 0.25f, 0);
+        rayPos = transform.position + new Vector3(0, 0, 0);
         //レイを下に飛ばす
         ray = new Ray(rayPos, transform.up * -1);
         //デバッグ用のレイを発光
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
-        ////ジャンプしてない間、重力をかける
-        //Jump_velocity += Physics.gravity.y * Time.deltaTime;
-        //Debug.Log("重力");
-
         //現在の座標を取得
         Vector3 Pos = transform.position;
         //移動制限
-        Pos.x = Mathf.Clamp(Pos.x, xright, xleft);
-        Pos.y = Mathf.Clamp(Pos.y, yup, ydown);
+        Pos.x = Mathf.Clamp(Pos.x, xleft, xright);
+        Pos.y = Mathf.Clamp(Pos.y, ydown, yup);
         transform.position = Pos;
 
         //着地状態か確認
@@ -120,7 +119,7 @@ public class otoko_chara_Controller : MonoBehaviour
         }
 
         //変数にHorizontal・Verticalを代入
-        var idou = new Vector3(sayuu, jouge, 0);
+        PlayerVector = new Vector3(sayuu, jouge, 0);
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
         //以下基本動作
@@ -145,27 +144,28 @@ public class otoko_chara_Controller : MonoBehaviour
         {
 
         }
-        //横移動(スティック or 左右矢印キー)
-        if (sayuu != 0 && jump_isGrounded == true)
+        //地面についてたら
+        if (jump_isGrounded == true)
         {
-            Debug.Log("sayuu");
-            speed_origin.x = idou.normalized.x * 2;
-            
+            //横移動(スティック or 左右矢印キー)
+            if (sayuu != 0)
+            {
+                Debug.Log("sayuu");
+                speed_origin.x = PlayerVector.normalized.x * 2;
+            }
+            //&ジャンプ(スティック or 上矢印キー(Wキー))が押されてるか確認&2段ジャンプ禁止
+            if (jouge > 0 && jump_stop)
+            {
+                Debug.Log("ジャンプ");
+                speed_origin.y = PlayerVector.normalized.y * 5;
+                //speed_origin.y = jump_power;
+                //地面から離れるので着地状態を書き換え
+                jump_isGrounded = false;
+                //地面から離れるのでjump_stopをfalseに切り替え
+                jump_stop = false;
+            } 
         }
-
-        //ジャンプ(スティック or 上矢印キー(Wキー)
-
-        //地面についてたら&ジャンプ(スティック or 上矢印キー(Wキー))が押されてるか確認&2段ジャンプ禁止
-        if (jouge > 0 && jump_stop && jump_isGrounded == true) 
-        {
-            Debug.Log("ジャンプ");
-            speed_origin.y = idou.normalized.y * 2;
-            speed_origin.y = jump_power;
-            //地面から離れるので着地状態を書き換え
-            jump_isGrounded = false;
-            //地面から離れるのでjump_stopをfalseに切り替え
-            jump_stop = false;
-        }
+        PlayerVector = transform.TransformDirection(PlayerVector);
         speed_origin.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(new Vector3((speed_origin.x * -1), speed_origin.y, 0) * Time.deltaTime);
     }

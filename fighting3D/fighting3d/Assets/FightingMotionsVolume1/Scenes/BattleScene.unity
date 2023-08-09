@@ -801,6 +801,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2000648599073867506, guid: 8cb430c0bb540ae4694f2c634ee60fb9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000648599073867506, guid: 8cb430c0bb540ae4694f2c634ee60fb9, type: 3}
       propertyPath: jump_power
       value: 50
       objectReference: {fileID: 0}
