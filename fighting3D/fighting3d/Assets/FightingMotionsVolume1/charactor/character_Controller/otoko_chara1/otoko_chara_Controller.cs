@@ -8,7 +8,7 @@ public class otoko_chara_Controller : MonoBehaviour
     Vector3 PlayerVector;
 
     //xとyの移動制限
-    float xleft = 3.5f, xright = -3.5f;
+    float xleft = 3.4f, xright = -3.4f;
     float ydown = 5f, yup = 9f;
 
     //通常スピード
@@ -57,6 +57,8 @@ public class otoko_chara_Controller : MonoBehaviour
                                          //着地してない=false
                                          //着地してる  =true
 
+    //レイが地面にヒットしたかの判定
+    public bool rayhit = false;
     //各初期ステータス
 
     //HP
@@ -93,7 +95,7 @@ public class otoko_chara_Controller : MonoBehaviour
         //現在の座標を取得
         Vector3 Pos = transform.position;
         //移動制限
-        Pos.x = Mathf.Clamp(Pos.x, xleft, xright);
+        Pos.x = Mathf.Clamp(Pos.x, xright, xleft);
         Pos.y = Mathf.Clamp(Pos.y, ydown, yup);
         transform.position = Pos;
 
@@ -106,22 +108,22 @@ public class otoko_chara_Controller : MonoBehaviour
             //レイが地面にヒットしてるか確認
             if (hit.collider.tag == "jimen")
             {
-                jump_stop = true;
-                jump_isGrounded = true;
-                Debug.Log("jimen");
-                speed_origin = Vector3.zero;
+                rayhit = true;
+
+                //地面についてたら落下速度を0にする
+                //PlayerVector.y = 0;
+
+                //jump_stop = true;
+                //jump_isGrounded = true;
+                ////Debug.Log("jimen");
+                //speed_origin = Vector3.zero;
             }
             else
             {
                 jump_isGrounded = false;
-                Debug.Log("hazure");
+                //Debug.Log("hazure");
             }
         }
-
-        //変数にHorizontal・Verticalを代入
-        PlayerVector = new Vector3(sayuu, jouge, 0);
-        sayuu = Input.GetAxisRaw("Horizontal");
-        jouge = Input.GetAxisRaw("Vertical");
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -144,29 +146,30 @@ public class otoko_chara_Controller : MonoBehaviour
         {
 
         }
-        //地面についてたら
-        if (jump_isGrounded == true)
+        //変数にHorizontal・Verticalを代入
+        PlayerVector = new Vector3(0, jouge, sayuu);
+        sayuu = Input.GetAxisRaw("Horizontal");
+        jouge = Input.GetAxisRaw("Vertical") * 1.49f;
+
+        //地面についてなかったら&連続ジャンプ禁止
+        if (jump_isGrounded == false && jump_stop == false) 
         {
-            //横移動(スティック or 左右矢印キー)
-            if (sayuu != 0)
-            {
-                Debug.Log("sayuu");
-                speed_origin.x = PlayerVector.normalized.x * 2;
-            }
-            //&ジャンプ(スティック or 上矢印キー(Wキー))が押されてるか確認&2段ジャンプ禁止
-            if (jouge > 0 && jump_stop)
-            {
-                Debug.Log("ジャンプ");
-                speed_origin.y = PlayerVector.normalized.y * 5;
-                //speed_origin.y = jump_power;
-                //地面から離れるので着地状態を書き換え
-                jump_isGrounded = false;
-                //地面から離れるのでjump_stopをfalseに切り替え
-                jump_stop = false;
-            } 
+            jouge = 0f;
+            //地面から離れるので着地状態を書き換え
+            //jump_isGrounded = false;
+            //地面から離れるのでjump_stopをfalseに切り替え
+            //jump_stop = false;
         }
-        PlayerVector = transform.TransformDirection(PlayerVector);
-        speed_origin.y += Physics.gravity.y * Time.deltaTime;
-        characterController.Move(new Vector3((speed_origin.x * -1), speed_origin.y, 0) * Time.deltaTime);
+        //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
+        transform.Translate(PlayerVector);
+    }
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag == "jimen" || rayhit == true) 
+        {
+            Debug.Log("jimen");
+            jump_isGrounded = true;
+            jump_stop = true;
+        }
     }
 }

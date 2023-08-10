@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 150}
   m_MaxSize: {x: 24288, y: 24288}
   vertical: 1
-  controlID: 52
+  controlID: 18
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 150}
   m_MaxSize: {x: 24288, y: 24288}
   vertical: 0
-  controlID: 53
+  controlID: 19
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -891,9 +891,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.2221675, y: 5.443662, z: 1.5267543}
+    m_Target: {x: 0.6823733, y: 5.090247, z: -0.13860953}
     speed: 2
-    m_Value: {x: 1.2221675, y: 5.443662, z: 1.5267543}
+    m_Value: {x: 0.6823733, y: 5.090247, z: -0.13860953}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -939,13 +939,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0025859652, y: 0.99683523, z: 0.07068497, w: 0.036504325}
+    m_Target: {x: 0.026790457, y: 0.5931753, z: 0.019752406, w: -0.8043953}
     speed: 2
-    m_Value: {x: -0.0025859445, y: 0.99682724, z: 0.0706844, w: 0.036504034}
+    m_Value: {x: 0.026790233, y: 0.59317034, z: 0.019752242, w: -0.8043886}
   m_Size:
-    m_Target: 1.2989556
+    m_Target: 0.09709559
     speed: 2
-    m_Value: 1.2989556
+    m_Value: 0.09709559
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1177,7 +1177,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 0
-    m_Folders: []
+    m_Folders:
+    - Assets/FightingMotionsVolume1/charactor/character_Controller/otoko_chara1
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1192,7 +1193,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a43a0000
     m_LastClickedID: 15012
-    m_ExpandedIDs: 0000000076730000787300007a730000
+    m_ExpandedIDs: 0000000076730000787300007a7300007c7300007e73000080730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1217,24 +1218,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 245.40002}
+    scrollPos: {x: 0, y: 5.4000244}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff0000000076730000787300007a73000078750000967500009c750000
+    m_ExpandedIDs: ffffffff0000000076730000787300007a7300007c7300007e73000080730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: otoko_chara
-      m_OriginalName: otoko_chara
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 31386
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 14}
     m_SearchString: 
