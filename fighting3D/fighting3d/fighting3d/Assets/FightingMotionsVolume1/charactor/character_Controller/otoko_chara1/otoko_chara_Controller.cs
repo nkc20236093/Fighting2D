@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class otoko_chara_Controller : MonoBehaviour
+public class Otoko_chara_Controller : MonoBehaviour
 {
-    //向き変更用変数
-    public Vector3 dir;
+    //向き変更用
+    public Vector3 localscale;
 
     //プレイヤーの移動方向・速度の変数
     Vector3 PlayerVector;
@@ -89,11 +89,6 @@ public class otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Transformを取得
-        Transform mytransform = this.transform;
-        //ワールド座標を基準に、回転を取得
-        Vector3 worldAngle = mytransform.eulerAngles;
-
         //レイを発射する位置の調整
         rayPos = transform.position + new Vector3(0, 0, 0);
         //レイを下に飛ばす
@@ -101,7 +96,7 @@ public class otoko_chara_Controller : MonoBehaviour
         //デバッグ用のレイを発光
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
-        //現在の座標を取得
+        //現在の座標を取得（移動制限用）
         Vector3 Pos = transform.position;
         //移動制限
         Pos.x = Mathf.Clamp(Pos.x, xright, xleft);
@@ -115,7 +110,7 @@ public class otoko_chara_Controller : MonoBehaviour
             Jump_velocity = -0.5f;
             Debug.Log("着地状態");
             //レイが地面にヒットしてるか確認
-            if (hit.collider.tag == "jimen")
+            if (hit.collider.CompareTag("jimen"))
             {
                 rayhit = true;
             }
@@ -129,22 +124,22 @@ public class otoko_chara_Controller : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetAxisRaw("X or J") != 0)
         {
-
+            Debug.Log("弱攻撃");
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
-
+            Debug.Log("強攻撃");
         }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0)
         {
-
+            Debug.Log("投げ攻撃");
         }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
         {
-
+            Debug.Log("必殺技");
         }
         //変数にHorizontal・Verticalを代入
         PlayerVector = new Vector3(0, jouge, sayuu * 0.5f);
@@ -159,18 +154,53 @@ public class otoko_chara_Controller : MonoBehaviour
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
         transform.Translate(PlayerVector);
 
-        //向き変更(左右)
+        //以下アニメーション
+
         if (sayuu != 0)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(sayuu, 0, 0));
+            Hantenn();
         }
-
-        //向き変更
-        //mytransform.rotation= Quaternion.FromToRotation(Vector3.up,)
+        //停止状態
+        else
+        {
+            animator.SetBool("stop", true);
+        }
+        transform.localScale = localscale;
     }
+    //左右反転処理
+    float Hantenn()
+    {
+        //右移動
+        if (sayuu > 0)
+        {
+            //反転処理
+            Vector3 localscale = transform.localScale;
+            localscale.z *= 1f;
+            //アニメーション変更
+            animator.SetBool("zensin", true);
+            return localscale.z;
+        }
+        //左移動
+        else if (sayuu < 0)
+        {
+            //反転処理
+            Vector3 localscale = transform.localScale;
+            localscale.z *= -1f;
+            //アニメーション変更
+            animator.SetBool("zensin", true);
+            return localscale.z;
+        }
+        else
+        {
+            return localscale.z;
+        }
+    }
+
+    //右用
+    //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "jimen")  
+        if (hit.gameObject.CompareTag("jimen"))  
         {
             Debug.Log("jimen");
             jump_isGrounded = true;
