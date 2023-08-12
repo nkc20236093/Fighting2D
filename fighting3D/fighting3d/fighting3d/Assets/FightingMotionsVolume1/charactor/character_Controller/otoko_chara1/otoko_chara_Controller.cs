@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    //向き変更用
-    public Vector3 localscale;
+    Transform mytransform;
+    //向き変更用変数
+    public Vector3 rot;
+    //向き変更の管理用
+    public bool muki;  //false = 右
+                       //true  = 左
 
     //プレイヤーの移動方向・速度の変数
     Vector3 PlayerVector;
@@ -80,7 +84,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         //最初に現在のスピードに通常スピードを代入
         now_speed = normal_speed;
-
+        //自分の回転度を取得
+        mytransform = this.transform;
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         Application.targetFrameRate = 60;
@@ -146,6 +151,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
 
+        //向き変更用
+        if (sayuu > 0)
+        {
+            muki = false;
+        }
+        else if (sayuu < 0)
+        {
+            muki = true;
+        }
+
         //地面についてたらジャンプ力を0にする
         if (jump_isGrounded == true || rayhit == true) 
         {
@@ -156,47 +171,36 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //以下アニメーション
 
+        //ワールド座標を基準に回転を取得
+        Vector3 World_angle = mytransform.eulerAngles;
+        //左右どちらかに移動中
         if (sayuu != 0)
         {
-            Hantenn();
+            //右移動
+            if (muki == false)
+            {
+                //反転処理
+                World_angle.y = -90;
+                //アニメーション変更
+                animator.SetBool("zensin", true);
+            }
+            //左移動
+            else
+            {
+                //反転処理
+                World_angle.y = 90;
+                //アニメーション変更
+                animator.SetBool("zensin", true);
+            }
         }
         //停止状態
         else
         {
+            //アニメーション変更
             animator.SetBool("stop", true);
         }
-        transform.localScale = localscale;
+        mytransform.eulerAngles = World_angle;
     }
-    //左右反転処理
-    float Hantenn()
-    {
-        //右移動
-        if (sayuu > 0)
-        {
-            //反転処理
-            Vector3 localscale = transform.localScale;
-            localscale.z *= 1f;
-            //アニメーション変更
-            animator.SetBool("zensin", true);
-            return localscale.z;
-        }
-        //左移動
-        else if (sayuu < 0)
-        {
-            //反転処理
-            Vector3 localscale = transform.localScale;
-            localscale.z *= -1f;
-            //アニメーション変更
-            animator.SetBool("zensin", true);
-            return localscale.z;
-        }
-        else
-        {
-            return localscale.z;
-        }
-    }
-
-    //右用
     //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
