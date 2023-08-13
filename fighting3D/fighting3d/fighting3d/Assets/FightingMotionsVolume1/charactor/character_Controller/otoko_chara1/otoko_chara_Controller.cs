@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //Transformコンポーネントを取得
     Transform mytransform;
     //向き変更用変数
-    public Vector3 rot;
+    float chara_muki;
     //向き変更の管理用
     public bool muki;  //false = 右
                        //true  = 左
@@ -146,8 +147,13 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("必殺技");
         }
+        //ガード(Right(left) Bumper or O(U))   ※ジャストガードも検討
+        if (Input.GetButtonDown("Right(left) Bumper or O(U)")) 
+        {
+            Debug.Log("ガード");
+        }
         //変数にHorizontal・Verticalを代入
-        PlayerVector = new Vector3(0, jouge, sayuu * 0.5f);
+        PlayerVector = new Vector3(0, jouge, sayuu * 0.5f*chara_muki);
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
 
@@ -181,6 +187,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 //反転処理
                 World_angle.y = -90;
+                chara_muki = 1;
                 //アニメーション変更
                 animator.SetBool("zensin", true);
             }
@@ -189,6 +196,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 //反転処理
                 World_angle.y = 90;
+                chara_muki = -1;
                 //アニメーション変更
                 animator.SetBool("zensin", true);
             }
