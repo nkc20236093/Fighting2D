@@ -130,7 +130,14 @@ public class Otoko_chara_Controller : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetAxisRaw("X or J") != 0)
         {
+            animator.SetInteger("stop", 2);
             Debug.Log("弱攻撃");
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            animation_stop();
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
@@ -147,13 +154,13 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("必殺技");
         }
-        //ガード(Right(left) Bumper or O(U))   ※ジャストガードも検討
-        if (Input.GetButtonDown("Right(left) Bumper or O(U)")) 
+        //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
+        if (Input.GetButtonDown("Right(left) Bumper or sperce")) 
         {
             Debug.Log("ガード");
         }
         //変数にHorizontal・Verticalを代入
-        PlayerVector = new Vector3(0, jouge, sayuu * 0.5f*chara_muki);
+        PlayerVector = new Vector3(0, jouge, sayuu * 0.15f * chara_muki);
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
 
@@ -166,7 +173,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             muki = true;
         }
-
         //地面についてたらジャンプ力を0にする
         if (jump_isGrounded == true || rayhit == true) 
         {
@@ -189,7 +195,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 World_angle.y = -90;
                 chara_muki = 1;
                 //アニメーション変更
-                animator.SetBool("zensin", true);
+                animator.SetInteger("stop", 1);
             }
             //左移動
             else
@@ -198,16 +204,21 @@ public class Otoko_chara_Controller : MonoBehaviour
                 World_angle.y = 90;
                 chara_muki = -1;
                 //アニメーション変更
-                animator.SetBool("zensin", true);
+                animator.SetInteger("stop", 1);
             }
         }
         //停止状態
         else
         {
             //アニメーション変更
-            animator.SetBool("stop", true);
+            Invoke(nameof(animation_stop), 1f);
         }
         mytransform.eulerAngles = World_angle;
+    }
+    //停止状態のアニメーション
+    void animation_stop()
+    {
+        animator.SetInteger("stop", 0);
     }
     //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
