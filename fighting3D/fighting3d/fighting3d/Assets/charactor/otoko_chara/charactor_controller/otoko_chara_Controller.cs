@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //現在の時間
+    public float current = 0f;
+
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
@@ -35,6 +38,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     float sayuu;
     float jouge;
 
+    //ジャンプの速度を設定
+    float Jump_velocity = 5.0f;
+    //ジャンプクールタイム(硬直)
+    public float jump_cooltime = 1.0f;
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
@@ -49,9 +56,6 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //CharacterControllerを宣言
     public CharacterController characterController;
-
-    //ジャンプの速度を設定
-    float Jump_velocity = 5.0f;
 
     //レイが地面にヒットしたかの判定
     public bool rayhit = false;
@@ -96,7 +100,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         else
         {
             //アニメーション変更
-            Invoke(nameof(animation_stop), 5f);
+            Invoke(nameof(Animation_stop), 5f);
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
@@ -118,12 +122,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("ガード");
         }
-        //変数にHorizontal・Verticalを代入
-        sayuu = Input.GetAxisRaw("Horizontal");
-        jouge = Input.GetAxisRaw("Vertical");
 
-        //常に重力をかける
-        characterController.Move(new Vector3(0, -0.05f, 0));
         //向き変更用
         if (sayuu > 0)
         {
@@ -134,20 +133,30 @@ public class Otoko_chara_Controller : MonoBehaviour
             muki = true;
         }
 
-        //ジャンプしたか判断
-        if (transform.position.y > 5f)
-        {
-            jump_stop = false;
-        }
+        //変数にHorizontal・Verticalを代入
+        sayuu = Input.GetAxisRaw("Horizontal");
+        jouge = Input.GetAxisRaw("Vertical");
 
-        //連続ジャンプ禁止
-        if (jump_stop == false)
-        {
-            Debug.Log("重力");
-        }
+        //常に重力をかける
+        characterController.Move(new Vector3(0, -0.2f, 0));
 
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
         characterController.Move(new Vector3(sayuu * 0.15f * chara_muki, jouge * 0.5f, 0));
+
+        //現在の時間を代入
+        current += Time.deltaTime;
+        //ジャンプ硬直
+        if (current >= jump_cooltime)
+        {
+            jump_stop = false;
+            current = 0f;
+        }
+        //連続ジャンプ禁止
+        if (jump_stop == false)
+        {
+            jouge = 0f;
+            Debug.Log("重力");
+        }
 
         //以下アニメーション
 
@@ -179,12 +188,12 @@ public class Otoko_chara_Controller : MonoBehaviour
         else
         {
             //アニメーション変更
-            Invoke(nameof(animation_stop), 1f);
+            Invoke(nameof(Animation_stop), 1f);
         }
         mytransform.eulerAngles = World_angle;
     }
     //停止状態のアニメーション
-    void animation_stop()
+    void Animation_stop()
     {
         animator.SetInteger("stop", 0);
         kougeki_attack = 0;
@@ -196,23 +205,28 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (hit.gameObject.CompareTag("Player"))
         {
             Debug.Log("確認");
-            ChaAttack(hit.collider.gameObject);
+            CharaAttack(hit.collider.gameObject);
         }
 
         //地面についてたら
         if (hit.gameObject.CompareTag("jimen"))
         {
             Debug.Log("jimen");
-            jump_stop = true;
+            Invoke(nameof(Chien), 1f);
         }
     }
-    void ChaAttack(GameObject obj)
+    //キャラクターヒットまとめ
+    void CharaAttack(GameObject obj)
     {
         //弱攻撃が繰り出されたら
         if (kougeki_attack > 0)
         {
             Debug.Log("hit_player");
-            Invoke(nameof(animation_stop), 5f);
+            Invoke(nameof(Animation_stop), 5f);
         }
+    }
+    void Chien()
+    {
+        jump_stop = true;
     }
 }
