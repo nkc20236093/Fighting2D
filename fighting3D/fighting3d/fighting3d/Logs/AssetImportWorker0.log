@@ -15,9 +15,15 @@ C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
+<<<<<<< HEAD
 49153
 Successfully changed project path to: C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
 C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
+=======
+51310
+Successfully changed project path to: C:/Users/user/Documents/fighting2d/fighting3D/fighting3d/fighting3d
+C:/Users/user/Documents/fighting2d/fighting3D/fighting3d/fighting3d
+>>>>>>> origin/main
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,11 +55,19 @@ C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+<<<<<<< HEAD
 Player connection [32288] Host "[IP] 192.168.0.107 [Port] 0 [Flags] 2 [Guid] 3008686280 [EditorId] 3008686280 [Version] 1048832 [Id] WindowsEditor(7,MSI) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
 Player connection [32288] Host "[IP] 192.168.0.107 [Port] 0 [Flags] 2 [Guid] 3008686280 [EditorId] 3008686280 [Version] 1048832 [Id] WindowsEditor(7,MSI) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 Refreshing native plugins compatible for Editor in 18.53 ms, found 2 plugins.
+=======
+Player connection [6244] Host "[IP] 192.168.0.11 [Port] 0 [Flags] 2 [Guid] 3007478791 [EditorId] 3007478791 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [6244] Host "[IP] 192.168.0.11 [Port] 0 [Flags] 2 [Guid] 3007478791 [EditorId] 3007478791 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-MH3M7B4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 10.23 ms, found 2 plugins.
+>>>>>>> origin/main
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.7f1 (b16b3b16c7a0)
 [Subsystems] Discovering subsystems at path C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/Resources/UnitySubsystems
@@ -66,6 +80,7 @@ Direct3D:
     VRAM:     5935 MB
     Driver:   31.0.15.3667
 Initialize mono
+<<<<<<< HEAD
 Mono path[0] = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/MonoBleedingEdge/etc'
@@ -82,10 +97,27 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.444 seconds
 Domain Reload Profiling: 1084ms
 	BeginReloadAssembly (193ms)
+=======
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56372
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005622 seconds.
+- Loaded All Assemblies, in  0.507 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.331 seconds
+Domain Reload Profiling: 837ms
+	BeginReloadAssembly (171ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (2ms)
 	RebuildCommonClasses (59ms)
 	RebuildNativeTypeToScriptingClass (18ms)
@@ -109,6 +141,31 @@ Domain Reload Profiling: 1084ms
 			BeforeProcessingInitializeOnLoad (4ms)
 			ProcessInitializeOnLoadAttributes (246ms)
 			ProcessInitializeOnLoadMethodAttributes (76ms)
+=======
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (70ms)
+	LoadAllAssembliesAndSetupDomain (202ms)
+		LoadAssemblies (170ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (198ms)
+			TypeCache.Refresh (197ms)
+				TypeCache.ScanAssembly (177ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (332ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (252ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (12ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (4ms)
+			ProcessInitializeOnLoadAttributes (160ms)
+			ProcessInitializeOnLoadMethodAttributes (64ms)
+>>>>>>> origin/main
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,6 +174,7 @@ Domain Reload Profiling: 1084ms
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.985 seconds
 Refreshing native plugins compatible for Editor in 9.21 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -145,10 +203,40 @@ Domain Reload Profiling: 1775ms
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (607ms)
+=======
+- Loaded All Assemblies, in  0.927 seconds
+Refreshing native plugins compatible for Editor in 7.23 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.900 seconds
+Domain Reload Profiling: 1825ms
+	BeginReloadAssembly (195ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (38ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (633ms)
+		LoadAssemblies (500ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (232ms)
+			TypeCache.Refresh (186ms)
+				TypeCache.ScanAssembly (158ms)
+			ScanForSourceGeneratedMonoScriptInfo (40ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (901ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (697ms)
+>>>>>>> origin/main
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (8ms)
 			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
+<<<<<<< HEAD
 			BeforeProcessingInitializeOnLoad (118ms)
 			ProcessInitializeOnLoadAttributes (270ms)
 			ProcessInitializeOnLoadMethodAttributes (193ms)
@@ -165,6 +253,24 @@ Unloading 3284 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 66 unused Assets / (161.6 KB). Loaded Objects now: 3729.
 Memory consumption went from 126.4 MB to 126.2 MB.
 Total: 8.257600 ms (FindLiveObjects: 0.224200 ms CreateObjectMapping: 0.080100 ms MarkObjects: 7.665100 ms  DeleteObjects: 0.287100 ms)
+=======
+			BeforeProcessingInitializeOnLoad (131ms)
+			ProcessInitializeOnLoadAttributes (314ms)
+			ProcessInitializeOnLoadMethodAttributes (230ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 6.13 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3284 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 73 unused Assets / (469.7 KB). Loaded Objects now: 3722.
+Memory consumption went from 120.8 MB to 120.3 MB.
+Total: 7.510500 ms (FindLiveObjects: 0.343700 ms CreateObjectMapping: 0.156200 ms MarkObjects: 6.609700 ms  DeleteObjects: 0.398700 ms)
+>>>>>>> origin/main
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -182,16 +288,32 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
+<<<<<<< HEAD
   Time since last request: 571580.595855 seconds.
   path: Assets/Scenes/BattleScene.unity
   artifactKey: Guid(17793a619842a4a4ab818ba470d21d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scenes/BattleScene.unity using Guid(17793a619842a4a4ab818ba470d21d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1815aced25ea9cf25326d4153fb80ddc') in 0.004390 seconds
+=======
+  Time since last request: 8727.178363 seconds.
+  path: Assets/FightingMotionsVolume1/Scenes/HomeScene.unity
+  artifactKey: Guid(e8f645a340c1e734d9f8428cf00f26bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/Scenes/HomeScene.unity using Guid(e8f645a340c1e734d9f8428cf00f26bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b55362a6c31f9910b5c57b8e86eb0d6d') in 0.002609 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 16.108377 seconds.
+  path: Assets/FightingMotionsVolume1/Scenes/NewBehaviourScript.cs
+  artifactKey: Guid(80f06e572ef929c419783cdcae722c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/Scenes/NewBehaviourScript.cs using Guid(80f06e572ef929c419783cdcae722c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26ffed41734d60750e3587b65c46e9d8') in 0.000547 seconds
+>>>>>>> origin/main
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.602 seconds
 Refreshing native plugins compatible for Editor in 11.32 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -200,10 +322,20 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  1.209 seconds
 Domain Reload Profiling: 1806ms
 	BeginReloadAssembly (187ms)
+=======
+- Loaded All Assemblies, in  0.496 seconds
+Refreshing native plugins compatible for Editor in 8.04 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.742 seconds
+Domain Reload Profiling: 1235ms
+	BeginReloadAssembly (188ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (7ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (45ms)
 	RebuildCommonClasses (34ms)
 	RebuildNativeTypeToScriptingClass (13ms)
@@ -239,6 +371,43 @@ Unloading 3270 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.8 KB). Loaded Objects now: 3732.
 Memory consumption went from 123.8 MB to 123.6 MB.
 Total: 14.282400 ms (FindLiveObjects: 0.274200 ms CreateObjectMapping: 0.170300 ms MarkObjects: 13.602000 ms  DeleteObjects: 0.234300 ms)
+=======
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (230ms)
+		LoadAssemblies (305ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (743ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (405ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (84ms)
+			ProcessInitializeOnLoadAttributes (186ms)
+			ProcessInitializeOnLoadMethodAttributes (120ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3277 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (450.2 KB). Loaded Objects now: 3725.
+Memory consumption went from 119.8 MB to 119.4 MB.
+Total: 5.482500 ms (FindLiveObjects: 0.415000 ms CreateObjectMapping: 0.128600 ms MarkObjects: 4.643000 ms  DeleteObjects: 0.294500 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -256,6 +425,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
+<<<<<<< HEAD
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
@@ -322,10 +492,44 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+=======
+Received Import Request.
+  Time since last request: 40.023565 seconds.
+  path: Assets/FightingMotionsVolume1/Scenes/New Scene.unity
+  artifactKey: Guid(947ba124fb946d140b506ec201e63ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/Scenes/New Scene.unity using Guid(947ba124fb946d140b506ec201e63ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '670b4bc1f3cc3bb7bcdeb24222f18d84') in 0.001658 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 48.714236 seconds.
+  path: Assets/FightingMotionsVolume1/Scenes/TitleScene.unity
+  artifactKey: Guid(b8621ea70cc53064e9e5b4ed4487e8ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/Scenes/TitleScene.unity using Guid(b8621ea70cc53064e9e5b4ed4487e8ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1db2a80523f8d1eb5654fc7de987b2a0') in 0.000534 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 725.250747 seconds.
+  path: Assets/Scripts/TitleScene
+  artifactKey: Guid(8f293f3ed5fdca84090c86588d98fd40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TitleScene using Guid(8f293f3ed5fdca84090c86588d98fd40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f7834f685aabb18f3b8e1b494d7e689') in 0.000830 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 53.816182 seconds.
+  path: Assets/Scripts/TitleScene/SceneSwitcherFromTitleScene.cs
+  artifactKey: Guid(677f0bb074c30eb43bf2d5cc481c43cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TitleScene/SceneSwitcherFromTitleScene.cs using Guid(677f0bb074c30eb43bf2d5cc481c43cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8549d49a6504058c100042c45cb3560') in 0.001035 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+>>>>>>> origin/main
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.601 seconds
 Refreshing native plugins compatible for Editor in 10.59 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -401,10 +605,20 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  1.191 seconds
 Domain Reload Profiling: 1751ms
 	BeginReloadAssembly (176ms)
+=======
+- Loaded All Assemblies, in  0.507 seconds
+Refreshing native plugins compatible for Editor in 6.73 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.988 seconds
+Domain Reload Profiling: 1493ms
+	BeginReloadAssembly (164ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (9ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (41ms)
 	RebuildCommonClasses (36ms)
 	RebuildNativeTypeToScriptingClass (13ms)
@@ -548,9 +762,21 @@ Domain Reload Profiling: 1943ms
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (24ms)
 			TypeCache.Refresh (11ms)
+=======
+		CreateAndSetChildDomain (45ms)
+	RebuildCommonClasses (30ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (280ms)
+		LoadAssemblies (338ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (9ms)
+>>>>>>> origin/main
 				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ScanForSourceGeneratedMonoScriptInfo (6ms)
 			ResolveRequiredComponents (4ms)
+<<<<<<< HEAD
 	FinalizeReload (1272ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
@@ -622,10 +848,629 @@ Domain Reload Profiling: 1896ms
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (665ms)
+=======
+	FinalizeReload (989ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (585ms)
+>>>>>>> origin/main
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (125ms)
+			ProcessInitializeOnLoadAttributes (261ms)
+			ProcessInitializeOnLoadMethodAttributes (177ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 5.66 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3278 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3729.
+Memory consumption went from 119.8 MB to 119.4 MB.
+Total: 8.159500 ms (FindLiveObjects: 0.257400 ms CreateObjectMapping: 0.086100 ms MarkObjects: 7.322800 ms  DeleteObjects: 0.491600 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.457 seconds
+Refreshing native plugins compatible for Editor in 4.77 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.823 seconds
+Domain Reload Profiling: 1278ms
+	BeginReloadAssembly (164ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (45ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (219ms)
+		LoadAssemblies (288ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (823ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (463ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (93ms)
+			ProcessInitializeOnLoadAttributes (200ms)
+			ProcessInitializeOnLoadMethodAttributes (152ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.56 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3279 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3732.
+Memory consumption went from 120.1 MB to 119.7 MB.
+Total: 7.223200 ms (FindLiveObjects: 0.369100 ms CreateObjectMapping: 0.106700 ms MarkObjects: 6.384400 ms  DeleteObjects: 0.361400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 40.592391 seconds.
+  path: Assets/UniGLTF/Tests/UniGLTF/4x4_gray_import_as_linear.png
+  artifactKey: Guid(fc1ba24d4a4141d4d9e9ae0a0d3ecd0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniGLTF/Tests/UniGLTF/4x4_gray_import_as_linear.png using Guid(fc1ba24d4a4141d4d9e9ae0a0d3ecd0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fbbda2cb09e00720ed515beb572d06d') in 0.082279 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/VRMShaders/GLTF/IO/Tests/4x4_non_readable.png
+  artifactKey: Guid(82e462ede66d6d0488b5be50747cbad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRMShaders/GLTF/IO/Tests/4x4_non_readable.png using Guid(82e462ede66d6d0488b5be50747cbad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14c9f4270184772099188803b7110354') in 0.039251 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000338 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_01.png
+  artifactKey: Guid(1361a71d73d516d43b1260239581617c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_01.png using Guid(1361a71d73d516d43b1260239581617c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bda906968247285f4da6e55ef4ff602') in 0.030246 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_02.png
+  artifactKey: Guid(2813fd0e9cd23a44684d4e5e96c26ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_02.png using Guid(2813fd0e9cd23a44684d4e5e96c26ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7afe13b8d62bbddacddf918b5d7d7590') in 0.024426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/UniGLTF/Tests/UniGLTF/4x4_gray_import_as_srgb.png
+  artifactKey: Guid(0f7acf68f1798ae48a5505519abac457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniGLTF/Tests/UniGLTF/4x4_gray_import_as_srgb.png using Guid(0f7acf68f1798ae48a5505519abac457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4568cb4706c82b4d7737bd3e1375dc47') in 0.011341 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.064582 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_04.png
+  artifactKey: Guid(928cc616463766e4196651a795ce0720) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_04.png using Guid(928cc616463766e4196651a795ce0720) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47b9303f7640b026e57282189491ae23') in 0.028990 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.565074 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_06.png
+  artifactKey: Guid(53154ea7314e89e4687abcfa55d2e57d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_06.png using Guid(53154ea7314e89e4687abcfa55d2e57d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd663f48013d44633271254be2c23302') in 0.026953 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_12.png
+  artifactKey: Guid(6ec15e9adea6ab14cab5d011a977f5fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_12.png using Guid(6ec15e9adea6ab14cab5d011a977f5fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '402222752b34250f2c3ebf11be84f2f5') in 0.029736 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_14.png
+  artifactKey: Guid(0c90d2da2e5bd824a91a7c29ec01f655) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_14.png using Guid(0c90d2da2e5bd824a91a7c29ec01f655) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ac8a6efaf18dc5a654a7fae7c6551d3') in 0.034391 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_15.png
+  artifactKey: Guid(d23440d954783d74d9f19ca4704a4460) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_15.png using Guid(d23440d954783d74d9f19ca4704a4460) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '784bd43f9e6715f1821378fa89b54e3e') in 0.030143 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/UniGLTF/Runtime/Scenes/LookDev/cubemap/ballroom_1k.exr
+  artifactKey: Guid(cb5229eb8a46ed14daf2be5f1292b6c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniGLTF/Runtime/Scenes/LookDev/cubemap/ballroom_1k.exr using Guid(cb5229eb8a46ed14daf2be5f1292b6c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c5b7157699eaa09d0ff237be5057024') in 0.094925 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/FightingMotionsVolume1/effect/kirakira.bmp
+  artifactKey: Guid(d7ca2c338bc85894295846863ab14159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/kirakira.bmp using Guid(d7ca2c338bc85894295846863ab14159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adfdbf75787d415b334d32964cba5726') in 0.135848 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/N00_000_00_Face_00_out.png
+  artifactKey: Guid(a9f8558ad4668d345b582e0db760a966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/N00_000_00_Face_00_out.png using Guid(a9f8558ad4668d345b582e0db760a966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fe38117a0631d12121ccd0f24bba834') in 0.029216 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/FightingMotionsVolume1/UI/Hp_Gauge_type2.png
+  artifactKey: Guid(d24b032bd4981d844b6edfa8edbef753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/UI/Hp_Gauge_type2.png using Guid(d24b032bd4981d844b6edfa8edbef753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bbecc52d4c927333687ebf161abc2a7') in 0.040176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/N00_000_00_HairBack_00_nml.normal.png
+  artifactKey: Guid(bc77350d905c9a2429f15713d1b3c95c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/N00_000_00_HairBack_00_nml.normal.png using Guid(bc77350d905c9a2429f15713d1b3c95c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7d80570e7cfd61a3a6da7e5c6d7d8c3') in 0.046731 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type_2.png
+  artifactKey: Guid(34490074c8aff9a449ceda40b1c58a44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type_2.png using Guid(34490074c8aff9a449ceda40b1c58a44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5728841a95b1e950978976452d10cba') in 0.061920 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_11.normal.png
+  artifactKey: Guid(5342f8d1a8974d14ba67023f518b8bb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/_11.normal.png using Guid(5342f8d1a8974d14ba67023f518b8bb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6302c05d16fbb74463238400e7fd126c') in 0.040796 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000419 seconds.
+  path: Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/Shader_NoneNormal.normal.png
+  artifactKey: Guid(7456b0f4382071747a17048a82f6aa99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Vroid_otoko1/合同企画_男キャラ１.Textures/Shader_NoneNormal.normal.png using Guid(7456b0f4382071747a17048a82f6aa99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7b6ac04da6a325992291dbd2417da20') in 0.030544 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3.059497 seconds.
+  path: Assets/FightingMotionsVolume1/effect/tame.png
+  artifactKey: Guid(95cfc19ec848fc64091abf535ca9407b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/tame.png using Guid(95cfc19ec848fc64091abf535ca9407b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afeef052ef54ed29c324d631cd57f5c7') in 0.121092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 23
+========================================================================
+Received Import Request.
+  Time since last request: 0.609719 seconds.
+  path: Assets/FightingMotionsVolume1/Back/tougijou.png
+  artifactKey: Guid(3812afdd352ca884d89465c106646112) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/Back/tougijou.png using Guid(3812afdd352ca884d89465c106646112) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc6d0e5f4059ea813e198bc7739b9a3f') in 0.030909 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.041686 seconds.
+  path: Packages/com.unity.purchasing/Icons/UnityEngine.Purchasing.IAPButtonIcon.png
+  artifactKey: Guid(55e457740fe60405dac77af143e1a867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.purchasing/Icons/UnityEngine.Purchasing.IAPButtonIcon.png using Guid(55e457740fe60405dac77af143e1a867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eadee14da94feddf19270fdcdf1ef652') in 0.022596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.701436 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙02.bmp
+  artifactKey: Guid(c3f33c2be97a87e4780f4929c45ed8c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙02.bmp using Guid(c3f33c2be97a87e4780f4929c45ed8c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b13ce0f8166508c04b5f469e096f7f6') in 0.024598 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.038376 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙04.bmp
+  artifactKey: Guid(54d962c33b3f45041ba6e776153ff73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙04.bmp using Guid(54d962c33b3f45041ba6e776153ff73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2b7d99aa118f0b5fcea13e4fbc0debe') in 0.022563 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.144655 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙06.bmp
+  artifactKey: Guid(d62fa1c4c681ffc4c8da974f9e6d885d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙/土煙06.bmp using Guid(d62fa1c4c681ffc4c8da974f9e6d885d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0307fad6b01b8a649dc69c26e93e435') in 0.022196 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）02.bmp
+  artifactKey: Guid(f250be8f68481264980de1fd2427466b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）02.bmp using Guid(f250be8f68481264980de1fd2427466b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e75dfb3807d379dbe18f5b4f6e451ef') in 0.021018 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.012601 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）04.bmp
+  artifactKey: Guid(a6bbd8f0138a2114c9bbcb748e8a3e8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）04.bmp using Guid(a6bbd8f0138a2114c9bbcb748e8a3e8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd3a27ef48f1982c7e2593a56a9abfa2') in 0.023142 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.011032 seconds.
+  path: Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）06.bmp
+  artifactKey: Guid(f0e9d40fb079b334ba97dbc18c5c986a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FightingMotionsVolume1/effect/jump_type2/efect_tutikemuri/土煙（縮小）/土煙（縮小）06.bmp using Guid(f0e9d40fb079b334ba97dbc18c5c986a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ea87db856eeddf1a3adaa38a01efb8d') in 0.022522 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.534 seconds
+Refreshing native plugins compatible for Editor in 6.73 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.951 seconds
+Domain Reload Profiling: 1483ms
+	BeginReloadAssembly (171ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (277ms)
+		LoadAssemblies (354ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (952ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (506ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (108ms)
+			ProcessInitializeOnLoadAttributes (224ms)
+			ProcessInitializeOnLoadMethodAttributes (158ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 5.17 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3278 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (441.9 KB). Loaded Objects now: 3784.
+Memory consumption went from 124.7 MB to 124.2 MB.
+Total: 5.575400 ms (FindLiveObjects: 0.238100 ms CreateObjectMapping: 0.095000 ms MarkObjects: 4.936200 ms  DeleteObjects: 0.304800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.518 seconds
+Refreshing native plugins compatible for Editor in 4.60 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.184 seconds
+Domain Reload Profiling: 1698ms
+	BeginReloadAssembly (155ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (293ms)
+		LoadAssemblies (345ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (23ms)
+			TypeCache.Refresh (12ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1185ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (455ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (94ms)
+			ProcessInitializeOnLoadAttributes (205ms)
+			ProcessInitializeOnLoadMethodAttributes (138ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.05 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3279 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.0 KB). Loaded Objects now: 3787.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 5.853800 ms (FindLiveObjects: 0.305400 ms CreateObjectMapping: 0.090000 ms MarkObjects: 5.121600 ms  DeleteObjects: 0.334700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.467 seconds
+Refreshing native plugins compatible for Editor in 4.80 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.093 seconds
+Domain Reload Profiling: 1559ms
+	BeginReloadAssembly (159ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (235ms)
+		LoadAssemblies (315ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1094ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (720ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (10ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (159ms)
+			ProcessInitializeOnLoadAttributes (338ms)
+			ProcessInitializeOnLoadMethodAttributes (201ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 8.15 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3279 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3790.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 8.501900 ms (FindLiveObjects: 0.299000 ms CreateObjectMapping: 0.142100 ms MarkObjects: 7.636300 ms  DeleteObjects: 0.422800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.997 seconds
+Refreshing native plugins compatible for Editor in 7.35 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.267 seconds
+Domain Reload Profiling: 2259ms
+	BeginReloadAssembly (260ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (11ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (51ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (610ms)
+		LoadAssemblies (724ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (29ms)
+			TypeCache.Refresh (10ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (10ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1267ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (763ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (184ms)
+			ProcessInitializeOnLoadAttributes (278ms)
+			ProcessInitializeOnLoadMethodAttributes (263ms)
+			AfterProcessingInitializeOnLoad (19ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 8.19 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3279 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (441.9 KB). Loaded Objects now: 3793.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 9.213200 ms (FindLiveObjects: 0.359600 ms CreateObjectMapping: 0.240300 ms MarkObjects: 8.095800 ms  DeleteObjects: 0.515700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.489 seconds
+Refreshing native plugins compatible for Editor in 9.50 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.976 seconds
+Domain Reload Profiling: 2461ms
+	BeginReloadAssembly (427ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (70ms)
+	RebuildCommonClasses (141ms)
+	RebuildNativeTypeToScriptingClass (32ms)
+	initialDomainReloadingComplete (102ms)
+	LoadAllAssembliesAndSetupDomain (783ms)
+		LoadAssemblies (1055ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (24ms)
+			TypeCache.Refresh (13ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (976ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (461ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
 			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
+<<<<<<< HEAD
 			BeforeProcessingInitializeOnLoad (110ms)
 			ProcessInitializeOnLoadAttributes (293ms)
 			ProcessInitializeOnLoadMethodAttributes (234ms)
@@ -964,18 +1809,32 @@ Domain Reload Profiling: 1039ms
 			BeforeProcessingInitializeOnLoad (53ms)
 			ProcessInitializeOnLoadAttributes (159ms)
 			ProcessInitializeOnLoadMethodAttributes (130ms)
+=======
+			BeforeProcessingInitializeOnLoad (96ms)
+			ProcessInitializeOnLoadAttributes (206ms)
+			ProcessInitializeOnLoadMethodAttributes (140ms)
+>>>>>>> origin/main
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 8.59 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.9 KB). Loaded Objects now: 3765.
 Memory consumption went from 124.1 MB to 123.9 MB.
 Total: 6.309200 ms (FindLiveObjects: 0.226100 ms CreateObjectMapping: 0.116600 ms MarkObjects: 5.610000 ms  DeleteObjects: 0.354700 ms)
+=======
+Refreshing native plugins compatible for Editor in 4.88 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3279 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3796.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 6.449700 ms (FindLiveObjects: 0.337400 ms CreateObjectMapping: 0.438300 ms MarkObjects: 5.358200 ms  DeleteObjects: 0.313900 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -996,6 +1855,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.451 seconds
 Refreshing native plugins compatible for Editor in 5.84 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -1004,10 +1864,86 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.710 seconds
 Domain Reload Profiling: 1156ms
 	BeginReloadAssembly (156ms)
+=======
+- Loaded All Assemblies, in  0.557 seconds
+Refreshing native plugins compatible for Editor in 11.31 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.113 seconds
+Domain Reload Profiling: 1667ms
+	BeginReloadAssembly (171ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (48ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (27ms)
+	LoadAllAssembliesAndSetupDomain (300ms)
+		LoadAssemblies (345ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (33ms)
+			TypeCache.Refresh (13ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (13ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (1113ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (657ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (147ms)
+			ProcessInitializeOnLoadAttributes (299ms)
+			ProcessInitializeOnLoadMethodAttributes (186ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 5.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (441.8 KB). Loaded Objects now: 3800.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 7.602100 ms (FindLiveObjects: 0.258800 ms CreateObjectMapping: 0.088300 ms MarkObjects: 6.752900 ms  DeleteObjects: 0.500500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.470 seconds
+Refreshing native plugins compatible for Editor in 7.10 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.976 seconds
+Domain Reload Profiling: 1445ms
+	BeginReloadAssembly (159ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (36ms)
 	RebuildCommonClasses (28ms)
 	RebuildNativeTypeToScriptingClass (9ms)
@@ -1083,10 +2019,425 @@ Domain Reload Profiling: 1051ms
 		LoadAssemblies (240ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (8ms)
+=======
+		CreateAndSetChildDomain (48ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (232ms)
+		LoadAssemblies (285ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (25ms)
+			TypeCache.Refresh (10ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (9ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (977ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (614ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (126ms)
+			ProcessInitializeOnLoadAttributes (288ms)
+			ProcessInitializeOnLoadMethodAttributes (178ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.68 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3803.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 6.177300 ms (FindLiveObjects: 0.283600 ms CreateObjectMapping: 0.114100 ms MarkObjects: 5.395900 ms  DeleteObjects: 0.382200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.802 seconds
+Refreshing native plugins compatible for Editor in 9.14 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.272 seconds
+Domain Reload Profiling: 2064ms
+	BeginReloadAssembly (236ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (9ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (96ms)
+	RebuildCommonClasses (63ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (58ms)
+	LoadAllAssembliesAndSetupDomain (420ms)
+		LoadAssemblies (478ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (31ms)
+			TypeCache.Refresh (13ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (12ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1273ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (694ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (10ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (141ms)
+			ProcessInitializeOnLoadAttributes (331ms)
+			ProcessInitializeOnLoadMethodAttributes (199ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 8.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (441.7 KB). Loaded Objects now: 3806.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 8.129800 ms (FindLiveObjects: 0.399800 ms CreateObjectMapping: 0.277500 ms MarkObjects: 6.891200 ms  DeleteObjects: 0.559100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3105.288686 seconds.
+  path: Assets/Scripts/TitleScene/TitleSceneSwitcher.cs
+  artifactKey: Guid(677f0bb074c30eb43bf2d5cc481c43cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TitleScene/TitleSceneSwitcher.cs using Guid(677f0bb074c30eb43bf2d5cc481c43cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37a5cdab3ca1937fd8ba19d062c154dd') in 0.005324 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.495 seconds
+Refreshing native plugins compatible for Editor in 6.40 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.819 seconds
+Domain Reload Profiling: 1311ms
+	BeginReloadAssembly (158ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (261ms)
+		LoadAssemblies (315ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (25ms)
+			TypeCache.Refresh (12ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (820ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (447ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (91ms)
+			ProcessInitializeOnLoadAttributes (194ms)
+			ProcessInitializeOnLoadMethodAttributes (144ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 4.70 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3278 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 58 unused Assets / (442.7 KB). Loaded Objects now: 3808.
+Memory consumption went from 124.7 MB to 124.2 MB.
+Total: 5.984700 ms (FindLiveObjects: 0.265600 ms CreateObjectMapping: 0.132600 ms MarkObjects: 5.243400 ms  DeleteObjects: 0.341500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.438 seconds
+Refreshing native plugins compatible for Editor in 4.93 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.969 seconds
+Domain Reload Profiling: 1405ms
+	BeginReloadAssembly (150ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (30ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (223ms)
+		LoadAssemblies (282ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (6ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (969ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (596ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (118ms)
+			ProcessInitializeOnLoadAttributes (274ms)
+			ProcessInitializeOnLoadMethodAttributes (185ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.73 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3812.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 8.129900 ms (FindLiveObjects: 0.445200 ms CreateObjectMapping: 0.124400 ms MarkObjects: 7.225900 ms  DeleteObjects: 0.332200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.264 seconds
+Refreshing native plugins compatible for Editor in 48.91 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.805 seconds
+Domain Reload Profiling: 3067ms
+	BeginReloadAssembly (359ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (48ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (61ms)
+	RebuildCommonClasses (91ms)
+	RebuildNativeTypeToScriptingClass (30ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (741ms)
+		LoadAssemblies (821ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (64ms)
+			TypeCache.Refresh (17ms)
+				TypeCache.ScanAssembly (1ms)
+			ScanForSourceGeneratedMonoScriptInfo (26ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (1805ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (850ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (179ms)
+			ProcessInitializeOnLoadAttributes (379ms)
+			ProcessInitializeOnLoadMethodAttributes (264ms)
+			AfterProcessingInitializeOnLoad (11ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 8.52 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.2 KB). Loaded Objects now: 3815.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 7.808200 ms (FindLiveObjects: 0.327800 ms CreateObjectMapping: 0.179200 ms MarkObjects: 6.957100 ms  DeleteObjects: 0.342700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.462 seconds
+Refreshing native plugins compatible for Editor in 9.57 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.172 seconds
+Domain Reload Profiling: 1632ms
+	BeginReloadAssembly (158ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (229ms)
+		LoadAssemblies (299ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (12ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1173ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (736ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (10ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (146ms)
+			ProcessInitializeOnLoadAttributes (323ms)
+			ProcessInitializeOnLoadMethodAttributes (239ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.20 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.3 KB). Loaded Objects now: 3818.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 7.779300 ms (FindLiveObjects: 0.331500 ms CreateObjectMapping: 0.147300 ms MarkObjects: 6.827800 ms  DeleteObjects: 0.470300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.471 seconds
+Refreshing native plugins compatible for Editor in 4.86 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.099 seconds
+Domain Reload Profiling: 1566ms
+	BeginReloadAssembly (151ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (241ms)
+		LoadAssemblies (307ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (9ms)
+>>>>>>> origin/main
 			TypeCache.Refresh (5ms)
 				TypeCache.ScanAssembly (0ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (3ms)
+<<<<<<< HEAD
 	FinalizeReload (690ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
@@ -1426,10 +2777,17 @@ Domain Reload Profiling: 1022ms
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (352ms)
+=======
+	FinalizeReload (1099ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (748ms)
+>>>>>>> origin/main
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (5ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
+<<<<<<< HEAD
 			BeforeProcessingInitializeOnLoad (53ms)
 			ProcessInitializeOnLoadAttributes (159ms)
 			ProcessInitializeOnLoadMethodAttributes (124ms)
@@ -1847,6 +3205,23 @@ Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.9 KB). Loaded Objects now: 3804.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 5.300400 ms (FindLiveObjects: 0.188300 ms CreateObjectMapping: 0.077700 ms MarkObjects: 4.907500 ms  DeleteObjects: 0.125900 ms)
+=======
+			BeforeProcessingInitializeOnLoad (168ms)
+			ProcessInitializeOnLoadAttributes (337ms)
+			ProcessInitializeOnLoadMethodAttributes (219ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 7.27 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3821.
+Memory consumption went from 124.9 MB to 124.5 MB.
+Total: 7.821700 ms (FindLiveObjects: 0.350500 ms CreateObjectMapping: 0.125200 ms MarkObjects: 6.687600 ms  DeleteObjects: 0.656600 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -1867,6 +3242,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.367 seconds
 Refreshing native plugins compatible for Editor in 6.18 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2048,6 +3424,54 @@ Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.7 KB). Loaded Objects now: 3813.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 6.632900 ms (FindLiveObjects: 0.328700 ms CreateObjectMapping: 0.136300 ms MarkObjects: 6.014200 ms  DeleteObjects: 0.152600 ms)
+=======
+- Loaded All Assemblies, in  0.447 seconds
+Refreshing native plugins compatible for Editor in 4.98 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.046 seconds
+Domain Reload Profiling: 1492ms
+	BeginReloadAssembly (144ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (33ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (237ms)
+		LoadAssemblies (300ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1047ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (682ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (129ms)
+			ProcessInitializeOnLoadAttributes (319ms)
+			ProcessInitializeOnLoadMethodAttributes (213ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 8.45 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.0 KB). Loaded Objects now: 3824.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 9.467900 ms (FindLiveObjects: 0.347100 ms CreateObjectMapping: 0.128400 ms MarkObjects: 8.392100 ms  DeleteObjects: 0.597600 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -2068,6 +3492,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.403 seconds
 Refreshing native plugins compatible for Editor in 6.97 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2076,10 +3501,20 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.750 seconds
 Domain Reload Profiling: 1149ms
 	BeginReloadAssembly (137ms)
+=======
+- Loaded All Assemblies, in  0.439 seconds
+Refreshing native plugins compatible for Editor in 4.54 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.145 seconds
+Domain Reload Profiling: 1584ms
+	BeginReloadAssembly (149ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (35ms)
 	RebuildCommonClasses (25ms)
 	RebuildNativeTypeToScriptingClass (9ms)
@@ -2421,12 +3856,21 @@ Domain Reload Profiling: 1073ms
 	initialDomainReloadingComplete (24ms)
 	LoadAllAssembliesAndSetupDomain (188ms)
 		LoadAssemblies (239ms)
+=======
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (210ms)
+		LoadAssemblies (284ms)
+>>>>>>> origin/main
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (10ms)
 			TypeCache.Refresh (6ms)
 				TypeCache.ScanAssembly (0ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (3ms)
+<<<<<<< HEAD
 	FinalizeReload (708ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
@@ -2440,16 +3884,40 @@ Domain Reload Profiling: 1073ms
 			ProcessInitializeOnLoadMethodAttributes (130ms)
 			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (0ms)
+=======
+	FinalizeReload (1148ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (744ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (157ms)
+			ProcessInitializeOnLoadAttributes (334ms)
+			ProcessInitializeOnLoadMethodAttributes (228ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+>>>>>>> origin/main
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (7ms)
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 7.79 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (134.0 KB). Loaded Objects now: 3831.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 6.169200 ms (FindLiveObjects: 0.252100 ms CreateObjectMapping: 0.097300 ms MarkObjects: 5.561600 ms  DeleteObjects: 0.255900 ms)
+=======
+Refreshing native plugins compatible for Editor in 6.81 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.1 KB). Loaded Objects now: 3827.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 8.416600 ms (FindLiveObjects: 0.371400 ms CreateObjectMapping: 0.152700 ms MarkObjects: 7.429800 ms  DeleteObjects: 0.461000 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -2470,6 +3938,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.500 seconds
 Refreshing native plugins compatible for Editor in 7.48 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2679,10 +4148,20 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.742 seconds
 Domain Reload Profiling: 1130ms
 	BeginReloadAssembly (126ms)
+=======
+- Loaded All Assemblies, in  1.025 seconds
+Refreshing native plugins compatible for Editor in 17.00 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.126 seconds
+Domain Reload Profiling: 2145ms
+	BeginReloadAssembly (360ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (28ms)
 	RebuildCommonClasses (26ms)
 	RebuildNativeTypeToScriptingClass (9ms)
@@ -2699,25 +4178,59 @@ Domain Reload Profiling: 1130ms
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (400ms)
+=======
+		CreateAndSetChildDomain (122ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (553ms)
+		LoadAssemblies (651ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (39ms)
+			TypeCache.Refresh (16ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (11ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1126ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (535ms)
+>>>>>>> origin/main
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (6ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
+<<<<<<< HEAD
 			BeforeProcessingInitializeOnLoad (57ms)
 			ProcessInitializeOnLoadAttributes (182ms)
 			ProcessInitializeOnLoadMethodAttributes (144ms)
 			AfterProcessingInitializeOnLoad (6ms)
+=======
+			BeforeProcessingInitializeOnLoad (152ms)
+			ProcessInitializeOnLoadAttributes (211ms)
+			ProcessInitializeOnLoadMethodAttributes (151ms)
+			AfterProcessingInitializeOnLoad (4ms)
+>>>>>>> origin/main
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 6.82 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.8 KB). Loaded Objects now: 3843.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 6.976800 ms (FindLiveObjects: 0.214000 ms CreateObjectMapping: 0.095600 ms MarkObjects: 6.435500 ms  DeleteObjects: 0.230600 ms)
+=======
+Refreshing native plugins compatible for Editor in 5.77 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.0 KB). Loaded Objects now: 3830.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 6.340600 ms (FindLiveObjects: 0.312600 ms CreateObjectMapping: 0.140000 ms MarkObjects: 5.524700 ms  DeleteObjects: 0.361500 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -2738,6 +4251,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.380 seconds
 Refreshing native plugins compatible for Editor in 6.76 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2746,10 +4260,20 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.744 seconds
 Domain Reload Profiling: 1121ms
 	BeginReloadAssembly (125ms)
+=======
+- Loaded All Assemblies, in  0.433 seconds
+Refreshing native plugins compatible for Editor in 6.50 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.049 seconds
+Domain Reload Profiling: 1480ms
+	BeginReloadAssembly (134ms)
+>>>>>>> origin/main
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (8ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 		CreateAndSetChildDomain (29ms)
 	RebuildCommonClasses (23ms)
 	RebuildNativeTypeToScriptingClass (9ms)
@@ -2775,16 +4299,52 @@ Domain Reload Profiling: 1121ms
 			ProcessInitializeOnLoadMethodAttributes (132ms)
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
+=======
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (227ms)
+		LoadAssemblies (286ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (10ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1050ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (709ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (133ms)
+			ProcessInitializeOnLoadAttributes (322ms)
+			ProcessInitializeOnLoadMethodAttributes (229ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (1ms)
+>>>>>>> origin/main
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
 Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+<<<<<<< HEAD
 Refreshing native plugins compatible for Editor in 6.26 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.9 KB). Loaded Objects now: 3846.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 6.887200 ms (FindLiveObjects: 0.233300 ms CreateObjectMapping: 0.126800 ms MarkObjects: 6.328300 ms  DeleteObjects: 0.197300 ms)
+=======
+Refreshing native plugins compatible for Editor in 10.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.0 KB). Loaded Objects now: 3833.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 8.556100 ms (FindLiveObjects: 0.366900 ms CreateObjectMapping: 0.128300 ms MarkObjects: 7.545400 ms  DeleteObjects: 0.513400 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -2805,6 +4365,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.379 seconds
 Refreshing native plugins compatible for Editor in 7.83 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2852,6 +4413,54 @@ Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (133.8 KB). Loaded Objects now: 3849.
 Memory consumption went from 124.1 MB to 124.0 MB.
 Total: 6.011000 ms (FindLiveObjects: 0.208100 ms CreateObjectMapping: 0.091100 ms MarkObjects: 5.564200 ms  DeleteObjects: 0.146300 ms)
+=======
+- Loaded All Assemblies, in  1.205 seconds
+Refreshing native plugins compatible for Editor in 5.43 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.040 seconds
+Domain Reload Profiling: 2241ms
+	BeginReloadAssembly (426ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (29ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (153ms)
+	RebuildCommonClasses (102ms)
+	RebuildNativeTypeToScriptingClass (46ms)
+	initialDomainReloadingComplete (86ms)
+	LoadAllAssembliesAndSetupDomain (541ms)
+		LoadAssemblies (659ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (21ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1040ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (469ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (107ms)
+			ProcessInitializeOnLoadAttributes (195ms)
+			ProcessInitializeOnLoadMethodAttributes (151ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 5.83 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.0 KB). Loaded Objects now: 3836.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 5.841600 ms (FindLiveObjects: 0.268500 ms CreateObjectMapping: 0.093200 ms MarkObjects: 5.149600 ms  DeleteObjects: 0.328900 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -2872,6 +4481,7 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
+<<<<<<< HEAD
 - Loaded All Assemblies, in  0.387 seconds
 Refreshing native plugins compatible for Editor in 6.60 ms, found 2 plugins.
 Native extension for UWP target not found
@@ -2959,10 +4569,32 @@ Domain Reload Profiling: 1122ms
 		LoadAssemblies (250ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (12ms)
+=======
+- Loaded All Assemblies, in  0.497 seconds
+Refreshing native plugins compatible for Editor in 5.97 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.085 seconds
+Domain Reload Profiling: 1580ms
+	BeginReloadAssembly (160ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (250ms)
+		LoadAssemblies (329ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+>>>>>>> origin/main
 			TypeCache.Refresh (6ms)
 				TypeCache.ScanAssembly (0ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (5ms)
+<<<<<<< HEAD
 	FinalizeReload (737ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
@@ -5331,6 +6963,31 @@ Unloading 3271 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 50 unused Assets / (134.8 KB). Loaded Objects now: 3960.
 Memory consumption went from 124.2 MB to 124.1 MB.
 Total: 5.066100 ms (FindLiveObjects: 0.185700 ms CreateObjectMapping: 0.074300 ms MarkObjects: 4.674500 ms  DeleteObjects: 0.130400 ms)
+=======
+	FinalizeReload (1086ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (730ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (146ms)
+			ProcessInitializeOnLoadAttributes (333ms)
+			ProcessInitializeOnLoadMethodAttributes (230ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'VRM10/Universal Render Pipeline/MToon10': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Refreshing native plugins compatible for Editor in 6.92 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 57 unused Assets / (442.2 KB). Loaded Objects now: 3839.
+Memory consumption went from 125.0 MB to 124.5 MB.
+Total: 7.613800 ms (FindLiveObjects: 0.389400 ms CreateObjectMapping: 0.115100 ms MarkObjects: 6.596000 ms  DeleteObjects: 0.511400 ms)
+>>>>>>> origin/main
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):

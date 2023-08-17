@@ -5,38 +5,38 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
-    public Text textHP;
-    public Text textPower;
-    public Text textSpeed;
-    public Text textStamina;
-    public Text textCleverness;
+    public Text textHP;              //育成キャラのＨＰ
+    public Text textPower;　　　//攻撃力
+    public Text textSpeed;　　　//素早さ
+    public Text textStamina;　　　//スタミナ
+    public Text textCleverness;　　　//賢さ
 
-    int countHP = 0;
+    int countHP = 0;                      //各ステータスの値をここに保存します
     int countPower = 0;
     int countSpeed = 0;
     int countStamina = 0;
     int countCleverness = 0;
 
 
-    public void OnPushButtonHP()
+    public void OnPushButtonHP()　　　　　　　//HP育成ボタンを押してＨＰの値を増やします
     {
-        countHP ++;
+        countHP ++;　　　　　　　　　　　　　　//一回の育成の上がり幅　１　（仮）
         textHP.text= "HP: " + countHP;
 
     }
-    public void OnPushButtonPower()
+    public void OnPushButtonPower()　　　　　　　
     {
-        countPower++;
+        countPower++;　　　　　　　
         textPower.text = "攻撃力: " + countPower;
 
     }
-    public void OnPushButtonSpeed()
+    public void OnPushButtonSpeed()　　　　　　　　　　
     {
         countSpeed++;
         textSpeed.text = "素早さ: " + countSpeed;
 
     }
-    public void OnPushButtonStamina()
+    public void OnPushButtonStamina()　　　　　　　　
     {
         countStamina++;
         textStamina.text = "スタミナ: " + countStamina;
