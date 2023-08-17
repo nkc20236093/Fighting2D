@@ -22,7 +22,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     Animator animator;
 
     //重力用変数
-    public Vector3 gravity = new Vector3(Physics.gravity.x, 0, Physics.gravity.z);
+    public Vector3 gravity;
 
     //通常スピード
     float normal_speed = 50;
@@ -30,15 +30,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     float dash_speed;
     //現在のスピードモード
     float now_speed;
- 
-    ////Rayを宣言
-    //Ray ray;
-    ////レイを飛ばす距離
-    //float distance = 0.001f;
-    ////レイが何かに当たった時の情報
-    //RaycastHit hit;
-    ////レイを発射する位置
-    //Vector3 rayPos;
 
     //移動の変数
     float sayuu;
@@ -47,7 +38,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
-    public bool jump_stop = false; //false = 禁止
+    public bool jump_stop;         //false = 禁止
                                    //true  = 許可
 
     //rigidbodyを取得
@@ -61,11 +52,6 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //ジャンプの速度を設定
     float Jump_velocity = 5.0f;
-
-    //着地状態を管理
-    public bool jump_isGrounded = false; //最初は着地してない状態 
-                                         //着地してない=false
-                                         //着地してる  =true
 
     //レイが地面にヒットしたかの判定
     public bool rayhit = false;
@@ -97,29 +83,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////レイを発射する位置の調整
-        //rayPos = transform.position + new Vector3(0, 0, 0);
-        ////レイを下に飛ばす
-        //ray = new Ray(rayPos, transform.up * -1);
-        ////デバッグ用のレイを発光
-        //Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
-
-        ////着地状態か確認
-        //if (Physics.Raycast(ray, out hit, distance))
-        //{
-        //    //接地判定を確実にするため-0.5fを代入
-        //    Jump_velocity = -0.5f;
-        //    Debug.Log("着地状態");
-        //    //レイが地面にヒットしてるか確認
-        //    if (hit.collider.CompareTag("jimen"))
-        //    {
-        //        rayhit = true;
-        //    }
-        //    else
-        //    {
-        //        jump_isGrounded = false;
-        //    }
-        //}
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -158,21 +121,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         //変数にHorizontal・Verticalを代入
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
-        //常に重力をかける
-        //地面に足がついてたら
-        if (characterController.isGrounded)
-        {
-            gravity = new Vector3(Physics.gravity.x, -9.81f, Physics.gravity.z);
-            Debug.Log("重力");
-        }
-        //地面に足がついてなかったら
-        else
-        {
-            Debug.Log("NOT重力");
-            gravity = new Vector3(Physics.gravity.x, 0, Physics.gravity.z);
-        }
-        characterController.Move(gravity);
 
+        //常に重力をかける
+        characterController.Move(new Vector3(0, -0.05f, 0));
         //向き変更用
         if (sayuu > 0)
         {
@@ -182,8 +133,21 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             muki = true;
         }
+
+        //ジャンプしたか判断
+        if (transform.position.y > 5f)
+        {
+            jump_stop = false;
+        }
+
+        //連続ジャンプ禁止
+        if (jump_stop == false)
+        {
+            Debug.Log("重力");
+        }
+
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        characterController.Move(new Vector3(sayuu * 0.15f * chara_muki, jouge, 0));
+        characterController.Move(new Vector3(sayuu * 0.15f * chara_muki, jouge * 0.5f, 0));
 
         //以下アニメーション
 
@@ -228,21 +192,24 @@ public class Otoko_chara_Controller : MonoBehaviour
     //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("jimen"))  
-        {
-            Debug.Log("jimen");
-            jump_isGrounded = true;
-            jump_stop = true;
-        }
+        //プレイヤーに触れたら
         if (hit.gameObject.CompareTag("Player"))
         {
             Debug.Log("確認");
+            ChaAttack(hit.collider.gameObject);
         }
-        ChakItem(hit.collider.gameObject);
+
+        //地面についてたら
+        if (hit.gameObject.CompareTag("jimen"))
+        {
+            Debug.Log("jimen");
+            jump_stop = true;
+        }
     }
-    void ChakItem(GameObject obj)
+    void ChaAttack(GameObject obj)
     {
-        if (obj.CompareTag("Player") && kougeki_attack > 0)
+        //弱攻撃が繰り出されたら
+        if (kougeki_attack > 0)
         {
             Debug.Log("hit_player");
             Invoke(nameof(animation_stop), 5f);
