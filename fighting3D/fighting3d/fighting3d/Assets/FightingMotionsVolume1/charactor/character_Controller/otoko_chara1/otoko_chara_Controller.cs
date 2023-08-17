@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //攻撃を受けた・与えた状態を管理する用の変数
+    public float kougeki_attack;
+
     //Transformコンポーネントを取得
     Transform mytransform;
     //向き変更用変数
@@ -18,9 +21,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     //アニメーターコンポーネントを取得
     Animator animator;
 
-    //xとyの移動制限
-    float xleft = 3.4f, xright = -3.4f;
-    float ydown = 5f, yup = 9f;
+    //重力用変数
+    public Vector3 gravity = new Vector3(Physics.gravity.x, 0, Physics.gravity.z);
 
     //通常スピード
     float normal_speed = 50;
@@ -29,14 +31,14 @@ public class Otoko_chara_Controller : MonoBehaviour
     //現在のスピードモード
     float now_speed;
  
-    //Rayを宣言
-    Ray ray;
-    //レイを飛ばす距離
-    public float distance = 0.001f;
-    //レイが何かに当たった時の情報
-    RaycastHit hit;
-    //レイを発射する位置
-    Vector3 rayPos;
+    ////Rayを宣言
+    //Ray ray;
+    ////レイを飛ばす距離
+    //float distance = 0.001f;
+    ////レイが何かに当たった時の情報
+    //RaycastHit hit;
+    ////レイを発射する位置
+    //Vector3 rayPos;
 
     //移動の変数
     float sayuu;
@@ -95,36 +97,29 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //レイを発射する位置の調整
-        rayPos = transform.position + new Vector3(0, 0, 0);
-        //レイを下に飛ばす
-        ray = new Ray(rayPos, transform.up * -1);
-        //デバッグ用のレイを発光
-        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+        ////レイを発射する位置の調整
+        //rayPos = transform.position + new Vector3(0, 0, 0);
+        ////レイを下に飛ばす
+        //ray = new Ray(rayPos, transform.up * -1);
+        ////デバッグ用のレイを発光
+        //Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
 
-        //現在の座標を取得（移動制限用）
-        Vector3 Pos = transform.position;
-        //移動制限
-        Pos.x = Mathf.Clamp(Pos.x, xright, xleft);
-        Pos.y = Mathf.Clamp(Pos.y, ydown, yup);
-        transform.position = Pos;
-
-        //着地状態か確認
-        if (Physics.Raycast(ray, out hit, distance))
-        {
-            //接地判定を確実にするため-0.5fを代入
-            Jump_velocity = -0.5f;
-            Debug.Log("着地状態");
-            //レイが地面にヒットしてるか確認
-            if (hit.collider.CompareTag("jimen"))
-            {
-                rayhit = true;
-            }
-            else
-            {
-                jump_isGrounded = false;
-            }
-        }
+        ////着地状態か確認
+        //if (Physics.Raycast(ray, out hit, distance))
+        //{
+        //    //接地判定を確実にするため-0.5fを代入
+        //    Jump_velocity = -0.5f;
+        //    Debug.Log("着地状態");
+        //    //レイが地面にヒットしてるか確認
+        //    if (hit.collider.CompareTag("jimen"))
+        //    {
+        //        rayhit = true;
+        //    }
+        //    else
+        //    {
+        //        jump_isGrounded = false;
+        //    }
+        //}
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -132,12 +127,13 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             animator.SetInteger("stop", 2);
             Debug.Log("弱攻撃");
+            kougeki_attack = 1;
         }
         //各行動終了次第停止状態に変更
         else
         {
             //アニメーション変更
-            animation_stop();
+            Invoke(nameof(animation_stop), 5f);
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
@@ -160,9 +156,22 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("ガード");
         }
         //変数にHorizontal・Verticalを代入
-        PlayerVector = new Vector3(0, jouge, sayuu * 0.15f * chara_muki);
         sayuu = Input.GetAxisRaw("Horizontal");
         jouge = Input.GetAxisRaw("Vertical");
+        //常に重力をかける
+        //地面に足がついてたら
+        if (characterController.isGrounded)
+        {
+            gravity = new Vector3(Physics.gravity.x, -9.81f, Physics.gravity.z);
+            Debug.Log("重力");
+        }
+        //地面に足がついてなかったら
+        else
+        {
+            Debug.Log("NOT重力");
+            gravity = new Vector3(Physics.gravity.x, 0, Physics.gravity.z);
+        }
+        characterController.Move(gravity);
 
         //向き変更用
         if (sayuu > 0)
@@ -173,13 +182,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             muki = true;
         }
-        //地面についてたらジャンプ力を0にする
-        if (jump_isGrounded == true || rayhit == true) 
-        {
-            jouge = 0f;
-        }
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        transform.Translate(PlayerVector);
+        characterController.Move(new Vector3(sayuu * 0.15f * chara_muki, jouge, 0));
 
         //以下アニメーション
 
@@ -193,7 +197,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 //反転処理
                 World_angle.y = -90;
-                chara_muki = 1;
+                chara_muki = -1;
                 //アニメーション変更
                 animator.SetInteger("stop", 1);
             }
@@ -202,8 +206,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 //反転処理
                 World_angle.y = 90;
-                chara_muki = -1;
                 //アニメーション変更
+                chara_muki = -1;
                 animator.SetInteger("stop", 1);
             }
         }
@@ -219,6 +223,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     void animation_stop()
     {
         animator.SetInteger("stop", 0);
+        kougeki_attack = 0;
     }
     //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -228,6 +233,19 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("jimen");
             jump_isGrounded = true;
             jump_stop = true;
+        }
+        if (hit.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("確認");
+        }
+        ChakItem(hit.collider.gameObject);
+    }
+    void ChakItem(GameObject obj)
+    {
+        if (obj.CompareTag("Player") && kougeki_attack > 0)
+        {
+            Debug.Log("hit_player");
+            Invoke(nameof(animation_stop), 5f);
         }
     }
 }
