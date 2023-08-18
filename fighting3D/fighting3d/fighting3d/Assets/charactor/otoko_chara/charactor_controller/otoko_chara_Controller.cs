@@ -5,8 +5,7 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //現在の時間
-    public float current = 0f;
-
+    public float Real_Time;
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
@@ -35,13 +34,15 @@ public class Otoko_chara_Controller : MonoBehaviour
     float now_speed;
 
     //移動の変数
-    float sayuu;
-    float jouge;
+    public float sayuu;
+    public float jouge;
 
+    //ジャンプのクールタイム
+    public float JumpCoolTime = 1.5f;
     //ジャンプの速度を設定
     float Jump_velocity = 5.0f;
-    //ジャンプクールタイム(硬直)
-    public float jump_cooltime = 1.0f;
+    //ジャンプの時間を判定
+    public float jumpTime;
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
@@ -133,30 +134,13 @@ public class Otoko_chara_Controller : MonoBehaviour
             muki = true;
         }
 
-        //変数にHorizontal・Verticalを代入
-        sayuu = Input.GetAxisRaw("Horizontal");
-        jouge = Input.GetAxisRaw("Vertical");
-
         //常に重力をかける
         characterController.Move(new Vector3(0, -0.2f, 0));
 
+        //経過時間をReal_Timeに入れる
+        Real_Time += Time.deltaTime;
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
         characterController.Move(new Vector3(sayuu * 0.15f * chara_muki, jouge * 0.5f, 0));
-
-        //現在の時間を代入
-        current += Time.deltaTime;
-        //ジャンプ硬直
-        if (current >= jump_cooltime)
-        {
-            jump_stop = false;
-            current = 0f;
-        }
-        //連続ジャンプ禁止
-        if (jump_stop == false)
-        {
-            jouge = 0f;
-            Debug.Log("重力");
-        }
 
         //以下アニメーション
 
@@ -211,22 +195,42 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら
         if (hit.gameObject.CompareTag("jimen"))
         {
+            if (Real_Time > JumpCoolTime)
+            {
+                Real_Time = 0f;
+                Move();
+            }
             Debug.Log("jimen");
-            Invoke(nameof(Chien), 1f);
+            jump_stop = true;
+        }
+        else
+        {
+            Debug.Log("空");
+            StopJump();
         }
     }
     //キャラクターヒットまとめ
     void CharaAttack(GameObject obj)
     {
         //弱攻撃が繰り出されたら
-        if (kougeki_attack > 0)
+        if (kougeki_attack == 1f)
         {
             Debug.Log("hit_player");
             Invoke(nameof(Animation_stop), 5f);
         }
     }
-    void Chien()
+    //動き関係
+    void Move()
     {
-        jump_stop = true;
+        Debug.Log("動き");
+        //変数にHorizontal・Verticalを代入
+        sayuu = Input.GetAxisRaw("Horizontal");
+        jouge = Input.GetAxisRaw("Vertical");
+    }
+    void StopJump()
+    {
+        Debug.Log("sora");
+        Move();
+        jouge = 0f;
     }
 }
