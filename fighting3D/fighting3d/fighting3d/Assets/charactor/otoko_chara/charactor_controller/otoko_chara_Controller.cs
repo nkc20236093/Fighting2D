@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    //現在の時間
-    public float Real_Time;
+    //現在の時間(最初は1)
+    public float Real_Time = 1f;
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
@@ -36,6 +36,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     //自動落下用変数
     public float gravity;
 
+    //最初のジャンプ用変数
+    public float first_jump;
     //ジャンプのクールタイム
     public int JumpCoolTime = 1;
     //ジャンプの速度を設定
@@ -77,13 +79,19 @@ public class Otoko_chara_Controller : MonoBehaviour
         mytransform = this.transform;
         animator = GetComponent<Animator>();
 
-        //Real_Timeを初期化
-        Real_Time = 0f;
+        //最初のジャンプを初期化
+        first_jump = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //最初のジャンプ
+        if (Input.GetButtonDown("Vertical"))
+        {
+            first_jump += 1;
+        }
+
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -132,7 +140,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (Input.GetButtonDown("Vertical"))
         {
             gravity = -0.2f;
-            Invoke(nameof(Gravity), 0.05f);
+            Invoke(nameof(Gravity), 1.5f);
         }
         //常に重力をかける
         characterController.Move(new Vector3(0, gravity, 0));
@@ -142,13 +150,6 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //変数にHorizontal・Verticalを代入※１ Verticalを移動
         sayuu = Input.GetAxisRaw("Horizontal");
-
-        //地面から離れたら or 硬直中はジャンプ力を0に変更
-        if (jump_stop == false || Real_Time >= 1)
-        {
-            Real_Time = 0;
-            jouge = 0;
-        }
 
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
         characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge * 0.5f, 0));
@@ -206,8 +207,11 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら
         if (hit.gameObject.CompareTag("jimen"))
         {
-            //1.05秒後に呼び出し（硬直）
-            Invoke(nameof(Jumping), 1.05f);
+            if (first_jump >= 1f)
+            {
+                //1.05秒後に呼び出し（硬直）
+                Invoke(nameof(Jumping), 0.5f);
+            }
             jump_stop = true;
             Debug.Log("jimen");
         }
@@ -229,11 +233,20 @@ public class Otoko_chara_Controller : MonoBehaviour
     }
     void Jumping()
     {
-        //移動※１
-        jouge = Input.GetAxisRaw("Vertical");
+        if (Real_Time >= JumpCoolTime && Input.GetAxisRaw("Vertical") > 0)
+        {
+            Real_Time = 0;
+            //移動※１
+            jouge = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            //移動※１
+            jouge = 0;
+        }
     }
     void Gravity()
     {
-        gravity = -0.2f;
+        gravity = -0.02f;
     }
 }
