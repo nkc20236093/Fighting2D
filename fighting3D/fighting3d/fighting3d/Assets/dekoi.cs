@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class dekoi : MonoBehaviour
 {
+    //現在の時間(最初は1)
+    public float Real_Time = 1f;
+    //攻撃を受けた・与えた状態を管理する用の変数
+    public float kougeki_attack;
+
     //Transformコンポーネントを取得
     Transform mytransform;
     //向き変更用変数
@@ -18,10 +23,6 @@ public class dekoi : MonoBehaviour
     //アニメーターコンポーネントを取得
     Animator animator;
 
-    //xとyの移動制限
-    float xleft = 3.4f, xright = -3.4f;
-    float ydown = 5f, yup = 9f;
-
     //通常スピード
     float normal_speed = 50;
     //ダッシュスピード
@@ -29,27 +30,25 @@ public class dekoi : MonoBehaviour
     //現在のスピードモード
     float now_speed;
 
-    //Rayを宣言
-    Ray ray;
-    //レイを飛ばす距離
-    public float distance = 0.001f;
-    //レイが何かに当たった時の情報
-    RaycastHit hit;
-    //レイを発射する位置
-    Vector3 rayPos;
-
     //移動の変数
-    float sayuu;
-    float jouge;
+    public float sayuu;
+    public float jouge;
+    //自動落下用変数
+    public float gravity;
 
+    //最初のジャンプ用変数
+    public float first_jump;
+    //ジャンプのクールタイム
+    public int JumpCoolTime = 1;
+    //ジャンプの速度を設定
+    float Jump_velocity = 5.0f;
+    //ジャンプの時間を判定
+    public float jumpTime;
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
-    public bool jump_stop = false; //false = 禁止
+    public bool jump_stop;         //false = 禁止
                                    //true  = 許可
-
-    //rigidbodyを取得
-    Rigidbody rigid;
 
     //移動（総合）スピード
     Vector3 speed_origin;
@@ -57,16 +56,6 @@ public class dekoi : MonoBehaviour
     //CharacterControllerを宣言
     public CharacterController characterController;
 
-    //ジャンプの速度を設定
-    float Jump_velocity = 5.0f;
-
-    //着地状態を管理
-    public bool jump_isGrounded = false; //最初は着地してない状態 
-                                         //着地してない=false
-                                         //着地してる  =true
-
-    //レイが地面にヒットしたかの判定
-    public bool rayhit = false;
     //各初期ステータス
 
     //HP
@@ -85,59 +74,41 @@ public class dekoi : MonoBehaviour
     {
         //最初に現在のスピードに通常スピードを代入
         now_speed = normal_speed;
+
         //自分の回転度を取得
         mytransform = this.transform;
         animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 60;
+
+        //落下速度を初期化
+        gravity = -0.2f;
+
+        //最初のジャンプを初期化
+        first_jump = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //レイを発射する位置の調整
-        rayPos = transform.position + new Vector3(0, 0, 0);
-        //レイを下に飛ばす
-        ray = new Ray(rayPos, transform.up * -1);
-        //デバッグ用のレイを発光
-        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
-
-        //現在の座標を取得（移動制限用）
-        Vector3 Pos = transform.position;
-        //移動制限
-        Pos.x = Mathf.Clamp(Pos.x, xright, xleft);
-        Pos.y = Mathf.Clamp(Pos.y, ydown, yup);
-        transform.position = Pos;
-
-        //着地状態か確認
-        if (Physics.Raycast(ray, out hit, distance))
-        {
-            //接地判定を確実にするため-0.5fを代入
-            Jump_velocity = -0.5f;
-            Debug.Log("着地状態");
-            //レイが地面にヒットしてるか確認
-            if (hit.collider.CompareTag("jimen"))
-            {
-                rayhit = true;
-            }
-            else
-            {
-                jump_isGrounded = false;
-            }
-        }
-        ////以下基本動作
-
-        ////弱攻撃（X or J）
-        //if (Input.GetAxisRaw("X or J") != 0)
+        ////最初のジャンプ
+        //if (Input.GetButtonDown("Vertical"))
         //{
-        //    animator.SetInteger("stop", 2);
-        //    Debug.Log("弱攻撃");
+        //    first_jump += 1;
         //}
+
+        //以下基本動作
+
+        //弱攻撃（x or j）
+        if (Input.GetAxisRaw("X or J") != 0)
+        {
+            animator.SetInteger("stop", 2);
+            Debug.Log("dekoi");
+            //kougeki_attack = 1;
+        }
         ////各行動終了次第停止状態に変更
         //else
         //{
         //    //アニメーション変更
-        //    animation_stop();
+        //    Invoke(nameof(Animation_stop), 5f);
         //}
         ////強攻撃（A or K）
         //if (Input.GetAxisRaw("A or K") != 0)
@@ -159,10 +130,6 @@ public class dekoi : MonoBehaviour
         //{
         //    Debug.Log("ガード");
         //}
-        ////変数にHorizontal・Verticalを代入
-        //PlayerVector = new Vector3(0, jouge, sayuu * 0.15f * chara_muki);
-        //sayuu = Input.GetAxisRaw("Horizontal");
-        //jouge = Input.GetAxisRaw("Vertical");
 
         ////向き変更用
         //if (sayuu > 0)
@@ -173,19 +140,24 @@ public class dekoi : MonoBehaviour
         //{
         //    muki = true;
         //}
-        ////地面についてたらジャンプ力を0にする
-        //if (jump_isGrounded == true || rayhit == true)
-        //{
-        //    jouge = 0f;
-        //}
+
+        ////常に重力をかける
+        //characterController.Move(new Vector3(0, gravity, 0));
+
+        ////経過時間をReal_Timeに入れる
+        //Real_Time += Time.deltaTime;
+
+        ////変数にHorizontal・Verticalを代入※１ Verticalを移動
+        //sayuu = Input.GetAxisRaw("Horizontal");
+
         ////横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        //transform.Translate(PlayerVector);
+        //characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge, 0));
 
-        ////以下アニメーション
+        //以下アニメーション
 
-        ////ワールド座標を基準に回転を取得
-        //Vector3 World_angle = mytransform.eulerAngles;
-        ////左右どちらかに移動中
+        //ワールド座標を基準に回転を取得
+        Vector3 World_angle = mytransform.eulerAngles;
+        //左右どちらかに移動中
         //if (sayuu != 0)
         //{
         //    //右移動
@@ -193,7 +165,7 @@ public class dekoi : MonoBehaviour
         //    {
         //        //反転処理
         //        World_angle.y = -90;
-        //        chara_muki = 1;
+        //        chara_muki = -1;
         //        //アニメーション変更
         //        animator.SetInteger("stop", 1);
         //    }
@@ -202,8 +174,8 @@ public class dekoi : MonoBehaviour
         //    {
         //        //反転処理
         //        World_angle.y = 90;
-        //        chara_muki = -1;
         //        //アニメーション変更
+        //        chara_muki = -1;
         //        animator.SetInteger("stop", 1);
         //    }
         //}
@@ -211,28 +183,73 @@ public class dekoi : MonoBehaviour
         //else
         //{
         //    //アニメーション変更
-        //    Invoke(nameof(animation_stop), 1f);
+        //    Invoke(nameof(Animation_stop), 1f);
         //}
-        //mytransform.eulerAngles = World_angle;
+        mytransform.eulerAngles = World_angle;
     }
     //停止状態のアニメーション
-    void animation_stop()
+    void Animation_stop()
     {
         animator.SetInteger("stop", 0);
+        kougeki_attack = 0;
     }
     //characterControllerを利用した当たり判定
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        //地面についてたら
         if (hit.gameObject.CompareTag("jimen"))
         {
-            Debug.Log("jimen");
-            jump_isGrounded = true;
+            if (first_jump >= 1f)
+            {
+                //0.05秒後に呼び出し（硬直）
+                //Invoke(nameof(Jumping), 0.05f);
+            }
+            else
+            {
+                //First_Jumping();
+            }
             jump_stop = true;
+            Debug.Log("jimen");
         }
-        if (hit.gameObject.CompareTag("Player"))
+        else
         {
-            Debug.Log("hit_dekoi");
+            jump_stop = false;
+            Debug.Log("空");
+        }
+    }
+    //最初のジャンプ
+    //void First_Jumping()
+    //{
+    //    jouge = Input.GetAxisRaw("Vertical");
+    //}
 
+    ////2回目以降のジャンプ
+    //void Jumping()
+    //{
+    //    if (Real_Time >= JumpCoolTime && Input.GetAxisRaw("Vertical") > 0)
+    //    {
+    //        Real_Time = 0;
+    //        //移動※１
+    //        jouge = Input.GetAxisRaw("Vertical");
+    //    }
+    //    else
+    //    {
+    //        //移動※１
+    //        jouge = 0;
+    //    }
+    //}
+    //Capsule Colliderを利用した当たり判定
+    private void OnTriggerEnter(Collider other)
+    {
+        //以下キャラクターヒット
+        if (other.CompareTag("Player"))
+        {
+            //弱攻撃が繰り出されたら
+            if (kougeki_attack == 1f)
+            {
+                Debug.Log("hit_dekoi");
+                Invoke(nameof(Animation_stop), 5f);
+            }
         }
     }
 }
