@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    CapsuleCollider CapsuleCollider;
-    
     //現在の時間(最初は1)
     public float Real_Time = 1f;
-    
+
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
     //Transformコンポーネントを取得
     Transform mytransform;
-    
+
     //向き変更用変数
     float chara_muki;
     //向き変更の管理用
@@ -88,19 +86,17 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //最初のジャンプを初期化
         first_jump = 0;
-
-        //子オブジェクトのカプセルコライダーを代入
-        CapsuleCollider = GetComponentInChildren<CapsuleCollider>();
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         //最初のジャンプ
-        if (Input.GetButtonDown("Vertical"))
-        {
-            first_jump += 1;
-        }
+        //if (Input.GetButtonDown("Vertical"))
+        //{
+        //    Debug.Log("first");
+        //    first_jump += 1;
+        //}
 
         //以下基本動作
 
@@ -133,7 +129,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("必殺技");
         }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        if (Input.GetButtonDown("Right(left) Bumper or sperce")) 
+        if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ガード");
         }
@@ -154,24 +150,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         //経過時間をReal_Timeに入れる
         Real_Time += Time.deltaTime;
 
-        //変数にHorizontal・Verticalを代入※１ Verticalを移動
+        //変数にHorizontal・Verticalを代入 ※１ Verticalを移動
         sayuu = Input.GetAxisRaw("Horizontal");
 
         //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
         characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge, 0));
 
-        //子オブジェクト（当たり判定専用）を利用した当たり判定処理
-        if (CapsuleCollider.CompareTag("Player"))
+        if (Real_Time >= JumpCoolTime)
         {
-            Debug.Log("HIT!");
-            //弱攻撃が繰り出されたら
-            if (kougeki_attack == 1f)
-            {
-                Debug.Log("hit_player");
-                Invoke(nameof(Animation_stop), 5f);
-            }
+            Debug.Log("OK");
         }
-
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -218,43 +206,70 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら
         if (hit.gameObject.CompareTag("jimen"))
         {
-            if (first_jump >= 1f)
+            if (Real_Time >= JumpCoolTime)
             {
-                //0.05秒後に呼び出し（硬直）
-                Invoke(nameof(Jumping), 0.05f);
+                Debug.Log("ジャンプ");
+                Real_Time = 0;
+                //移動※１
+                jouge = Input.GetAxisRaw("Vertical");
             }
             else
             {
-                First_Jumping();
+                Debug.Log("Non");
+                Invoke(nameof(Chien), 0.05f);
             }
-            jump_stop = true;
-            Debug.Log("jimen");
         }
-        else
-        {
-            jump_stop = false;
-            Debug.Log("空");
-        }
-    }
-    //最初のジャンプ
-    void First_Jumping()
-    {
-        jouge = Input.GetAxisRaw("Vertical");
-    }
+        //2回目以降のジャンプだったら
+        //    if (first_jump > 1f)
+        //    {
+        //        Debug.Log("許可");
+        //        //0.05秒後に呼び出し（硬直）
+        //        Invoke(nameof(Jumping), 0.00225f);
+        //    }
 
-    //2回目以降のジャンプ
-    void Jumping()
-    {
-        if (Real_Time >= JumpCoolTime && Input.GetAxisRaw("Vertical") > 0)
+        //    //最初のジャンプだったら
+        //    else if (first_jump <= 1)
+        //    {
+        //        Debug.Log("その1");
+        //        Invoke(nameof(First_Jumping), 0.0001f);           
+        //    }
+        //    jump_stop = true;
+        //    Debug.Log("jimen");
+        //}
+        //else
+        //{
+        //    jump_stop = false;
+        //    Debug.Log("空");
+        //    jouge = gravity;
+    //}
+        //最初のジャンプ
+        //void First_Jumping()
+        //{
+        //    Debug.Log("first1");
+        //    jouge = Input.GetAxisRaw("Vertical");
+        //}
+
+        ////2回目以降のジャンプ
+        //void Jumping()
+        //{
+        //    if (Real_Time >= JumpCoolTime)
+        //    {
+        //        Debug.Log("ジャンプ");
+        //        Real_Time = 0;
+        //        //移動※１
+        //        jouge = Input.GetAxisRaw("Vertical");
+        //    }
+        //    //else
+        //    //{
+        //    //    Debug.Log("NOTjannpu");
+        //    //    //移動※１
+        //    //    jouge = 0;
+        //    //}
+        //}
+
+        void Chien()
         {
-            Real_Time = 0;
-            //移動※１
-            jouge = Input.GetAxisRaw("Vertical");
-        }
-        else
-        {
-            //移動※１
-            jouge = 0;
+            jouge = gravity;
         }
     }
 }
