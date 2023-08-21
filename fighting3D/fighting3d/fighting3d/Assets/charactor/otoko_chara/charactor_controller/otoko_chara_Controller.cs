@@ -5,19 +5,15 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //現在の時間(最初は1)
-    public float Real_Time = 1f;
+    public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
+    //Rigidbodyを取得
+    Rigidbody rigid;
     //Transformコンポーネントを取得
     Transform mytransform;
-
-    //向き変更用変数
-    float chara_muki;
-    //向き変更の管理用
-    public bool muki;  //false = 右
-                       //true  = 左
 
     //プレイヤーの移動方向・速度の変数
     Vector3 PlayerVector;
@@ -26,22 +22,20 @@ public class Otoko_chara_Controller : MonoBehaviour
     Animator animator;
 
     //通常スピード
-    float normal_speed = 50;
+    float normal_speed = 1.5f;
     //ダッシュスピード
     float dash_speed;
     //現在のスピードモード
     float now_speed;
+    //移動（総合）スピード
+    Vector3 speed_origin;
 
     //移動の変数
     public float sayuu;
     public float jouge;
-    //自動落下用変数
-    public float gravity;
 
-    //最初のジャンプ用変数
-    public float first_jump;
     //ジャンプのクールタイム
-    public int JumpCoolTime = 1;
+    public float JumpCoolTime = 0.5f;
     //ジャンプの速度を設定
     float Jump_velocity = 5.0f;
     //ジャンプの時間を判定
@@ -49,14 +43,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     //ジャンプパワー（統一予定）
     float jump_power = 5f;
     //2段ジャンプ禁止用
-    public bool jump_stop;         //false = 禁止
-                                   //true  = 許可
-
-    //移動（総合）スピード
-    Vector3 speed_origin;
-
-    //CharacterControllerを宣言
-    public CharacterController characterController;
+    public bool jump_stop;
+                            //false = 禁止
+                            //true  = 許可
 
     //各初期ステータス
 
@@ -81,22 +70,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         mytransform = this.transform;
         animator = GetComponent<Animator>();
 
-        //落下速度を初期化
-        gravity = -0.2f;
-
-        //最初のジャンプを初期化
-        first_jump = 0;
+        //rigidにコンポーネントを代入
+        rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //最初のジャンプ
-        //if (Input.GetButtonDown("Vertical"))
-        //{
-        //    Debug.Log("first");
-        //    first_jump += 1;
-        //}
+        //変数を代入
+        jouge = Input.GetAxisRaw("Vertical");
+        sayuu = Input.GetAxisRaw("Horizontal");
 
         //以下基本動作
 
@@ -134,31 +117,37 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("ガード");
         }
 
-        //向き変更用
-        if (sayuu > 0)
-        {
-            muki = false;
-        }
-        else if (sayuu < 0)
-        {
-            muki = true;
-        }
-
-        //常に重力をかける
-        characterController.Move(new Vector3(0, gravity, 0));
-
         //経過時間をReal_Timeに入れる
         Real_Time += Time.deltaTime;
 
-        //変数にHorizontal・Verticalを代入 ※１ Verticalを移動
-        sayuu = Input.GetAxisRaw("Horizontal");
-
-        //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge, 0));
-
+        //現在の時間を代入
         if (Real_Time >= JumpCoolTime)
         {
             Debug.Log("OK");
+        }
+        //ジャンプ時間の計算
+        if (jump_stop == true && Real_Time < JumpCoolTime)
+        {
+            Real_Time += Time.deltaTime;
+        }
+        //ジャンプの処理
+        //地面についてたら
+        if (jump_stop == true)
+        {
+            //ジャンプ入力がされてたら
+            if (jouge > 0)
+            {
+                PlayerVector = rigid.transform.up * jump_power;
+            }
+        }
+        else
+        {
+            PlayerVector.y = 0;
+        }
+        //横移動の処理
+        if (sayuu != 0)
+        {
+            PlayerVector = rigid.transform.forward * now_speed;
         }
         //以下アニメーション
 
@@ -168,21 +157,21 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (sayuu != 0)
         {
             //右移動
-            if (muki == false)
+            if (sayuu > 0)
             {
+                Debug.Log("右");
                 //反転処理
                 World_angle.y = -90;
-                chara_muki = -1;
                 //アニメーション変更
                 animator.SetInteger("stop", 1);
             }
             //左移動
-            else
+            else if (sayuu < 0)
             {
+                Debug.Log("左");
                 //反転処理
                 World_angle.y = 90;
                 //アニメーション変更
-                chara_muki = -1;
                 animator.SetInteger("stop", 1);
             }
         }
@@ -200,76 +189,23 @@ public class Otoko_chara_Controller : MonoBehaviour
         animator.SetInteger("stop", 0);
         kougeki_attack = 0;
     }
-    //characterControllerを利用した当たり判定
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    //当たり判定まとめ
+    private void OnTriggerStay(Collider other)
     {
         //地面についてたら
-        if (hit.gameObject.CompareTag("jimen"))
+        if (other.CompareTag("jimen"))
         {
-            if (Real_Time >= JumpCoolTime)
-            {
-                Debug.Log("ジャンプ");
-                Real_Time = 0;
-                //移動※１
-                jouge = Input.GetAxisRaw("Vertical");
-            }
-            else
-            {
-                Debug.Log("Non");
-                Invoke(nameof(Chien), 0.05f);
-            }
+            Debug.Log("jimen");
+            jump_stop = true;
         }
-        //2回目以降のジャンプだったら
-        //    if (first_jump > 1f)
-        //    {
-        //        Debug.Log("許可");
-        //        //0.05秒後に呼び出し（硬直）
-        //        Invoke(nameof(Jumping), 0.00225f);
-        //    }
-
-        //    //最初のジャンプだったら
-        //    else if (first_jump <= 1)
-        //    {
-        //        Debug.Log("その1");
-        //        Invoke(nameof(First_Jumping), 0.0001f);           
-        //    }
-        //    jump_stop = true;
-        //    Debug.Log("jimen");
-        //}
-        //else
-        //{
-        //    jump_stop = false;
-        //    Debug.Log("空");
-        //    jouge = gravity;
-    //}
-        //最初のジャンプ
-        //void First_Jumping()
-        //{
-        //    Debug.Log("first1");
-        //    jouge = Input.GetAxisRaw("Vertical");
-        //}
-
-        ////2回目以降のジャンプ
-        //void Jumping()
-        //{
-        //    if (Real_Time >= JumpCoolTime)
-        //    {
-        //        Debug.Log("ジャンプ");
-        //        Real_Time = 0;
-        //        //移動※１
-        //        jouge = Input.GetAxisRaw("Vertical");
-        //    }
-        //    //else
-        //    //{
-        //    //    Debug.Log("NOTjannpu");
-        //    //    //移動※１
-        //    //    jouge = 0;
-        //    //}
-        //}
-
-        void Chien()
+        else
         {
-            jouge = gravity;
+            jump_stop = false;
         }
+        //変数にHorizontal・Verticalを代入
+        Vector3 idou = new Vector3(PlayerVector.x * -1, PlayerVector.y, 0);
+
+        //移動処理
+        rigid.MovePosition(rigid.position + (idou * -1) * Time.deltaTime);
     }
 }
