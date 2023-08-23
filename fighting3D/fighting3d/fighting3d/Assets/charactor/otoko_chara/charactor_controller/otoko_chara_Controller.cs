@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    //慣性消去のRigidbody
-    public Rigidbody rigidbody = null;
+    //アニメーターコンポーネントを取得
+    Animator animator;
+    //Rigidbodyを取得
+    Rigidbody rigidbody;
 
     //現在の時間(最初は1)
     public float Real_Time;
@@ -16,13 +18,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     //Transformコンポーネントを取得
     Transform mytransform;
 
-    //プレイヤーの移動方向・速度の変数
-    Vector3 PlayerVector;
-    //移動用Vector3
-    public Vector3 idou_houkou;
-
-    //アニメーターコンポーネントを取得
-    Animator animator;
+    //キャラ向き変更用変数
+    float chara_muki;
 
     //通常スピード
     float normal_speed = 5f;
@@ -40,15 +37,17 @@ public class Otoko_chara_Controller : MonoBehaviour
     //移動の変数
     public float sayuu;
     public float jouge;
+    //jougeの受け渡し先
+    public float jump;
 
     //ジャンプのクールタイム
     public float JumpCoolTime = 0.5f;
     //ジャンプの時間を判定
     public float jumpTime;
     //通常ジャンプパワー（統一予定）
-    float jump_power = 5f;
+    float jump_power = 3f;
     //ハイジャンプパワー（統一予定）
-    float high_jump = 10f;
+    float high_jump = 5f;
     //現在のジャンプ力
     float now_jumppower;
     //2段ジャンプ禁止用
@@ -94,17 +93,22 @@ public class Otoko_chara_Controller : MonoBehaviour
     void Update()
     {
         //移動制限
-        Vector3 MyVector3 = transform.position;
+        Vector3 Pos = transform.position;
         //X座標
-        Mathf.Clamp(MyVector3.x, 4, -4);
+        Pos.x = Mathf.Clamp(Pos.x, -4, 4);
         //Y座標
-        Mathf.Clamp(MyVector3.y, 4.8f, 9.5f);
+        Pos.y = Mathf.Clamp(Pos.y, 4.8f, 6.62f);
         //範囲を越えたらテレポート
-        transform.position = MyVector3;
+        transform.position = Pos;
 
-        //変数を代入
-        jouge = Input.GetAxisRaw("Vertical");
+        //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
+
+        //ジャンプ時間の計算
+        if (jump_stop == true && Real_Time < JumpCoolTime)
+        {
+            Real_Time += Time.deltaTime;
+        }
 
         //移動速度のVector3(仮)
         Vector3 sokudo = new Vector3(now_speed, now_jumppower, 0);
@@ -145,14 +149,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("ガード");
         }
 
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            speed_origin = now_speed;
-        }
-        if (Input.GetButtonDown("Vertical")) 
-        {
-            speed_origin = now_jumppower;
-        }
         //経過時間をReal_Timeに入れる
         Real_Time += Time.deltaTime;
 
@@ -160,35 +156,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (Real_Time >= JumpCoolTime)
         {
             Debug.Log("OK");
-        }
-        //ジャンプ時間の計算
-        if (jump_stop == true && Real_Time < JumpCoolTime)
-        {
-            Real_Time += Time.deltaTime;
-        }
-        //ジャンプの処理
-        //地面についてたら
-        if (jump_stop == true)
-        {
-            //ジャンプ入力がされてたら
-            if (jouge > 0)
-            {
-                if (jump_mode == true)
-                {
-                    now_jumppower = jump_power;
-                }
-                else
-                {
-                    now_jumppower = high_jump;
-                }
-                Debug.Log("true");
-                speed_origin = now_jumppower;
-                PlayerVector.y = jouge;
-            }
-        }
-        else
-        {
-            now_jumppower = 0;
         }
 
         //横移動の処理
@@ -204,14 +171,36 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             Debug.Log("false");
             speed_origin = now_speed;
-            PlayerVector.x = sayuu;
         }
-
-        //変数にHorizontal・Verticalを代入
-        Vector3 idou_houkou = new Vector3(0, PlayerVector.y, PlayerVector.x);
+        //speed_originに代入
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            speed_origin = now_speed;
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            speed_origin = now_jumppower;
+        }
+        //ジャンプの処理
+        //地面についてたら&ジャンプ入力がされてたら
+        if (jump_stop == true && jouge > 0 && Real_Time > JumpCoolTime)
+        {
+            Invoke(nameof(Chien), 0.1f);
+            if (jump_mode == true)
+            {
+                now_jumppower = jump_power;
+            }
+            else
+            {
+                now_jumppower = high_jump;
+            }
+            Debug.Log("true");
+            speed_origin = now_jumppower;
+        }
+        //Vector3にHorizontal・Verticalを代入
+        Vector3 idouVec = new Vector3(0, jouge, sayuu * chara_muki);
         //移動処理
-        transform.Translate(speed_origin * Time.deltaTime * idou_houkou);
-
+        transform.Translate(idouVec * speed_origin * Time.deltaTime);
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -224,6 +213,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 Debug.Log("右");
                 //反転処理
+                chara_muki = 1;
                 World_angle.y = -90;
                 //アニメーション変更
                 animator.SetInteger("stop", 1);
@@ -233,6 +223,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 Debug.Log("左");
                 //反転処理
+                chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
                 animator.SetInteger("stop", 1);
@@ -258,12 +249,21 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら
         if (other.CompareTag("jimen"))
         {
+            //変数にHorizontal・Verticalを代入 ※jougeのみ制限
+            jump = Input.GetAxisRaw("Vertical");
+            if (jump >= 0)
+            {
+                Debug.Log("JUMP");
+                jouge = jump;
+                jump_stop = false;
+            }
             Debug.Log("jimen");
             jump_stop = true;
         }
-        else
-        {
-            jump_stop = false;
-        }
+    }
+    void Chien()
+    {
+        jump_stop = false;
+        Debug.Log("遅延");
     }
 }
