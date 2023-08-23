@@ -5,7 +5,7 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //慣性消去のRigidbody
-    public Rigidbody m_rigid_body = null;
+    public Rigidbody rigidbody = null;
 
     //現在の時間(最初は1)
     public float Real_Time;
@@ -18,20 +18,24 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //プレイヤーの移動方向・速度の変数
     Vector3 PlayerVector;
+    //移動用Vector3
+    public Vector3 idou_houkou;
 
     //アニメーターコンポーネントを取得
     Animator animator;
 
     //通常スピード
-    float normal_speed = 200f;
+    float normal_speed = 5f;
     //ダッシュスピード
-    float dash_speed = 10f;
+    float dash_speed = 7.5f;
     //現在のスピードモード
     float now_speed;
-    //移動速度のVector3
-    Vector3 sokudo;
     //スピード設定
     float speed_origin;
+    //ダッシュモード切替
+    public bool speed_mode;
+    //false = 通常
+    //true  = ダッシュ
 
     //移動の変数
     public float sayuu;
@@ -52,6 +56,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     //false = 禁止
     //true  = 許可
 
+    //ジャンプ状態切り替え
+    public bool jump_mode;
+    //false = 通常状態
+    //true  = ハイジャンプ状態
 
     //各初期ステータス
 
@@ -69,25 +77,37 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //最初に現在のスピードに通常スピードを代入
-        now_speed = normal_speed;
-        //最初に現在のジャンプ力に通常スピードを代入
-        now_jumppower = jump_power;
+        //最初にスピードモードに通常モードを代入
+        speed_mode = false;
+        //最初に現在のジャンプモードに通常モードを代入
+        jump_mode = false;
 
         //自分の回転度を取得
         mytransform = this.transform;
         animator = GetComponent<Animator>();
 
         //rigidにコンポーネントを代入
-        m_rigid_body = this.GetComponent<Rigidbody>();
+        rigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //移動制限
+        Vector3 MyVector3 = transform.position;
+        //X座標
+        Mathf.Clamp(MyVector3.x, 4, -4);
+        //Y座標
+        Mathf.Clamp(MyVector3.y, 4.8f, 9.5f);
+        //範囲を越えたらテレポート
+        transform.position = MyVector3;
+
         //変数を代入
         jouge = Input.GetAxisRaw("Vertical");
         sayuu = Input.GetAxisRaw("Horizontal");
+
+        //移動速度のVector3(仮)
+        Vector3 sokudo = new Vector3(now_speed, now_jumppower, 0);
 
         //以下基本動作
 
@@ -125,21 +145,13 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("ガード");
         }
 
-        //変数にHorizontal・Verticalを代入
-        Vector3 idou = new Vector3(PlayerVector.x * -1, PlayerVector.y, 0);
-        //メソッドを呼び出し
-        MyAddForce(idou);
-        //移動速度のVector3(仮)
-        Vector3 sokudo = new Vector3(now_speed, now_jumppower, 0);
-
         if (Input.GetButtonDown("Horizontal"))
         {
-            speed_origin = normal_speed;
+            speed_origin = now_speed;
         }
-        if (Input.GetButtonDown("Vertical") && jump_stop == true)
+        if (Input.GetButtonDown("Vertical")) 
         {
             speed_origin = now_jumppower;
-            Invoke(nameof(ChienGravity), 0.25f);
         }
         //経過時間をReal_Timeに入れる
         Real_Time += Time.deltaTime;
@@ -161,22 +173,45 @@ public class Otoko_chara_Controller : MonoBehaviour
             //ジャンプ入力がされてたら
             if (jouge > 0)
             {
+                if (jump_mode == true)
+                {
+                    now_jumppower = jump_power;
+                }
+                else
+                {
+                    now_jumppower = high_jump;
+                }
                 Debug.Log("true");
-                PlayerVector.y = jouge * jump_power;
-                sokudo.y = now_jumppower;
+                speed_origin = now_jumppower;
+                PlayerVector.y = jouge;
             }
         }
         else
         {
-            PlayerVector.y = 0;
+            now_jumppower = 0;
         }
+
         //横移動の処理
         if (sayuu != 0)
         {
+            if (speed_mode == true)
+            {
+                now_speed = dash_speed;
+            }
+            else
+            {
+                now_speed = normal_speed;
+            }
             Debug.Log("false");
-            PlayerVector.x = sayuu * now_speed;
-            sokudo.x = now_speed;
+            speed_origin = now_speed;
+            PlayerVector.x = sayuu;
         }
+
+        //変数にHorizontal・Verticalを代入
+        Vector3 idou_houkou = new Vector3(0, PlayerVector.y, PlayerVector.x);
+        //移動処理
+        transform.Translate(speed_origin * Time.deltaTime * idou_houkou);
+
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -230,21 +265,5 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             jump_stop = false;
         }
-        //変数にHorizontal・Verticalを代入
-        //Vector3 idou = new Vector3(PlayerVector.x * -1, PlayerVector.y, 0);
-
-        //移動処理
-        //m_rigid_body.AddForce(idou * speed_origin * Time.deltaTime);
-    }
-    //移動メソッド
-    void MyAddForce(Vector3 idou)
-    {
-        m_rigid_body.AddForce(idou);
-        m_rigid_body.velocity = idou * Time.deltaTime * 2f;
-    }
-    //
-    void ChienGravity()
-    {
-        m_rigid_body.AddForce(new Vector3(0, -0.2f, 0));
     }
 }
