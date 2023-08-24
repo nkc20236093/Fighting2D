@@ -7,9 +7,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     //アニメーターコンポーネントを取得
     Animator animator;
     //Rigidbodyを取得
-    Rigidbody rigidbody;
-
-    //現在の時間(最初は1)
+    public new Rigidbody rigidbody;
+    
+    //現在の時間
     public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数
@@ -103,6 +103,8 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
+        //Vector3にHorizontal・Verticalを代入
+        Vector3 idouVec = new Vector3(0, jouge, sayuu * chara_muki);
 
         //ジャンプ時間の計算
         if (jump_stop == true && Real_Time < JumpCoolTime)
@@ -110,9 +112,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             Real_Time += Time.deltaTime;
         }
         
-        //移動速度のVector3(仮)
-        Vector3 sokudo = new Vector3(now_speed, now_jumppower, 0);
-
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -131,40 +130,56 @@ public class Otoko_chara_Controller : MonoBehaviour
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
+            animator.SetInteger("stop", 3);
             Debug.Log("強攻撃");
+            kougeki_attack = 2;
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
         }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0)
         {
             Debug.Log("投げ攻撃");
         }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
         {
             Debug.Log("必殺技");
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
         }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
         if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ガード");
         }
-        //移動以外の入力があったときはすり抜けるようにする
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || sayuu == 0 || jouge == 0)
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+
+        //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
-        }
-        //入力がなくなった or 移動キーが入ったら
-        if (!Input.GetButtonDown("Right(left) Bumper or sperce") || !Input.GetButtonDown("Y or I") || !Input.GetButtonDown("B or L") || !Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || sayuu != 0 || jouge > 0)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Player");
-        }
-        //経過時間をReal_Timeに入れる
-        Real_Time += Time.deltaTime;
-
-        //現在の時間を代入
-        if (Real_Time >= JumpCoolTime)
-        {
-            Debug.Log("OK");
+            idouVec = Vector3.zero;
+            Debug.Log("Not移動");
         }
 
         //横移動の処理
@@ -206,10 +221,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             speed_origin = now_jumppower;
         }
-        //Vector3にHorizontal・Verticalを代入
-        Vector3 idouVec = new Vector3(0, jouge, sayuu * chara_muki);
         //移動処理
-        transform.Translate(idouVec * speed_origin * Time.deltaTime);
+        transform.Translate(speed_origin * Time.deltaTime * idouVec);
         
         //以下アニメーション
 
@@ -264,7 +277,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             if (jump >= 0)
             {
                 jouge = jump;
-                jump_stop = false;
             }
             Debug.Log("jimen");
             jump_stop = true;
@@ -283,9 +295,18 @@ public class Otoko_chara_Controller : MonoBehaviour
     //攻撃付与・被弾まとめ
     void Attack()
     {
+        //弱攻撃
         if (kougeki_attack == 1)
         {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Player");
             Debug.Log("PlayerHit");
+        }
+        //強攻撃
+        if (kougeki_attack == 2)
+        {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
     }
 }

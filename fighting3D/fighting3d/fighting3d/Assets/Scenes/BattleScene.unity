@@ -919,8 +919,8 @@ CapsuleCollider:
   m_Height: 2.37
   m_Direction: 1
   m_Center: {x: 0, y: 1.16, z: 0}
---- !u!136 &878131946
-CapsuleCollider:
+--- !u!65 &878131956
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -937,11 +937,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.37
-  m_Height: 2.37
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.01, z: 0.65}
+  m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!1 &1124691289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,8 +1150,8 @@ CapsuleCollider:
   m_Height: 2.57
   m_Direction: 1
   m_Center: {x: 0, y: 1.16, z: 0}
---- !u!136 &1151485703
-CapsuleCollider:
+--- !u!65 &1151485713
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1170,11 +1168,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.37
-  m_Height: 2.55
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.01, z: 0.65}
+  m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!1 &1191391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1546,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3306425848715445506, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3496195569235192142, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -1844,10 +1844,10 @@ PrefabInstance:
       addedObject: {fileID: 878131935}
     - targetCorrespondingSourceObject: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 878131946}
+      addedObject: {fileID: 878131945}
     - targetCorrespondingSourceObject: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 878131945}
+      addedObject: {fileID: 878131956}
   m_SourcePrefab: {fileID: 100100000, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
 --- !u!1 &2040381612
 GameObject:
@@ -1959,6 +1959,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: rigidbody
+      value: 
+      objectReference: {fileID: 1151485692}
     - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_rigid_body
       value: 
@@ -2405,7 +2409,7 @@ PrefabInstance:
       addedObject: {fileID: 1151485693}
     - targetCorrespondingSourceObject: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1151485703}
+      addedObject: {fileID: 1151485713}
   m_SourcePrefab: {fileID: 100100000, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
