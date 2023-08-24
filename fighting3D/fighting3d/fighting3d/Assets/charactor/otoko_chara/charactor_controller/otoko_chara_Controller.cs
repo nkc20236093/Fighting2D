@@ -41,7 +41,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float jump;
 
     //ジャンプのクールタイム
-    public float JumpCoolTime = 0.5f;
+    public float JumpCoolTime = 1f;
     //ジャンプの時間を判定
     public float jumpTime;
     //通常ジャンプパワー（統一予定）
@@ -109,7 +109,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Real_Time += Time.deltaTime;
         }
-
+        
         //移動速度のVector3(仮)
         Vector3 sokudo = new Vector3(now_speed, now_jumppower, 0);
 
@@ -148,7 +148,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("ガード");
         }
-
+        //移動以外の入力があったときはすり抜けるようにする
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || sayuu == 0 || jouge == 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+        }
+        //入力がなくなった or 移動キーが入ったら
+        if (!Input.GetButtonDown("Right(left) Bumper or sperce") || !Input.GetButtonDown("Y or I") || !Input.GetButtonDown("B or L") || !Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || sayuu != 0 || jouge > 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
         //経過時間をReal_Timeに入れる
         Real_Time += Time.deltaTime;
 
@@ -183,9 +192,10 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         //ジャンプの処理
         //地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge > 0 && Real_Time > JumpCoolTime)
+        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
         {
-            Invoke(nameof(Chien), 0.1f);
+            Real_Time = 0;
+            Invoke(nameof(Chien), 0.43f);
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -194,13 +204,13 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 now_jumppower = high_jump;
             }
-            Debug.Log("true");
             speed_origin = now_jumppower;
         }
         //Vector3にHorizontal・Verticalを代入
         Vector3 idouVec = new Vector3(0, jouge, sayuu * chara_muki);
         //移動処理
         transform.Translate(idouVec * speed_origin * Time.deltaTime);
+        
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -253,17 +263,29 @@ public class Otoko_chara_Controller : MonoBehaviour
             jump = Input.GetAxisRaw("Vertical");
             if (jump >= 0)
             {
-                Debug.Log("JUMP");
                 jouge = jump;
                 jump_stop = false;
             }
             Debug.Log("jimen");
             jump_stop = true;
         }
+        if (other.CompareTag("Player"))
+        {
+            Attack();
+        }
     }
     void Chien()
     {
         jump_stop = false;
         Debug.Log("遅延");
+        jouge = 0;
+    }
+    //攻撃付与・被弾まとめ
+    void Attack()
+    {
+        if (kougeki_attack == 1)
+        {
+            Debug.Log("PlayerHit");
+        }
     }
 }
