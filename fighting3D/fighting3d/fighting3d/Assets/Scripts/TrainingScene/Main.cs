@@ -9,43 +9,79 @@ public class Main : MonoBehaviour
     public Text textPower;　　　//攻撃力
     public Text textSpeed;　　　//素早さ
     public Text textStamina;　　　//スタミナ
-    public Text textCleverness;　　　//賢さ
+    public Text textCleverness;   //賢さ
 
-    int countHP = 0;                      //各ステータスの値をここに保存します
+    int HP = 0;                      //ステータス
+    int Power = 0;
+    int Speed = 0;
+    int Stamina = 0;
+    int Cleverness = 0;
+
+    int countHP = 0;                      //トレーニング回数
     int countPower = 0;
     int countSpeed = 0;
     int countStamina = 0;
     int countCleverness = 0;
 
 
+    int UpNumberHP= 10;
+    int UpNumberPower= 10;
+    int UpNumberSpeed= 10;
+    int UpNumberStamina= 10;
+    int UpNumberCleverness= 10;
+
     public void OnPushButtonHP()　　　　　　　//HP育成ボタンを押してＨＰの値を増やします
     {
-        countHP ++;　　　　　　　　　　　　　　//一回の育成の上がり幅　１　（仮）
-        textHP.text= "HP: " + countHP;
+        countHP += 1;　　　　　　　　　//一回の育成の上がり幅　１　（仮）
+       
+        if(countHP >= 4 && countHP <= 7)
+        {
+           // Debug.Log("afoafo");
+            int UpNumberHP = 20;
 
+        }
+        if (countHP >= 8 && countHP <= 11)
+        {
+            int UpNumberHP = 30;
+
+        }
+        if (countHP >= 12 && countHP <= 15)
+        {
+            int UpNumberHP = 40;
+
+        }
+        if (countHP >= 16)
+        {
+            int UpNumberHP = 50;
+
+        }
+        HP += UpNumberHP;
+        Debug.Log(HP);
+        //Debug.Log(countHP);
+        textHP.text = "" + HP;
     }
     public void OnPushButtonPower()　　　　　　　
     {
         countPower++;　　　　　　　
-        textPower.text = "攻撃力: " + countPower;
+        textPower.text = "" + UpNumberPower;
 
     }
     public void OnPushButtonSpeed()　　　　　　　　　　
     {
         countSpeed++;
-        textSpeed.text = "素早さ: " + countSpeed;
+        textSpeed.text = "" + UpNumberSpeed;
 
     }
     public void OnPushButtonStamina()　　　　　　　　
     {
         countStamina++;
-        textStamina.text = "スタミナ: " + countStamina;
+        textStamina.text = "" + UpNumberStamina;
 
     }
     public void OnPushButtonCleverness()
     {
         countCleverness++;
-        textCleverness.text = "賢さ: " + countCleverness;
+        textCleverness.text = "" + UpNumberCleverness;
 
     }
 
