@@ -104,7 +104,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
         //Vector3にHorizontal・Verticalを代入
-        Vector3 idouVec = new Vector3(0, jouge, sayuu * chara_muki);
+        Vector3 idouVec = new Vector3(0, jouge * 1.5f, sayuu * chara_muki);
 
         //ジャンプ時間の計算
         if (jump_stop == true && Real_Time < JumpCoolTime)
@@ -180,6 +180,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
             Debug.Log("Not移動");
+        }
+        //移動入力があったらレイヤー変更
+        if (jouge > 0 || sayuu != 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
 
         //横移動の処理
@@ -290,7 +295,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         jump_stop = false;
         Debug.Log("遅延");
-        jouge = 0;
+        jouge = -1f;
     }
     //攻撃付与・被弾まとめ
     void Attack()
@@ -299,14 +304,15 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (kougeki_attack == 1)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Player");
-            Debug.Log("PlayerHit");
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack1");
         }
         //強攻撃
         if (kougeki_attack == 2)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Player");
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack2");
         }
     }
 }
