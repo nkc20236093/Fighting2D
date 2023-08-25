@@ -4,64 +4,62 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //アニメーターコンポーネントを取得
+    Animator animator;
+    //Rigidbodyを取得
+    public new Rigidbody rigidbody;
+    
     //現在の時間
     public float Real_Time;
+
     //攻撃を受けた・与えた状態を管理する用の変数
     public float kougeki_attack;
 
     //Transformコンポーネントを取得
     Transform mytransform;
-    //向き変更用変数
+
+    //キャラ向き変更用変数
     float chara_muki;
-    //向き変更の管理用
-    public bool muki;  //false = 右
-                       //true  = 左
-
-    //プレイヤーの移動方向・速度の変数
-    Vector3 PlayerVector;
-
-    //アニメーターコンポーネントを取得
-    Animator animator;
-
-    //重力用変数
-    public Vector3 gravity;
 
     //通常スピード
-    float normal_speed = 50;
+    float normal_speed = 5f;
     //ダッシュスピード
-    float dash_speed;
+    float dash_speed = 7.5f;
     //現在のスピードモード
     float now_speed;
+    //スピード設定
+    float speed_origin;
+    //ダッシュモード切替
+    public bool speed_mode;
+    //false = 通常
+    //true  = ダッシュ
 
     //移動の変数
     public float sayuu;
     public float jouge;
+    //jougeの受け渡し先
+    public float jump;
 
-    //移動の合流先
-    public Vector3 idou;
     //ジャンプのクールタイム
-    public float JumpCoolTime = 0.1f;
-    //ジャンプの速度を設定
-    float Jump_velocity = 5.0f;
+    public float JumpCoolTime = 1f;
     //ジャンプの時間を判定
     public float jumpTime;
-    //ジャンプパワー（統一予定）
-    float jump_power = 5f;
+    //通常ジャンプパワー（統一予定）
+    float jump_power = 3f;
+    //ハイジャンプパワー（統一予定）
+    float high_jump = 5f;
+    //現在のジャンプ力
+    float now_jumppower;
     //2段ジャンプ禁止用
-    public bool jump_stop;         //false = 禁止
-                                   //true  = 許可
+    public bool jump_stop;
+    //false = 禁止
+    //true  = 許可
 
-    //rigidbodyを取得
-    Rigidbody rigid;
+    //ジャンプ状態切り替え
+    public bool jump_mode;
+    //false = 通常状態
+    //true  = ハイジャンプ状態
 
-    //移動（総合）スピード
-    Vector3 speed_origin;
-
-    //CharacterControllerを宣言
-    public CharacterController characterController;
-
-    //レイが地面にヒットしたかの判定
-    public bool rayhit = false;
     //各初期ステータス
 
     //HP
@@ -78,18 +76,42 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //最初に現在のスピードに通常スピードを代入
-        now_speed = normal_speed;
+        //最初にスピードモードに通常モードを代入
+        speed_mode = false;
+        //最初に現在のジャンプモードに通常モードを代入
+        jump_mode = false;
+
         //自分の回転度を取得
         mytransform = this.transform;
         animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 60;
+
+        //rigidにコンポーネントを代入
+        rigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //移動制限
+        Vector3 Pos = transform.position;
+        //X座標
+        Pos.x = Mathf.Clamp(Pos.x, -4, 4);
+        //Y座標
+        Pos.y = Mathf.Clamp(Pos.y, 4.8f, 6.62f);
+        //範囲を越えたらテレポート
+        transform.position = Pos;
+
+        //入力マネージャーを使用した移動方法 ※Verticalは移動
+        sayuu = Input.GetAxisRaw("Horizontal");
+        //Vector3にHorizontal・Verticalを代入
+        Vector3 idouVec = new Vector3(0, jouge * 1.5f, sayuu * chara_muki);
+
+        //ジャンプ時間の計算
+        if (jump_stop == true && Real_Time < JumpCoolTime)
+        {
+            Real_Time += Time.deltaTime;
+        }
+        
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -108,61 +130,105 @@ public class Otoko_chara_Controller : MonoBehaviour
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
+            animator.SetInteger("stop", 3);
             Debug.Log("強攻撃");
+            kougeki_attack = 2;
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
         }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0)
         {
             Debug.Log("投げ攻撃");
         }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
         {
             Debug.Log("必殺技");
         }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        if (Input.GetButtonDown("Right(left) Bumper or sperce")) 
+        if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ガード");
         }
-
-        //向き変更用
-        if (sayuu > 0)
+        //各行動終了次第停止状態に変更
+        else
         {
-            muki = false;
-        }
-        else if (sayuu < 0)
-        {
-            muki = true;
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
         }
 
-        //常に重力をかける
-        characterController.Move(new Vector3(0, -0.2f, 0));
-
-        //変数にHorizontal・Verticalを代入
-        sayuu = Input.GetAxisRaw("Horizontal");
-        jouge = Input.GetAxisRaw("Vertical");
-        //経過時間をReal_Timeに入れる
-        Real_Time += Time.deltaTime;
-        if (sayuu != 0 || jouge > 0)
+        //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
-            if (Real_Time > JumpCoolTime && jump_stop == true)
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            idouVec = Vector3.zero;
+            Debug.Log("Not移動");
+        }
+        //移動入力があったらレイヤー変更
+        if (jouge > 0 || sayuu != 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
+
+        //横移動の処理
+        if (sayuu != 0)
+        {
+            if (speed_mode == true)
             {
-                Debug.Log("jump");
-                Real_Time = 0f;
-                Debug.Log("その1");
+                now_speed = dash_speed;
             }
             else
             {
-                Debug.Log("NOTjump");
-                jouge = 0f;
-                Debug.Log("その２");
+                now_speed = normal_speed;
             }
+            Debug.Log("false");
+            speed_origin = now_speed;
         }
-        //横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge * 1.5f, 0));
-        Debug.Log("その3");
-
+        //speed_originに代入
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            speed_origin = now_speed;
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            speed_origin = now_jumppower;
+        }
+        //ジャンプの処理
+        //地面についてたら&ジャンプ入力がされてたら
+        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
+        {
+            Real_Time = 0;
+            Invoke(nameof(Chien), 0.43f);
+            if (jump_mode == true)
+            {
+                now_jumppower = jump_power;
+            }
+            else
+            {
+                now_jumppower = high_jump;
+            }
+            speed_origin = now_jumppower;
+        }
+        //移動処理
+        transform.Translate(speed_origin * Time.deltaTime * idouVec);
+        
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -171,21 +237,23 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (sayuu != 0)
         {
             //右移動
-            if (muki == false)
+            if (sayuu > 0)
             {
+                Debug.Log("右");
                 //反転処理
+                chara_muki = 1;
                 World_angle.y = -90;
-                chara_muki = -1;
                 //アニメーション変更
                 animator.SetInteger("stop", 1);
             }
             //左移動
-            else
+            else if (sayuu < 0)
             {
+                Debug.Log("左");
                 //反転処理
+                chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                chara_muki = -1;
                 animator.SetInteger("stop", 1);
             }
         }
@@ -203,70 +271,48 @@ public class Otoko_chara_Controller : MonoBehaviour
         animator.SetInteger("stop", 0);
         kougeki_attack = 0;
     }
-    //characterControllerを利用した当たり判定
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    //当たり判定まとめ
+    private void OnTriggerStay(Collider other)
     {
-        //プレイヤーに触れたら
-        if (hit.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("確認");
-            CharaAttack(hit.collider.gameObject);
-        }
-
         //地面についてたら
-        if (hit.gameObject.CompareTag("jimen"))
+        if (other.CompareTag("jimen"))
         {
-            jump_stop = true;
+            //変数にHorizontal・Verticalを代入 ※jougeのみ制限
+            jump = Input.GetAxisRaw("Vertical");
+            if (jump >= 0)
+            {
+                jouge = jump;
+            }
             Debug.Log("jimen");
+            jump_stop = true;
         }
-        else
+        if (other.CompareTag("Player"))
         {
-            jump_stop = false;
-            Debug.Log("空");
+            Attack();
         }
     }
-    //キャラクターヒットまとめ
-    void CharaAttack(GameObject obj)
+    void Chien()
     {
-        //弱攻撃が繰り出されたら
-        if (kougeki_attack == 1f)
+        jump_stop = false;
+        Debug.Log("遅延");
+        jouge = -1f;
+    }
+    //攻撃付与・被弾まとめ
+    void Attack()
+    {
+        //弱攻撃
+        if (kougeki_attack == 1)
         {
-            Debug.Log("hit_player");
-            Invoke(nameof(Animation_stop), 5f);
+            //レイヤー変更
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack1");
+        }
+        //強攻撃
+        if (kougeki_attack == 2)
+        {
+            //レイヤー変更
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack2");
         }
     }
-    ////動き関係
-    //Vector3 Moving()
-    //{
-    //    if (jump_stop == true)
-    //    {
-    //        Debug.Log("動き");
-    //        Vector3 permission = new Vector3(sayuu * 0.15f * chara_muki, jouge * 0.5f, 0);
-    //        return permission;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("NO");
-    //        jouge = 0f;
-    //        Vector3 not_allowed = new Vector3(sayuu * chara_muki, jouge, 0);
-    //        return not_allowed;
-    //    }
-    //}
-    //Vector3 StopJump()
-    //{
-    //    if (jump_stop == false)
-    //    {
-    //        Debug.Log("sora");
-    //        Moving();
-    //        jouge = 0f;
-    //        Vector3 notjump = new Vector3(sayuu * 0.15f * chara_muki, jouge, 0);
-    //        return notjump;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("not");
-    //        Vector3 jump = new Vector3(sayuu * 0.15f * chara_muki, jouge * 0.5f, 0);
-    //        return jump;
-    //    }
-    //}
 }
