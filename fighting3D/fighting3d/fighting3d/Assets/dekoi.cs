@@ -4,57 +4,64 @@ using UnityEngine;
 
 public class dekoi : MonoBehaviour
 {
-    //現在の時間(最初は1)
-    public float Real_Time = 1f;
-    //攻撃を受けた・与えた状態を管理する用の変数
-    public float kougeki_attack;
+    //アニメーターコンポーネントを取得
+    Animator animator;
+    //Rigidbodyを取得
+    public new Rigidbody rigidbody;
+
+    //プレイヤーを取得
+    Otoko_chara_Controller otoko;
+    public int dekoi_hensuu;
+    //現在の時間
+    public float Real_Time;
+
+    //攻撃を与えた状態を管理する用の変数
+    public int dekoi_kougeki_attack;
 
     //Transformコンポーネントを取得
     Transform mytransform;
-    //向き変更用変数
+
+    //キャラ向き変更用変数
     float chara_muki;
-    //向き変更の管理用
-    public bool muki;  //false = 右
-                       //true  = 左
-
-    //プレイヤーの移動方向・速度の変数
-    Vector3 PlayerVector;
-
-    //アニメーターコンポーネントを取得
-    Animator animator;
 
     //通常スピード
-    float normal_speed = 50;
+    float normal_speed = 5f;
     //ダッシュスピード
-    float dash_speed;
+    float dash_speed = 7.5f;
     //現在のスピードモード
     float now_speed;
+    //スピード設定
+    float speed_origin;
+    //ダッシュモード切替
+    public bool speed_mode;
+    //false = 通常
+    //true  = ダッシュ
 
     //移動の変数
     public float sayuu;
     public float jouge;
-    //自動落下用変数
-    public float gravity;
+    //jougeの受け渡し先
+    public float jump;
 
-    //最初のジャンプ用変数
-    public float first_jump;
     //ジャンプのクールタイム
-    public int JumpCoolTime = 1;
-    //ジャンプの速度を設定
-    float Jump_velocity = 5.0f;
+    public float JumpCoolTime = 1f;
     //ジャンプの時間を判定
     public float jumpTime;
-    //ジャンプパワー（統一予定）
-    float jump_power = 5f;
+    //通常ジャンプパワー（統一予定）
+    float jump_power = 3f;
+    //ハイジャンプパワー（統一予定）
+    float high_jump = 5f;
+    //現在のジャンプ力
+    float now_jumppower;
     //2段ジャンプ禁止用
-    public bool jump_stop;         //false = 禁止
-                                   //true  = 許可
+    public bool jump_stop;
+    //false = 禁止
+    //true  = 許可
 
-    //移動（総合）スピード
-    Vector3 speed_origin;
-
-    //CharacterControllerを宣言
-    public CharacterController characterController;
+    //ジャンプ状態切り替え
+    public bool jump_mode;
+    //false = 通常状態
+    //true  = ハイジャンプ状態
 
     //各初期ステータス
 
@@ -72,183 +79,252 @@ public class dekoi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //最初に現在のスピードに通常スピードを代入
-        now_speed = normal_speed;
+        otoko = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
+        dekoi_hensuu = otoko.otoko_kougeki_attack;
+        //最初にスピードモードに通常モードを代入
+        speed_mode = false;
+        //最初に現在のジャンプモードに通常モードを代入
+        jump_mode = false;
 
         //自分の回転度を取得
         mytransform = this.transform;
         animator = GetComponent<Animator>();
 
-        //落下速度を初期化
-        gravity = -0.2f;
-
-        //最初のジャンプを初期化
-        first_jump = 0;
+        //rigidにコンポーネントを代入
+        rigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ////最初のジャンプ
-        //if (Input.GetButtonDown("Vertical"))
-        //{
-        //    first_jump += 1;
-        //}
+        //移動制限
+        Vector3 Pos = transform.position;
+        //X座標
+        Pos.x = Mathf.Clamp(Pos.x, -4, 4);
+        //Y座標
+        Pos.y = Mathf.Clamp(Pos.y, 4.8f, 6.62f);
+        //範囲を越えたらテレポート
+        transform.position = Pos;
+
+        //入力マネージャーを使用した移動方法 ※Verticalは移動
+        sayuu = Input.GetAxisRaw("Horizontal");
+        //Vector3にHorizontal・Verticalを代入
+        Vector3 idouVec = new Vector3(0, jouge * 1.5f, sayuu * chara_muki);
+
+        //ジャンプ時間の計算
+        if (jump_stop == true && Real_Time < JumpCoolTime)
+        {
+            Real_Time += Time.deltaTime;
+        }
 
         //以下基本動作
 
-        //弱攻撃（x or j）
+        //弱攻撃（X or J）
         if (Input.GetAxisRaw("X or J") != 0)
         {
             animator.SetInteger("stop", 2);
-            Debug.Log("dekoi");
-            //kougeki_attack = 1;
+            Debug.Log("弱攻撃");
+            dekoi_kougeki_attack = 1;
         }
-        ////各行動終了次第停止状態に変更
-        //else
-        //{
-        //    //アニメーション変更
-        //    Invoke(nameof(Animation_stop), 5f);
-        //}
-        ////強攻撃（A or K）
-        //if (Input.GetAxisRaw("A or K") != 0)
-        //{
-        //    Debug.Log("強攻撃");
-        //}
-        ////投げ攻撃（B or L）
-        //if (Input.GetAxisRaw("B or L") != 0)
-        //{
-        //    Debug.Log("投げ攻撃");
-        //}
-        ////必殺技（Y or I）
-        //if (Input.GetAxisRaw("Y or I") != 0)
-        //{
-        //    Debug.Log("必殺技");
-        //}
-        ////ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        //if (Input.GetButtonDown("Right(left) Bumper or sperce"))
-        //{
-        //    Debug.Log("ガード");
-        //}
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+        //強攻撃（A or K）
+        if (Input.GetAxisRaw("A or K") != 0)
+        {
+            animator.SetInteger("stop", 3);
+            Debug.Log("強攻撃");
+            dekoi_kougeki_attack = 2;
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+        //投げ攻撃（B or L）
+        if (Input.GetAxisRaw("B or L") != 0)
+        {
+            Debug.Log("投げ攻撃");
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+        //必殺技（Y or I）
+        if (Input.GetAxisRaw("Y or I") != 0)
+        {
+            Debug.Log("必殺技");
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+        //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
+        if (Input.GetButtonDown("Right(left) Bumper or sperce"))
+        {
+            Debug.Log("ガード");
+        }
+        //各行動終了次第停止状態に変更
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 5f);
+        }
+        //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            idouVec = Vector3.zero;
+            Debug.Log("Not移動");
+        }
+        //移動入力があったらレイヤー変更
+        if (jouge > 0 || sayuu != 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
 
-        ////向き変更用
-        //if (sayuu > 0)
-        //{
-        //    muki = false;
-        //}
-        //else if (sayuu < 0)
-        //{
-        //    muki = true;
-        //}
-
-        ////常に重力をかける
-        //characterController.Move(new Vector3(0, gravity, 0));
-
-        ////経過時間をReal_Timeに入れる
-        //Real_Time += Time.deltaTime;
-
-        ////変数にHorizontal・Verticalを代入※１ Verticalを移動
-        //sayuu = Input.GetAxisRaw("Horizontal");
-
-        ////横移動(スティック or 左右矢印キー)&ジャンプ(スティック or 上矢印キー(Wキー))    
-        //characterController.Move(new Vector3(sayuu * 0.05f * chara_muki, jouge, 0));
+        //横移動の処理
+        if (sayuu != 0)
+        {
+            if (speed_mode == true)
+            {
+                now_speed = dash_speed;
+            }
+            else
+            {
+                now_speed = normal_speed;
+            }
+            Debug.Log("false");
+            speed_origin = now_speed;
+        }
+        //speed_originに代入
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            speed_origin = now_speed;
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            speed_origin = now_jumppower;
+        }
+        //ジャンプの処理
+        //地面についてたら&ジャンプ入力がされてたら
+        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
+        {
+            Real_Time = 0;
+            Invoke(nameof(Chien), 0.43f);
+            if (jump_mode == true)
+            {
+                now_jumppower = jump_power;
+            }
+            else
+            {
+                now_jumppower = high_jump;
+            }
+            speed_origin = now_jumppower;
+        }
+        //移動処理
+        //transform.Translate(speed_origin * Time.deltaTime * idouVec);
 
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
         Vector3 World_angle = mytransform.eulerAngles;
         //左右どちらかに移動中
-        //if (sayuu != 0)
-        //{
-        //    //右移動
-        //    if (muki == false)
-        //    {
-        //        //反転処理
-        //        World_angle.y = -90;
-        //        chara_muki = -1;
-        //        //アニメーション変更
-        //        animator.SetInteger("stop", 1);
-        //    }
-        //    //左移動
-        //    else
-        //    {
-        //        //反転処理
-        //        World_angle.y = 90;
-        //        //アニメーション変更
-        //        chara_muki = -1;
-        //        animator.SetInteger("stop", 1);
-        //    }
-        //}
-        ////停止状態
-        //else
-        //{
-        //    //アニメーション変更
-        //    Invoke(nameof(Animation_stop), 1f);
-        //}
-        mytransform.eulerAngles = World_angle;
+        if (sayuu != 0)
+        {
+            //右移動
+            if (sayuu > 0)
+            {
+                Debug.Log("右");
+                //反転処理
+                chara_muki = 1;
+                World_angle.y = -90;
+                //アニメーション変更
+                animator.SetInteger("stop", 1);
+            }
+            //左移動
+            else if (sayuu < 0)
+            {
+                Debug.Log("左");
+                //反転処理
+                chara_muki = -1;
+                World_angle.y = 90;
+                //アニメーション変更
+                animator.SetInteger("stop", 1);
+            }
+        }
+        //停止状態
+        else
+        {
+            //アニメーション変更
+            Invoke(nameof(Animation_stop), 1f);
+        }
+        //mytransform.eulerAngles = World_angle;
     }
     //停止状態のアニメーション
     void Animation_stop()
     {
         animator.SetInteger("stop", 0);
-        kougeki_attack = 0;
+        dekoi_kougeki_attack = 0;
     }
-    //characterControllerを利用した当たり判定
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    //当たり判定まとめ
+    private void OnTriggerStay(Collider other)
     {
         //地面についてたら
-        if (hit.gameObject.CompareTag("jimen"))
+        if (other.CompareTag("jimen"))
         {
-            if (first_jump >= 1f)
+            //変数にHorizontal・Verticalを代入 ※jougeのみ制限
+            jump = Input.GetAxisRaw("Vertical");
+            if (jump >= 0)
             {
-                //0.05秒後に呼び出し（硬直）
-                //Invoke(nameof(Jumping), 0.05f);
+                jouge = jump;
             }
-            else
-            {
-                //First_Jumping();
-            }
-            jump_stop = true;
             Debug.Log("jimen");
+            jump_stop = true;
         }
-        else
-        {
-            jump_stop = false;
-            Debug.Log("空");
-        }
-    }
-    //最初のジャンプ
-    //void First_Jumping()
-    //{
-    //    jouge = Input.GetAxisRaw("Vertical");
-    //}
-
-    ////2回目以降のジャンプ
-    //void Jumping()
-    //{
-    //    if (Real_Time >= JumpCoolTime && Input.GetAxisRaw("Vertical") > 0)
-    //    {
-    //        Real_Time = 0;
-    //        //移動※１
-    //        jouge = Input.GetAxisRaw("Vertical");
-    //    }
-    //    else
-    //    {
-    //        //移動※１
-    //        jouge = 0;
-    //    }
-    //}
-    //Capsule Colliderを利用した当たり判定
-    private void OnTriggerEnter(Collider other)
-    {
-        //以下キャラクターヒット
         if (other.CompareTag("Player"))
         {
-            //弱攻撃が繰り出されたら
-            if (kougeki_attack == 1f)
+            Attack();
+        }
+    }
+    void Chien()
+    {
+        jump_stop = false;
+        Debug.Log("遅延");
+        jouge = -1f;
+    }
+    //攻撃付与・被弾まとめ
+    void Attack()
+    {
+        //弱攻撃
+        if (dekoi_kougeki_attack == 1)
+        {
+            //レイヤー変更
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack1");
+        }
+        //強攻撃
+        if (dekoi_kougeki_attack == 2)
+        {
+            //レイヤー変更
+            //gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack2");
+        }
+        //被ダメージ時
+        if (dekoi_hensuu < 0)
+        {
+            //弱ひるみ(弱攻撃)
+            if (dekoi_hensuu == 1)
             {
-                Debug.Log("hit_dekoi");
-                Invoke(nameof(Animation_stop), 5f);
+                animator.SetInteger("stop", 4);
             }
         }
     }

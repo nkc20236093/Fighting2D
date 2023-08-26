@@ -8,12 +8,15 @@ public class Otoko_chara_Controller : MonoBehaviour
     Animator animator;
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
-    
+
+    //テスト用のデコイ（ゲームオブジェクト）を取得
+    dekoi dekoi;
     //現在の時間
     public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数
-    public float kougeki_attack;
+    public int kougeki_attack;          //攻撃を受けた用
+    public int otoko_kougeki_attack;   //攻撃を与えた用
 
     //Transformコンポーネントを取得
     Transform mytransform;
@@ -76,6 +79,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //デコイに代入
+        dekoi = GameObject.Find("dekoi").GetComponent<dekoi>();
+        kougeki_attack = dekoi.dekoi_kougeki_attack;
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
@@ -119,7 +125,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             animator.SetInteger("stop", 2);
             Debug.Log("弱攻撃");
-            kougeki_attack = 1;
+            otoko_kougeki_attack = 1;
         }
         //各行動終了次第停止状態に変更
         else
@@ -132,7 +138,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             animator.SetInteger("stop", 3);
             Debug.Log("強攻撃");
-            kougeki_attack = 2;
+            otoko_kougeki_attack = 2;
         }
         //各行動終了次第停止状態に変更
         else
@@ -173,7 +179,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             //アニメーション変更
             Invoke(nameof(Animation_stop), 5f);
         }
-
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
@@ -269,7 +274,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     void Animation_stop()
     {
         animator.SetInteger("stop", 0);
-        kougeki_attack = 0;
+        otoko_kougeki_attack = 0;
     }
     //当たり判定まとめ
     private void OnTriggerStay(Collider other)
@@ -301,18 +306,27 @@ public class Otoko_chara_Controller : MonoBehaviour
     void Attack()
     {
         //弱攻撃
-        if (kougeki_attack == 1)
+        if (otoko_kougeki_attack == 1)
         {
             //レイヤー変更
             //gameObject.layer = LayerMask.NameToLayer("Hantei");
             Debug.Log("kougeki_attack1");
         }
         //強攻撃
-        if (kougeki_attack == 2)
+        if (otoko_kougeki_attack == 2)
         {
             //レイヤー変更
             //gameObject.layer = LayerMask.NameToLayer("Hantei");
             Debug.Log("kougeki_attack2");
+        }
+        //被ダメージ時
+        if (kougeki_attack < 0)
+        {
+            //弱ひるみ(弱攻撃)
+            if (kougeki_attack == 1)
+            {
+                animator.SetInteger("stop", 4);
+            }
         }
     }
 }
