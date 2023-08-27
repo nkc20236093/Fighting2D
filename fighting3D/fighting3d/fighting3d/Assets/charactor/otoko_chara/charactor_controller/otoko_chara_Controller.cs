@@ -233,7 +233,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         //移動処理
         transform.Translate(speed_origin * Time.deltaTime * idouVec);
-        
+
         //以下アニメーション
 
         //ワールド座標を基準に回転を取得
@@ -305,28 +305,35 @@ public class Otoko_chara_Controller : MonoBehaviour
     //攻撃付与・被弾まとめ
     void Attack()
     {
-        //弱攻撃
-        if (otoko_kougeki_attack == 1)
-        {
-            //レイヤー変更
-            //gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack1");
-        }
-        //強攻撃
-        if (otoko_kougeki_attack == 2)
-        {
-            //レイヤー変更
-            //gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack2");
-        }
         //被ダメージ時
         if (kougeki_attack < 0)
         {
             //弱ひるみ(弱攻撃)
             if (kougeki_attack == 1)
             {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
                 animator.SetInteger("stop", 4);
+                Debug.Log("弱ひるみ");
             }
         }
+
+        //与ダメージ時
+
+        //弱攻撃
+        if (otoko_kougeki_attack == 1)
+        {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack1");
+        }
+        //強攻撃
+        if (otoko_kougeki_attack == 2)
+        {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack2");
+        }
+        
     }
 }

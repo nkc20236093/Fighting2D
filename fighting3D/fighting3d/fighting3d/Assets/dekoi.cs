@@ -120,7 +120,7 @@ public class dekoi : MonoBehaviour
         //à»â∫äÓñ{ìÆçÏ
 
         //é„çUåÇÅiX or JÅj
-        if (Input.GetAxisRaw("X or J") != 0)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetInteger("stop", 2);
             Debug.Log("é„çUåÇ");
@@ -324,6 +324,7 @@ public class dekoi : MonoBehaviour
             //é„Ç–ÇÈÇ›(é„çUåÇ)
             if (dekoi_hensuu == 1)
             {
+                Debug.Log("dekoi_é„Ç–ÇÈÇ›");
                 animator.SetInteger("stop", 4);
             }
         }
