@@ -919,7 +919,7 @@ CapsuleCollider:
   m_Radius: 0.37
   m_Height: 2.37
   m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
+  m_Center: {x: 0, y: 1.17, z: 0.05}
 --- !u!65 &878131956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -940,7 +940,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.01, z: 0.65}
-  m_Center: {x: 0, y: -0.01, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1124691289
 GameObject:
   m_ObjectHideFlags: 0
