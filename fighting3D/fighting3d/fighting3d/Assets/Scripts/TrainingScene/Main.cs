@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class Main : MonoBehaviour
     public Text textStamina;　　　//スタミナ
     public Text textCleverness;   //賢さ
 
-    int HP = 0;                      //ステータス
-    int Power = 0;
-    int Speed = 0;
-    int Stamina = 0;
-    int Cleverness = 0;
+    public static int HP = 0;                      //ステータス
+    public static int Power = 0;
+    public static int Speed = 0;
+    public static int Stamina = 0;
+    public static int Cleverness = 0;
 
     int countHP = 0;                      //トレーニング回数
     int countPower = 0;
@@ -29,7 +30,14 @@ public class Main : MonoBehaviour
     int UpNumberSpeed= 10;
     int UpNumberStamina= 10;
     int UpNumberCleverness= 10;
-
+    void Start()
+    {
+        textHP.text = "" + HP;
+        textPower.text = "" + Power;
+        textSpeed.text = "" + Speed;
+        textStamina.text = "" + Stamina;
+        textCleverness.text = "" + Cleverness;
+    }
     public void OnPushButtonHP()　　　　　　　//HP育成ボタンを押してＨＰの値を増やします
     {
         countHP += 1;　　　　　　　　　//一回の育成の上がり幅　１　（仮）
