@@ -80,7 +80,6 @@ public class dekoi : MonoBehaviour
     void Start()
     {
         otoko = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
-        dekoi_hensuu = otoko.otoko_kougeki_attack;
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
@@ -97,6 +96,8 @@ public class dekoi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dekoi_hensuu = otoko.otoko_kougeki_attack;
+
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -179,7 +180,7 @@ public class dekoi : MonoBehaviour
             Invoke(nameof(Animation_stop), 5f);
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J"))
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Space))
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
@@ -304,21 +305,8 @@ public class dekoi : MonoBehaviour
     //攻撃付与・被弾まとめ
     void Attack()
     {
-        //弱攻撃
-        if (dekoi_kougeki_attack == 1)
-        {
-            //レイヤー変更
-            //gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack1");
-        }
-        //強攻撃
-        if (dekoi_kougeki_attack == 2)
-        {
-            //レイヤー変更
-            //gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack2");
-        }
         //被ダメージ時
+
         if (dekoi_hensuu < 0)
         {
             //弱ひるみ(弱攻撃)
@@ -327,6 +315,23 @@ public class dekoi : MonoBehaviour
                 Debug.Log("dekoi_弱ひるみ");
                 animator.SetInteger("stop", 4);
             }
+        }
+
+        //与ダメージ時
+
+        //弱攻撃
+        if (dekoi_kougeki_attack == 1)
+        {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack1");
+        }
+        //強攻撃
+        if (dekoi_kougeki_attack == 2)
+        {
+            //レイヤー変更
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            Debug.Log("kougeki_attack2");
         }
     }
 }

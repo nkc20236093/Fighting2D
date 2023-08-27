@@ -81,7 +81,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         //デコイに代入
         dekoi = GameObject.Find("dekoi").GetComponent<dekoi>();
-        kougeki_attack = dekoi.dekoi_kougeki_attack;
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
@@ -98,6 +97,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        kougeki_attack = dekoi.dekoi_kougeki_attack;
+
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -306,7 +307,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     void Attack()
     {
         //被ダメージ時
-        if (kougeki_attack < 0)
+        if (kougeki_attack != 0)
         {
             //弱ひるみ(弱攻撃)
             if (kougeki_attack == 1)
