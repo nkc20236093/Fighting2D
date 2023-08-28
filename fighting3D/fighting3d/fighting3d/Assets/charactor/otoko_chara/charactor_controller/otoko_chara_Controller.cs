@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //ヒット時のイベント
+    public UnityEvent Onhit;
     //アニメーターコンポーネントを取得
     Animator animator;
     //Rigidbodyを取得
@@ -299,7 +302,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         jouge = -1f;
     }
     //攻撃付与・被弾まとめ
-    void Attack()
+    public void Attack()
     {
         //被ダメージ時
         if (kougeki_attack != 0)
