@@ -69,11 +69,11 @@ public class Otoko_chara_Controller : MonoBehaviour
     int hp = 10;
     //攻撃力
     int attack = 10;
-    //素早さ
+    //素早さ(俊敏)
     int speed = 10;
-    //スタミナ
+    //スタミナ(耐久)
     int stamina = 10;
-    //賢さ
+    //賢さ(熟知)
     int cleverness = 10;
 
     // Start is called before the first frame update
@@ -183,9 +183,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
             idouVec = Vector3.zero;
-            Debug.Log("Not移動");
         }
         //移動入力があったらレイヤー変更
         if (jouge > 0 || sayuu != 0)
@@ -204,7 +203,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 now_speed = normal_speed;
             }
-            Debug.Log("false");
             speed_origin = now_speed;
         }
         //speed_originに代入
@@ -245,7 +243,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             //右移動
             if (sayuu > 0)
             {
-                Debug.Log("右");
                 //反転処理
                 chara_muki = 1;
                 World_angle.y = -90;
@@ -255,7 +252,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             //左移動
             else if (sayuu < 0)
             {
-                Debug.Log("左");
                 //反転処理
                 chara_muki = -1;
                 World_angle.y = 90;
@@ -289,7 +285,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 jouge = jump;
             }
-            Debug.Log("jimen");
             jump_stop = true;
         }
         if (other.CompareTag("Player"))
@@ -313,9 +308,9 @@ public class Otoko_chara_Controller : MonoBehaviour
             if (kougeki_attack == 1)
             {
                 //レイヤー変更
-                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                gameObject.layer = LayerMask.NameToLayer("Attack");
                 animator.SetInteger("stop", 4);
-                Debug.Log("弱ひるみ");
+                Debug.Log("player_弱ひるみ");
             }
         }
 
@@ -325,15 +320,15 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (otoko_kougeki_attack == 1)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack1");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
+            Debug.Log("player_kougeki_attack1");
         }
         //強攻撃
         if (otoko_kougeki_attack == 2)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack2");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
+            Debug.Log("player_kougeki_attack2");
         }
         
     }
