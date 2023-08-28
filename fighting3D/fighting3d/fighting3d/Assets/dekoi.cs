@@ -69,11 +69,11 @@ public class dekoi : MonoBehaviour
     int hp = 10;
     //攻撃力
     int attack = 10;
-    //素早さ
+    //素早さ(俊敏)
     int speed = 10;
-    //スタミナ
+    //スタミナ(耐久)
     int stamina = 10;
-    //賢さ
+    //賢さ(熟知)
     int cleverness = 10;
 
     // Start is called before the first frame update
@@ -184,7 +184,6 @@ public class dekoi : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
-            Debug.Log("Not移動");
         }
         //移動入力があったらレイヤー変更
         if (jouge > 0 || sayuu != 0)
@@ -203,7 +202,6 @@ public class dekoi : MonoBehaviour
             {
                 now_speed = normal_speed;
             }
-            Debug.Log("false");
             speed_origin = now_speed;
         }
         //speed_originに代入
@@ -244,7 +242,6 @@ public class dekoi : MonoBehaviour
             //右移動
             if (sayuu > 0)
             {
-                Debug.Log("右");
                 //反転処理
                 chara_muki = 1;
                 World_angle.y = -90;
@@ -254,7 +251,6 @@ public class dekoi : MonoBehaviour
             //左移動
             else if (sayuu < 0)
             {
-                Debug.Log("左");
                 //反転処理
                 chara_muki = -1;
                 World_angle.y = 90;
@@ -324,14 +320,14 @@ public class dekoi : MonoBehaviour
         {
             //レイヤー変更
             gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack1");
+            Debug.Log("dekoi_kougeki_attack1");
         }
         //強攻撃
         if (dekoi_kougeki_attack == 2)
         {
             //レイヤー変更
             gameObject.layer = LayerMask.NameToLayer("Hantei");
-            Debug.Log("kougeki_attack2");
+            Debug.Log("dekoi_kougeki_attack2");
         }
     }
 }
