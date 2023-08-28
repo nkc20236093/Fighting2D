@@ -9,11 +9,11 @@ public class CharaInfoUber : MonoBehaviour
 
     public void Chara1StatusUberMethod()
     {
-        Main.HP = 111;
-        Main.Power = 111;
-        Main.Speed = 111;
-        Main.Stamina = 111;
-        Main.Cleverness = 111;
+        Main.HP = 101;                                           //選手のそれぞれのステータスー１０を書く
+        Main.Power = 101;
+        Main.Speed = 101;
+        Main.Stamina = 101;
+        Main.Cleverness = 101;
         SceneManager.LoadScene("TrainingScene");
         
     }
