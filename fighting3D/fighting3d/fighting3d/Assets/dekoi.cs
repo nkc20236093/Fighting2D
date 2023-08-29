@@ -121,7 +121,7 @@ public class dekoi : MonoBehaviour
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             animator.SetInteger("stop", 2);
             Debug.Log("弱攻撃");
@@ -284,7 +284,7 @@ public class dekoi : MonoBehaviour
             {
                 jouge = jump;
             }
-            Debug.Log("jimen");
+            //Debug.Log("jimen");
             jump_stop = true;
         }
         if (other.CompareTag("Player"))
@@ -299,7 +299,7 @@ public class dekoi : MonoBehaviour
         jouge = -1f;
     }
     //攻撃付与・被弾まとめ
-    void Attack()
+    public void Attack()
     {
         //被ダメージ時
 

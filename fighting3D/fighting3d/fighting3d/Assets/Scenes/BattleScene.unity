@@ -852,9 +852,9 @@ GameObject:
   - component: {fileID: 857714370}
   - component: {fileID: 857714372}
   - component: {fileID: 857714371}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: hantei
-  m_TagString: Untagged
+  m_TagString: Hantei
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1151485723}
         m_TargetAssemblyTypeName: Otoko_chara_Controller, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: hidan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2051,6 +2051,34 @@ PrefabInstance:
     - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: characterController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 878131923}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: dekoi, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: Onhit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 452719938292570053, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Layer

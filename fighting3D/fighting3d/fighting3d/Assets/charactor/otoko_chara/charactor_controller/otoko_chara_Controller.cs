@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    //ヒット時のイベント
-    public UnityEvent Onhit;
     //アニメーターコンポーネントを取得
     Animator animator;
     //Rigidbodyを取得
@@ -301,22 +298,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         Debug.Log("遅延");
         jouge = -1f;
     }
-    //攻撃付与・被弾まとめ
+    //攻撃まとめ
     public void Attack()
     {
-        //被ダメージ時
-        if (kougeki_attack != 0)
-        {
-            //弱ひるみ(弱攻撃)
-            if (kougeki_attack == 1)
-            {
-                //レイヤー変更
-                gameObject.layer = LayerMask.NameToLayer("Attack");
-                animator.SetInteger("stop", 4);
-                Debug.Log("player_弱ひるみ");
-            }
-        }
-
         //与ダメージ時
 
         //弱攻撃
@@ -333,6 +317,20 @@ public class Otoko_chara_Controller : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Attack");
             Debug.Log("player_kougeki_attack2");
         }
-        
+    }
+    public void hidan()
+    {
+        //被ダメージ時
+        if (kougeki_attack != 0 || dekoi.dekoi_kougeki_attack != 0)
+        {
+            //弱ひるみ(弱攻撃)
+            if (kougeki_attack == 1 || dekoi.dekoi_kougeki_attack == 1)
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                animator.SetInteger("stop", 4);
+                Debug.Log("player_弱ひるみ");
+            }
+        }
     }
 }
