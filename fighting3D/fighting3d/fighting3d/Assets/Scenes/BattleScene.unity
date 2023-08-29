@@ -852,9 +852,9 @@ GameObject:
   - component: {fileID: 857714370}
   - component: {fileID: 857714372}
   - component: {fileID: 857714371}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: hantei
-  m_TagString: Untagged
+  m_TagString: Hantei
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1151485723}
         m_TargetAssemblyTypeName: Otoko_chara_Controller, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: hidan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

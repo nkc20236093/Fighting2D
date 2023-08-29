@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class Otoko_chara_hantei : MonoBehaviour
 {
+    //テスト用のデコイ（ゲームオブジェクト）を取得
+    dekoi dekoi;
+
     public UnityEvent Onhit;
     // Start is called before the first frame update
     void Start()
