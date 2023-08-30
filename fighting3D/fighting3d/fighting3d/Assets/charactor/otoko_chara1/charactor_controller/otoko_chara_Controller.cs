@@ -260,12 +260,17 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
         }
         //停止状態
-        else
+        else if (!Input.anyKey)
         {
             //アニメーション変更
             Invoke(nameof(Animation_stop), 1f);
         }
+
         mytransform.eulerAngles = World_angle;
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            animator.SetInteger("stop", 4);
+        }
     }
     //停止状態のアニメーション
     void Animation_stop()
