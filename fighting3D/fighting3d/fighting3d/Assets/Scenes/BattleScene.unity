@@ -891,7 +891,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1151485723}
         m_TargetAssemblyTypeName: Otoko_chara_Controller, Assembly-CSharp
-        m_MethodName: hidan
+        m_MethodName: Attack_and_hidan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1248,29 +1248,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0, y: 0.01, z: 0.65}
   m_Center: {x: 0, y: -0.06, z: 0}
---- !u!136 &1151485732
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151485669}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 2.55
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.32, z: 0}
 --- !u!1 &1191391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,9 +2539,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1151485731}
-    - targetCorrespondingSourceObject: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1151485732}
   m_SourcePrefab: {fileID: 100100000, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

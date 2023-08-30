@@ -96,7 +96,7 @@ public class dekoi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dekoi_hensuu = otoko.otoko_kougeki_attack;
+        dekoi_hensuu = otoko.otoko1_kougeki_attack;
 
         //ˆÚ“®§ŒÀ
         Vector3 Pos = transform.position;
@@ -180,7 +180,7 @@ public class dekoi : MonoBehaviour
             Invoke(nameof(Animation_stop), 5f);
         }
         //ˆÚ“®ˆÈŠO‚Ì“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚Í ‚·‚è”²‚¯‚È‚¢‚æ‚¤‚É‚·‚é or ˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
