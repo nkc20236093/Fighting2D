@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Otoko_chara_hantei : MonoBehaviour
 {
     //テスト用のデコイ（ゲームオブジェクト）を取得
     dekoi dekoi;
-
-    public UnityEvent Onhit;
+    //親オブジェクトのスクリプトを取得
+    Otoko_chara_Controller oyascript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        dekoi = GameObject.Find("dekoi").GetComponent<dekoi>();
+        oyascript = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
     }
 
     // Update is called once per frame
@@ -20,11 +20,11 @@ public class Otoko_chara_hantei : MonoBehaviour
     {
         
     }
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Onhit.Invoke();
+            oyascript.Attack_and_hidan();
         }
     }
 }

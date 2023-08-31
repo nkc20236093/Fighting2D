@@ -886,21 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bbb3726f5ab9a4c8876ad0cbf0a914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Onhit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1151485723}
-        m_TargetAssemblyTypeName: Otoko_chara_Controller, Assembly-CSharp
-        m_MethodName: Attack_and_hidan
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!136 &857714372
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1216,17 +1201,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9116171364577549859, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
   m_PrefabInstance: {fileID: 9142270390635113446}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1151485723 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
-  m_PrefabInstance: {fileID: 9142270390635113446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151485669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900cfc9e8dd2b4c44b2f55626b3865a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1151485731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2036,6 +2010,10 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: dekoi
+      value: 
+      objectReference: {fileID: 878131923}
     - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Enabled
       value: 1

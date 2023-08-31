@@ -10,7 +10,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public new Rigidbody rigidbody;
 
     //テスト用のデコイ（ゲームオブジェクト）を取得
-    dekoi dekoi;
+    public dekoi dekoi;
     //現在の時間
     public float Real_Time;
 
@@ -301,11 +301,12 @@ public class Otoko_chara_Controller : MonoBehaviour
     //攻撃・被弾まとめ
     public void Attack_and_hidan()
     {
+        Debug.Log("その1");
         //被ダメージ時
         if (kougeki_attack != 0)
         {
             //弱ひるみ(弱攻撃)
-            if (dekoi.dekoi_kougeki_attack == 1)
+            if (kougeki_attack == 1) 
             {
                 //レイヤー変更
                 gameObject.layer = LayerMask.NameToLayer("Hantei");
