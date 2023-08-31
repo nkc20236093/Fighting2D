@@ -301,10 +301,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     //攻撃・被弾まとめ
     public void Attack_and_hidan()
     {
-        Debug.Log("その1");
         //被ダメージ時
         if (kougeki_attack != 0)
         {
+            Debug.Log("その1");
             //弱ひるみ(弱攻撃)
             if (kougeki_attack == 1) 
             {
@@ -313,6 +313,10 @@ public class Otoko_chara_Controller : MonoBehaviour
                 animator.SetInteger("stop", 4);
                 Debug.Log("player_弱ひるみ");
             }
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
 
         //与ダメージ時
