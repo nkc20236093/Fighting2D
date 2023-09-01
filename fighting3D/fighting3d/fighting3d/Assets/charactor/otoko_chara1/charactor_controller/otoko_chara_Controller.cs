@@ -128,12 +128,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
         }
-        ////各行動終了次第停止状態に変更
-        //else
-        //{
-        //    //アニメーション変更
-        //    Invoke(nameof(Animation_stop), 5f);
-        //}
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
@@ -159,7 +153,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
-            gameObject.layer = LayerMask.NameToLayer("Attack");
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
         }
         //移動入力があったらレイヤー変更
@@ -239,7 +233,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         else if (!Input.anyKey)
         {
             //アニメーション変更
-            Animation_stop();
+            Invoke(nameof(Animation_stop), 0.1f);
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
         mytransform.eulerAngles = World_angle;
     }
@@ -250,7 +245,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_attack = 0;
     }
     //当たり判定まとめ
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         //地面についてたら
         if (other.CompareTag("jimen"))
@@ -291,10 +286,6 @@ public class Otoko_chara_Controller : MonoBehaviour
                     Debug.Log("player_弱ひるみ");
                 }
             }
-            else
-            {
-                gameObject.layer = LayerMask.NameToLayer("Player");
-            }
             Debug.Log("その1");
         }
 
@@ -317,10 +308,6 @@ public class Otoko_chara_Controller : MonoBehaviour
                     gameObject.layer = LayerMask.NameToLayer("Attack");
                     Debug.Log("player_kougeki_attack2");
                 }
-            }
-            else
-            {
-                gameObject.layer = LayerMask.NameToLayer("Player");
             }
         }
     }
