@@ -128,12 +128,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
         }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
+        ////各行動終了次第停止状態に変更
+        //else
+        //{
+        //    //アニメーション変更
+        //    Invoke(nameof(Animation_stop), 5f);
+        //}
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
@@ -141,44 +141,20 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
         }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0)
         {
             Debug.Log("投げ攻撃");
-        }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
         }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
         {
             Debug.Log("必殺技");
         }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
         if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ガード");
-        }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
@@ -263,7 +239,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         else if (!Input.anyKey)
         {
             //アニメーション変更
-            Invoke(nameof(Animation_stop), 1f);
+            Animation_stop();
         }
         mytransform.eulerAngles = World_angle;
     }
@@ -304,36 +280,48 @@ public class Otoko_chara_Controller : MonoBehaviour
         //被ダメージ時
         if (kougeki_attack != 0)
         {
-            Debug.Log("その1");
-            //弱ひるみ(弱攻撃)
-            if (kougeki_attack == 1) 
+            if (kougeki_attack > 0)
             {
-                //レイヤー変更
-                gameObject.layer = LayerMask.NameToLayer("Hantei");
-                animator.SetInteger("stop", 4);
-                Debug.Log("player_弱ひるみ");
+                //弱ひるみ(弱攻撃)
+                if (kougeki_attack == 1)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    animator.SetInteger("stop", 4);
+                    Debug.Log("player_弱ひるみ");
+                }
             }
-        }
-        else
-        {
-            gameObject.layer = LayerMask.NameToLayer("Player");
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }
+            Debug.Log("その1");
         }
 
         //与ダメージ時
-
-        //弱攻撃
-        if (otoko1_kougeki_attack == 1)
+        else if (otoko1_kougeki_attack != 0)
         {
-            //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Attack");
-            Debug.Log("player_kougeki_attack1");
-        }
-        //強攻撃
-        if (otoko1_kougeki_attack == 2)
-        {
-            //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Attack");
-            Debug.Log("player_kougeki_attack2");
+            if (otoko1_kougeki_attack > 0)
+            {
+                //弱攻撃
+                if (otoko1_kougeki_attack == 1)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Debug.Log("player_kougeki_attack1");
+                }
+                //強攻撃
+                if (otoko1_kougeki_attack == 2)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Debug.Log("player_kougeki_attack2");
+                }
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }
         }
     }
 }

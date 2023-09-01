@@ -263,6 +263,8 @@ public class dekoi : MonoBehaviour
         {
             //アニメーション変更
             Invoke(nameof(Animation_stop), 1f);
+            //攻撃用変数を初期化
+            dekoi_kougeki_attack = 0;
         }
         //mytransform.eulerAngles = World_angle;
     }
