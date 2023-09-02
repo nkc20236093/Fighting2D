@@ -81,6 +81,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         //デコイに代入
         dekoi = GameObject.Find("dekoi").GetComponent<dekoi>();
+
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入

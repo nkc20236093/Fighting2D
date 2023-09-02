@@ -157,7 +157,7 @@ public class dekoi : MonoBehaviour
             idouVec = Vector3.zero;
         }
         //移動入力があったらレイヤー変更
-        if (jouge > 0 || sayuu != 0)
+        if (!Input.anyKey)
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
@@ -292,14 +292,14 @@ public class dekoi : MonoBehaviour
         if (dekoi_kougeki_attack == 1)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
             Debug.Log("dekoi_kougeki_attack1");
         }
         //強攻撃
         if (dekoi_kougeki_attack == 2)
         {
             //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
             Debug.Log("dekoi_kougeki_attack2");
         }
     }
