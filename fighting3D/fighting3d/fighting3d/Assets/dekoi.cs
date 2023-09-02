@@ -123,62 +123,33 @@ public class dekoi : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            animator.SetInteger("stop", 2);
+            animator.SetInteger("stop_dekoi", 2);
             Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
-        }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
-            animator.SetInteger("stop", 3);
+            animator.SetInteger("stop_dekoi", 3);
             Debug.Log("強攻撃");
             dekoi_kougeki_attack = 2;
-        }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
         }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0)
         {
             Debug.Log("投げ攻撃");
         }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
         {
             Debug.Log("必殺技");
-        }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
+        }        
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
         if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ガード");
         }
-        //各行動終了次第停止状態に変更
-        else
-        {
-            //アニメーション変更
-            Invoke(nameof(Animation_stop), 5f);
-        }
+        
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
@@ -246,7 +217,7 @@ public class dekoi : MonoBehaviour
                 chara_muki = 1;
                 World_angle.y = -90;
                 //アニメーション変更
-                animator.SetInteger("stop", 1);
+                animator.SetInteger("stop_dekoi", 1);
             }
             //左移動
             else if (sayuu < 0)
@@ -255,14 +226,14 @@ public class dekoi : MonoBehaviour
                 chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                animator.SetInteger("stop", 1);
+                animator.SetInteger("stop_dekoi", 1);
             }
         }
         //停止状態
-        else
+        if (!Input.anyKeyDown)
         {
             //アニメーション変更
-            Invoke(nameof(Animation_stop), 1f);
+            Invoke(nameof(Animation_stop), 1.5f);
             //攻撃用変数を初期化
             dekoi_kougeki_attack = 0;
         }
@@ -271,7 +242,7 @@ public class dekoi : MonoBehaviour
     //停止状態のアニメーション
     void Animation_stop()
     {
-        animator.SetInteger("stop", 0);
+        animator.SetInteger("stop_dekoi", 0);
         dekoi_kougeki_attack = 0;
     }
     //当たり判定まとめ
@@ -311,7 +282,7 @@ public class dekoi : MonoBehaviour
             if (dekoi_hensuu == 1)
             {
                 Debug.Log("dekoi_弱ひるみ");
-                animator.SetInteger("stop", 4);
+                animator.SetInteger("stop_dekoi", 4);
             }
         }
 
