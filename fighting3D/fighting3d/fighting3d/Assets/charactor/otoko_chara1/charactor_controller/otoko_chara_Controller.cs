@@ -125,14 +125,14 @@ public class Otoko_chara_Controller : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetAxisRaw("X or J") != 0)
         {
-            animator.SetInteger("stop", 2);
+            animator.SetTrigger("return_jab");
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
         }
         //強攻撃（A or K）
         if (Input.GetAxisRaw("A or K") != 0)
         {
-            animator.SetInteger("stop", 3);
+            animator.SetTrigger("return_hook");
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
         }
@@ -218,7 +218,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 chara_muki = 1;
                 World_angle.y = -90;
                 //アニメーション変更
-                animator.SetInteger("stop", 1);
+                animator.SetTrigger("return_zennsinn");
             }
             //左移動
             else if (sayuu < 0)
@@ -227,22 +227,21 @@ public class Otoko_chara_Controller : MonoBehaviour
                 chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                animator.SetInteger("stop", 1);
+                animator.SetTrigger("return_zennsinn");
             }
         }
         //停止状態
         else if (!Input.anyKey)
         {
             //アニメーション変更
-            Invoke(nameof(Animation_stop), 0.1f);
+            Invoke(nameof(Hensuu_shoki), 0.1f);
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
         mytransform.eulerAngles = World_angle;
     }
-    //停止状態のアニメーション
-    void Animation_stop()
+    //停止状態の変数初期化
+    void Hensuu_shoki()
     {
-        animator.SetInteger("stop", 0);
         otoko1_kougeki_attack = 0;
     }
     //当たり判定まとめ
@@ -259,8 +258,10 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             jump_stop = true;
         }
+        //プレイヤーに触れてたら
         if (other.CompareTag("Player"))
         {
+            //攻撃・被弾まとめを呼び出す
             Attack_and_hidan();
         }
     }
@@ -276,6 +277,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //被ダメージ時
         if (kougeki_attack != 0)
         {
+            //dekoiの変数が1以上の時
             if (kougeki_attack > 0)
             {
                 //弱ひるみ(弱攻撃)
@@ -283,7 +285,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 {
                     //レイヤー変更
                     gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    animator.SetInteger("stop", 4);
+                    animator.SetTrigger("return_jaku_hirumi");
                     Debug.Log("player_弱ひるみ");
                 }
             }
