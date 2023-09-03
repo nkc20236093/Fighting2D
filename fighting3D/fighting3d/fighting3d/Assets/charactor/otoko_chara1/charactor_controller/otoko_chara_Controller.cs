@@ -261,6 +261,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //プレイヤーに触れてたら
         if (other.CompareTag("Player"))
         {
+            Debug.Log("dekoi検知");
             //攻撃・被弾まとめを呼び出す
             Attack_and_hidan();
         }
@@ -288,8 +289,15 @@ public class Otoko_chara_Controller : MonoBehaviour
                     animator.SetTrigger("return_jaku_hirumi");
                     Debug.Log("player_弱ひるみ");
                 }
+                //ダウン（強攻撃 or 必殺技 or 投げ）
+                if (kougeki_attack == 2)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    animator.SetTrigger("return_down");
+                    Debug.Log("Player_ダウン");
+                }
             }
-            Debug.Log("その1");
         }
 
         //与ダメージ時

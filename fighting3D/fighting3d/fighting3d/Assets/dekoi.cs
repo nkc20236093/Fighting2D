@@ -128,7 +128,7 @@ public class dekoi : MonoBehaviour
             dekoi_kougeki_attack = 1;
         }
         //強攻撃（A or K）
-        if (Input.GetAxisRaw("A or K") != 0)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             animator.SetInteger("stop_dekoi", 3);
             Debug.Log("強攻撃");
@@ -156,7 +156,6 @@ public class dekoi : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
         }
-        //移動入力があったらレイヤー変更
         if (!Input.anyKey)
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
