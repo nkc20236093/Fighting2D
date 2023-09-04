@@ -939,8 +939,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.01, z: 0.65}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0.01, z: 0.65}
+  m_Center: {x: 0, y: -0.06, z: 0}
 --- !u!1 &1124691289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +1838,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
     - {fileID: 3511091454336933663, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+    - {fileID: 3306425848715445506, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

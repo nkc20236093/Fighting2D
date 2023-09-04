@@ -233,8 +233,6 @@ public class dekoi : MonoBehaviour
         {
             //アニメーション変更
             Invoke(nameof(Animation_stop), 1.5f);
-            //攻撃用変数を初期化
-            dekoi_kougeki_attack = 0;
         }
         //mytransform.eulerAngles = World_angle;
     }
@@ -261,6 +259,7 @@ public class dekoi : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player検知");
             Attack();
         }
     }
