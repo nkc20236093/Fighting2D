@@ -916,10 +916,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 2
+  m_Radius: 0.25
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1.32, z: 0}
+  m_Center: {x: 0.25, y: 1.25, z: 0}
 --- !u!65 &878131956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1199,10 +1199,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 2
+  m_Radius: 0.25
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1.32, z: 0}
+  m_Center: {x: 0.25, y: 1.25, z: 0}
 --- !u!1 &1191391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2032494628140154934, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Player_otokochara1
       objectReference: {fileID: 0}
     - target: {fileID: 2063524434857249541, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Layer
@@ -2491,6 +2491,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3306425848715445506, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
     - {fileID: 3511091454336933663, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+    - {fileID: 6017433237977753955, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

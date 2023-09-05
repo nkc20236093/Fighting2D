@@ -65,16 +65,16 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //Še‰ŠúƒXƒe[ƒ^ƒX
 
-    //HP
-    int hp = 10;
-    //UŒ‚—Í
-    int attack = 10;
-    //‘f‘‚³(r•q)
-    int speed = 10;
-    //ƒXƒ^ƒ~ƒi(‘Ï‹v)
-    int stamina = 10;
-    //Œ«‚³(n’m)
-    int cleverness = 10;
+    ////HP
+    //int hp = 10;
+    ////UŒ‚—Í
+    //int attack = 10;
+    ////‘f‘‚³(r•q)
+    //int speed = 10;
+    ////ƒXƒ^ƒ~ƒi(‘Ï‹v)
+    //int stamina = 10;
+    ////Œ«‚³(n’m)
+    //int cleverness = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -260,12 +260,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             jump_stop = true;
         }
-    }
-    //G‚ê‚½‚ç”»’è
-    public void OnTriggerEnter(Collider enter_other)
-    {
         //ƒvƒŒƒCƒ„[‚ÉG‚ê‚½‚ç
-        if (enter_other.CompareTag("Player"))
+        if (stay_other.CompareTag("Player"))
         {
             Debug.Log("dekoiŒŸ’m");
             //UŒ‚E”í’e‚Ü‚Æ‚ß‚ğŒÄ‚Ño‚·
