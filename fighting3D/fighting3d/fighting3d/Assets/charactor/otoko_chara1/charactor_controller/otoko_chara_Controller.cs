@@ -245,10 +245,12 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_attack = 0;
     }
     //当たり判定まとめ
-    public void OnTriggerStay(Collider other)
+
+    //触れ続けてる間判定
+    public void OnTriggerStay(Collider stay_other)
     {
         //地面についてたら
-        if (other.CompareTag("jimen"))
+        if (stay_other.CompareTag("jimen"))
         {
             //変数にHorizontal・Verticalを代入 ※jougeのみ制限
             jump = Input.GetAxisRaw("Vertical");
@@ -258,8 +260,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             jump_stop = true;
         }
-        //プレイヤーに触れてたら
-        if (other.CompareTag("Player"))
+    }
+    //触れたら判定
+    public void OnTriggerEnter(Collider enter_other)
+    {
+        //プレイヤーに触れたら
+        if (enter_other.CompareTag("Player"))
         {
             Debug.Log("dekoi検知");
             //攻撃・被弾まとめを呼び出す
