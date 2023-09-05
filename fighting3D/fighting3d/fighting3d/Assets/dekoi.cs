@@ -11,12 +11,12 @@ public class dekoi : MonoBehaviour
 
     //プレイヤーを取得
     Otoko_chara_Controller otoko;
-    public int dekoi_hensuu;
     //現在の時間
     public float Real_Time;
 
     //攻撃を与えた状態を管理する用の変数
     public int dekoi_kougeki_attack;
+    public int dekoi_kougeki_hidan;
 
     //Transformコンポーネントを取得
     Transform mytransform;
@@ -80,6 +80,8 @@ public class dekoi : MonoBehaviour
     void Start()
     {
         otoko = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
+        dekoi_kougeki_hidan = otoko.otoko1_kougeki_attack;
+
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
@@ -96,8 +98,6 @@ public class dekoi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dekoi_hensuu = otoko.otoko1_kougeki_attack;
-
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -123,14 +123,14 @@ public class dekoi : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            animator.SetInteger("stop_dekoi", 2);
+            animator.SetTrigger("dekoi_jaku");
             Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
         }
         //強攻撃（A or K）
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            animator.SetInteger("stop_dekoi", 3);
+            animator.SetTrigger("dekoi_hook");
             Debug.Log("強攻撃");
             dekoi_kougeki_attack = 2;
         }
@@ -216,7 +216,7 @@ public class dekoi : MonoBehaviour
                 chara_muki = 1;
                 World_angle.y = -90;
                 //アニメーション変更
-                animator.SetInteger("stop_dekoi", 1);
+                animator.SetTrigger("dekoi_zensin");
             }
             //左移動
             else if (sayuu < 0)
@@ -225,7 +225,7 @@ public class dekoi : MonoBehaviour
                 chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                animator.SetInteger("stop_dekoi", 1);
+                animator.SetTrigger("dekoi_zensin");
             }
         }
         //停止状態
@@ -236,17 +236,17 @@ public class dekoi : MonoBehaviour
         }
         //mytransform.eulerAngles = World_angle;
     }
-    //停止状態のアニメーション
+    //停止状態の変数初期化
     void Animation_stop()
     {
-        animator.SetInteger("stop_dekoi", 0);
         dekoi_kougeki_attack = 0;
     }
     //当たり判定まとめ
-    private void OnTriggerStay(Collider other)
+    //触れ続けてる間判定
+    public void OnTriggerStay(Collider stay_other)
     {
         //地面についてたら
-        if (other.CompareTag("jimen"))
+        if (stay_other.CompareTag("jimen"))
         {
             //変数にHorizontal・Verticalを代入 ※jougeのみ制限
             jump = Input.GetAxisRaw("Vertical");
@@ -254,13 +254,18 @@ public class dekoi : MonoBehaviour
             {
                 jouge = jump;
             }
-            //Debug.Log("jimen");
             jump_stop = true;
         }
-        if (other.CompareTag("Player"))
+    }
+    //触れたら判定
+    public void OnTriggerEnter(Collider enter_other)
+    {
+        //プレイヤーに触れたら
+        if (enter_other.CompareTag("Player"))
         {
-            Debug.Log("Player検知");
-            Attack();
+            Debug.Log("dekoi検知");
+            //攻撃・被弾まとめを呼び出す
+            Attack_and_hidan();
         }
     }
     void Chien()
@@ -269,36 +274,54 @@ public class dekoi : MonoBehaviour
         Debug.Log("遅延");
         jouge = -1f;
     }
-    //攻撃付与・被弾まとめ
-    public void Attack()
+    //攻撃・被弾まとめ
+    public void Attack_and_hidan()
     {
         //被ダメージ時
-
-        if (dekoi_hensuu < 0)
+        if (dekoi_kougeki_hidan != 0)
         {
-            //弱ひるみ(弱攻撃)
-            if (dekoi_hensuu == 1)
+            //dekoiの変数が1以上の時
+            if (dekoi_kougeki_hidan > 0)
             {
-                Debug.Log("dekoi_弱ひるみ");
-                animator.SetInteger("stop_dekoi", 4);
+                //弱ひるみ(弱攻撃)
+                if (dekoi_kougeki_hidan == 1)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    animator.SetTrigger("dekoi_jaku_hirumi");
+                    Debug.Log("player_弱ひるみ");
+                }
+                //ダウン（強攻撃 or 必殺技 or 投げ）
+                if (dekoi_kougeki_hidan == 2)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    //animator.SetTrigger("return_down");
+                    Debug.Log("Player_ダウン");
+                }
             }
         }
 
         //与ダメージ時
-
-        //弱攻撃
-        if (dekoi_kougeki_attack == 1)
+        else if (otoko.otoko1_kougeki_attack != 0)
         {
-            //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Attack");
-            Debug.Log("dekoi_kougeki_attack1");
-        }
-        //強攻撃
-        if (dekoi_kougeki_attack == 2)
-        {
-            //レイヤー変更
-            gameObject.layer = LayerMask.NameToLayer("Attack");
-            Debug.Log("dekoi_kougeki_attack2");
+            if (otoko.otoko1_kougeki_attack > 0)
+            {
+                //弱攻撃
+                if (otoko.otoko1_kougeki_attack == 1)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Debug.Log("player_kougeki_attack1");
+                }
+                //強攻撃
+                if (otoko.otoko1_kougeki_attack == 2)
+                {
+                    //レイヤー変更
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Debug.Log("player_kougeki_attack2");
+                }
+            }
         }
     }
 }
