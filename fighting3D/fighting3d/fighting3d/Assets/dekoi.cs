@@ -14,7 +14,7 @@ public class dekoi : MonoBehaviour
     //現在の時間
     public float Real_Time;
 
-    //攻撃を与えた状態を管理する用の変数
+    //攻撃を与えた・くらった状態を管理する用の変数
     public int dekoi_kougeki_attack;
     public int dekoi_kougeki_hidan;
 
@@ -123,7 +123,7 @@ public class dekoi : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            animator.SetTrigger("dekoi_jaku");
+            animator.SetTrigger("dekoi_jab");
             Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
         }
@@ -232,7 +232,7 @@ public class dekoi : MonoBehaviour
         if (!Input.anyKeyDown)
         {
             //アニメーション変更
-            Invoke(nameof(Animation_stop), 1.5f);
+            Invoke(nameof(Animation_stop), 1f);
         }
         //mytransform.eulerAngles = World_angle;
     }
@@ -256,14 +256,10 @@ public class dekoi : MonoBehaviour
             }
             jump_stop = true;
         }
-    }
-    //触れたら判定
-    public void OnTriggerEnter(Collider enter_other)
-    {
         //プレイヤーに触れたら
-        if (enter_other.CompareTag("Player"))
+        if (stay_other.CompareTag("Player_otokochara1"))
         {
-            Debug.Log("dekoi検知");
+            Debug.Log("Player検知");
             //攻撃・被弾まとめを呼び出す
             Attack_and_hidan();
         }
@@ -296,26 +292,26 @@ public class dekoi : MonoBehaviour
                 {
                     //レイヤー変更
                     gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    //animator.SetTrigger("return_down");
+                    animator.SetTrigger("return_down");
                     Debug.Log("Player_ダウン");
                 }
             }
         }
 
         //与ダメージ時
-        else if (otoko.otoko1_kougeki_attack != 0)
+        else if (dekoi_kougeki_attack != 0)
         {
-            if (otoko.otoko1_kougeki_attack > 0)
+            if (dekoi_kougeki_attack > 0)
             {
                 //弱攻撃
-                if (otoko.otoko1_kougeki_attack == 1)
+                if (dekoi_kougeki_attack == 1)
                 {
                     //レイヤー変更
                     gameObject.layer = LayerMask.NameToLayer("Attack");
                     Debug.Log("player_kougeki_attack1");
                 }
                 //強攻撃
-                if (otoko.otoko1_kougeki_attack == 2)
+                if (dekoi_kougeki_attack == 2)
                 {
                     //レイヤー変更
                     gameObject.layer = LayerMask.NameToLayer("Attack");

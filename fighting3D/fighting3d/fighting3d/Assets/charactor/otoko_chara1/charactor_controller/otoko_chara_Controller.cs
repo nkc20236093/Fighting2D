@@ -5,19 +5,21 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //アニメーターコンポーネントを取得
-    Animator animator;
+    public Animator animator;
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
 
     //テスト用のデコイ（ゲームオブジェクト）を取得
     public dekoi dekoi;
+
     //現在の時間
     public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数
-    public int kougeki_attack;          //攻撃を受けた用
+    public int kougeki_hidan;          //攻撃を受けた用
     public int otoko1_kougeki_attack;   //攻撃を与えた用
 
+    public float stop_time;
     //Transformコンポーネントを取得
     Transform mytransform;
 
@@ -65,16 +67,16 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //各初期ステータス
 
-    //HP
-    int hp = 10;
-    //攻撃力
-    int attack = 10;
-    //素早さ(俊敏)
-    int speed = 10;
-    //スタミナ(耐久)
-    int stamina = 10;
-    //賢さ(熟知)
-    int cleverness = 10;
+    ////HP
+    //int hp = 10;
+    ////攻撃力
+    //int attack = 10;
+    ////素早さ(俊敏)
+    //int speed = 10;
+    ////スタミナ(耐久)
+    //int stamina = 10;
+    ////賢さ(熟知)
+    //int cleverness = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -98,8 +100,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        kougeki_attack = dekoi.dekoi_kougeki_attack;
-
+        kougeki_hidan = dekoi.dekoi_kougeki_attack;
+        //現在の時間を変数に代入
+        stop_time += Time.deltaTime;
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -119,7 +122,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Real_Time += Time.deltaTime;
         }
-        
+
         //以下基本動作
 
         //弱攻撃（X or J）
@@ -156,11 +159,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
-        }
-        //移動入力があったらレイヤー変更
-        if (jouge > 0 || sayuu != 0)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Player");
         }
 
         //横移動の処理
@@ -261,17 +259,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             jump_stop = true;
         }
     }
-    //触れたら判定
-    public void OnTriggerEnter(Collider enter_other)
-    {
-        //プレイヤーに触れたら
-        if (enter_other.CompareTag("Player"))
-        {
-            Debug.Log("dekoi検知");
-            //攻撃・被弾まとめを呼び出す
-            Attack_and_hidan();
-        }
-    }
     void Chien()
     {
         jump_stop = false;
@@ -279,52 +266,52 @@ public class Otoko_chara_Controller : MonoBehaviour
         jouge = -1f;
     }
     //攻撃・被弾まとめ
-    public void Attack_and_hidan()
+    public void Attack()
     {
-        //被ダメージ時
-        if (kougeki_attack != 0)
+        //与ダメージ時
+
+        if (otoko1_kougeki_attack > 0)
+
         {
-            //dekoiの変数が1以上の時
-            if (kougeki_attack > 0)
+            //弱攻撃
+            if (otoko1_kougeki_attack == 1)
             {
-                //弱ひるみ(弱攻撃)
-                if (kougeki_attack == 1)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    animator.SetTrigger("return_jaku_hirumi");
-                    Debug.Log("player_弱ひるみ");
-                }
-                //ダウン（強攻撃 or 必殺技 or 投げ）
-                if (kougeki_attack == 2)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    animator.SetTrigger("return_down");
-                    Debug.Log("Player_ダウン");
-                }
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Attack");
+                Debug.Log("player_kougeki_attack1");
+            }
+            //強攻撃
+            if (otoko1_kougeki_attack == 2)
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Attack");
+                Debug.Log("player_kougeki_attack2");
             }
         }
+    }
+    public void Hidan()
+    {
+        //被ダメージ時
 
-        //与ダメージ時
-        else if (otoko1_kougeki_attack != 0)
+        //dekoiの変数が1以上の時
+        if (kougeki_hidan > 0)
+
         {
-            if (otoko1_kougeki_attack > 0)
+            //弱ひるみ(弱攻撃)
+            if (kougeki_hidan == 1) 
             {
-                //弱攻撃
-                if (otoko1_kougeki_attack == 1)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Debug.Log("player_kougeki_attack1");
-                }
-                //強攻撃
-                if (otoko1_kougeki_attack == 2)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Debug.Log("player_kougeki_attack2");
-                }
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                animator.SetTrigger("return_jaku_hirumi");
+                Debug.Log("player_弱ひるみ");
+            }
+            //ダウン（強攻撃 or 必殺技 or 投げ）
+            if (kougeki_hidan == 2) 
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                animator.SetTrigger("return_down");
+                Debug.Log("Player_ダウン");
             }
         }
     }

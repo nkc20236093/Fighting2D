@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: dekoi_jaku_hirumi
+    m_ConditionEvent: dekoi_jab
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000014261769280}
@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: dekoi_jaku
+    m_ConditionEvent: dekoi_jab
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000014261769280}
@@ -45,7 +45,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.6875
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -64,7 +64,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.3
+  m_TransitionDuration: 0.2
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 1
@@ -160,10 +160,10 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.58
+  m_ExitTime: 0.6875
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 4
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!91 &9100000
@@ -193,7 +193,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: dekoi_jaku
+  - m_Name: dekoi_jab
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -2539,7 +2539,7 @@ AnimatorStateMachine:
     m_Position: {x: 970, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000011396440284}
-    m_Position: {x: 160, y: 300, z: 0}
+    m_Position: {x: 160, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013795884538}
     m_Position: {x: 180, y: 590, z: 0}
@@ -2560,7 +2560,7 @@ AnimatorStateMachine:
     m_Position: {x: 1752, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000014152451960}
-    m_Position: {x: 10, y: 510, z: 0}
+    m_Position: {x: -90, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012169695904}
     m_Position: {x: 490, y: 310, z: 0}
@@ -2581,7 +2581,7 @@ AnimatorStateMachine:
     m_Position: {x: 984, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000011968808814}
-    m_Position: {x: 220, y: 460, z: 0}
+    m_Position: {x: -60, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000011126351416}
     m_Position: {x: 1752, y: 540, z: 0}
@@ -2835,7 +2835,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 1
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 4
