@@ -43,6 +43,12 @@ public class Otoko_chara_Controller : MonoBehaviour
     //false = 通常
     //true  = ダッシュ
 
+    //各攻撃用アニメーション変数
+    public int jab_int;
+    public int jab_max;
+    public int hook_max;
+    public int hook_int;
+
     //移動の変数
     public float sayuu;
     public float jouge;
@@ -136,7 +142,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true)
         {
-            animator.SetTrigger("return_jab");
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
             gameObject.layer = LayerMask.NameToLayer("Attack");
@@ -215,11 +220,42 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //以下アニメーション
 
+        //アニメーション分岐用処理
+        //弱攻撃
+        if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true)
+        {
+            ++jab_int;
+        }
+        //強攻撃
+        if (Input.GetAxisRaw("A or K") != 0 && jump_stop == true)
+        {
+            ++hook_int;
+        }
+        //攻撃アニメーション
+        if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true || Input.GetAxisRaw("A or K") != 0 && jump_stop == true)
+        {
+            animator.SetTrigger("Trigger_attack");
+            //弱攻撃
+            //単発攻撃
+            if (jab_int == 1)
+            {
+                Jab_1();
+            }
+
+            //強攻撃
+            //単発攻撃
+            if (hook_int == 1)
+            {
+                Hook_1();
+            }
+        }
+
         //ワールド座標を基準に回転を取得
         Vector3 World_angle = mytransform.eulerAngles;
         //左右どちらかに移動中
         if (sayuu != 0)
         {
+            animator.SetTrigger("Trigger_Move");
             //右移動
             if (sayuu > 0)
             {
@@ -252,6 +288,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     //停止状態の変数初期化
     void Hensuu_shoki()
     {
+        animator.SetInteger("int_jab", 0);
+        animator.SetInteger("int_hook", 0);
         otoko1_kougeki_attack = 0;
     }
     void Layer_shoki()
@@ -279,6 +317,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("dekoi検知");
             if (dekoi.dekoi_kougeki_attack > 0)
             {
+                animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
                 //レイヤー変更
                 gameObject.layer = LayerMask.NameToLayer("Hantei");
@@ -325,18 +364,28 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地上で被弾
         if(jump_stop == true)
         {
+            animator.SetTrigger("Trigger_hirumi");
             //弱ひるみ(弱攻撃)
             if (dekoi.dekoi_kougeki_attack == 1)
             {
-                animator.SetTrigger("return_jaku_hirumi");
+                animator.SetInteger("int_hirumi", 1);
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (dekoi.dekoi_kougeki_attack == 2)
             {
+                animator.SetInteger("int_hirumi", 2);
                 animator.SetTrigger("return_down");
                 Debug.Log("Player_ダウン");
             }
         }
+    }
+    public void Jab_1()
+    {
+        animator.SetInteger("int_jab", 1);
+    }
+    public void Hook_1()
+    {
+        animator.SetInteger("int_hook", 1);
     }
 }
