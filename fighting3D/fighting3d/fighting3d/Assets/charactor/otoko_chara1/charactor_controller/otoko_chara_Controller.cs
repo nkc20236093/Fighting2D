@@ -202,6 +202,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら&ジャンプ入力がされてたら
         if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
         {
+            animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
             Invoke(nameof(Chien), 0.001f);
@@ -263,7 +264,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 chara_muki = 1;
                 World_angle.y = -90;
                 //アニメーション変更
-                animator.SetTrigger("return_zennsinn");
+                animator.SetInteger("int_walk", 1);
             }
             //左移動
             else if (sayuu < 0)
@@ -272,7 +273,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 chara_muki = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                animator.SetTrigger("return_zennsinn");
+                animator.SetInteger("int_walk", 1);
             }
         }
         //停止状態
@@ -288,6 +289,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     //停止状態の変数初期化
     void Hensuu_shoki()
     {
+        animator.SetInteger("int_walk", 0);
         animator.SetInteger("int_jab", 0);
         animator.SetInteger("int_hook", 0);
         otoko1_kougeki_attack = 0;

@@ -309,13 +309,13 @@ public class dekoi : MonoBehaviour
             //弱ひるみ(弱攻撃)
             if (dekoi_kougeki_hidan == 1)
             {
-                animator.SetTrigger("return_jaku_hirumi");
+                animator.SetTrigger("dekoi_jaku_hirumi");
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (dekoi_kougeki_hidan == 2)
             {
-                animator.SetTrigger("return_down");
+                animator.SetTrigger("dekoi_down");
                 Debug.Log("Player_ダウン");
             }
         }
