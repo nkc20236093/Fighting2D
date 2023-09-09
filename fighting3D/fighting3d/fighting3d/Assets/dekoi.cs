@@ -9,6 +9,8 @@ public class dekoi : MonoBehaviour
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
 
+    //ゲームディレクターを取得
+    gamedirector gamedirector;
     //プレイヤーを取得
     Otoko_chara_Controller otoko;
     //現在の時間
@@ -80,6 +82,7 @@ public class dekoi : MonoBehaviour
     void Start()
     {
         otoko = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
+        gamedirector = GameObject.Find("GameDirector").GetComponent<gamedirector>();
 
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
@@ -97,7 +100,7 @@ public class dekoi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dekoi_kougeki_hidan = otoko.otoko1_kougeki_attack;
+        dekoi_kougeki_hidan = gamedirector.hidan;
 
         //移動制限
         Vector3 Pos = transform.position;
@@ -241,6 +244,7 @@ public class dekoi : MonoBehaviour
     void Animation_stop()
     {
         dekoi_kougeki_attack = 0;
+        dekoi_kougeki_hidan = 0;
     }
     //当たり判定まとめ
 
