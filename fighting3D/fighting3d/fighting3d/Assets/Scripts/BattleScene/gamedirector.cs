@@ -37,12 +37,12 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-        if (otoko_Chara_Controller.otoko1_kougeki_hit == 1)
+        if (otoko_Chara_Controller.otoko1_kougeki_attack == 1)
         {
             hidan = 1;
             Debug.Log(hidan + "a");
         }
-        if (otoko_Chara_Controller.otoko1_kougeki_hit == 2)
+        if (otoko_Chara_Controller.otoko1_kougeki_attack == 2)
         {
             hidan = 2;
             Debug.Log(hidan + "b");
@@ -50,12 +50,12 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_kougeki_hit == 1)
+        if (Dekoi.dekoi_kougeki_attack == 1)
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = 1;
         }
-        if (Dekoi.dekoi_kougeki_hit == 2)
+        if (Dekoi.dekoi_kougeki_attack == 2)
         {
             Debug.Log(hidan_otoko1 + "d");
             hidan_otoko1 = 2;
