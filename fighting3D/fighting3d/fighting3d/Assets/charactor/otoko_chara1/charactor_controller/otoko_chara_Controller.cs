@@ -19,8 +19,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数
-    public int otoko1_kougeki_hidan;          //攻撃を受けた用(ゲームディレクターから受け取り)
-    public int otoko1_kougeki_attack;  //攻撃を与えた用
+    public int otoko1_kougeki_hidan;   //攻撃を受けた用(ゲームディレクターから受け取り)
+    public int otoko1_kougeki_attack;  //攻撃確認用
+    public int otoko1_kougeki_hit;     //攻撃ヒット用
     //攻撃クールタイム
     public bool jaku_stop;
     public bool kyou_stop;
@@ -319,19 +320,19 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (stay_other.CompareTag("Player"))
         {
             Debug.Log("dekoi検知");
-            if (otoko1_kougeki_hidan != 0)
+            if (otoko1_kougeki_attack != 0)
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Attack");
+                Attack();
+            }
+            else if (otoko1_kougeki_hidan != 0)
             {
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
                 //レイヤー変更
                 gameObject.layer = LayerMask.NameToLayer("Hantei");
                 Hidan();
-            }
-            else if (otoko1_kougeki_attack != 0)
-            {
-                //レイヤー変更
-                gameObject.layer = LayerMask.NameToLayer("Attack");
-                Attack();
             }
         }
     }
@@ -352,11 +353,13 @@ public class Otoko_chara_Controller : MonoBehaviour
             //弱攻撃
             if (otoko1_kougeki_attack == 1 && attack_cooltime >= 0.5f)
             {
+                otoko1_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
             }
             //強攻撃
             if (otoko1_kougeki_attack == 2 && attack_cooltime >= 0.5f)
             {
+                otoko1_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
         }

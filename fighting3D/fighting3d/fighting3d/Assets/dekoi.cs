@@ -19,7 +19,7 @@ public class dekoi : MonoBehaviour
     //攻撃を与えた・くらった状態を管理する用の変数
     public int dekoi_kougeki_attack;
     public int dekoi_kougeki_hidan;
-
+    public int dekoi_kougeki_hit;
     //Transformコンポーネントを取得
     Transform mytransform;
 
@@ -313,12 +313,14 @@ public class dekoi : MonoBehaviour
             //弱ひるみ(弱攻撃)
             if (dekoi_kougeki_hidan == 1)
             {
+                dekoi_kougeki_hit = 1;
                 animator.SetTrigger("dekoi_jaku_hirumi");
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (dekoi_kougeki_hidan == 2)
             {
+                dekoi_kougeki_hit = 2;
                 animator.SetTrigger("dekoi_down");
                 Debug.Log("Player_ダウン");
             }
