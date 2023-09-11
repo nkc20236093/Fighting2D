@@ -9,6 +9,8 @@ public class dekoi : MonoBehaviour
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
 
+    //ゲームディレクターを取得
+    gamedirector gamedirector;
     //プレイヤーを取得
     Otoko_chara_Controller otoko;
     //現在の時間
@@ -17,7 +19,7 @@ public class dekoi : MonoBehaviour
     //攻撃を与えた・くらった状態を管理する用の変数
     public int dekoi_kougeki_attack;
     public int dekoi_kougeki_hidan;
-
+    public int dekoi_kougeki_hit;
     //Transformコンポーネントを取得
     Transform mytransform;
 
@@ -80,7 +82,7 @@ public class dekoi : MonoBehaviour
     void Start()
     {
         otoko = GameObject.Find("企画_男キャラ１").GetComponent<Otoko_chara_Controller>();
-        dekoi_kougeki_hidan = otoko.otoko1_kougeki_attack;
+        gamedirector = GameObject.Find("GameDirector").GetComponent<gamedirector>();
 
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
@@ -98,6 +100,8 @@ public class dekoi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dekoi_kougeki_hidan = gamedirector.hidan;
+
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -240,8 +244,10 @@ public class dekoi : MonoBehaviour
     void Animation_stop()
     {
         dekoi_kougeki_attack = 0;
+        dekoi_kougeki_hidan = 0;
     }
     //当たり判定まとめ
+
     //触れ続けてる間判定
     public void OnTriggerStay(Collider stay_other)
     {
@@ -256,12 +262,20 @@ public class dekoi : MonoBehaviour
             }
             jump_stop = true;
         }
-        //プレイヤーに触れたら
-        if (stay_other.CompareTag("Player_otokochara1"))
+        if (stay_other.CompareTag("Player")) 
         {
-            Debug.Log("Player検知");
-            //攻撃・被弾まとめを呼び出す
-            Attack_and_hidan();
+            if (dekoi_kougeki_hidan != 0)
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                Hidan();
+            }
+            if (dekoi_kougeki_attack != 0) 
+            {
+                //レイヤー変更
+                gameObject.layer = LayerMask.NameToLayer("Attack");
+                Attack();
+            }
         }
     }
     void Chien()
@@ -271,52 +285,44 @@ public class dekoi : MonoBehaviour
         jouge = -1f;
     }
     //攻撃・被弾まとめ
-    public void Attack_and_hidan()
+
+    //与ダメージ時
+    public void Attack()
     {
-        //被ダメージ時
-        if (dekoi_kougeki_hidan != 0)
+        //地上攻撃
+        if (jump_stop == true)
         {
-            //dekoiの変数が1以上の時
-            if (dekoi_kougeki_hidan > 0)
+            //弱攻撃
+            if (dekoi_kougeki_attack == 1 )
             {
-                //弱ひるみ(弱攻撃)
-                if (dekoi_kougeki_hidan == 1)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    animator.SetTrigger("dekoi_jaku_hirumi");
-                    Debug.Log("player_弱ひるみ");
-                }
-                //ダウン（強攻撃 or 必殺技 or 投げ）
-                if (dekoi_kougeki_hidan == 2)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    animator.SetTrigger("return_down");
-                    Debug.Log("Player_ダウン");
-                }
+                Debug.Log("player_kougeki_attack1");
+            }
+            //強攻撃
+            if (dekoi_kougeki_attack == 2)
+            {
+                Debug.Log("player_kougeki_attack2");
             }
         }
-
-        //与ダメージ時
-        else if (dekoi_kougeki_attack != 0)
+    }
+    //被ダメージ時
+    public void Hidan()
+    {
+        //地上で被弾
+        if (jump_stop == true)
         {
-            if (dekoi_kougeki_attack > 0)
+            //弱ひるみ(弱攻撃)
+            if (dekoi_kougeki_hidan == 1)
             {
-                //弱攻撃
-                if (dekoi_kougeki_attack == 1)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Debug.Log("player_kougeki_attack1");
-                }
-                //強攻撃
-                if (dekoi_kougeki_attack == 2)
-                {
-                    //レイヤー変更
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Debug.Log("player_kougeki_attack2");
-                }
+                dekoi_kougeki_hit = 1;
+                animator.SetTrigger("dekoi_jaku_hirumi");
+                Debug.Log("player_弱ひるみ");
+            }
+            //ダウン（強攻撃 or 必殺技 or 投げ）
+            if (dekoi_kougeki_hidan == 2)
+            {
+                dekoi_kougeki_hit = 2;
+                animator.SetTrigger("dekoi_down");
+                Debug.Log("Player_ダウン");
             }
         }
     }
