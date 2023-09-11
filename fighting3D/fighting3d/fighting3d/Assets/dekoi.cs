@@ -145,14 +145,12 @@ public class dekoi : MonoBehaviour
         //弱攻撃（X or J）
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            animator.SetTrigger("dekoi_jab");
             Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
         }
         //強攻撃（A or K）
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            animator.SetTrigger("dekoi_hook");
             Debug.Log("強攻撃");
             dekoi_kougeki_attack = 2;
         }
@@ -260,21 +258,27 @@ public class dekoi : MonoBehaviour
             dekoi_kyou++;
         }
         //各攻撃用アニメーション
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Return) || jump_stop == true && Input.GetKeyDown(KeyCode.Z))
+        //弱攻撃
+        if (jump_stop == true && Input.GetKeyDown(KeyCode.Return))
         {
-
+            Dekoi_jab();
+        }
+        //強攻撃
+        if (jump_stop == true && Input.GetKeyDown(KeyCode.Z)) 
+        {
+            Dekoi_hook();
         }
 
         //停止状態
         if (!Input.anyKeyDown)
         {
             //アニメーション変更
-            Invoke(nameof(Animation_stop), 1f);
+            Invoke(nameof(Attack_or_HIdan_Shoki), 1f);
         }
         //mytransform.eulerAngles = World_angle;
     }
     //停止状態の変数初期化
-    void Animation_stop()
+    void Attack_or_HIdan_Shoki()
     {
         dekoi_kougeki_attack = 0;
         dekoi_kougeki_hidan = 0;
@@ -364,5 +368,13 @@ public class dekoi : MonoBehaviour
                 Debug.Log("Player_ダウン");
             }
         }
+    }
+    public void Dekoi_jab()
+    {
+        animator.SetTrigger("dekoi_jab");
+    }
+    public void Dekoi_hook()
+    {
+        animator.SetTrigger("dekoi_hook");
     }
 }

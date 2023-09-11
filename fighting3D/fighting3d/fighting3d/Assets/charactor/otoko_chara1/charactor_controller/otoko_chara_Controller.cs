@@ -185,6 +185,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
         }
+        //’n–Ê‚É‚Â‚¢‚Ä‚È‚¢‚Æ‚«‚ÍˆÚ“®“ü—Í‚ğ–³Œø‰»
+        if (jump_stop == false)
+        {
+            Debug.Log("‰¡ˆÚ“®‹Ö~");
+            idouVec.z = 0;
+        }
 
         //‰¡ˆÚ“®‚Ìˆ—
         if (sayuu != 0)
