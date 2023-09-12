@@ -11,6 +11,8 @@ public class PanelMan : MonoBehaviour
 
     [SerializeField] GameObject CharaInfoPanel;
 
+    [SerializeField] GameObject FriendBattlePanel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,5 +54,16 @@ public class PanelMan : MonoBehaviour
         CharaSelectPanel.SetActive(true);
     }
 
-    
+    public void FriendBattlePanelSetOn()　　　　//ｆれんどばとる　がめんみる
+
+    {
+       
+        FriendBattlePanel.SetActive(true);
+    }
+    public void FriendBattlePanelSetOff()　　　　//ｆれんどばとる　がめんみる
+
+    {
+        FriendBattlePanel.SetActive(false);
+       
+    }
 }
