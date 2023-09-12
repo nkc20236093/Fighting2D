@@ -40,28 +40,18 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-        if (otoko_Chara_Controller.otoko1_kougeki_attack == 1) 
+        if (otoko_Chara_Controller.otoko1_kougeki_attack != 0) 
         {
-            hidan = 1;
+            hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
-        }
-        if (otoko_Chara_Controller.otoko1_kougeki_attack == 2)
-        {
-            hidan = 2;
-            Debug.Log(hidan + "b");
         }
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_kougeki_attack == 1)
+        if (Dekoi.dekoi_kougeki_attack != 0)
         {
             Debug.Log(hidan_otoko1 + "c");
-            hidan_otoko1 = 1;
-        }
-        if (Dekoi.dekoi_kougeki_attack == 2)
-        {
-            Debug.Log(hidan_otoko1 + "d");
-            hidan_otoko1 = 2;
+            hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
         }
     }
     public void Chien_gamedirector()

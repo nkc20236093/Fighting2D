@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //子オブジェクト用
+    public Transform otoko1_obj_Child;
+
+    //男1のレイヤー用変数
+    public int otoko_layer;
     //アニメーターコンポーネントを取得
     Animator animator;
     //Rigidbodyを取得
@@ -95,6 +101,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //全ての子オブジェクトの取得
+        otoko1_obj_Child = this.gameObject.GetComponentInChildren<Transform>();
+
         //最初にスピードモードに通常モードを代入
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
@@ -111,8 +120,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        otoko1_obj_Child.GetComponentInChildren<Transform>();
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
-
+        Debug.Log(otoko1_kougeki_hidan+"f");
         //クールタイムに時間を入れる
         if (Input.GetButtonDown("X or J"))
         {
@@ -182,14 +192,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
+            gameObject.SetChildLayer(7);
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
-        }
-        //地面についてないときは移動入力を無効化
-        if (jump_stop == false)
-        {
-            Debug.Log("横移動禁止");
-            idouVec.z = 0;
         }
 
         //横移動の処理
@@ -313,6 +318,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     }
     void Layer_shoki()
     {
+        gameObject.SetChildLayer(3);
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
     void CoolTime_Shoki()
@@ -341,15 +347,19 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("dekoi検知");
             if (otoko1_kougeki_attack != 0)
             {
+                Debug.Log("Attack");
                 //レイヤー変更
+                gameObject.SetChildLayer(7);
                 gameObject.layer = LayerMask.NameToLayer("Attack");
                 Attack();
             }
             else if (otoko1_kougeki_hidan != 0)
             {
+                Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
                 //レイヤー変更
+                gameObject.SetChildLayer(6);
                 gameObject.layer = LayerMask.NameToLayer("Hantei");
                 Hidan();
             }
