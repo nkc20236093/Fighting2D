@@ -26,7 +26,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     public bool jaku_stop;
     public bool kyou_stop;
     //攻撃クールタイム用変数
-    public float attack_cooltime;
+    public float attack_cooltime_jaku;
+    public float attack_cooltime_kyou;
     //Transformコンポーネントを取得
     Transform mytransform;
 
@@ -113,10 +114,17 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
 
         //クールタイムに時間を入れる
-        attack_cooltime += Time.deltaTime;
+        if (Input.GetButtonDown("X or J"))
+        {
+            attack_cooltime_jaku += Time.deltaTime;
+        }
+        if (Input.GetButtonDown("A or K"))
+        {
+            attack_cooltime_kyou += Time.deltaTime;
+        }
 
-        //移動制限
-        Vector3 Pos = transform.position;
+            //移動制限
+            Vector3 Pos = transform.position;
         //X座標
         Pos.x = Mathf.Clamp(Pos.x, -4, 4);
         //Y座標
@@ -176,6 +184,12 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             idouVec = Vector3.zero;
+        }
+        //地面についてないときは移動入力を無効化
+        if (jump_stop == false)
+        {
+            Debug.Log("横移動禁止");
+            idouVec.z = 0;
         }
 
         //横移動の処理
@@ -301,6 +315,11 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
+    void CoolTime_Shoki()
+    {
+        attack_cooltime_jaku = 0;
+        attack_cooltime_kyou = 0;
+    }
     //当たり判定まとめ
 
     //触れ続けてる間判定
@@ -335,6 +354,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Hidan();
             }
         }
+        Invoke(nameof(CoolTime_Shoki), 0.1f);
     }
     void Chien()
     {
@@ -351,19 +371,19 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (jump_stop == true)
         {
             //弱攻撃
-            if (otoko1_kougeki_attack == 1 && attack_cooltime >= 0.5f)
+            if (otoko1_kougeki_attack == 1 && attack_cooltime_jaku >= 0.5f)
             {
                 otoko1_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
             }
             //強攻撃
-            if (otoko1_kougeki_attack == 2 && attack_cooltime >= 0.5f)
+            if (otoko1_kougeki_attack == 2 && attack_cooltime_kyou >= 1f)
             {
                 otoko1_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
         }
-        attack_cooltime = 0;
+
     }
     //被ダメージ時
     public void Hidan()
@@ -379,7 +399,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
-            if (otoko1_kougeki_hidan == 2)
+            if (otoko1_kougeki_hidan == 2) 
             {
                 animator.SetInteger("int_hirumi", 2);
                 animator.SetTrigger("return_down");

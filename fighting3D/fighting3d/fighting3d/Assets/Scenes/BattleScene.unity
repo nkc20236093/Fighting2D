@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2040381613}
-  m_IndirectSpecularColor: {r: 0.18154866, g: 0.22718975, b: 0.3074077, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154839, g: 0.22718915, b: 0.30740654, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -862,6 +862,11 @@ MonoBehaviour:
   Real_Time: 1
   dekoi_kougeki_attack: 0
   dekoi_kougeki_hidan: 0
+  dekoi_kougeki_hit: 0
+  dekoi_kougeki_cooltime_jaku: 0
+  dekoi_kougeki_cooltime_kyou: 0
+  dekoi_jaku: 0
+  dekoi_kyou: 0
   speed_mode: 0
   sayuu: 0
   jouge: 0
@@ -989,8 +994,6 @@ MonoBehaviour:
   Dekoi: {fileID: 878131923}
   hidan: 0
   hidan_otoko1: 0
-  attac: 0
-  attack_otoko1: 0
 --- !u!1 &1124691289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1698,10 @@ PrefabInstance:
     - target: {fileID: 5506427163624294909, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017433237977753955, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6040916567518576058, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Layer
