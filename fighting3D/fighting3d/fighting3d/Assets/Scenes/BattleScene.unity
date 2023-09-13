@@ -1488,6 +1488,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900cfc9e8dd2b4c44b2f55626b3865a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1151485749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9116171364577549859, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+  m_PrefabInstance: {fileID: 9142270390635113446}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1191391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_rigid_body
       value: 
       objectReference: {fileID: 1151485692}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: otoko1_obj_Child
+      value: 
+      objectReference: {fileID: 1151485749}
     - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: characterController
       value: 

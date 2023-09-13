@@ -353,19 +353,21 @@ public class dekoi : MonoBehaviour
         //地上で被弾
         if (jump_stop == true)
         {
+            Debug.Log(jump_stop);
             //弱ひるみ(弱攻撃)
             if (dekoi_kougeki_hidan == 1 ) 
             {
                 dekoi_kougeki_hit = 1;
                 animator.SetTrigger("dekoi_jaku_hirumi");
-                Debug.Log("player_弱ひるみ");
+                animator.SetInteger("dekoi_hirumi_int",1);
+                Debug.Log("dekoi_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (dekoi_kougeki_hidan == 2 )
             {
                 dekoi_kougeki_hit = 2;
                 animator.SetTrigger("dekoi_down");
-                Debug.Log("Player_ダウン");
+                Debug.Log("dekoi_ダウン");
             }
         }
     }
