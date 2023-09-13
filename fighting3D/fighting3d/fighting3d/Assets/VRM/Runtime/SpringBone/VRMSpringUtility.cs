@@ -21,17 +21,13 @@ namespace VRM
                 .Select(x => x.GetComponent<VRMSpringBoneColliderGroup>())
                 .Where(x => x != null))
             {
-                var index = nodes.IndexOf(vrmColliderGroup.transform);
-                if (index == -1)
-                {
-                    continue;
-                }
-
                 colliders.Add(vrmColliderGroup);
+
                 var colliderGroup = new glTF_VRM_SecondaryAnimationColliderGroup
                 {
-                    node = index
+                    node = nodes.IndexOf(vrmColliderGroup.transform)
                 };
+
                 colliderGroup.colliders = vrmColliderGroup.Colliders.Select(x =>
                 {
                     return new glTF_VRM_SecondaryAnimationCollider
@@ -66,12 +62,7 @@ namespace VRM
             }
         }
 
-        /// <summary>
-        /// Node getter. If not found, Never throw, return false.
-        /// </summary>
-        public delegate bool TryGetNode(int index, out Transform transform);
-
-        public static void LoadSecondary(Transform root, TryGetNode tryGetNode,
+        public static void LoadSecondary(Transform root, List<Transform> nodes,
             glTF_VRM_SecondaryAnimation secondaryAnimation)
         {
             var secondary = root.Find("secondary");
@@ -117,27 +108,20 @@ namespace VRM
                 }
             }
 
+            //var secondaryAnimation = context.VRM.extensions.VRM.secondaryAnimation;
             var colliders = new List<VRMSpringBoneColliderGroup>();
             foreach (var colliderGroup in secondaryAnimation.colliderGroups)
             {
-                if (tryGetNode(colliderGroup.node, out var node))
+                var vrmGroup = nodes[colliderGroup.node].gameObject.AddComponent<VRMSpringBoneColliderGroup>();
+                vrmGroup.Colliders = colliderGroup.colliders.Select(x =>
                 {
-                    var vrmGroup = node.gameObject.AddComponent<VRMSpringBoneColliderGroup>();
-                    vrmGroup.Colliders = colliderGroup.colliders.Select(x =>
+                    return new VRMSpringBoneColliderGroup.SphereCollider
                     {
-                        return new VRMSpringBoneColliderGroup.SphereCollider
-                        {
-                            Offset = x.offset,
-                            Radius = x.radius
-                        };
-                    }).ToArray();
-                    colliders.Add(vrmGroup);
-                }
-                else
-                {
-                    Debug.LogError("Broken collider group");
-                    break;
-                }
+                        Offset = x.offset,
+                        Radius = x.radius
+                    };
+                }).ToArray();
+                colliders.Add(vrmGroup);
             }
 
             if (secondaryAnimation.boneGroups.Count > 0)
@@ -145,9 +129,9 @@ namespace VRM
                 foreach (var boneGroup in secondaryAnimation.boneGroups)
                 {
                     var vrmBoneGroup = secondary.gameObject.AddComponent<VRMSpringBone>();
-                    if (tryGetNode(boneGroup.center, out var node))
+                    if (boneGroup.center != -1)
                     {
-                        vrmBoneGroup.m_center = node;
+                        vrmBoneGroup.m_center = nodes[boneGroup.center];
                     }
 
                     vrmBoneGroup.m_comment = boneGroup.comment;
@@ -163,20 +147,14 @@ namespace VRM
                         for (int i = 0; i < boneGroup.colliderGroups.Length; ++i)
                         {
                             var colliderGroup = boneGroup.colliderGroups[i];
-                            if (colliderGroup >= 0 && colliderGroup < colliders.Count)
-                            {
-                                vrmBoneGroup.ColliderGroups[i] = colliders[colliderGroup];
-                            }
+                            vrmBoneGroup.ColliderGroups[i] = colliders[colliderGroup];
                         }
                     }
 
                     var boneList = new List<Transform>();
                     foreach (var x in boneGroup.bones)
                     {
-                        if (tryGetNode(x, out var boneNode))
-                        {
-                            boneList.Add(boneNode);
-                        }
+                        boneList.Add(nodes[x]);
                     }
 
                     vrmBoneGroup.RootBones = boneList;
