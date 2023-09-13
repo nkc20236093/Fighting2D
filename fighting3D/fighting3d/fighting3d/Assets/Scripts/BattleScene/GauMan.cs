@@ -24,7 +24,7 @@ public class GauMan : MonoBehaviour
     public static float currentStaGauge;
 
     public static float maxEnemyStaGauge = 100f;
-    public static float currentEnemyStaGauge;;
+    public static float currentEnemyStaGauge;
 
     public static float maxSkiGauge = 100f;
     public static float currentSkiGauge;
