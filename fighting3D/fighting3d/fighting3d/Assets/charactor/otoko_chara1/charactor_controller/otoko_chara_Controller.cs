@@ -372,6 +372,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         Debug.Log("’x‰„");
         jouge = -1f;
     }
+
+
+
     //UŒ‚E”í’e‚Ü‚Æ‚ß
 
     //—^ƒ_ƒ[ƒW
