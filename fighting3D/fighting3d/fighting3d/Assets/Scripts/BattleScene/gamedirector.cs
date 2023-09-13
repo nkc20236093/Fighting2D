@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class gamedirector : MonoBehaviour
 {
+
+
+    public object HPgauge;
+
     public Otoko_chara_Controller otoko_Chara_Controller;
     public dekoi Dekoi;
 
@@ -25,6 +29,10 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log("íjÉLÉÉÉâ1çUåÇ");
             Otoko1_attack();
+
+
+
+            
         }
         //dekoiÇ©ÇÁçUåÇ
         if (Dekoi.dekoi_kougeki_attack != 0)
@@ -39,6 +47,11 @@ public class gamedirector : MonoBehaviour
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
+
+            
+
+
+
         }
     }
     public void Dekoi_attack()
@@ -47,6 +60,7 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
+
         }
     }
 }
