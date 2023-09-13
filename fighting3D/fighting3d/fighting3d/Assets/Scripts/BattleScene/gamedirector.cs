@@ -35,7 +35,7 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-        if (otoko_Chara_Controller.attack_cooltime_jaku >= 0.5f || otoko_Chara_Controller.attack_cooltime_kyou >= 1) 
+        if (otoko_Chara_Controller.attack_permission == true)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
@@ -43,7 +43,7 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_kougeki_cooltime_jaku >= 0.5f || Dekoi.dekoi_kougeki_cooltime_kyou >= 1) 
+        if (Dekoi.dekoi_attack_permission == true) 
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;

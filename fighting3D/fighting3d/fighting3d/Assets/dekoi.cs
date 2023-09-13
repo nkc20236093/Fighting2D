@@ -29,6 +29,11 @@ public class dekoi : MonoBehaviour
     public int dekoi_jaku;
     public int dekoi_kyou;
 
+    //攻撃許可用bool
+    public bool dekoi_attack_permission;
+    //trur = 許可
+    //false= 不許可
+
     //Transformコンポーネントを取得
     Transform mytransform;
 
@@ -131,13 +136,17 @@ public class dekoi : MonoBehaviour
             Real_Time += Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && dekoi_kougeki_cooltime_jaku < 0.5f) 
         {
             dekoi_kougeki_cooltime_jaku += Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && dekoi_kougeki_cooltime_kyou < 1f)
         {
             dekoi_kougeki_cooltime_kyou += Time.deltaTime;
+        }
+        if (dekoi_kougeki_cooltime_jaku >= 0.5f || dekoi_kougeki_cooltime_kyou >= 1)
+        {
+            dekoi_attack_permission = true;
         }
 
         //以下基本動作
@@ -344,15 +353,16 @@ public class dekoi : MonoBehaviour
         if (jump_stop == true)
         {
             //弱攻撃
-            if (dekoi_kougeki_attack == 1 && dekoi_kougeki_cooltime_jaku >= 0.5f)
+            if (dekoi_kougeki_attack == 1 && dekoi_attack_permission == true)
             {
                 Debug.Log("player_kougeki_attack1");
             }
             //強攻撃
-            if (dekoi_kougeki_attack == 2 && dekoi_kougeki_cooltime_kyou >= 1)
+            if (dekoi_kougeki_attack == 2 && dekoi_attack_permission == true)
             {
                 Debug.Log("player_kougeki_attack2");
             }
+            dekoi_attack_permission = false;
             Invoke(nameof(Cooltime_Shoki), 0.1f);
         }
     }
