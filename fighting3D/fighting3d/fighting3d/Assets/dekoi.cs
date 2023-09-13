@@ -171,14 +171,15 @@ public class dekoi : MonoBehaviour
         }
         
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            gameObject.SetDekoiChild(6);
+            gameObject.layer = LayerMask.NameToLayer("Attack");
             idouVec = Vector3.zero;
         }
         if (!Input.anyKey)
         {
-            gameObject.layer = LayerMask.NameToLayer("Player");
+            Layer_Shoki();
         }
 
         //横移動の処理
@@ -227,7 +228,7 @@ public class dekoi : MonoBehaviour
         //ワールド座標を基準に回転を取得
         Vector3 World_angle = mytransform.eulerAngles;
         //左右どちらかに移動中
-        if (sayuu != 0)
+        if (Input.GetButtonDown("Horizontal"))
         {
             //右移動
             if (sayuu > 0)
@@ -280,6 +281,7 @@ public class dekoi : MonoBehaviour
     //停止状態の変数初期化
     void Attack_or_HIdan_Shoki()
     {
+        animator.SetInteger("dekoi_hirumi_int", 0);
         dekoi_kougeki_attack = 0;
         dekoi_kougeki_hidan = 0;
     }
@@ -287,6 +289,11 @@ public class dekoi : MonoBehaviour
     {
         dekoi_kougeki_cooltime_jaku = 0;
         dekoi_kougeki_cooltime_kyou = 0;
+    }
+    public void Layer_Shoki()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        gameObject.SetDekoiChild(3);
     }
     //当たり判定まとめ
 
@@ -309,12 +316,14 @@ public class dekoi : MonoBehaviour
             if (dekoi_kougeki_attack != 0) 
             {
                 //レイヤー変更
+                gameObject.SetDekoiChild(7);
                 gameObject.layer = LayerMask.NameToLayer("Attack");
                 Attack();
             }
             else if (dekoi_kougeki_hidan != 0)
             {
                 //レイヤー変更
+                gameObject.SetDekoiChild(6);
                 gameObject.layer = LayerMask.NameToLayer("Hantei");
                 Hidan();
             }
@@ -353,7 +362,6 @@ public class dekoi : MonoBehaviour
         //地上で被弾
         if (jump_stop == true)
         {
-            Debug.Log(jump_stop);
             //弱ひるみ(弱攻撃)
             if (dekoi_kougeki_hidan == 1 ) 
             {
@@ -369,6 +377,7 @@ public class dekoi : MonoBehaviour
                 animator.SetTrigger("dekoi_down");
                 Debug.Log("dekoi_ダウン");
             }
+            Attack_or_HIdan_Shoki();
         }
     }
     public void Dekoi_jab()

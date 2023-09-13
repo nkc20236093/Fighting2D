@@ -20,11 +20,6 @@ public class gamedirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //‰½‚à‰Ÿ‚³‚ê‚È‚©‚Á‚½‚ç•Ï”‚ð’x‰„‚µ‚Ä‰Šú‰»
-        if (!Input.anyKeyDown)
-        {
-            Invoke(nameof(Chien_gamedirector), 0.2f);
-        }
         //’jƒLƒƒƒ‰1‚©‚çUŒ‚
         if (otoko_Chara_Controller.otoko1_kougeki_attack != 0)
         {
@@ -40,7 +35,7 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-        if (otoko_Chara_Controller.otoko1_kougeki_attack != 0) 
+        if (otoko_Chara_Controller.attack_cooltime_jaku >= 0.5f || otoko_Chara_Controller.attack_cooltime_kyou >= 1) 
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
@@ -48,15 +43,10 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_kougeki_attack != 0)
+        if (Dekoi.dekoi_kougeki_cooltime_jaku >= 0.5f || Dekoi.dekoi_kougeki_cooltime_kyou >= 1) 
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
         }
-    }
-    public void Chien_gamedirector()
-    {
-        hidan = 0;
-        hidan_otoko1 = 0;
     }
 }

@@ -160,14 +160,14 @@ public class Otoko_chara_Controller : MonoBehaviour
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true)
+        if (Input.GetButtonDown("X or J") && jump_stop == true) 
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
             gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //強攻撃（A or K）
-        if (Input.GetAxisRaw("A or K") != 0 && jump_stop == true)
+        if (Input.GetButtonDown("A or K") && jump_stop == true) 
         {
             animator.SetTrigger("return_hook");
             Debug.Log("強攻撃");
@@ -193,7 +193,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
             gameObject.SetChildLayer(7);
-            gameObject.layer = LayerMask.NameToLayer("Hantei");
+            gameObject.layer = LayerMask.NameToLayer("Attack");
             idouVec = Vector3.zero;
         }
 
@@ -275,12 +275,14 @@ public class Otoko_chara_Controller : MonoBehaviour
         //ワールド座標を基準に回転を取得
         Vector3 World_angle = mytransform.eulerAngles;
         //左右どちらかに移動中
-        if (sayuu != 0)
+        if (Input.GetButton("Horizontal"))
         {
             animator.SetTrigger("Trigger_Move");
             //右移動
             if (sayuu > 0)
             {
+                //アニメーション分岐
+                animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = 1;
                 World_angle.y = -90;
@@ -290,6 +292,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             //左移動
             else if (sayuu < 0)
             {
+                //アニメーション分岐
+                animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = -1;
                 World_angle.y = 90;
