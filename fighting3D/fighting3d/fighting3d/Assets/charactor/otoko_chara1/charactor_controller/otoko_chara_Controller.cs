@@ -36,7 +36,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float attack_cooltime_kyou;
     //Transformコンポーネントを取得
     Transform mytransform;
-
+    //攻撃許可用bool
+    public bool attack_permission;
+    //true = 許可
+    //false= 不許可
     //キャラ向き変更用変数
     float chara_muki;
 
@@ -124,17 +127,22 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
         Debug.Log(otoko1_kougeki_hidan+"f");
         //クールタイムに時間を入れる
-        if (Input.GetButtonDown("X or J"))
+        if (Input.GetButtonDown("X or J") && attack_cooltime_jaku < 0.5f)  
         {
             attack_cooltime_jaku += Time.deltaTime;
         }
-        if (Input.GetButtonDown("A or K"))
+        if (Input.GetButtonDown("A or K") && attack_cooltime_kyou < 1)
         {
             attack_cooltime_kyou += Time.deltaTime;
         }
+        //攻撃許可
+        if (attack_cooltime_jaku >= 0.5f || attack_cooltime_kyou > 1) 
+        {
+            attack_permission = true;
+        }
 
-            //移動制限
-            Vector3 Pos = transform.position;
+        //移動制限
+        Vector3 Pos = transform.position;
         //X座標
         Pos.x = Mathf.Clamp(Pos.x, -4, 4);
         //Y座標
@@ -377,8 +385,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         jouge = -1f;
     }
 
-
-
     //攻撃・被弾まとめ
 
     //与ダメージ時
@@ -388,17 +394,18 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (jump_stop == true)
         {
             //弱攻撃
-            if (otoko1_kougeki_attack == 1 && attack_cooltime_jaku >= 0.5f)
+            if (otoko1_kougeki_attack == 1 && attack_permission == true)
             {
                 otoko1_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
             }
             //強攻撃
-            if (otoko1_kougeki_attack == 2 && attack_cooltime_kyou >= 1f)
+            if (otoko1_kougeki_attack == 2 && attack_permission == true)
             {
                 otoko1_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
+            attack_permission = false;
         }
 
     }
