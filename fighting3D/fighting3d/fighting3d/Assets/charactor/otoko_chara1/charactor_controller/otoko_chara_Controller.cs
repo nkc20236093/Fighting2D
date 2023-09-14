@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-
-
+    //GunManを取得
     public GauMan GauMan;
     //子オブジェクト用
     public Transform otoko1_obj_Child;
+
 
     //男1のレイヤー用変数
     public int otoko_layer;
     //アニメーターコンポーネントを取得
     Animator animator;
+    //被弾アニメーション用int
+    public int hirumi_anim_int;
+
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
 
@@ -72,7 +75,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float jump;
 
     //ジャンプのクールタイム
-    public float JumpCoolTime = 1.5f;
+    public float JumpCoolTime = 5f;
     //ジャンプの時間を判定
     public float jumpTime;
     //通常ジャンプパワー（統一予定）
@@ -85,7 +88,12 @@ public class Otoko_chara_Controller : MonoBehaviour
     public bool jump_stop;
     //false = 禁止
     //true  = 許可
-
+    //ジャンプアニメーション用bool
+    public bool jump_motion;
+    //false = 禁止
+    //true  = 許可
+    //ジャンプ回数用
+    public float first_jump;
     //ジャンプ状態切り替え
     public bool jump_mode;
     //false = 通常状態
@@ -126,7 +134,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //子オブジェクトを全て取得
         otoko1_obj_Child.GetComponentInChildren<Transform>();
+
+        //被弾を変数に代入
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
 
         //クールタイムに時間を入れる
@@ -230,14 +241,38 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             speed_origin = now_jumppower;
         }
+        //最初のジャンプ区別
+        if (Input.GetButtonDown("Vertical"))
+        {
+            first_jump++;
+        }
         //ジャンプの処理
-        //地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
+        //1回目&地面についてたら&ジャンプ入力がされてたら
+        if (jump_stop == true && jouge != 0 && first_jump <= 1)
         {
             animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
             Invoke(nameof(Chien), 0.001f);
+            if (jump_mode == true)
+            {
+                now_jumppower = jump_power;
+            }
+            else
+            {
+                now_jumppower = high_jump;
+            }
+            speed_origin = now_jumppower;
+            Invoke(nameof(JUMP), 0.01f);
+        }
+        //2回目&地面についてたら&ジャンプ入力がされてたら
+        else if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime && first_jump >= 1)
+        {
+            animator.SetTrigger("Trigger_Move");
+            jump_stop = false;
+            Real_Time = 0;
+            Invoke(nameof(Chien), 0.001f);
+            animator.SetTrigger("Trigger_Jump");
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -255,17 +290,17 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //アニメーション分岐用処理
         //弱攻撃
-        if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true)
+        if (Input.GetButton("X or J") && jump_stop == true)
         {
             ++jab_int;
         }
         //強攻撃
-        if (Input.GetAxisRaw("A or K") != 0 && jump_stop == true)
+        if (Input.GetButton("A or K") && jump_stop == true)
         {
             ++hook_int;
         }
         //攻撃アニメーション
-        if (Input.GetAxisRaw("X or J") != 0 && jump_stop == true || Input.GetAxisRaw("A or K") != 0 && jump_stop == true)
+        if (Input.GetButtonDown("X or J") && jump_stop == true || Input.GetButtonDown("A or K") && jump_stop == true)
         {
             animator.SetTrigger("Trigger_attack");
             //弱攻撃
@@ -282,34 +317,44 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Hook_1();
             }
         }
+        //被弾アニメーション
+        if (hirumi_anim_int != 0)
+        {
+            if (hirumi_anim_int == 1)
+            {
+                Hirumi();
+            }
+            else if (hirumi_anim_int == 2)
+            {
+                Down();
+            }
+        }
 
         //ワールド座標を基準に回転を取得
         Vector3 World_angle = mytransform.eulerAngles;
+
         //左右どちらかに移動中
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButtonDown("Horizontal"))
         {
+            //アニメーション分岐
             animator.SetTrigger("Trigger_Move");
             //右移動
             if (sayuu > 0)
             {
-                //アニメーション分岐
+                //アニメーション変更
                 animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = 1;
                 World_angle.y = -90;
-                //アニメーション変更
-                animator.SetInteger("int_walk", 1);
             }
             //左移動
             else if (sayuu < 0)
             {
-                //アニメーション分岐
+                //アニメーション変更
                 animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = -1;
                 World_angle.y = 90;
-                //アニメーション変更
-                animator.SetInteger("int_walk", 1);
             }
         }
         //停止状態
@@ -325,9 +370,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     //停止状態の変数初期化
     void Hensuu_shoki()
     {
-        animator.SetInteger("int_walk", 0);
-        animator.SetInteger("int_jab", 0);
-        animator.SetInteger("int_hook", 0);
         otoko1_kougeki_attack = 0;
         otoko1_kougeki_hidan = 0;
     }
@@ -356,6 +398,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 jouge = jump;
             }
             jump_stop = true;
+            jump_motion = true;
         }
         CoolTime_Shoki();
     }
@@ -405,6 +448,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地上攻撃
         if (jump_stop == true)
         {
+            animator.SetTrigger("Trigger_Move");
             //弱攻撃
             if (otoko1_kougeki_attack == 1 && attack_permission == true)
             {
@@ -430,24 +474,40 @@ public class Otoko_chara_Controller : MonoBehaviour
             //弱ひるみ(弱攻撃)
             if (otoko1_kougeki_hidan == 1)
             {
-                animator.SetInteger("int_hirumi", 1);
+                //アニメーション条件を満たす
+                hirumi_anim_int = 1;
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (otoko1_kougeki_hidan == 2) 
             {
-                animator.SetInteger("int_hirumi", 2);
-                animator.SetTrigger("return_down");
+                //アニメーション条件を満たす
+                hirumi_anim_int = 2;
                 Debug.Log("Player_ダウン");
             }
         }
     }
     public void Jab_1()
     {
-        animator.SetInteger("int_jab", 1);
+        animator.SetTrigger("return_jab");
     }
     public void Hook_1()
     {
-        animator.SetInteger("int_hook", 1);
+        animator.SetTrigger("return_hook");
+    }
+
+    public void Hirumi()
+    {
+        //アニメーション実行
+        animator.SetTrigger("return_jaku_hirumi");
+    }
+    public void Down()
+    {
+        //アニメーション実行
+        animator.SetTrigger("retuen_down");
+    }
+    public void JUMP()
+    {
+        animator.SetTrigger("Trigger_Jump");
     }
 }
