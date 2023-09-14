@@ -128,7 +128,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         otoko1_obj_Child.GetComponentInChildren<Transform>();
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
-        Debug.Log(otoko1_kougeki_hidan+"f");
+
         //クールタイムに時間を入れる
         if (Input.GetButtonDown("X or J") && attack_cooltime_jaku < 0.5f)  
         {
@@ -357,7 +357,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             jump_stop = true;
         }
-        if (stay_other.CompareTag("Player"))
+        CoolTime_Shoki();
+    }
+    //触れた瞬間判定
+    public void OnTriggerEnter(Collider enter_other)
+    {
+        if (enter_other.CompareTag("Player"))
         {
             Debug.Log("dekoi検知");
             if (otoko1_kougeki_attack != 0)
@@ -414,7 +419,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
             attack_permission = false;
         }
-
     }
     //被ダメージ時
     public void Hidan()
