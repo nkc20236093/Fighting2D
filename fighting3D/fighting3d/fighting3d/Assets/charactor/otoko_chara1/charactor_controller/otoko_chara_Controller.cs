@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+
+
+    public GauMan GauMan;
     //子オブジェクト用
     public Transform otoko1_obj_Child;
 
@@ -339,7 +342,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         attack_cooltime_kyou = 0;
     }
     //当たり判定まとめ
-
+    
     //触れ続けてる間判定
     public void OnTriggerStay(Collider stay_other)
     {
@@ -370,6 +373,10 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
+               // GauMan.DecreaseEnemyHPGauge(1);
+
+                
+
                 //レイヤー変更
                 gameObject.SetChildLayer(6);
                 gameObject.layer = LayerMask.NameToLayer("Hantei");

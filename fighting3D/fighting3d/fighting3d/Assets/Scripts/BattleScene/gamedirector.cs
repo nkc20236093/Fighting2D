@@ -5,6 +5,8 @@ using UnityEngine;
 public class gamedirector : MonoBehaviour
 {
 
+    
+    public GauMan GauMan;
 
     public object HPgauge;
 
@@ -47,12 +49,16 @@ public class gamedirector : MonoBehaviour
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
-
-            
-
+            Debug.Log("kougekiPlayerToEnmey");
 
 
-        }
+          GauMan.DecreaseEnemyHPGauge(10);
+
+
+
+
+
+}
     }
     public void Dekoi_attack()
     {
@@ -60,6 +66,8 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
+
+            GauMan.DecreaseEnemyHPGauge(1);
 
         }
     }

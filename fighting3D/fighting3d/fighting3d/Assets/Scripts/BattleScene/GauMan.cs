@@ -37,19 +37,14 @@ public class GauMan : MonoBehaviour
     void Start()
     {
         currentHPGauge = maxHPGauge;
-        UpdateGaugeUI();
 
         currentEnemyHPGauge = maxEnemyHPGauge;
-        UpdateGaugeUI();
 
         currentStaGauge = maxStaGauge;
-        UpdateGaugeUI();
 
         currentEnemyStaGauge = maxEnemyStaGauge;
-        UpdateGaugeUI();
 
         currentSkiGauge = maxSkiGauge;
-        UpdateGaugeUI();
 
         currentEnemySkiGauge = maxEnemySkiGauge;
         UpdateGaugeUI();

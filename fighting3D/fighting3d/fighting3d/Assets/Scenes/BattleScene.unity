@@ -1510,6 +1510,7 @@ MonoBehaviour:
   dekoi_kougeki_cooltime_kyou: 0
   dekoi_jaku: 0
   dekoi_kyou: 0
+  dekoi_attack_permission: 0
   speed_mode: 0
   sayuu: 0
   jouge: 0
@@ -1633,10 +1634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d23fa7a1333374584fd83e9fb5f39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GauMan: {fileID: 1957574566}
   otoko_Chara_Controller: {fileID: 1151485741}
   Dekoi: {fileID: 878131923}
-  hidan: 0
-  hidan_otoko1: 0
+  hidan: 10
+  hidan_otoko1: 10
 --- !u!1 &981360537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,8 +3075,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957574565}
+  - component: {fileID: 1957574566}
   m_Layer: 0
-  m_Name: HPgaugeMan
+  m_Name: GauMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3095,6 +3098,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 981360538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1957574566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957574564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d2a355b2f9dbb4cbf9493dcf883106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HPGaugeSlider: {fileID: 1286620986}
+  EnemyHPGaugeSlider: {fileID: 722910146}
+  StaGaugeSlider: {fileID: 786567763}
+  EnemyStaGaugeSlider: {fileID: 668994757}
+  SkiGaugeSlider: {fileID: 0}
+  EnemySkiGaugeSlider: {fileID: 0}
 --- !u!1 &2040381612
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,6 +3230,10 @@ PrefabInstance:
       propertyPath: dekoi
       value: 
       objectReference: {fileID: 878131923}
+    - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
+      propertyPath: GauMan
+      value: 
+      objectReference: {fileID: 1957574566}
     - target: {fileID: 447726599616119721, guid: 462f7067d5b6e184db0311ba897cf44e, type: 3}
       propertyPath: m_Enabled
       value: 1
