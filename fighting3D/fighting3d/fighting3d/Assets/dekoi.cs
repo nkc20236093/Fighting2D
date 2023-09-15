@@ -322,6 +322,7 @@ public class dekoi : MonoBehaviour
         }
         if (stay_other.CompareTag("Player")) 
         {
+            Debug.Log("Player検知");
             if (dekoi_kougeki_attack != 0) 
             {
                 //レイヤー変更
@@ -355,11 +356,13 @@ public class dekoi : MonoBehaviour
             //弱攻撃
             if (dekoi_kougeki_attack == 1 && dekoi_attack_permission == true)
             {
+                dekoi_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
             }
             //強攻撃
             if (dekoi_kougeki_attack == 2 && dekoi_attack_permission == true)
             {
+                dekoi_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
             dekoi_attack_permission = false;
@@ -375,7 +378,6 @@ public class dekoi : MonoBehaviour
             //弱ひるみ(弱攻撃)
             if (dekoi_kougeki_hidan == 1 ) 
             {
-                dekoi_kougeki_hit = 1;
                 animator.SetTrigger("dekoi_jaku_hirumi");
                 animator.SetInteger("dekoi_hirumi_int",1);
                 Debug.Log("dekoi_弱ひるみ");
@@ -383,7 +385,6 @@ public class dekoi : MonoBehaviour
             //ダウン（強攻撃 or 必殺技 or 投げ）
             if (dekoi_kougeki_hidan == 2 )
             {
-                dekoi_kougeki_hit = 2;
                 animator.SetTrigger("dekoi_down");
                 Debug.Log("dekoi_ダウン");
             }

@@ -6,6 +6,17 @@ using UnityEngine.UI;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
+    //レイの距離
+    float Ray_Distance = 5;
+    //レイを取得
+    Ray otoko1_ray;
+    //レイの原点
+    Vector3 otoko1_ray_Origin;
+    //レイの方向
+    Vector3 otoko1_ray_Vector3 = new Vector3(-1, 0, 0);
+    //レイキャストを取得
+    RaycastHit hit;
+
     //GunManを取得
     public GauMan GauMan;
     //子オブジェクト用
@@ -99,19 +110,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     //false = 通常状態
     //true  = ハイジャンプ状態
 
-    //各初期ステータス
-
-    ////HP
-    //int hp = 10;
-    ////攻撃力
-    //int attack = 10;
-    ////素早さ(俊敏)
-    //int speed = 10;
-    ////スタミナ(耐久)
-    //int stamina = 10;
-    ////賢さ(熟知)
-    //int cleverness = 10;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -134,11 +132,47 @@ public class Otoko_chara_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //子オブジェクトを全て取得
-        otoko1_obj_Child.GetComponentInChildren<Transform>();
-
         //被弾を変数に代入
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
+
+        //座標を代入
+        otoko1_ray_Origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z);
+        //レイを生成
+        otoko1_ray = new Ray(otoko1_ray_Origin, otoko1_ray_Vector3);
+        //デバッグ用レイ
+        Debug.DrawRay(otoko1_ray.origin, otoko1_ray.direction, Color.red, 30f);
+        //当たり判定用レイ
+        if (Physics.Raycast(otoko1_ray, out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.Log(hit.collider.gameObject);
+                if (otoko1_kougeki_attack != 0)
+                {
+                    Debug.Log(otoko1_kougeki_attack);
+                    Debug.Log("Attack");
+                    //レイヤー変更
+                    gameObject.SetChildLayer(7);
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Attack();
+                }
+                else if (otoko1_kougeki_hidan != 0)
+                {
+                    Debug.Log(otoko1_kougeki_hidan);
+                    animator.SetTrigger("Trigger_Move");
+                    Debug.Log("被弾");
+                    //GauMan.DecreaseEnemyHPGauge(1);
+                    //レイヤー変更
+                    gameObject.SetChildLayer(6);
+                    gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    Hidan();
+                }
+            }
+            Invoke(nameof(CoolTime_Shoki), 0.1f);
+        }
+
+        //子オブジェクトを全て取得
+        otoko1_obj_Child.GetComponentInChildren<Transform>();
 
         //クールタイムに時間を入れる
         if (Input.GetButtonDown("X or J") && attack_cooltime_jaku < 0.5f)  
@@ -330,8 +364,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
         }
 
-        //ワールド座標を基準に回転を取得
-        Vector3 World_angle = mytransform.eulerAngles;
+        //ローカル座標を基準に回転を取得
+        Vector3 Local_angle = mytransform.localEulerAngles;
 
         //左右どちらかに移動中
         if (Input.GetButtonDown("Horizontal"))
@@ -345,7 +379,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = 1;
-                World_angle.y = -90;
+                Local_angle.y = -90;
             }
             //左移動
             else if (sayuu < 0)
@@ -354,18 +388,18 @@ public class Otoko_chara_Controller : MonoBehaviour
                 animator.SetTrigger("Trigger_walk");
                 //反転処理
                 chara_muki = -1;
-                World_angle.y = 90;
+                Local_angle.y = 90;
             }
         }
         //停止状態
         if (!Input.anyKey)
         {
             //変数初期化
-            Invoke(nameof(Hensuu_shoki), 0.1f);
+            Invoke(nameof(Hensuu_shoki), 0.2f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
         }
-        mytransform.eulerAngles = World_angle;
+        mytransform.eulerAngles = Local_angle;
     }
     //停止状態の変数初期化
     void Hensuu_shoki()
@@ -403,36 +437,36 @@ public class Otoko_chara_Controller : MonoBehaviour
         CoolTime_Shoki();
     }
     //触れた瞬間判定
-    public void OnTriggerEnter(Collider enter_other)
-    {
-        if (enter_other.CompareTag("Player"))
-        {
-            Debug.Log("dekoi検知");
-            if (otoko1_kougeki_attack != 0)
-            {
-                Debug.Log("Attack");
-                //レイヤー変更
-                gameObject.SetChildLayer(7);
-                gameObject.layer = LayerMask.NameToLayer("Attack");
-                Attack();
-            }
-            else if (otoko1_kougeki_hidan != 0)
-            {
-                Debug.Log("Hiddan");
-                animator.SetTrigger("Trigger_Move");
-                Debug.Log("被弾");
-               // GauMan.DecreaseEnemyHPGauge(1);
+    //public void OnTriggerEnter(Collider enter_other)
+    //{
+    //    if (enter_other.CompareTag("Player"))
+    //    {
+    //        Debug.Log("dekoi検知");
+    //        if (otoko1_kougeki_attack != 0)
+    //        {
+    //            Debug.Log("Attack");
+    //            //レイヤー変更
+    //            gameObject.SetChildLayer(7);
+    //            gameObject.layer = LayerMask.NameToLayer("Attack");
+    //            Attack();
+    //        }
+    //        else if (otoko1_kougeki_hidan != 0)
+    //        {
+    //            Debug.Log("Hiddan");
+    //            animator.SetTrigger("Trigger_Move");
+    //            Debug.Log("被弾");
+    //           // GauMan.DecreaseEnemyHPGauge(1);
 
                 
 
-                //レイヤー変更
-                gameObject.SetChildLayer(6);
-                gameObject.layer = LayerMask.NameToLayer("Hantei");
-                Hidan();
-            }
-        }
-        Invoke(nameof(CoolTime_Shoki), 0.1f);
-    }
+    //            //レイヤー変更
+    //            gameObject.SetChildLayer(6);
+    //            gameObject.layer = LayerMask.NameToLayer("Hantei");
+    //            Hidan();
+    //        }
+    //    }
+    //    Invoke(nameof(CoolTime_Shoki), 0.1f);
+    //}
     void Chien()
     {
         jump_stop = false;
@@ -504,7 +538,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public void Down()
     {
         //アニメーション実行
-        animator.SetTrigger("retuen_down");
+        animator.SetTrigger("return_down");
     }
     public void JUMP()
     {
