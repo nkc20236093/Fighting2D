@@ -81,16 +81,16 @@ public class dekoi : MonoBehaviour
 
     //Še‰ŠúƒXƒe[ƒ^ƒX
 
-    //HP
-    int hp = 10;
-    //UŒ‚—Í
-    int attack = 10;
-    //‘f‘‚³(r•q)
-    int speed = 10;
-    //ƒXƒ^ƒ~ƒi(‘Ï‹v)
-    int stamina = 10;
-    //Œ«‚³(n’m)
-    int cleverness = 10;
+    ////HP
+    //int hp = 10;
+    ////UŒ‚—Í
+    //int attack = 10;
+    ////‘f‘‚³(r•q)
+    //int speed = 10;
+    ////ƒXƒ^ƒ~ƒi(‘Ï‹v)
+    //int stamina = 10;
+    ////Œ«‚³(n’m)
+    //int cleverness = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +115,6 @@ public class dekoi : MonoBehaviour
     void Update()
     {
         dekoi_kougeki_hidan = gamedirector.hidan;
-
         //ˆÚ“®§ŒÀ
         Vector3 Pos = transform.position;
         //XÀ•W

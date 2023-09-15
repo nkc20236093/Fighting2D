@@ -7,6 +7,8 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
     public object HPgauge;
 
+    int test;
+    int test2;
     public Otoko_chara_Controller otoko_Chara_Controller;
     public dekoi Dekoi;
 
@@ -50,6 +52,8 @@ public class gamedirector : MonoBehaviour
         if (Dekoi.dekoi_attack_permission == true) 
         {
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
+            test = Dekoi.dekoi_kougeki_attack;
+            test2 = hidan_otoko1;
             GauMan.DecreaseEnemyHPGauge(1);
         }
     }

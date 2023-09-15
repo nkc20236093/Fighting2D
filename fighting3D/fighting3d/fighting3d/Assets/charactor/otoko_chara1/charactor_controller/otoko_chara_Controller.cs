@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
@@ -134,7 +130,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         //被弾を変数に代入
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
-
         //座標を代入
         otoko1_ray_Origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z);
         //レイを生成
@@ -158,7 +153,6 @@ public class Otoko_chara_Controller : MonoBehaviour
                 }
                 else if (otoko1_kougeki_hidan != 0)
                 {
-                    Debug.Log(otoko1_kougeki_hidan);
                     animator.SetTrigger("Trigger_Move");
                     Debug.Log("被弾");
                     //GauMan.DecreaseEnemyHPGauge(1);
@@ -175,7 +169,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_obj_Child.GetComponentInChildren<Transform>();
 
         //クールタイムに時間を入れる
-        if (Input.GetButtonDown("X or J") && attack_cooltime_jaku < 0.5f)  
+        if (Input.GetButtonDown("X or J") && attack_cooltime_jaku < 0.5f)
         {
             attack_cooltime_jaku += Time.deltaTime;
         }
@@ -184,7 +178,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             attack_cooltime_kyou += Time.deltaTime;
         }
         //攻撃許可
-        if (attack_cooltime_jaku >= 0.5f || attack_cooltime_kyou > 1) 
+        if (attack_cooltime_jaku >= 0.5f || attack_cooltime_kyou > 1)
         {
             attack_permission = true;
         }
@@ -216,14 +210,14 @@ public class Otoko_chara_Controller : MonoBehaviour
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetButtonDown("X or J") && jump_stop == true) 
+        if (Input.GetButtonDown("X or J") && jump_stop == true)
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
             gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //強攻撃（A or K）
-        if (Input.GetButtonDown("A or K") && jump_stop == true) 
+        if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
             animator.SetTrigger("return_hook");
             Debug.Log("強攻撃");
@@ -246,7 +240,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("ガード");
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
+        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J"))
         {
             gameObject.SetChildLayer(7);
             gameObject.layer = LayerMask.NameToLayer("Attack");
@@ -418,7 +412,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         attack_cooltime_kyou = 0;
     }
     //当たり判定まとめ
-    
+
     //触れ続けてる間判定
     public void OnTriggerStay(Collider stay_other)
     {
@@ -457,7 +451,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     //            Debug.Log("被弾");
     //           // GauMan.DecreaseEnemyHPGauge(1);
 
-                
+
 
     //            //レイヤー変更
     //            gameObject.SetChildLayer(6);
@@ -502,7 +496,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public void Hidan()
     {
         //地上で被弾
-        if(jump_stop == true)
+        if (jump_stop == true)
         {
             animator.SetTrigger("Trigger_hirumi");
             //弱ひるみ(弱攻撃)
@@ -513,7 +507,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("player_弱ひるみ");
             }
             //ダウン（強攻撃 or 必殺技 or 投げ）
-            if (otoko1_kougeki_hidan == 2) 
+            if (otoko1_kougeki_hidan == 2)
             {
                 //アニメーション条件を満たす
                 hirumi_anim_int = 2;
