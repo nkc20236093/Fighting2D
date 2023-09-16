@@ -81,16 +81,16 @@ public class dekoi : MonoBehaviour
 
     //Še‰ŠúƒXƒe[ƒ^ƒX
 
-    //HP
-    int hp = 10;
-    //UŒ‚—Í
-    int attack = 10;
-    //‘f‘‚³(r•q)
-    int speed = 10;
-    //ƒXƒ^ƒ~ƒi(‘Ï‹v)
-    int stamina = 10;
-    //Œ«‚³(n’m)
-    int cleverness = 10;
+    ////HP
+    //int hp = 10;
+    ////UŒ‚—Í
+    //int attack = 10;
+    ////‘f‘‚³(r•q)
+    //int speed = 10;
+    ////ƒXƒ^ƒ~ƒi(‘Ï‹v)
+    //int stamina = 10;
+    ////Œ«‚³(n’m)
+    //int cleverness = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +115,6 @@ public class dekoi : MonoBehaviour
     void Update()
     {
         dekoi_kougeki_hidan = gamedirector.hidan;
-
         //ˆÚ“®§ŒÀ
         Vector3 Pos = transform.position;
         //XÀ•W
@@ -322,6 +321,7 @@ public class dekoi : MonoBehaviour
         }
         if (stay_other.CompareTag("Player")) 
         {
+            Debug.Log("PlayerŒŸ’m");
             if (dekoi_kougeki_attack != 0) 
             {
                 //ƒŒƒCƒ„[•ÏX
@@ -355,11 +355,13 @@ public class dekoi : MonoBehaviour
             //ãUŒ‚
             if (dekoi_kougeki_attack == 1 && dekoi_attack_permission == true)
             {
+                dekoi_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
             }
             //‹­UŒ‚
             if (dekoi_kougeki_attack == 2 && dekoi_attack_permission == true)
             {
+                dekoi_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
             dekoi_attack_permission = false;
@@ -375,7 +377,6 @@ public class dekoi : MonoBehaviour
             //ã‚Ğ‚é‚İ(ãUŒ‚)
             if (dekoi_kougeki_hidan == 1 ) 
             {
-                dekoi_kougeki_hit = 1;
                 animator.SetTrigger("dekoi_jaku_hirumi");
                 animator.SetInteger("dekoi_hirumi_int",1);
                 Debug.Log("dekoi_ã‚Ğ‚é‚İ");
@@ -383,7 +384,6 @@ public class dekoi : MonoBehaviour
             //ƒ_ƒEƒ“i‹­UŒ‚ or •KE‹Z or “Š‚°j
             if (dekoi_kougeki_hidan == 2 )
             {
-                dekoi_kougeki_hit = 2;
                 animator.SetTrigger("dekoi_down");
                 Debug.Log("dekoi_ƒ_ƒEƒ“");
             }

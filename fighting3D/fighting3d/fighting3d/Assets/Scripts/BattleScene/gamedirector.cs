@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gamedirector : MonoBehaviour
+<<<<<<< HEAD
 {
 
 
@@ -10,7 +11,12 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
 
 
+=======
+{    
+    public GauMan GauMan;
+>>>>>>> origin/main
     public object HPgauge;
+
 
     public Otoko_chara_Controller otoko_Chara_Controller;
     public dekoi Dekoi;
@@ -22,20 +28,20 @@ public class gamedirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
     void Update()
     {
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_attack != 0)
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
             Debug.Log("男キャラ1攻撃");
             Otoko1_attack();
         }
         //dekoiから攻撃
-        if (Dekoi.dekoi_kougeki_attack != 0)
+        else if (Dekoi.dekoi_kougeki_hit != 0)
         {
             Debug.Log("デコイ攻撃");
             Dekoi_attack();
@@ -45,6 +51,7 @@ public class gamedirector : MonoBehaviour
     {
         if (otoko_Chara_Controller.attack_permission == true)
         {
+<<<<<<< HEAD
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
 
@@ -61,16 +68,27 @@ public class gamedirector : MonoBehaviour
 
         }
 
+=======
+            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+            Debug.Log("kougekiPlayerToEnmey");
+            GauMan.DecreaseEnemyHPGauge(10);
+        }
+>>>>>>> origin/main
     }
     public void Dekoi_attack()
     {
         if (Dekoi.dekoi_attack_permission == true) 
         {
+<<<<<<< HEAD
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
 
             
 
+=======
+            hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
+            GauMan.DecreaseEnemyHPGauge(1);
+>>>>>>> origin/main
         }
     }
 }
