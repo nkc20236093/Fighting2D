@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gamedirector : MonoBehaviour
-<<<<<<< HEAD
 {
 
 
@@ -11,10 +10,9 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
 
 
-=======
-{    
-    public GauMan GauMan;
->>>>>>> origin/main
+
+
+   
     public object HPgauge;
 
 
@@ -51,7 +49,7 @@ public class gamedirector : MonoBehaviour
     {
         if (otoko_Chara_Controller.attack_permission == true)
         {
-<<<<<<< HEAD
+
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
 
@@ -60,35 +58,21 @@ public class gamedirector : MonoBehaviour
 
           GauMan.DecreaseEnemyHPGauge(10);
 
-
-
-
-
-
-
         }
 
-=======
-            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
-            Debug.Log("kougekiPlayerToEnmey");
-            GauMan.DecreaseEnemyHPGauge(10);
-        }
->>>>>>> origin/main
+
     }
     public void Dekoi_attack()
     {
         if (Dekoi.dekoi_attack_permission == true) 
         {
-<<<<<<< HEAD
+
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
 
             
 
-=======
-            hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
-            GauMan.DecreaseEnemyHPGauge(1);
->>>>>>> origin/main
+
         }
     }
 }
