@@ -444,7 +444,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         CoolTime_Shoki();
     }
     //触れた瞬間判定
-<<<<<<< HEAD
+
     public void OnTriggerEnter(Collider enter_other)
     {
         if (enter_other.CompareTag("Player"))
@@ -463,43 +463,45 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
-<<<<<<< HEAD
-               GauMan.DecreaseEnemyHPGauge(10);
-=======
-    //public void OnTriggerEnter(Collider enter_other)
-    //{
-    //    if (enter_other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("dekoi検知");
-    //        if (otoko1_kougeki_attack != 0)
-    //        {
-    //            Debug.Log("Attack");
-    //            //レイヤー変更
-    //            gameObject.SetChildLayer(7);
-    //            gameObject.layer = LayerMask.NameToLayer("Attack");
-    //            Attack();
-    //        }
-    //        else if (otoko1_kougeki_hidan != 0)
-    //        {
-    //            Debug.Log("Hiddan");
-    //            animator.SetTrigger("Trigger_Move");
-    //            Debug.Log("被弾");
-    //           // GauMan.DecreaseEnemyHPGauge(1);
->>>>>>> origin/main
-=======
-               // GauMan.DecreaseEnemyHPGauge(1);
->>>>>>> parent of 207f45a (commit)
+
+                GauMan.DecreaseEnemyHPGauge(10);
+
+                //public void OnTriggerEnter(Collider enter_other)
+                //{
+                //    if (enter_other.CompareTag("Player"))
+                //    {
+                //        Debug.Log("dekoi検知");
+                //        if (otoko1_kougeki_attack != 0)
+                //        {
+                //            Debug.Log("Attack");
+                //            //レイヤー変更
+                //            gameObject.SetChildLayer(7);
+                //            gameObject.layer = LayerMask.NameToLayer("Attack");
+                //            Attack();
+                //        }
+                //        else if (otoko1_kougeki_hidan != 0)
+                //        {
+                //            Debug.Log("Hiddan");
+                //            animator.SetTrigger("Trigger_Move");
+                //            Debug.Log("被弾");
+                //           // GauMan.DecreaseEnemyHPGauge(1);
+
+                // GauMan.DecreaseEnemyHPGauge(1);
 
 
 
-    //            //レイヤー変更
-    //            gameObject.SetChildLayer(6);
-    //            gameObject.layer = LayerMask.NameToLayer("Hantei");
-    //            Hidan();
-    //        }
-    //    }
-    //    Invoke(nameof(CoolTime_Shoki), 0.1f);
-    //}
+
+                //            //レイヤー変更
+                //            gameObject.SetChildLayer(6);
+                //            gameObject.layer = LayerMask.NameToLayer("Hantei");
+                //            Hidan();
+                //        }
+                //    }
+                //    Invoke(nameof(CoolTime_Shoki), 0.1f);
+                //}
+            }
+        }
+    }
     void Chien()
     {
         jump_stop = false;
@@ -521,6 +523,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             {
                 otoko1_kougeki_hit = 1;
                 Debug.Log("player_kougeki_attack1");
+
+                
             }
             //強攻撃
             if (otoko1_kougeki_attack == 2 && attack_permission == true)
