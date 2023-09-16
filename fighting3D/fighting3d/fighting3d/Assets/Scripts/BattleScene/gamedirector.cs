@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class gamedirector : MonoBehaviour
 {
-<<<<<<< HEAD
+
 
     
     public GauMan GauMan;
 
-=======
->>>>>>> origin/main
+
     public object HPgauge;
 
     public Otoko_chara_Controller otoko_Chara_Controller;
@@ -48,7 +47,7 @@ public class gamedirector : MonoBehaviour
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
-<<<<<<< HEAD
+
             Debug.Log("kougekiPlayerToEnmey");
 
 
@@ -58,10 +57,10 @@ public class gamedirector : MonoBehaviour
 
 
 
-}
-=======
+
+
         }
->>>>>>> origin/main
+
     }
     public void Dekoi_attack()
     {
@@ -70,7 +69,7 @@ public class gamedirector : MonoBehaviour
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
 
-            GauMan.DecreaseEnemyHPGauge(1);
+            
 
         }
     }

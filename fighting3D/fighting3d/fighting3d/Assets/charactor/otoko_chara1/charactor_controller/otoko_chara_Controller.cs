@@ -378,7 +378,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("”í’e");
-               // GauMan.DecreaseEnemyHPGauge(1);
+               GauMan.DecreaseEnemyHPGauge(10);
 
                 
 

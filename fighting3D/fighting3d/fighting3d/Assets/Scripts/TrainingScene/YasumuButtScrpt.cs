@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class YasumuButtScrpt : MonoBehaviour
 {
+    public AllTurn AllTurn;
 
     public float increaseAmount = 50f;
     public TraGaugeManager traGaugeManager;
@@ -14,8 +15,8 @@ public class YasumuButtScrpt : MonoBehaviour
     public void OnButtonClick()
     {
         traGaugeManager.IncreaseGauge(increaseAmount);
-
-        main.UpdateHPsippaiRitu();
+        AllTurn.TurnDecrease();
+    main.UpdateHPsippaiRitu();
         main.UpdatePowersippaiRitu();
         main.UpdateSpeedsippaiRitu();
         main.UpdateStaminasippaiRitu();

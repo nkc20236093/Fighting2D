@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TraGaugeManager : MonoBehaviour
 {
+
+    
     public Slider traGaugeSlider;
     public static float maxTraGauge = 100f;
     public static float currentTraGauge;
@@ -25,7 +27,9 @@ public class TraGaugeManager : MonoBehaviour
 
     public void DecreaseGauge(float amount)
     {
-        currentTraGauge -= amount;
+
+        
+    currentTraGauge -= amount;
         if (currentTraGauge < 0)
             currentTraGauge = 0;
 
