@@ -3,15 +3,19 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //レイの距離
-    float Ray_Distance = 1.5f;
+    int Ray_Distance = 1;
     //レイを取得
     Ray otoko1_ray;
     //レイの原点
     Vector3 otoko1_ray_Origin;
     //レイの方向
     Vector3 otoko1_ray_Vector3;
-    //レイキャストを取得
-    RaycastHit hit = new RaycastHit();
+    //レイキャストヒットを取得
+    RaycastHit hit;
+    //レイがトリガー付きコライダーに判定を出すか
+    QueryTriggerInteraction queryTrigger;
+    //レイ用レイヤー変数
+    int Ray_Layer;
 
     //GunManを取得
     public GauMan GauMan;
@@ -148,21 +152,12 @@ public class Otoko_chara_Controller : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray.origin, otoko1_ray.direction, Color.red, 30f);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance))
+        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance, Ray_Layer, queryTrigger))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log(hit.collider.gameObject);
-                if (otoko1_kougeki_attack != 0)
-                {
-                    Debug.Log(otoko1_kougeki_attack);
-                    Debug.Log("Attack");
-                    //レイヤー変更
-                    gameObject.SetChildLayer(7);
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Attack();
-                }
-                else if (otoko1_kougeki_hidan != 0)
+                if (otoko1_kougeki_hidan != 0)
                 {
                     animator.SetTrigger("Trigger_Move");
                     Debug.Log("被弾");
@@ -170,7 +165,18 @@ public class Otoko_chara_Controller : MonoBehaviour
                     //レイヤー変更
                     gameObject.SetChildLayer(6);
                     gameObject.layer = LayerMask.NameToLayer("Hantei");
+                    Ray_Layer = 6;
                     Hidan();
+                }
+                else if (otoko1_kougeki_attack != 0)
+                {
+                    Debug.Log(otoko1_kougeki_attack);
+                    Debug.Log("Attack");
+                    //レイヤー変更
+                    gameObject.SetChildLayer(7);
+                    gameObject.layer = LayerMask.NameToLayer("Attack");
+                    Ray_Layer = 7;
+                    Attack();
                 }
             }
             Invoke(nameof(CoolTime_Shoki), 0.1f);
@@ -225,7 +231,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
-            gameObject.layer = LayerMask.NameToLayer("Attack");
+            //gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true)
@@ -233,7 +239,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             animator.SetTrigger("return_hook");
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
-            gameObject.layer = LayerMask.NameToLayer("Attack");
+            //gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //投げ攻撃（B or L）
         if (Input.GetAxisRaw("B or L") != 0 && jump_stop == true)
@@ -456,6 +462,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 //レイヤー変更
                 gameObject.SetChildLayer(7);
                 gameObject.layer = LayerMask.NameToLayer("Attack");
+                Ray_Layer = 7;
                 Attack();
             }
             else if (otoko1_kougeki_hidan != 0)
@@ -463,7 +470,10 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("被弾");
-
+                //レイヤー変更            
+                gameObject.SetChildLayer(6);
+                gameObject.layer = LayerMask.NameToLayer("Hantei");
+                Hidan();
                 GauMan.DecreaseEnemyHPGauge(10);
 
                 //public void OnTriggerEnter(Collider enter_other)
