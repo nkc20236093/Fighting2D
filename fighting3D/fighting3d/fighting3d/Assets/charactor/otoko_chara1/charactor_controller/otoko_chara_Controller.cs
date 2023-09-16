@@ -3,15 +3,15 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //レイの距離
-    float Ray_Distance = 5;
+    float Ray_Distance = 1.5f;
     //レイを取得
     Ray otoko1_ray;
     //レイの原点
     Vector3 otoko1_ray_Origin;
     //レイの方向
-    Vector3 otoko1_ray_Vector3 = new Vector3(-1, 0, 0);
+    Vector3 otoko1_ray_Vector3;
     //レイキャストを取得
-    RaycastHit hit;
+    RaycastHit hit = new RaycastHit();
 
     //GunManを取得
     public GauMan GauMan;
@@ -132,12 +132,23 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
         //座標を代入
         otoko1_ray_Origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z);
+        //レイの方向
+        //右方向
+        if (chara_muki == 1f)
+        {
+            otoko1_ray_Vector3 = new Vector3(-1, 0, 0);
+        }
+        //左方向
+        else if (chara_muki == -1f) 
+        {
+            otoko1_ray_Vector3 = new Vector3(1, 0, 0);
+        }
         //レイを生成
         otoko1_ray = new Ray(otoko1_ray_Origin, otoko1_ray_Vector3);
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray.origin, otoko1_ray.direction, Color.red, 30f);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit))
+        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance))
         {
             if (hit.collider.CompareTag("Player"))
             {
@@ -276,8 +287,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         //ジャンプの処理
         //1回目&地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge != 0 && first_jump <= 1)
+        if (jump_stop == true && jouge >= 0 && first_jump == 1)
         {
+            Debug.Log("first_jump");
             animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
@@ -294,8 +306,9 @@ public class Otoko_chara_Controller : MonoBehaviour
             Invoke(nameof(JUMP), 0.01f);
         }
         //2回目&地面についてたら&ジャンプ入力がされてたら
-        else if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime && first_jump >= 1)
+        else if (jump_stop == true && jouge >= 0 && Real_Time > JumpCoolTime && first_jump >= 2) 
         {
+            Debug.Log("second_jump");
             animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
