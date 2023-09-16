@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    public AllTurn AllTurn;
 
 
 
@@ -19,7 +18,7 @@ public class Main : MonoBehaviour
     public Text HPText;
     public Button HPincreaceButton;
 
-    public static float HP;
+    public static int HP;
     private int HPbuttonPressCount = -1;
 
 
@@ -32,7 +31,7 @@ public class Main : MonoBehaviour
     public Text PowerText;
     public Button PowerincreaceButton;
 
-    public static float Power;
+    public static int Power;
     private int PowerbuttonPressCount = -1;
 
     public Text PowTraLev;
@@ -43,7 +42,7 @@ public class Main : MonoBehaviour
     public Text SpeedText;
     public Button SpeedincreaceButton;
 
-    public static float Speed;
+    public static int Speed;
     private int SpeedbuttonPressCount = -1;
     public Text SpeTraLev;
     //Stamina
@@ -52,7 +51,7 @@ public class Main : MonoBehaviour
     public Text StaminaText;
     public Button StaminaincreaceButton;
 
-    public static float Stamina;
+    public static int Stamina;
     private int StaminabuttonPressCount = -1;
 
     public Text StaTraLev;
@@ -62,7 +61,7 @@ public class Main : MonoBehaviour
     public Text ClevernessText;
     public Button ClevernessincreaceButton;
 
-    public static float Cleverness;
+    public static int Cleverness;
     private int ClevernessbuttonPressCount = -1;
 
     public Text CleTraLev;
@@ -145,8 +144,7 @@ public class Main : MonoBehaviour
     private void IncreaseHPSippai()
     { 
         int HPSippai = Random.Range(0, 101);
-        AllTurn.TurnDecrease();
-        if (50 <= TraGaugeManager.currentTraGauge)
+        if(50 <= TraGaugeManager.currentTraGauge)
         {
             IncreaseHP();
         }
@@ -244,8 +242,6 @@ public class Main : MonoBehaviour
 
             //訓練元気減少２割
             traGaugeManager.DecreaseGauge(decreaseAmount);
-            
-            
 
         }
 
@@ -259,33 +255,31 @@ public class Main : MonoBehaviour
         HPbuttonPressCount++;
 
         // ボタンを押した回数に応じてHPを増加
-        float HPIncrease = 0;
+        int HPIncrease = 0;
         if (HPbuttonPressCount >= -1 && HPbuttonPressCount <= 3)
         {
-            HPIncrease = 5;
+            HPIncrease = 10;
             HPTraLev.text = "Lv1";
-            
         }
         else if (HPbuttonPressCount >= 4 && HPbuttonPressCount <= 7)
         {
-            HPIncrease = 10;
+            HPIncrease = 20;
             HPTraLev.text = "Lv2";
-
         }
         else if (HPbuttonPressCount >= 8 && HPbuttonPressCount <= 11)
         {
-            HPIncrease = 15;
+            HPIncrease = 30;
 
             HPTraLev.text = "Lv3";
         }
         else if (HPbuttonPressCount >= 12 && HPbuttonPressCount <= 15)
         {
-            HPIncrease = 20;
+            HPIncrease = 40;
             HPTraLev.text = "Lv4";
         }
         else
         {
-            HPIncrease = 25;
+            HPIncrease = 50;
             HPTraLev.text = "Lv5";
         }
 
@@ -367,7 +361,6 @@ public class Main : MonoBehaviour
     private void IncreasePowerSippai()
     {
         int PowerSippai = Random.Range(0, 101);
-        AllTurn.TurnDecrease();
         if (50 <= TraGaugeManager.currentTraGauge)
         {
             IncreasePower();
@@ -455,37 +448,37 @@ public class Main : MonoBehaviour
         if (PowerbuttonPressCount != -1)
         {
             traGaugeManager.DecreaseGauge(decreaseAmount);
-         
+
         }
 
         // ボタンを押した回数を更新
         PowerbuttonPressCount++;
 
         // ボタンを押した回数に応じてHPを増加
-        float PowerIncrease = 0;
+        int PowerIncrease = 0;
         if (PowerbuttonPressCount >= -1 && PowerbuttonPressCount <= 3)
         {
-            PowerIncrease = 0.25f;
+            PowerIncrease = 10;
             PowTraLev.text = "Lv1";
         }
         else if (PowerbuttonPressCount >= 4 && PowerbuttonPressCount <= 7)
         {
-            PowerIncrease = 0.3f;
+            PowerIncrease = 20;
             PowTraLev.text = "Lv2";
         }
         else if (PowerbuttonPressCount >= 8 && PowerbuttonPressCount <= 11)
         {
-            PowerIncrease = 0.5f;
+            PowerIncrease = 30;
             PowTraLev.text = "Lv3";
         }
         else if (PowerbuttonPressCount >= 12 && PowerbuttonPressCount <= 15)
         {
-            PowerIncrease = 0.7f;
+            PowerIncrease = 40;
             PowTraLev.text = "Lv4";
         }
         else
         {
-            PowerIncrease = 1f;
+            PowerIncrease = 50;
             PowTraLev.text = "Lv5";
         }
 
@@ -563,7 +556,6 @@ public class Main : MonoBehaviour
     private void IncreaseSpeedSippai()
     {
         int SpeedSippai = Random.Range(0, 101);
-        AllTurn.TurnDecrease();
         if (50 <= TraGaugeManager.currentTraGauge)
         {
             IncreaseSpeed();
@@ -654,37 +646,36 @@ public class Main : MonoBehaviour
 
 
             traGaugeManager.DecreaseGauge(decreaseAmount);
-            
         }
 
         // ボタンを押した回数を更新
         SpeedbuttonPressCount++;
 
         // ボタンを押した回数に応じてHPを増加
-        float SpeedIncrease = 0;
+        int SpeedIncrease = 0;
         if (SpeedbuttonPressCount >= -1 && SpeedbuttonPressCount <= 3)
         {
-            SpeedIncrease = 0.25f;
+            SpeedIncrease = 10;
             SpeTraLev.text = "Lv1";
         }
         else if (SpeedbuttonPressCount >= 4 && SpeedbuttonPressCount <= 7)
         {
-            SpeedIncrease = 0.5f;
+            SpeedIncrease = 20;
             SpeTraLev.text = "Lv2";
         }
         else if (SpeedbuttonPressCount >= 8 && SpeedbuttonPressCount <= 11)
         {
-            SpeedIncrease = 0.75f;
+            SpeedIncrease = 30;
             SpeTraLev.text = "Lv3";
         }
         else if (SpeedbuttonPressCount >= 12 && SpeedbuttonPressCount <= 15)
         {
-            SpeedIncrease = 1f;
+            SpeedIncrease = 40;
             SpeTraLev.text = "Lv4";
         }
         else
         {
-            SpeedIncrease = 1.25f;
+            SpeedIncrease = 50;
             SpeTraLev.text = "Lv5";
         }
 
@@ -764,7 +755,6 @@ public class Main : MonoBehaviour
     private void IncreaseStaminaSippai()
     {
         int StaminaSippai = Random.Range(0, 101);
-        AllTurn.TurnDecrease();
         if (50 <= TraGaugeManager.currentTraGauge)
         {
             IncreaseStamina();
@@ -852,37 +842,36 @@ public class Main : MonoBehaviour
         if (StaminabuttonPressCount != -1)
         {
             traGaugeManager.DecreaseGauge(decreaseAmount);
-            
         }
 
         // ボタンを押した回数を更新
         StaminabuttonPressCount++;
 
         // ボタンを押した回数に応じてHPを増加
-        float StaminaIncrease = 0;
+        int StaminaIncrease = 0;
         if (StaminabuttonPressCount >= -1 && StaminabuttonPressCount <= 3)
         {
-            StaminaIncrease = 2.5f;
+            StaminaIncrease = 10;
             StaTraLev.text = "Lv1";
         }
         else if (StaminabuttonPressCount >= 4 && StaminabuttonPressCount <= 7)
         {
-            StaminaIncrease = 5f;
+            StaminaIncrease = 20;
             StaTraLev.text = "Lv2";
         }
         else if (StaminabuttonPressCount >= 8 && StaminabuttonPressCount <= 11)
         {
-            StaminaIncrease = 7.5f;
+            StaminaIncrease = 30;
             StaTraLev.text = "Lv3";
         }
         else if (StaminabuttonPressCount >= 12 && StaminabuttonPressCount <= 15)
         {
-            StaminaIncrease = 10f;
+            StaminaIncrease = 40;
             StaTraLev.text = "Lv4";
         }
         else
         {
-            StaminaIncrease = 13f;
+            StaminaIncrease = 50;
             StaTraLev.text = "Lv5";
         }
 
@@ -963,7 +952,6 @@ public class Main : MonoBehaviour
     private void IncreaseClevernessSippai()
     {
         int ClevernessSippai = Random.Range(0, 101);
-        AllTurn.TurnDecrease();
         if (50 <= TraGaugeManager.currentTraGauge)
         {
             IncreaseCleverness();
@@ -1049,7 +1037,6 @@ public class Main : MonoBehaviour
         if (ClevernessbuttonPressCount != -1)
         {
             traGaugeManager.DecreaseGauge(decreaseAmount);
-            
 
         }
 

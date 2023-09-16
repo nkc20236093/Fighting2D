@@ -463,6 +463,7 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Debug.Log("Hiddan");
                 animator.SetTrigger("Trigger_Move");
                 Debug.Log("”í’e");
+<<<<<<< HEAD
                GauMan.DecreaseEnemyHPGauge(10);
 =======
     //public void OnTriggerEnter(Collider enter_other)
@@ -485,6 +486,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     //            Debug.Log("”í’e");
     //           // GauMan.DecreaseEnemyHPGauge(1);
 >>>>>>> origin/main
+=======
+               // GauMan.DecreaseEnemyHPGauge(1);
+>>>>>>> parent of 207f45a (commit)
 
 
 
