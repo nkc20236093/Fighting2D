@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class YasumuButtScrpt : MonoBehaviour
 {
+    
+
+
 
     public float increaseAmount = 50f;
     public TraGaugeManager traGaugeManager;
@@ -14,6 +18,9 @@ public class YasumuButtScrpt : MonoBehaviour
     public void OnButtonClick()
     {
         traGaugeManager.IncreaseGauge(increaseAmount);
+        main.Turn--;
+        main.TurnSu.text = main.Turn.ToString();
+
 
         main.UpdateHPsippaiRitu();
         main.UpdatePowersippaiRitu();
