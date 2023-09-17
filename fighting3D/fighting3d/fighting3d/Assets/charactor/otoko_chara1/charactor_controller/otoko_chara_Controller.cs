@@ -14,6 +14,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     RaycastHit hit;
     //レイがトリガー付きコライダーに判定を出すか
     QueryTriggerInteraction queryTrigger;
+    //Ray用レイヤー変数
+    int ray_layert = 6 << 7;
     
 
     //GunManを取得
@@ -122,6 +124,7 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //自分の回転度を取得
         mytransform = this.transform;
+        //アニメーターを代入
         animator = GetComponent<Animator>();
 
         //rigidにコンポーネントを代入
@@ -134,7 +137,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //被弾を変数に代入
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
         //座標を代入
-        otoko1_ray_Origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z);
+        otoko1_ray_Origin = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
         //レイの方向
         //右方向
         if (chara_muki == 1f)
@@ -151,11 +154,11 @@ public class Otoko_chara_Controller : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 30f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance, this.gameObject.layer, queryTrigger))
+        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance, ray_layert, queryTrigger))
         {
+            Debug.Log(hit.collider.gameObject);
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log(hit.collider.gameObject);
                 if (otoko1_kougeki_hidan != 0)
                 {
                     animator.SetTrigger("Trigger_Move");
@@ -284,7 +287,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             speed_origin = now_jumppower;
         }
         //最初のジャンプ区別
-        if (jouge>0)
+        if (jouge>0&&Input.GetButtonDown("Vertical"))
         {
             first_jump++;
         }
@@ -293,10 +296,9 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (jump_stop == true && jouge >= 0 && first_jump == 1)
         {
             Debug.Log("first_jump");
-            animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
-            Invoke(nameof(Chien), 0.001f);
+            JUMP();
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -306,17 +308,14 @@ public class Otoko_chara_Controller : MonoBehaviour
                 now_jumppower = high_jump;
             }
             speed_origin = now_jumppower;
-            Invoke(nameof(JUMP), 0.01f);
         }
         //2回目&地面についてたら&ジャンプ入力がされてたら
         else if (jump_stop == true && jouge >= 0 && Real_Time > JumpCoolTime && first_jump >= 2) 
         {
             Debug.Log("second_jump");
-            animator.SetTrigger("Trigger_Move");
             jump_stop = false;
             Real_Time = 0;
-            Invoke(nameof(Chien), 0.001f);
-            animator.SetTrigger("Trigger_Jump");
+            JUMP();
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -508,13 +507,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             }
         }
     }
-    void Chien()
-    {
-        jump_stop = false;
-        Debug.Log("遅延");
-        jouge = -1f;
-    }
-
     //攻撃・被弾まとめ
 
     //与ダメージ時
@@ -589,6 +581,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     }
     public void JUMP()
     {
+        animator.SetTrigger("Trigger_Move");
         animator.SetTrigger("Trigger_Jump");
     }
 }
