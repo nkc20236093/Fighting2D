@@ -524,6 +524,10 @@ public class Otoko_chara_Controller : MonoBehaviour
     //与ダメージ時
     public void Attack()
     {
+
+
+
+
         //地上攻撃
         if (jump_stop == true)
         {
