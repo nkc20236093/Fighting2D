@@ -26,8 +26,12 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //男1のレイヤー用変数
     public int otoko_layer;
+
     //アニメーターコンポーネントを取得
     Animator animator;
+    //Transformコンポーネントを取得
+    Transform mytransform;
+
     //被弾アニメーション用int
     public int hirumi_anim_int;
 
@@ -46,18 +50,24 @@ public class Otoko_chara_Controller : MonoBehaviour
     public int otoko1_kougeki_hidan;   //攻撃を受けた用(ゲームディレクターから受け取り)
     public int otoko1_kougeki_attack;  //攻撃確認用
     public int otoko1_kougeki_hit;     //攻撃ヒット用
+    //攻撃距離判定用bool
+    public bool jab_distance;
+    public bool kick_distance;
     //攻撃クールタイム
     public bool jaku_stop;
     public bool kyou_stop;
     //攻撃クールタイム用変数
     public float attack_cooltime_jaku;
     public float attack_cooltime_kyou;
-    //Transformコンポーネントを取得
-    Transform mytransform;
-    //攻撃許可用bool
+    //弱攻撃許可用bool
+    public bool jab_attack_permission;
+    //強攻撃許可用bool
+    public bool kick_attack_permission;
+    //ゲームディレクター用攻撃許可用bool
     public bool attack_permission;
     //true = 許可
     //false= 不許可
+
     //キャラ向き変更用変数
     float chara_muki;
 
@@ -136,8 +146,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     {
         //被弾を変数に代入
         otoko1_kougeki_hidan = gamedirector.hidan_otoko1;
-        //座標を代入
-        otoko1_ray_Origin = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
         //レイの方向
         //右方向
         if (chara_muki == 1f)
@@ -149,38 +157,50 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             otoko1_ray_Vector3 = new Vector3(1, 0, 0);
         }
-        //レイを生成
-        otoko1_ray = new Ray(otoko1_ray_Origin, otoko1_ray_Vector3);
-        //デバッグ用レイ
-        Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 30f, false);
-        //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance, ray_layert, queryTrigger))
+        //弱攻撃用距離
+        if (gamedirector.Distance <= 0.6525345f && Input.GetButtonDown("X or J"))
         {
-            Debug.Log(hit.collider.gameObject);
-            if (hit.collider.CompareTag("Player"))
-            {
-                if (otoko1_kougeki_hidan != 0)
-                {
-                    animator.SetTrigger("Trigger_Move");
-                    Debug.Log("被弾");
-                    //GauMan.DecreaseEnemyHPGauge(1);
-                    //レイヤー変更
-                    gameObject.SetChildLayer(6);
-                    gameObject.layer = LayerMask.NameToLayer("Hantei");
-                    Hidan();
-                }
-                else if (otoko1_kougeki_attack != 0)
-                {
-                    Debug.Log(otoko1_kougeki_attack);
-                    Debug.Log("Attack");
-                    //レイヤー変更
-                    gameObject.SetChildLayer(7);
-                    gameObject.layer = LayerMask.NameToLayer("Attack");
-                    Attack();
-                }
-            }
-            Invoke(nameof(CoolTime_Shoki), 0.1f);
+            jab_distance = true;
         }
+        //強攻撃用距離
+        if (gamedirector.Distance <= 1.717879f&& Input.GetButtonDown("A or K"))
+        {
+            kick_distance = true;
+        }
+        //座標を代入
+        //otoko1_ray_Origin = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
+        //レイを生成　※一時的に距離に変更
+        //otoko1_ray = new Ray(otoko1_ray_Origin, otoko1_ray_Vector3);
+        //デバッグ用レイ
+        //Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 30f, false);
+        //当たり判定用レイ
+        //if (Physics.Raycast(otoko1_ray, out hit, Ray_Distance, ray_layert, queryTrigger))
+        //{
+        //    Debug.Log(hit.collider.gameObject);
+        //    if (hit.collider.CompareTag("Player"))
+        //    {
+        //        if (otoko1_kougeki_hidan != 0)
+        //        {
+        //            animator.SetTrigger("Trigger_Move");
+        //            Debug.Log("被弾");
+        //            //GauMan.DecreaseEnemyHPGauge(1);
+        //            //レイヤー変更
+        //            gameObject.SetChildLayer(6);
+        //            gameObject.layer = LayerMask.NameToLayer("Hantei");
+        //            Hidan();
+        //        }
+        //        else if (otoko1_kougeki_attack != 0)
+        //        {
+        //            Debug.Log(otoko1_kougeki_attack);
+        //            Debug.Log("Attack");
+        //            //レイヤー変更
+        //            gameObject.SetChildLayer(7);
+        //            gameObject.layer = LayerMask.NameToLayer("Attack");
+        //            Attack();
+        //        }
+        //    }
+        //    Invoke(nameof(CoolTime_Shoki), 0.1f);
+        //}
 
         //子オブジェクトを全て取得
         otoko1_obj_Child.GetComponentInChildren<Transform>();
@@ -195,7 +215,16 @@ public class Otoko_chara_Controller : MonoBehaviour
             attack_cooltime_kyou += Time.deltaTime;
         }
         //攻撃許可
-        if (attack_cooltime_jaku >= 0.5f || attack_cooltime_kyou > 1)
+        if (attack_cooltime_jaku >= 0.5f)
+        {
+            jab_attack_permission = true;
+        }
+        if (attack_cooltime_kyou > 1)
+        {
+            kick_attack_permission = true;
+        }
+        //ゲームディレクター用
+        if (attack_cooltime_jaku >= 0.5f || attack_cooltime_kyou >= 1)
         {
             attack_permission = true;
         }
@@ -236,7 +265,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
-            animator.SetTrigger("return_hook");
+            animator.SetTrigger("return_kick");
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
             //gameObject.layer = LayerMask.NameToLayer("Attack");
@@ -331,39 +360,24 @@ public class Otoko_chara_Controller : MonoBehaviour
 
         //以下アニメーション
 
-        //アニメーション分岐用処理
-        //弱攻撃
-        if (Input.GetButton("X or J") && jump_stop == true)
-        {
-            ++jab_int;
-        }
-        //強攻撃
-        if (Input.GetButton("A or K") && jump_stop == true)
-        {
-            ++hook_int;
-        }
         //攻撃アニメーション
-        if (Input.GetButtonDown("X or J") && jump_stop == true || Input.GetButtonDown("A or K") && jump_stop == true)
+
+        //弱攻撃    
+        if (otoko1_kougeki_attack == 2 && jump_stop == true && jab_attack_permission == true && jab_distance == true)
         {
             animator.SetTrigger("Trigger_attack");
-            //弱攻撃
-            //単発攻撃
-            if (jab_int == 1)
-            {
-                Jab_1();
-            }
-
-            //強攻撃
-            //単発攻撃
-            if (hook_int == 1)
-            {
-                Hook_1();
-            }
+            Jab();
+        }
+        //強攻撃
+        else if (otoko1_kougeki_attack == 2 && jump_stop == true && kick_attack_permission == true && kick_distance == true)
+        {
+            animator.SetTrigger("Trigger_attack");
+            Kick();
         }
         //被弾アニメーション
-        if (hirumi_anim_int != 0)
+        if (otoko1_kougeki_hidan != 0) 
         {
-            if (hirumi_anim_int == 1)
+            if (otoko1_kougeki_hidan == 1)
             {
                 Hirumi();
             }
@@ -445,128 +459,18 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         CoolTime_Shoki();
     }
-    //触れた瞬間判定
 
-    public void OnTriggerEnter(Collider enter_other)
-    {
-        if (enter_other.CompareTag("Player"))
-        {
-            Debug.Log("dekoi検知");
-            if (otoko1_kougeki_attack != 0)
-            {
-                Debug.Log("Attack");
-                //レイヤー変更
-                gameObject.SetChildLayer(7);
-                gameObject.layer = LayerMask.NameToLayer("Attack");
-                Attack();
-            }
-            else if (otoko1_kougeki_hidan != 0)
-            {
-                Debug.Log("Hiddan");
-                animator.SetTrigger("Trigger_Move");
-                Debug.Log("被弾");
-                //レイヤー変更            
-                gameObject.SetChildLayer(6);
-                gameObject.layer = LayerMask.NameToLayer("Hantei");
-                Hidan();
-                GauMan.DecreaseEnemyHPGauge(10);
-
-                //public void OnTriggerEnter(Collider enter_other)
-                //{
-                //    if (enter_other.CompareTag("Player"))
-                //    {
-                //        Debug.Log("dekoi検知");
-                //        if (otoko1_kougeki_attack != 0)
-                //        {
-                //            Debug.Log("Attack");
-                //            //レイヤー変更
-                //            gameObject.SetChildLayer(7);
-                //            gameObject.layer = LayerMask.NameToLayer("Attack");
-                //            Attack();
-                //        }
-                //        else if (otoko1_kougeki_hidan != 0)
-                //        {
-                //            Debug.Log("Hiddan");
-                //            animator.SetTrigger("Trigger_Move");
-                //            Debug.Log("被弾");
-                //           // GauMan.DecreaseEnemyHPGauge(1);
-
-                // GauMan.DecreaseEnemyHPGauge(1);
-
-
-
-
-                //            //レイヤー変更
-                //            gameObject.SetChildLayer(6);
-                //            gameObject.layer = LayerMask.NameToLayer("Hantei");
-                //            Hidan();
-                //        }
-                //    }
-                //    Invoke(nameof(CoolTime_Shoki), 0.1f);
-                //}
-            }
-        }
-    }
-    //攻撃・被弾まとめ
-
-    //与ダメージ時
-    public void Attack()
-    {
-
-
-
-
-        //地上攻撃
-        if (jump_stop == true)
-        {
-            animator.SetTrigger("Trigger_Move");
-            //弱攻撃
-            if (otoko1_kougeki_attack == 1 && attack_permission == true)
-            {
-                otoko1_kougeki_hit = 1;
-                Debug.Log("player_kougeki_attack1");
-
-                
-            }
-            //強攻撃
-            if (otoko1_kougeki_attack == 2 && attack_permission == true)
-            {
-                otoko1_kougeki_hit = 2;
-                Debug.Log("player_kougeki_attack2");
-            }
-            attack_permission = false;
-        }
-    }
-    //被ダメージ時
-    public void Hidan()
-    {
-        //地上で被弾
-        if (jump_stop == true)
-        {
-            animator.SetTrigger("Trigger_hirumi");
-            //弱ひるみ(弱攻撃)
-            if (otoko1_kougeki_hidan == 1)
-            {
-                //アニメーション条件を満たす
-                hirumi_anim_int = 1;
-                Debug.Log("player_弱ひるみ");
-            }
-            //ダウン（強攻撃 or 必殺技 or 投げ）
-            if (otoko1_kougeki_hidan == 2)
-            {
-                //アニメーション条件を満たす
-                hirumi_anim_int = 2;
-                Debug.Log("Player_ダウン");
-            }
-        }
-    }
-    public void Jab_1()
+    public void Jab()
     {
         animator.SetTrigger("return_jab");
+        jab_attack_permission = false;
+        attack_permission = false;
     }
-    public void Hook_1()
+    public void Kick()
     {
-        animator.SetTrigger("return_hook");
+        animator.SetTrigger("return_kick");
+        kick_attack_permission = false;
+        attack_permission = false;
     }
 
     public void Hirumi()
