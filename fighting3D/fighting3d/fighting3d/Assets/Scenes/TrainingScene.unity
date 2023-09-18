@@ -450,7 +450,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 81926607}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 794542390}
+        m_TargetAssemblyTypeName: SceneMan, Assembly-CSharp
+        m_MethodName: ToStageSelectFromTraining
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &81926607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,6 +2759,50 @@ MonoBehaviour:
   SettingPanel: {fileID: 704797537}
   CharaInfoPanel: {fileID: 825687737}
   TaikaiInfoPanel: {fileID: 1420837753}
+--- !u!1 &794542389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794542391}
+  - component: {fileID: 794542390}
+  m_Layer: 0
+  m_Name: SceneMan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &794542390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794542389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9b950fe2350d843a32486f46435ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &794542391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794542389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 326.2504, y: 180.57803, z: -11.880916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &798006778
 GameObject:
   m_ObjectHideFlags: 0
@@ -7300,3 +7356,4 @@ SceneRoots:
   - {fileID: 1545564436}
   - {fileID: 771857368}
   - {fileID: 719173739}
+  - {fileID: 794542391}

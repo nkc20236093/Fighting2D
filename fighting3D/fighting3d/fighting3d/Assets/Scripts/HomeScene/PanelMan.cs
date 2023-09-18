@@ -14,6 +14,7 @@ public class PanelMan : MonoBehaviour
     [SerializeField] GameObject FriendBattlePanel;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,16 +44,33 @@ public class PanelMan : MonoBehaviour
 
 
     public void CharaInfo()　　　　//育成するキャラの情報を見る（スキルとか）
-    {       
+    {      
+
+        FriendBattlePanel.SetActive(false);
           CharaSelectPanel.SetActive(false);
     　　　CharaInfoPanel.SetActive(true);
     }
+
+
+  
+
+
 
     public void ToCharaSelectFromCharaInfo()    //chara info panelからキャラセレクトに戻ります
     {
         CharaInfoPanel.SetActive(false);
         CharaSelectPanel.SetActive(true);
     }
+
+
+    public void ToFriendBattleFromCharaInfo()    //chara info panelからキャラセレクトに戻ります
+    {
+        CharaInfoPanel.SetActive(false);
+       FriendBattlePanel.SetActive(true);
+    }
+
+
+
 
     public void FriendBattlePanelSetOn()　　　　//ｆれんどばとる　がめんみる
 
