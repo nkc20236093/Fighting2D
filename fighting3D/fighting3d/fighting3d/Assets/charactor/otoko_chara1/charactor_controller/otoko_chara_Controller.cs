@@ -266,14 +266,10 @@ public class Otoko_chara_Controller : MonoBehaviour
         //ã≠çUåÇÅiA or KÅj
         if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
-<<<<<<< HEAD
 
-            
 
-            animator.SetTrigger("return_hook");
-=======
             animator.SetTrigger("return_kick");
->>>>>>> origin/main
+
             Debug.Log("ã≠çUåÇ");
             otoko1_kougeki_attack = 2;
             //gameObject.layer = LayerMask.NameToLayer("Attack");
