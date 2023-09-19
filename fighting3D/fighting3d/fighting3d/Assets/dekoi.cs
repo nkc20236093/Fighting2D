@@ -20,16 +20,21 @@ public class dekoi : MonoBehaviour
     public int dekoi_kougeki_attack;
     public int dekoi_kougeki_hidan;
     public int dekoi_kougeki_hit;
-
+    //攻撃距離判定用bool
+    public bool jab__distance;
+    public bool kick__distance;
+    //攻撃距離判定用(ゲームディレクター)
+    public bool jab_dekoi_distance;
+    public bool kick_dekoi_distance;
     //攻撃クールタイム用変数
     public float dekoi_kougeki_cooltime_jaku;
     public float dekoi_kougeki_cooltime_kyou;
+    //攻撃クールタイム用bool
+    public bool jab_dekoi_cooltime;
+    public bool kick_dekoi_cooltime;
 
-    //攻撃分岐用変数
-    public int dekoi_jaku;
-    public int dekoi_kyou;
-
-    //攻撃許可用bool
+    //ゲームディレクター用攻撃許bool
+    public bool dekoi_cooltime_permisson;
     public bool dekoi_attack_permission;
     //trur = 許可
     //false= 不許可
@@ -115,6 +120,36 @@ public class dekoi : MonoBehaviour
     void Update()
     {
         dekoi_kougeki_hidan = gamedirector.hidan;
+        //攻撃範囲（向き）
+        //右方向
+        if (chara_muki == 1f)
+        {
+            gamedirector.Distance_gamedirector = 1 * gamedirector.Distance_gamedirector;
+        }
+        //左方向
+        else if (chara_muki == -1f)
+        {
+            gamedirector.Distance_gamedirector = -1 * gamedirector.Distance_gamedirector;
+        }
+        //弱攻撃用距離
+        if (gamedirector.Distance_gamedirector <= 0.6525345f || gamedirector.Distance_gamedirector <= -0.6525345f && Input.GetButtonDown("X or J"))
+        {
+            jab__distance = true;
+        }
+        else if (gamedirector.Distance_gamedirector <= 0.6525345f || gamedirector.Distance_gamedirector <= -0.6525345f) 
+        {
+            jab__distance = false;
+        }
+        //強攻撃用距離
+        if (gamedirector.Distance_gamedirector <= 1.717879f || gamedirector.Distance_gamedirector <= -1.717879f && Input.GetButtonDown("A or K"))
+        {
+            kick__distance = true;
+        }
+        else if (gamedirector.Distance_gamedirector <= 1.717879f || gamedirector.Distance_gamedirector <= -1.717879f)
+        {
+            kick__distance = false;
+        }
+
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -134,16 +169,33 @@ public class dekoi : MonoBehaviour
         {
             Real_Time += Time.deltaTime;
         }
-
+        //弱攻撃クールタイム計算
         if (Input.GetKeyDown(KeyCode.Return) && dekoi_kougeki_cooltime_jaku < 0.5f) 
         {
             dekoi_kougeki_cooltime_jaku += Time.deltaTime;
         }
+        //強攻撃クールタイム計算
         if (Input.GetKeyDown(KeyCode.Z) && dekoi_kougeki_cooltime_kyou < 1f)
         {
             dekoi_kougeki_cooltime_kyou += Time.deltaTime;
         }
+        //攻撃クールタイム
+        //弱攻撃
+        if (dekoi_kougeki_cooltime_jaku >= 0.5f)
+        {
+            jab_dekoi_cooltime = true;
+        }
+        //強攻撃
+        if (dekoi_kougeki_cooltime_kyou >= 1)
+        {
+            kick_dekoi_cooltime = true;
+        }
         if (dekoi_kougeki_cooltime_jaku >= 0.5f || dekoi_kougeki_cooltime_kyou >= 1)
+        {
+            dekoi_cooltime_permisson = true;
+        }
+        //距離判定(ゲームディレクター用)
+        if (jab_dekoi_distance == true || kick_dekoi_distance == true)
         {
             dekoi_attack_permission = true;
         }
@@ -257,24 +309,29 @@ public class dekoi : MonoBehaviour
                 animator.SetTrigger("dekoi_zensin");
             }
         }
-        //アニメーション分岐用
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Return))
-        {
-            dekoi_jaku++;
-        }
-        if (jump_mode == true && Input.GetKeyDown(KeyCode.Z))
-        {
-            dekoi_kyou++;
-        }
         //各攻撃用アニメーション
         //弱攻撃
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Return))
+        if (jump_stop == true && dekoi_kougeki_attack == 1 && dekoi_attack_permission == true && jab_dekoi_cooltime == true)
         {
+            dekoi_kougeki_hit = 1;
+            animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_jab();
         }
-        //強攻撃
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Z)) 
+        else if(dekoi_kougeki_attack==1)
         {
+            animator.SetTrigger("Trigger_dekoi_attack");
+            Dekoi_jab();
+        }    
+        //強攻撃
+        if (jump_stop == true && dekoi_kougeki_attack == 2 && dekoi_attack_permission == true && kick_dekoi_cooltime == true) 
+        {
+            dekoi_kougeki_hit = 2;
+            animator.SetTrigger("Trigger_dekoi_attack");
+            Dekoi_hook();
+        }
+        else if(dekoi_kougeki_attack==2)
+        {
+            animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_hook();
         }
 
@@ -289,7 +346,6 @@ public class dekoi : MonoBehaviour
     //停止状態の変数初期化
     void Attack_or_HIdan_Shoki()
     {
-        animator.SetInteger("dekoi_hirumi_int", 0);
         dekoi_kougeki_attack = 0;
         dekoi_kougeki_hidan = 0;
     }
@@ -306,38 +362,38 @@ public class dekoi : MonoBehaviour
     //当たり判定まとめ
 
     //触れ続けてる間判定
-    public void OnTriggerStay(Collider stay_other)
-    {
-        //地面についてたら
-        if (stay_other.CompareTag("jimen"))
-        {
-            //変数にHorizontal・Verticalを代入 ※jougeのみ制限
-            jump = Input.GetAxisRaw("Vertical");
-            if (jump >= 0)
-            {
-                jouge = jump;
-            }
-            jump_stop = true;
-        }
-        if (stay_other.CompareTag("Player")) 
-        {
-            Debug.Log("Player検知");
-            if (dekoi_kougeki_attack != 0) 
-            {
-                //レイヤー変更
-                gameObject.SetDekoiChild(7);
-                gameObject.layer = LayerMask.NameToLayer("Attack");
-                Attack();
-            }
-            else if (dekoi_kougeki_hidan != 0)
-            {
-                //レイヤー変更
-                gameObject.SetDekoiChild(6);
-                gameObject.layer = LayerMask.NameToLayer("Hantei");
-                Hidan();
-            }
-        }
-    }
+    //public void OnTriggerStay(Collider stay_other)
+    //{
+    //    //地面についてたら
+    //    if (stay_other.CompareTag("jimen"))
+    //    {
+    //        //変数にHorizontal・Verticalを代入 ※jougeのみ制限
+    //        jump = Input.GetAxisRaw("Vertical");
+    //        if (jump >= 0)
+    //        {
+    //            jouge = jump;
+    //        }
+    //        jump_stop = true;
+    //    }
+    //    if (stay_other.CompareTag("Player")) 
+    //    {
+    //        Debug.Log("Player検知");
+    //        if (dekoi_kougeki_attack != 0) 
+    //        {
+    //            //レイヤー変更
+    //            gameObject.SetDekoiChild(7);
+    //            gameObject.layer = LayerMask.NameToLayer("Attack");
+    //            Attack();
+    //        }
+    //        else if (dekoi_kougeki_hidan != 0)
+    //        {
+    //            //レイヤー変更
+    //            gameObject.SetDekoiChild(6);
+    //            gameObject.layer = LayerMask.NameToLayer("Hantei");
+    //            Hidan();
+    //        }
+    //    }
+    //}
     void Chien()
     {
         jump_stop = false;
@@ -364,7 +420,6 @@ public class dekoi : MonoBehaviour
                 dekoi_kougeki_hit = 2;
                 Debug.Log("player_kougeki_attack2");
             }
-            dekoi_attack_permission = false;
             Invoke(nameof(Cooltime_Shoki), 0.1f);
         }
     }
@@ -393,9 +448,11 @@ public class dekoi : MonoBehaviour
     public void Dekoi_jab()
     {
         animator.SetTrigger("dekoi_jab");
+        jab_dekoi_distance = false;
     }
     public void Dekoi_hook()
     {
-        animator.SetTrigger("dekoi_hook");
+        animator.SetTrigger("dekoi_kick");
+        kick_dekoi_distance = false;
     }
 }
