@@ -14,10 +14,10 @@ public class GauMan : MonoBehaviour
     public Slider EnemySkiGaugeSlider;
 
 
-    public static float maxHPGauge = 100f;
+    public static float maxHPGauge = 130f;
     public static float currentHPGauge;
 
-    public static float maxEnemyHPGauge = 100f;
+    public static float maxEnemyHPGauge = 130f;
     public static float currentEnemyHPGauge;
 
     public static float maxStaGauge = 100f;

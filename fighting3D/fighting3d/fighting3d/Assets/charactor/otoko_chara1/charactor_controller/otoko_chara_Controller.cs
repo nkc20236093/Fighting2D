@@ -73,9 +73,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     float chara_muki;
 
     //通常スピード
-    float normal_speed = 5f;
+    public float normal_speed = 5f;
     //ダッシュスピード
-    float dash_speed = 7.5f;
+    public float dash_speed = 7.5f;
     //現在のスピードモード
     float now_speed;
     //スピード設定
@@ -274,11 +274,23 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
+          
             //gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+            
+
+            animator.SetTrigger("return_hook");
+=======
+            animator.SetTrigger("return_kick");
+>>>>>>> origin/main
+>>>>>>> origin/main
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
             //gameObject.layer = LayerMask.NameToLayer("Attack");
