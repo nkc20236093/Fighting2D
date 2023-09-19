@@ -58,9 +58,9 @@ public class gamedirector : MonoBehaviour
             GauMan.DecreaseEnemyHPGauge(10);
         }
     }
-        public void Dekoi_attack()
+    public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true) 
+        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true)
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;

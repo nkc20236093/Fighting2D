@@ -136,7 +136,7 @@ public class dekoi : MonoBehaviour
         {
             jab__distance = true;
         }
-        else if (gamedirector.Distance_gamedirector <= 0.6525345f || gamedirector.Distance_gamedirector <= -0.6525345f) 
+        else if (gamedirector.Distance_gamedirector <= 0.6525345f || gamedirector.Distance_gamedirector <= -0.6525345f)
         {
             jab__distance = false;
         }
@@ -170,7 +170,7 @@ public class dekoi : MonoBehaviour
             Real_Time += Time.deltaTime;
         }
         //ŽãUŒ‚ƒN[ƒ‹ƒ^ƒCƒ€ŒvŽZ
-        if (Input.GetKeyDown(KeyCode.Return) && dekoi_kougeki_cooltime_jaku < 0.5f) 
+        if (Input.GetKeyDown(KeyCode.Return) && dekoi_kougeki_cooltime_jaku < 0.5f)
         {
             dekoi_kougeki_cooltime_jaku += Time.deltaTime;
         }
@@ -223,13 +223,13 @@ public class dekoi : MonoBehaviour
         if (Input.GetAxisRaw("Y or I") != 0)
         {
             Debug.Log("•KŽE‹Z");
-        }        
+        }
         //ƒK[ƒh(Right(left) Bumper or sperce)   ¦ƒWƒƒƒXƒgƒK[ƒh‚àŒŸ“¢
         if (Input.GetButtonDown("Right(left) Bumper or sperce"))
         {
             Debug.Log("ƒK[ƒh");
         }
-        
+
         //ˆÚ“®ˆÈŠO‚Ì“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚Í ‚·‚è”²‚¯‚È‚¢‚æ‚¤‚É‚·‚é or ˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
         if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
@@ -317,19 +317,19 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_jab();
         }
-        else if(dekoi_kougeki_attack==1)
+        else if (dekoi_kougeki_attack == 1)
         {
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_jab();
-        }    
+        }
         //‹­UŒ‚
-        if (jump_stop == true && dekoi_kougeki_attack == 2 && dekoi_attack_permission == true && kick_dekoi_cooltime == true) 
+        if (jump_stop == true && dekoi_kougeki_attack == 2 && dekoi_attack_permission == true && kick_dekoi_cooltime == true)
         {
             dekoi_kougeki_hit = 2;
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_hook();
         }
-        else if(dekoi_kougeki_attack==2)
+        else if (dekoi_kougeki_attack == 2)
         {
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_hook();
@@ -430,14 +430,14 @@ public class dekoi : MonoBehaviour
         if (jump_stop == true)
         {
             //Žã‚Ð‚é‚Ý(ŽãUŒ‚)
-            if (dekoi_kougeki_hidan == 1 ) 
+            if (dekoi_kougeki_hidan == 1)
             {
                 animator.SetTrigger("dekoi_jaku_hirumi");
-                animator.SetInteger("dekoi_hirumi_int",1);
+                animator.SetInteger("dekoi_hirumi_int", 1);
                 Debug.Log("dekoi_Žã‚Ð‚é‚Ý");
             }
             //ƒ_ƒEƒ“i‹­UŒ‚ or •KŽE‹Z or “Š‚°j
-            if (dekoi_kougeki_hidan == 2 )
+            if (dekoi_kougeki_hidan == 2)
             {
                 animator.SetTrigger("dekoi_down");
                 Debug.Log("dekoi_ƒ_ƒEƒ“");

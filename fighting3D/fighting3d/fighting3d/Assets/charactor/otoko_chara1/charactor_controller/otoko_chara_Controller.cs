@@ -16,7 +16,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     QueryTriggerInteraction queryTrigger;
     //Ray用レイヤー変数
     int ray_layert = 6 << 7;
-    
+
 
     //GunManを取得
     public GauMan GauMan;
@@ -234,11 +234,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             kick_attack_permission = true;
         }
         //ゲームディレクター用
-        if(jab_attack_permission==true||kick_attack_permission ==true)
+        if (jab_attack_permission == true || kick_attack_permission == true)
         {
             attack_permission = true;
         }
-        if (jab_attack_permission == true || kick_attack_permission == true) 
+        if (jab_attack_permission == true || kick_attack_permission == true)
         {
             attack_cooltime_permisson = true;
         }
@@ -274,7 +274,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
-          
+
             //gameObject.layer = LayerMask.NameToLayer("Attack");
         }
         //強攻撃（A or K）
@@ -330,7 +330,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             speed_origin = now_jumppower;
         }
         //最初のジャンプ区別
-        if (jouge>0&&Input.GetButtonDown("Vertical"))
+        if (jouge > 0 && Input.GetButtonDown("Vertical"))
         {
             first_jump++;
         }
@@ -353,7 +353,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             speed_origin = now_jumppower;
         }
         //2回目&地面についてたら&ジャンプ入力がされてたら
-        else if (jump_stop == true && jouge >= 0 && Real_Time > JumpCoolTime && first_jump >= 2) 
+        else if (jump_stop == true && jouge >= 0 && Real_Time > JumpCoolTime && first_jump >= 2)
         {
             Debug.Log("second_jump");
             jump_stop = false;
