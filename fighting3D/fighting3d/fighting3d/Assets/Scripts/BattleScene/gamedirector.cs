@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class gamedirector : MonoBehaviour
 {
+    //Enemyのtransform用
+    Vector3 Enemy;
+    //Playerのtransform用
+    Vector3 Player;
+    //EnemyとPlayerの差
+    public float Distance;
 
-
-    
     public GauMan GauMan;
-
-
-
-
-
-   
-
-
     public object HPgauge;
-
 
     public Otoko_chara_Controller otoko_Chara_Controller;
     public dekoi Dekoi;
@@ -35,6 +30,9 @@ public class gamedirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Player = otoko_Chara_Controller.transform.position;
+        Enemy = Dekoi.transform.position;
+        Distance = Player.x - Enemy.x;
         //男キャラ1から攻撃
         if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
@@ -52,30 +50,13 @@ public class gamedirector : MonoBehaviour
     {
         if (otoko_Chara_Controller.attack_permission == true)
         {
-
             hidan = otoko_Chara_Controller.otoko1_kougeki_attack;
             Debug.Log(hidan + "a");
-
             Debug.Log("kougekiPlayerToEnmey");
-
-
-          GauMan.DecreaseEnemyHPGauge(10);
-
-
+            GauMan.DecreaseEnemyHPGauge(10);
         }
-
-
-
-
-
-
-
-}
-
-        
-
-    
-    public void Dekoi_attack()
+    }
+        public void Dekoi_attack()
     {
         if (Dekoi.dekoi_attack_permission == true) 
         {
@@ -84,8 +65,6 @@ public class gamedirector : MonoBehaviour
             hidan_otoko1 = Dekoi.dekoi_kougeki_attack;
 
             GauMan.DecreaseEnemyHPGauge(10);
-
-
         }
     }
 }
