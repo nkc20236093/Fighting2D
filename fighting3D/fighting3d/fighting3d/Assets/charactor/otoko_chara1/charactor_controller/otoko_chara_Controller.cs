@@ -50,6 +50,8 @@ public class Otoko_chara_Controller : MonoBehaviour
     public int otoko1_kougeki_hidan;   //攻撃を受けた用(ゲームディレクターから受け取り)
     public int otoko1_kougeki_attack;  //攻撃確認用
     public int otoko1_kougeki_hit;     //攻撃ヒット用
+    public int otoko1_guard;
+    public int otoko1_guard_success;
     //攻撃距離判定用bool
     public bool jab_distance;
     public bool kick_distance;
@@ -71,6 +73,8 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //キャラ向き変更用変数
     float chara_muki;
+    //あたり範囲用
+    float chara_muki_attack;
 
     //通常スピード
     public float normal_speed = 5f;
@@ -103,10 +107,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     float now_jumppower;
     //2段ジャンプ禁止用
     public bool jump_stop;
-    //false = 禁止
-    //true  = 許可
-    //ジャンプアニメーション用bool
-    public bool jump_motion;
     //false = 禁止
     //true  = 許可
     //ジャンプ回数用
@@ -145,35 +145,33 @@ public class Otoko_chara_Controller : MonoBehaviour
         //右方向
         if (chara_muki == 1f)
         {
-            gamedirector.Distance_gamedirector = 1 * gamedirector.Distance_gamedirector;
+            chara_muki_attack = 1 * gamedirector.Distance_gamedirector;
         }
         //左方向
         else if (chara_muki == -1f)
         {
-            gamedirector.Distance_gamedirector = -1 * gamedirector.Distance_gamedirector;
+            chara_muki_attack = -1 * gamedirector.Distance_gamedirector;
         }
         //弱攻撃用距離
-        if (gamedirector.Distance_gamedirector <= 0.6525345f || gamedirector.Distance_gamedirector <= 0.6525345f && Input.GetButtonDown("X or J"))
+        if (chara_muki_attack <= 0.6525345f || gamedirector.Distance_gamedirector <= 0.6525345f && Input.GetButtonDown("X or J"))
         {
             Debug.Log("弱攻撃距離");
             jab_distance = true;
-            otoko1_kougeki_hit = 1;
         }
         //強攻撃用距離
-        if (gamedirector.Distance_gamedirector <= 1.717879f || gamedirector.Distance_gamedirector <= -1.717879f && Input.GetButtonDown("A or K"))
+        if (chara_muki_attack <= 1.717879f || gamedirector.Distance_gamedirector <= -1.717879f && Input.GetButtonDown("A or K"))
         {
             Debug.Log("強攻撃距離");
             kick_distance = true;
-            otoko1_kougeki_hit = 2;
         }
         //範囲外に出た用
         //弱範囲
-        if (gamedirector.Distance_gamedirector > 0.6525345f || gamedirector.Distance_gamedirector > -0.6525345f)
+        if (chara_muki_attack > 0.6525345f || gamedirector.Distance_gamedirector > -0.6525345f)
         {
             jab_distance = false;
         }
         //強範囲
-        if (gamedirector.Distance_gamedirector > 1.717879f || gamedirector.Distance_gamedirector > -1.717879f)
+        if (chara_muki_attack > 1.717879f || gamedirector.Distance_gamedirector > -1.717879f)
         {
             kick_distance = false;
         }
@@ -280,12 +278,15 @@ public class Otoko_chara_Controller : MonoBehaviour
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
+<<<<<<< HEAD
 
 
 
             animator.SetTrigger("return_kick");
 
 
+=======
+>>>>>>> origin/main
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
             //gameObject.layer = LayerMask.NameToLayer("Attack");
@@ -303,6 +304,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
         if (Input.GetButtonDown("Right(left) Bumper or sperce") && jump_stop == true)
         {
+            
             Debug.Log("ガード");
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
@@ -336,17 +338,19 @@ public class Otoko_chara_Controller : MonoBehaviour
             speed_origin = now_jumppower;
         }
         //最初のジャンプ区別
-        if (jouge > 0 && Input.GetButtonDown("Vertical"))
+        if (Input.GetAxisRaw("Vertical") > 0 && first_jump == 0)
         {
             first_jump++;
         }
+        Debug.Log(first_jump);
         //ジャンプの処理
         //1回目&地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge >= 0 && first_jump == 1)
+        if (jump_stop == true && jouge > 0 && first_jump == 1)
         {
             Debug.Log("first_jump");
             jump_stop = false;
             Real_Time = 0;
+            animator.SetTrigger("Trigger_Move");
             JUMP();
             if (jump_mode == true)
             {
@@ -359,11 +363,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             speed_origin = now_jumppower;
         }
         //2回目&地面についてたら&ジャンプ入力がされてたら
-        else if (jump_stop == true && jouge >= 0 && Real_Time > JumpCoolTime && first_jump >= 2)
+        else if (jump_stop == true && jouge >= 0 && Real_Time >= JumpCoolTime && first_jump >= 2 && Input.GetAxisRaw("Vertical") > 0)
         {
             Debug.Log("second_jump");
             jump_stop = false;
             Real_Time = 0;
+            animator.SetTrigger("Trigger_Move");
             JUMP();
             if (jump_mode == true)
             {
@@ -383,7 +388,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //攻撃アニメーション
 
         //弱攻撃(ヒット時)
-        if (Input.GetButtonDown("X or J") && jump_stop == true && jab_attack_permission == true && jab_distance == true)
+        if (otoko1_kougeki_attack == 1 && jump_stop == true && jab_attack_permission == true && jab_distance == true)
         {
             otoko1_kougeki_hit = 1;
             animator.SetTrigger("Trigger_attack");
@@ -396,7 +401,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Jab();
         }
         //強攻撃(ヒット時)
-        else if (Input.GetButtonDown("A or K") && jump_stop == true && kick_attack_permission == true && kick_distance == true)
+        else if (otoko1_kougeki_attack == 2 && jump_stop == true && kick_attack_permission == true && kick_distance == true)
         {
             otoko1_kougeki_hit = 2;
             animator.SetTrigger("Trigger_attack");
@@ -420,7 +425,8 @@ public class Otoko_chara_Controller : MonoBehaviour
                 Down();
             }
         }
-
+        //ガード
+        //if()
 
         //ローカル座標を基準に回転を取得
         Vector3 Local_angle = mytransform.localEulerAngles;
@@ -492,6 +498,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //地面についてたら
         if (stay_other.CompareTag("jimen"))
         {
+            Debug.Log("jimen");
             //変数にHorizontal・Verticalを代入 ※jougeのみ制限
             jump = Input.GetAxisRaw("Vertical");
             if (jump >= 0)
@@ -499,7 +506,6 @@ public class Otoko_chara_Controller : MonoBehaviour
                 jouge = jump;
             }
             jump_stop = true;
-            jump_motion = true;
         }
     }
 
@@ -526,7 +532,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     }
     public void JUMP()
     {
-        animator.SetTrigger("Trigger_Move");
         animator.SetTrigger("Trigger_Jump");
     }
 }
