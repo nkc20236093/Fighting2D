@@ -55,7 +55,7 @@ public class gamedirector : MonoBehaviour
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log(hidan + "a");
             Debug.Log("kougekiPlayerToEnmey");
-           // GauMan.DecreaseEnemyHPGauge(1);
+            GauMan.DecreaseEnemyHPGauge(10);
         }
     }
     public void Dekoi_attack()

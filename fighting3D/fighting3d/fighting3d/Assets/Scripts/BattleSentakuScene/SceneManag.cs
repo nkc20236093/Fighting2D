@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManage : MonoBehaviour
+public class SceneManag : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
         
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+
+
     }
-    public void ToStageSelectFromTraining2()
+
+
+    public void ToBattleFromBattleSetanku()
     {
-        GauMan.maxHPGauge = Main.HP ;
-        Otoko_chara_Controller.normal_speed = Main.Speed;
+        
 
 
 
 
 
-        SceneManager.LoadScene("BattleSentaku");
+
+        SceneManager.LoadScene("BattleScene");
 
 
     }
+
+
 
 
 
