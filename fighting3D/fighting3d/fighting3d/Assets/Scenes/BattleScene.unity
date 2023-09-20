@@ -1247,7 +1247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &781006402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1263,7 +1263,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1506,11 +1506,17 @@ MonoBehaviour:
   dekoi_kougeki_attack: 0
   dekoi_kougeki_hidan: 0
   dekoi_kougeki_hit: 0
+  jab__distance: 0
+  kick__distance: 0
+  jab_dekoi_distance: 0
+  kick_dekoi_distance: 0
   dekoi_kougeki_cooltime_jaku: 0
   dekoi_kougeki_cooltime_kyou: 0
-  dekoi_jaku: 0
-  dekoi_kyou: 0
+  jab_dekoi_cooltime: 0
+  kick_dekoi_cooltime: 0
+  dekoi_cooltime_permisson: 0
   dekoi_attack_permission: 0
+  chara_muki_dekoi: 0
   speed_mode: 0
   sayuu: 0
   jouge: 0
@@ -1634,6 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d23fa7a1333374584fd83e9fb5f39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Distance_gamedirector: 0
   GauMan: {fileID: 1957574566}
   otoko_Chara_Controller: {fileID: 1151485741}
   Dekoi: {fileID: 878131923}
@@ -1936,7 +1943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1191391935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1952,7 +1959,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

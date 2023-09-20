@@ -43,12 +43,12 @@ public class dekoi : MonoBehaviour
     Transform mytransform;
 
     //キャラ向き変更用変数
-    float chara_muki;
+    public float chara_muki_dekoi;
 
     //通常スピード
-    float normal_speed = 5f;
+    static float normal_speed = 5f;
     //ダッシュスピード
-    float dash_speed = 7.5f;
+    static float dash_speed = 7.5f;
     //現在のスピードモード
     float now_speed;
     //スピード設定
@@ -122,12 +122,12 @@ public class dekoi : MonoBehaviour
         dekoi_kougeki_hidan = gamedirector.hidan;
         //攻撃範囲（向き）
         //右方向
-        if (chara_muki == 1f)
+        if (chara_muki_dekoi == 1f)
         {
             gamedirector.Distance_gamedirector = 1 * gamedirector.Distance_gamedirector;
         }
         //左方向
-        else if (chara_muki == -1f)
+        else if (chara_muki_dekoi == -1f)
         {
             gamedirector.Distance_gamedirector = -1 * gamedirector.Distance_gamedirector;
         }
@@ -162,7 +162,7 @@ public class dekoi : MonoBehaviour
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
         //Vector3にHorizontal・Verticalを代入
-        Vector3 idouVec = new Vector3(0, jouge * 1.5f, sayuu * chara_muki);
+        Vector3 idouVec = new Vector3(0, jouge * 1.5f, sayuu * chara_muki_dekoi);
 
         //ジャンプ時間の計算
         if (jump_stop == true && Real_Time < JumpCoolTime)
@@ -225,13 +225,13 @@ public class dekoi : MonoBehaviour
             Debug.Log("必殺技");
         }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        if (Input.GetButtonDown("Right(left) Bumper or sperce"))
+        if (Input.GetButtonDown("Right(left) Bumper or space"))
         {
             Debug.Log("ガード");
         }
 
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or sperce") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
             gameObject.SetDekoiChild(6);
             gameObject.layer = LayerMask.NameToLayer("Attack");
@@ -294,7 +294,7 @@ public class dekoi : MonoBehaviour
             if (sayuu > 0)
             {
                 //反転処理
-                chara_muki = 1;
+                chara_muki_dekoi = 1;
                 World_angle.y = -90;
                 //アニメーション変更
                 animator.SetTrigger("dekoi_zensin");
@@ -303,7 +303,7 @@ public class dekoi : MonoBehaviour
             else if (sayuu < 0)
             {
                 //反転処理
-                chara_muki = -1;
+                chara_muki_dekoi = -1;
                 World_angle.y = 90;
                 //アニメーション変更
                 animator.SetTrigger("dekoi_zensin");

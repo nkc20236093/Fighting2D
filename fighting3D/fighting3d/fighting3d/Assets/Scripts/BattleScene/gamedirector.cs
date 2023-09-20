@@ -32,8 +32,8 @@ public class gamedirector : MonoBehaviour
     {
         Player = otoko_Chara_Controller.transform.position;
         Enemy = Dekoi.transform.position;
-
         Distance_gamedirector = Player.x - Enemy.x;
+        Distance_gamedirector = Mathf.Abs(Distance_gamedirector);
 
         //íjÉLÉÉÉâ1Ç©ÇÁçUåÇ
         if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
@@ -50,12 +50,13 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
+        
         if (otoko_Chara_Controller.attack_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log(hidan + "a");
             Debug.Log("kougekiPlayerToEnmey");
-           // GauMan.DecreaseEnemyHPGauge(1);
+            GauMan.DecreaseEnemyHPGauge(1);
         }
     }
     public void Dekoi_attack()
@@ -64,7 +65,7 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log(hidan_otoko1 + "c");
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
-            //GauMan.DecreaseEnemyHPGauge(10);
+            GauMan.DecreaseEnemyHPGauge(10);
         }
     }
 }
