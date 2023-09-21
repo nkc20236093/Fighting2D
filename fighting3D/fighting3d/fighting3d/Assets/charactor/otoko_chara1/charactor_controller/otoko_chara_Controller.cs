@@ -82,7 +82,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float chara_muki;
 
     //通常スピード
-    public static float normal_speed;
+    public static float normal_speed = 5;
     //ダッシュスピード
     public static float dash_speed;
     //現在のスピードモード
@@ -254,7 +254,15 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
 
-           
+
+
+
+
+            //GauMan.DecreaseEnemyHPGauge(10);
+            // GauMan.DecreaseEnemyStaGauge(10);
+            //GauMan.DecreaseStaGauge(10);
+            GauMan.DecreaseEnemyHPGaugeAndStaGauge(10);
+
 
 
 

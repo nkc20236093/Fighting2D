@@ -57,7 +57,7 @@ public class gamedirector : MonoBehaviour
             Debug.Log(hidan + "a");
             Debug.Log("kougekiPlayerToEnmey");
 
-            GauMan.DecreaseEnemyHPGauge(10);
+          //  GauMan.DecreaseEnemyHPGauge(10);
 
         }
     }

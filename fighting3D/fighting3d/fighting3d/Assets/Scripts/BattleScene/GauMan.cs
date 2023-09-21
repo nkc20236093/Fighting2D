@@ -25,7 +25,7 @@ public class GauMan : MonoBehaviour
 
     public static float maxEnemyStaGauge = 100f;
     public static float currentEnemyStaGauge;
-
+    
     public static float maxSkiGauge = 100f;
     public static float currentSkiGauge;
 
@@ -205,5 +205,27 @@ public class GauMan : MonoBehaviour
     }
 
 
+
+    public void DecreaseEnemyHPGaugeAndStaGauge(float amount)
+    {
+        currentEnemyHPGauge -= amount;
+        if (currentEnemyHPGauge < 0)
+            currentEnemyHPGauge = 0;
+
+
+
+        //UpdateGaugeUI();
+
+
+        currentStaGauge -= amount;
+        if (currentStaGauge < 0)
+            currentStaGauge = 0;
+
+        UpdateGaugeUI();
+
+
+
+        UpdateGaugeUI();
+    }
 
 }
