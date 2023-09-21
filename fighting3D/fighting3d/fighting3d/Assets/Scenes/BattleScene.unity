@@ -1501,6 +1501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be532a06e3c8f75419b8beb8345be310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ray_player_hit_dekoi: 0
   rigidbody: {fileID: 878131935}
   Real_Time: 1
   dekoi_kougeki_attack: 0
