@@ -16,9 +16,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     public bool Ray_player_hit;
     //レイがトリガー付きコライダーに判定を出すか
     QueryTriggerInteraction queryTrigger;
-    //Ray用レイヤー変数
-    int ray_layert = 6 << 7;
-
+    //hanteiからattackにシフト
+    public int hantei_shift_attack = 6 >> 1;
+    public int attack_shift_hantei = 7 << 1;
 
     //GunManを取得
     public GauMan GauMan;
@@ -63,9 +63,9 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float attack_cooltime_jaku;
     public float attack_cooltime_kyou;
     //弱攻撃許可用bool
-    public bool jab_attack_permission;
+    public bool jab_attack_cooltime_permission;
     //強攻撃許可用bool
-    public bool kick_attack_permission;
+    public bool kick_attack_cooltime_permission;
     //ゲームディレクター用攻撃許可用bool
     public bool attack_cooltime_permisson;
     public bool attack_permission;
@@ -180,14 +180,17 @@ public class Otoko_chara_Controller : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 60f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit))
+        if (Physics.Raycast(otoko1_ray, out hit, 10, Hit_ray_laeyr,queryTrigger))
         {
+            Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Player"))
             {
+                Debug.Log("hit");
                 Ray_player_hit = true;
             }
-            if (hit.collider.CompareTag("kabe"))
+            else if (hit.collider.CompareTag("kabe"))
             {
+                Debug.Log("No_hit");
                 Ray_player_hit = false;
             }
         }
@@ -207,19 +210,19 @@ public class Otoko_chara_Controller : MonoBehaviour
         //攻撃許可
         if (first_attack == true)
         {
-            jab_attack_permission = true;
-            kick_attack_permission = true;
+            jab_attack_cooltime_permission = true;
+            kick_attack_cooltime_permission = true;
         }
         if (attack_cooltime_jaku >= 0.5f)
         {
-            jab_attack_permission = true;
+            jab_attack_cooltime_permission = true;
         }
         if (attack_cooltime_kyou >= 1)
         {
-            kick_attack_permission = true;
+            kick_attack_cooltime_permission = true;
         }
         //ゲームディレクター用
-        if (jab_attack_permission == true || kick_attack_permission == true)
+        if (jab_attack_cooltime_permission == true || kick_attack_cooltime_permission == true)
         {
             attack_cooltime_permisson = true;
         }
@@ -367,17 +370,17 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         //攻撃の処理
         //最初の攻撃処理
-        if (jump_stop == true && Input.GetAxisRaw("Horizontal") != 0 && first_attack_int == 0)
+        if (jump_stop == true && otoko1_kougeki_attack == 1 && first_attack_int == 0)
         {
             first_attack_int++;
         }
-        //1回目&地面についてたら&横移動入力がされてたら
-        if (jump_stop == true && Input.GetAxisRaw("Horizontal") != 0 && first_attack_int == 1)
+        //1回目&地面についてたら&弱攻撃入力がされてたら
+        if (jump_stop == true && otoko1_kougeki_attack == 1 && first_attack_int == 1)
         {
             first_attack = true;
         }
-        //1回目&地面についてたら&横移動入力がされてたら
-        if (jump_stop == true && Input.GetAxisRaw("Horizontal") != 0 && first_attack_int >= 2 && jab_attack_permission == true || kick_attack_permission == true)
+        //2回目&地面についてたら&弱攻撃入力がされてたら
+        if (jump_stop == true && otoko1_kougeki_attack == 1 && first_attack_int >= 2 && jab_attack_cooltime_permission == true || kick_attack_cooltime_permission == true)
         {
             first_attack = false;
         }
@@ -385,13 +388,34 @@ public class Otoko_chara_Controller : MonoBehaviour
         //攻撃アニメーション
 
         //弱攻撃(ヒット時)
-        if (otoko1_kougeki_attack == 1 && jump_stop == true && otoko1_jab_distance == true && jab_attack_permission == true && Ray_player_hit == true)
+        if (otoko1_kougeki_attack == 1 && jump_stop && otoko1_jab_distance && Ray_player_hit && jab_attack_cooltime_permission)
         {
             Debug.Log("弱ヒット");
             otoko1_kougeki_hit = 1;
         }
+        if (otoko1_kougeki_attack == 1)
+        {
+            Debug.Log("条件1");
+        }
+        Debug.Log(otoko1_kougeki_attack + "otoko1");
+        if(jump_stop == true)
+        {
+            Debug.Log("条件2");
+        }
+        if (otoko1_jab_distance == true)
+        {
+            Debug.Log("条件3");
+        }
+        if(Ray_player_hit == true)
+        {
+            Debug.Log("条件4");
+        }
+        if (jab_attack_cooltime_permission == true)
+        {
+            Debug.Log("条件5");
+        }
         //強攻撃(ヒット時)
-        if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
+        if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
         {
             Debug.Log("強ヒット");
             otoko1_kougeki_hit = 2;
@@ -400,6 +424,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         //被弾アニメーション
         if (otoko1_kougeki_hidan != 0)
         {
+            gameObject.SetChildLayer(6);
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
             if (otoko1_kougeki_hidan == 1)
             {
                 Debug.Log("otoko1ひるみ");
@@ -434,6 +460,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         //左右どちらかに移動中
         if (sayuu != 0)
         {
+            gameObject.SetChildLayer(0);
+            gameObject.layer = LayerMask.NameToLayer("Hantei");
             //アニメーション分岐
             animator.SetTrigger("Trigger_Move");
             //右移動
@@ -511,13 +539,13 @@ public class Otoko_chara_Controller : MonoBehaviour
     public void Jab()
     {
         animator.SetTrigger("return_jab");
-        otoko1_kougeki_attack = 0;
+        Invoke(nameof(Hensuu_shoki), 0.2f);
         attack_cooltime_jaku = 0;
     }
     public void Kick()
     {
         animator.SetTrigger("return_kick");
-        otoko1_kougeki_attack = 0;
+        Invoke(nameof(Hensuu_shoki), 0.2f);
         attack_cooltime_kyou = 0;
     }
 

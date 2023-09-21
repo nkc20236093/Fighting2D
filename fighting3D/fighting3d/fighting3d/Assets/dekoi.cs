@@ -343,7 +343,7 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_kick();
         }
-        Debug.Log(dekoi_kougeki_hidan);
+        Debug.Log(dekoi_kougeki_hidan + "dekoi");
         //”í’eƒ‚[ƒVƒ‡ƒ“
         if (dekoi_kougeki_hidan != 0)
         {
