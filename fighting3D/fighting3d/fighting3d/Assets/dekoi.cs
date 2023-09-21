@@ -19,7 +19,7 @@ public class dekoi : MonoBehaviour
     //レイがトリガー付きコライダーに判定を出すか
     QueryTriggerInteraction queryTrigger_dekoi;
     //Ray用レイヤー変数
-    int ray_layert_dekoi = 6 << 7;
+    public int dekoi_ray_layer;
 
     //アニメーターコンポーネントを取得
     Animator animator;
@@ -156,7 +156,7 @@ public class dekoi : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray_Origin_dekoi, otoko1_ray_dekoi.direction, Color.red, 60f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray_dekoi, out hit_dekoi))
+        if (Physics.Raycast(otoko1_ray_dekoi, out hit_dekoi)) 
         {
             if (hit_dekoi.collider.CompareTag("Player"))
             {
@@ -246,6 +246,7 @@ public class dekoi : MonoBehaviour
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
         {
+            dekoi_ray_layer = 6;
             gameObject.SetDekoiChild(6);
             gameObject.layer = LayerMask.NameToLayer("Attack");
             idouVec = Vector3.zero;
@@ -343,7 +344,6 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_kick();
         }
-        Debug.Log(dekoi_kougeki_hidan + "dekoi");
         //被弾モーション
         if (dekoi_kougeki_hidan != 0)
         {
@@ -361,8 +361,6 @@ public class dekoi : MonoBehaviour
         //停止状態
         if (!Input.anyKeyDown)
         {
-            //アニメーション変更
-            Invoke(nameof(Attack_or_HIdan_Shoki), 1f);
             //レイヤー初期
             Layer_Shoki();
             //変数初期化
@@ -383,6 +381,7 @@ public class dekoi : MonoBehaviour
     }
     public void Layer_Shoki()
     {
+        dekoi_ray_layer = 3;
         gameObject.layer = LayerMask.NameToLayer("Player");
         gameObject.SetDekoiChild(3);
     }
@@ -445,10 +444,10 @@ public class dekoi : MonoBehaviour
     }
     public void Dekoi_hirumi()
     {
-
+        animator.SetTrigger("dekoi_jaku_hirumi");
     }
     public void Dekoi_down()
     {
-
+        animator.SetTrigger("dekoi_down");
     }
 }

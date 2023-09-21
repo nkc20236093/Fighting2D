@@ -4,6 +4,8 @@ public class Otoko_chara_Controller : MonoBehaviour
 {
     //レイの距離
     float Ray_Distance = 0.25f;
+    //Rayがオブジェクトに当たった場合の距離(変動型)
+    Vector3 Ray_length;
     //レイを取得
     Ray otoko1_ray;
     //レイの原点
@@ -16,9 +18,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     public bool Ray_player_hit;
     //レイがトリガー付きコライダーに判定を出すか
     QueryTriggerInteraction queryTrigger;
-    //hanteiからattackにシフト
-    public int hantei_shift_attack = 6 >> 1;
-    public int attack_shift_hantei = 7 << 1;
 
     //GunManを取得
     public GauMan GauMan;
@@ -133,6 +132,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
         jump_mode = false;
+        //最初だけ長さを指定
+        Ray_length.x = 10;
 
         //自分の回転度を取得
         mytransform = this.transform;
@@ -180,17 +181,18 @@ public class Otoko_chara_Controller : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 60f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit, 10, Hit_ray_laeyr,queryTrigger))
+        if (Physics.Raycast(otoko1_ray, out hit, Ray_length.x))
         {
             Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("hit");
+                Ray_length.x = gamedirector.Distance + 0.001f;
                 Ray_player_hit = true;
             }
-            else if (hit.collider.CompareTag("kabe"))
+            else
             {
-                Debug.Log("No_hit");
+                Debug.Log("壁");
+                Ray_length.x = 10;
                 Ray_player_hit = false;
             }
         }
@@ -393,27 +395,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱ヒット");
             otoko1_kougeki_hit = 1;
         }
-        if (otoko1_kougeki_attack == 1)
-        {
-            Debug.Log("条件1");
-        }
-        Debug.Log(otoko1_kougeki_attack + "otoko1");
-        if(jump_stop == true)
-        {
-            Debug.Log("条件2");
-        }
-        if (otoko1_jab_distance == true)
-        {
-            Debug.Log("条件3");
-        }
-        if(Ray_player_hit == true)
-        {
-            Debug.Log("条件4");
-        }
-        if (jab_attack_cooltime_permission == true)
-        {
-            Debug.Log("条件5");
-        }
         //強攻撃(ヒット時)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
         {
@@ -460,7 +441,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         //左右どちらかに移動中
         if (sayuu != 0)
         {
-            gameObject.SetChildLayer(0);
+
+            gameObject.SetChildLayer(6);
             gameObject.layer = LayerMask.NameToLayer("Hantei");
             //アニメーション分岐
             animator.SetTrigger("Trigger_Move");

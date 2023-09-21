@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2040381613}
-  m_IndirectSpecularColor: {r: 0.18154839, g: 0.22718915, b: 0.30740654, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154866, g: 0.22718975, b: 0.3074077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1502,6 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ray_player_hit_dekoi: 0
+  dekoi_ray_layer: 0
   rigidbody: {fileID: 878131935}
   Real_Time: 1
   dekoi_kougeki_attack: 0
@@ -1641,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d23fa7a1333374584fd83e9fb5f39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance_gamedirector: 0
+  Distance: 0
   GauMan: {fileID: 1957574566}
   otoko_Chara_Controller: {fileID: 1151485741}
   Dekoi: {fileID: 878131923}
