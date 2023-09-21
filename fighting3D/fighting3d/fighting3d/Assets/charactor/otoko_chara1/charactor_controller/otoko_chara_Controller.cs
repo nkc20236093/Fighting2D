@@ -254,7 +254,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("é„çUåÇ");
             otoko1_kougeki_attack = 1;
 
-            GauMan.DecreaseHPGauge(10);
+           
 
 
 
@@ -263,10 +263,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //ã≠çUåÇÅiA or KÅj
         if (Input.GetButtonDown("A or K") && jump_stop == true)
         {
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
             Debug.Log("ã≠çUåÇ");
             otoko1_kougeki_attack = 2;
             //gameObject.layer = LayerMask.NameToLayer("Attack");
