@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class dekoi : MonoBehaviour
 {
-    //レイの距離
-    float Ray_Distance_dekoi = 0.25f;
+    //Rayがオブジェクトに当たった場合の距離(変動型)
+    float Ray_length_dekoi;
     //レイを取得
     Ray otoko1_ray_dekoi;
     //レイの原点
@@ -111,6 +111,8 @@ public class dekoi : MonoBehaviour
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
         jump_mode = false;
+        //最初だけ長さを指定
+        Ray_length_dekoi = gamedirector.Distance;
 
         //自分の回転度を取得
         mytransform = this.transform;
@@ -156,14 +158,18 @@ public class dekoi : MonoBehaviour
         //デバッグ用レイ
         Debug.DrawRay(otoko1_ray_Origin_dekoi, otoko1_ray_dekoi.direction, Color.red, 60f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray_dekoi, out hit_dekoi)) 
+        if (Physics.Raycast(otoko1_ray_dekoi, out hit_dekoi,Ray_length_dekoi)) 
         {
             if (hit_dekoi.collider.CompareTag("Player"))
             {
+                Debug.Log(hit_dekoi.collider.gameObject + "dekoi");
+                Ray_length_dekoi = gamedirector.Distance + 0.1f;
                 Ray_player_hit_dekoi = true;
             }
-            if (hit_dekoi.collider.CompareTag("kabe"))
+            else if (hit_dekoi.collider != null)
             {
+                Debug.Log("No_hit");
+                Ray_length_dekoi = 10;
                 Ray_player_hit_dekoi = false;
             }
         }
@@ -400,6 +406,13 @@ public class dekoi : MonoBehaviour
                 jouge = jump;
             }
             jump_stop = true;
+        }
+    }
+    public void OnTriggerEnter(Collider enter_other)
+    {
+        if (enter_other.CompareTag("tenjou"))
+        {
+            jouge = -1f;
         }
     }
     void Chien()

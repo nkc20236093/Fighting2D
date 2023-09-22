@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Otoko_chara_Controller : MonoBehaviour
 {
-    //レイの距離
-    float Ray_Distance = 0.25f;
+    //Rayがヒットしたオブジェクトを保存
+    string hitname;
+    //Rayのヒットした座標
+    Vector3 Ray_hit;
     //Rayがオブジェクトに当たった場合の距離(変動型)
-    Vector3 Ray_length;
+    float Ray_length;
     //レイを取得
     Ray otoko1_ray;
     //レイの原点
@@ -133,7 +135,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //最初に現在のジャンプモードに通常モードを代入
         jump_mode = false;
         //最初だけ長さを指定
-        Ray_length.x = 10;
+        Ray_length = 10;
 
         //自分の回転度を取得
         mytransform = this.transform;
@@ -179,22 +181,23 @@ public class Otoko_chara_Controller : MonoBehaviour
         //レイを生成
         otoko1_ray = new Ray(otoko1_ray_Origin, otoko1_ray_Vector3);
         //デバッグ用レイ
-        Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction, Color.red, 60f, false);
+        Debug.DrawRay(otoko1_ray_Origin, otoko1_ray.direction * Ray_length, Color.red, 60f, false);
         //当たり判定用レイ
-        if (Physics.Raycast(otoko1_ray, out hit, Ray_length.x))
+        if (Physics.Raycast(otoko1_ray, out hit))
         {
-            Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.CompareTag("Player"))
+            //ヒットしたオブジェクトのタグを取得
+            hitname = hit.collider.gameObject.tag;
+            if (hitname.Equals("Player"))
             {
-                Ray_length.x = gamedirector.Distance + 0.001f;
+                Debug.Log(hitname);
+                Debug.Log("Ray_Hit_plaeyr");
                 Ray_player_hit = true;
             }
-            else
-            {
-                Debug.Log("壁");
-                Ray_length.x = 10;
-                Ray_player_hit = false;
-            }
+        }
+        else
+        {
+            Debug.Log("No_ray_hit");
+            Ray_player_hit = false;
         }
 
         //子オブジェクトを全て取得

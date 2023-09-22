@@ -34,6 +34,7 @@ public class gamedirector : MonoBehaviour
         Player = otoko_Chara_Controller.transform.position;
         Enemy = Dekoi.transform.position;
         Distance_gamedirector = Player.x - Enemy.x;
+        //â‘Î’l‰»
         Distance = Mathf.Abs(Distance_gamedirector);
 
         //’jƒLƒƒƒ‰1‚©‚çUŒ‚
