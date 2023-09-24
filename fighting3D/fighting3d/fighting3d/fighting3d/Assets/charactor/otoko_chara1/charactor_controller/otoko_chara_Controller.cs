@@ -41,6 +41,8 @@ public class Otoko_chara_Controller : MonoBehaviour
 
     //ゲームディレクターを取得
     public gamedirector gamedirector;
+    //ゲームディレクター用攻撃bool
+    public bool otoko1_attack_bool;
     //テスト用のデコイ（ゲームオブジェクト）を取得
     public dekoi dekoi;
 
@@ -284,6 +286,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             animator.SetTrigger("Trigger_attack");
             Invoke(nameof(Hensuu_shoki), 0.5f);
             Jab();
+            otoko1_attack_bool = true;
         }
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true)
@@ -293,10 +296,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             animator.SetTrigger("Trigger_attack");
             Invoke(nameof(Hensuu_shoki), 0.5f);
             Kick();
+            otoko1_attack_bool = true;
         }
         //必殺技（Y or I）
         if (Input.GetButtonDown("Y or I") && jump_stop == true)
         {
+            otoko1_attack_bool = true;
             Debug.Log("必殺技");
         }
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
@@ -305,12 +310,18 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_guard = true;
             Debug.Log("ガード");
         }
-        //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
+        //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする & 一部変数を除いて初期化
+        if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
             //レイヤー変更
             gameObject.SetChildLayer(7);
             gameObject.layer = LayerMask.NameToLayer("Attack");
+            Invoke(nameof(Hit_Shoki), 0.09f);
+        }
+        //移動以外の入力がなかったときは boolを変更
+        if (!Input.GetButtonDown("Right(left) Bumper or space") || !Input.GetButtonDown("Y or I") || !Input.GetButtonDown("A or K") || !Input.GetButtonDown("X or J"))
+        {
+            otoko1_attack_bool = false;
         }
         //ジャンプの入力があったときは遅延して横移動できないようにする
         if (jouge > 0)
@@ -414,7 +425,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("弱ヒット");
             otoko1_kougeki_hit = 1;
-            Invoke(nameof(Hensuu_shoki), 0.5f);
             CoolTime_Shoki();
         }
         //強攻撃(ヒット時)
@@ -422,7 +432,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("強ヒット");
             otoko1_kougeki_hit = 2;
-            Invoke(nameof(Hensuu_shoki), 0.5f);
             CoolTime_Shoki();
         }
         //ガード
@@ -493,21 +502,21 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (!Input.anyKey)
         {
             //変数初期化
-            Invoke(nameof(Hensuu_shoki), 0.5f);
+            Invoke(nameof(Hensuu_shoki), 0.1f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
         }
         mytransform.eulerAngles = Local_angle;
-        if (otoko1_kougeki_hit != 0)
-        {
-            Debug.Log(otoko1_kougeki_hit);
-        }
+        Debug.Log(otoko1_kougeki_hit);
     }
     //停止状態の変数初期化
-    void Hensuu_shoki()
+    public void Hensuu_shoki()
     {
         otoko1_kougeki_attack = 0;
         otoko1_kougeki_hidan = 0;
+    }
+    public void Hit_Shoki()
+    {
         otoko1_kougeki_hit = 0;
     }
     //レイヤー初期化

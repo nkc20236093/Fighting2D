@@ -15,11 +15,13 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
     public object HPgauge;
 
+    //男１を取得
     public Otoko_chara_Controller otoko_Chara_Controller;
+    //dekoiを取得
     public dekoi Dekoi;
 
     //攻撃被弾変数
-    public int hidan;//デコイ用
+    public int hidan;       //デコイ用
     public int hidan_otoko1;//男キャラ1
 
     // Start is called before the first frame update
@@ -31,14 +33,18 @@ public class gamedirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //変数を常時更新
+        hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+        //キャラクターを代入
         Player = otoko_Chara_Controller.transform.position;
         Enemy = Dekoi.transform.position;
+        //差を求める
         Distance_gamedirector = Player.x - Enemy.x;
         //絶対値化
         Distance = Mathf.Abs(Distance_gamedirector);
 
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0) 
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 && otoko_Chara_Controller.otoko1_attack_bool) 
         {
             Debug.Log("男キャラ1攻撃");
             Otoko1_attack();
@@ -55,6 +61,7 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log("条件3");
         }
+        Debug.Log(hidan + "A");
         //dekoiから攻撃
         if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
         {
@@ -64,8 +71,8 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-        
-        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+
+        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");
@@ -74,7 +81,7 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true)
         {
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
             Debug.Log("kougekiEnemyToPlayer");

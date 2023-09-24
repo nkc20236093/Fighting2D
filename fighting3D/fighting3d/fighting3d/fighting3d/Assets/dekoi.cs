@@ -357,11 +357,13 @@ public class dekoi : MonoBehaviour
             {
                 Debug.Log("dekoiひるみ");
                 Dekoi_hirumi();
+                Invoke(nameof(Attack_Shoki), 1f);
             }
             if (dekoi_kougeki_hidan == 2)
             {
                 Debug.Log("dekoiダウン");
                 Dekoi_down();
+                Invoke(nameof(Attack_Shoki), 1f);
             }
         }
         //停止状態
@@ -370,15 +372,19 @@ public class dekoi : MonoBehaviour
             //レイヤー初期
             Layer_Shoki();
             //変数初期化
-            Invoke(nameof(Attack_or_HIdan_Shoki), 0.5f);
+            Invoke(nameof(Attack_Shoki), 0.5f);
         }
         mytransform.eulerAngles = World_angle;
         Debug.Log(dekoi_kougeki_hidan+"B");
     }
     //停止状態の変数初期化
-    void Attack_or_HIdan_Shoki()
+    void Attack_Shoki()
     {
         dekoi_kougeki_attack = 0;
+    }
+    //特定の変数を初期化
+    public void Hidan_Shoki()
+    {
         dekoi_kougeki_hidan = 0;
     }
     void Cooltime_Shoki()
