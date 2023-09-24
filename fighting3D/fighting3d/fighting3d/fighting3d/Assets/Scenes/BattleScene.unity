@@ -1502,10 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ray_player_hit_dekoi: 0
-<<<<<<< HEAD
-=======
   dekoi_ray_layer: 0
->>>>>>> origin/main
   rigidbody: {fileID: 878131935}
   Real_Time: 1
   dekoi_kougeki_attack: 0

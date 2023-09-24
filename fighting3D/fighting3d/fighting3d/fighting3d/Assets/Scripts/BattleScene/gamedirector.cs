@@ -49,19 +49,28 @@ public class gamedirector : MonoBehaviour
             Debug.Log("デコイ攻撃");
             Dekoi_attack();
         }
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        {
+            Debug.Log("条件1");
+        }
+        if (otoko_Chara_Controller.attack_cooltime_permisson)
+        {
+            Debug.Log("条件2");
+        }
+        if (otoko_Chara_Controller.attack_distance_permission)
+        {
+            Debug.Log("条件3");
+        }
+        Debug.Log(otoko_Chara_Controller.otoko1_kougeki_hit + "ディレクター");
     }
     public void Otoko1_attack()
     {
         
-        if (otoko_Chara_Controller.attack_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");
-
-
-          //  GauMan.DecreaseEnemyHPGauge(10);
-
-
+            GauMan.DecreaseEnemyHPGauge(10);
         }
     }
     public void Dekoi_attack()
