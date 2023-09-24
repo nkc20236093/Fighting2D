@@ -36,9 +36,6 @@ public class Otoko_chara_Controller : MonoBehaviour
     //Transformコンポーネントを取得
     Transform mytransform;
 
-    //被弾アニメーション用int
-    public int hirumi_anim_int;
-
     //Rigidbodyを取得
     public new Rigidbody rigidbody;
 
@@ -185,19 +182,18 @@ public class Otoko_chara_Controller : MonoBehaviour
         //当たり判定用レイ
         if (Physics.Raycast(otoko1_ray, out hit, Ray_length))
         {
-            Debug.Log(hit.collider.gameObject.name);
             //ヒットしたオブジェクトのタグを取得
             hitname = hit.collider.gameObject.tag;
             //ヒットしたオブジェクトののタグがPlayerだったら
             if (hitname.Equals("Player"))
             {
-                Debug.Log("Ray_Hit_plaeyr");
+                Debug.Log("Ray_Hit");
                 Ray_player_hit = true;
             }
         }
         else
         {
-            Debug.Log("No_ray_hit");
+            Debug.Log("Ray_No_Hit");
             Ray_player_hit = false;
         }
 
@@ -223,9 +219,17 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             jab_attack_cooltime_permission = true;
         }
+        else
+        {
+            jab_attack_cooltime_permission = false;
+        }
         if (attack_cooltime_kyou >= 1)
         {
             kick_attack_cooltime_permission = true;
+        }
+        else
+        {
+            kick_attack_cooltime_permission = false;
         }
         //ゲームディレクター用
         if (jab_attack_cooltime_permission == true || kick_attack_cooltime_permission == true)
@@ -233,12 +237,19 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("クールタイム");
             attack_cooltime_permisson = true;
         }
+        else if (jab_attack_cooltime_permission == false && kick_attack_cooltime_permission == true || jab_attack_cooltime_permission == true && kick_attack_cooltime_permission == false)
+        {
+            attack_cooltime_permisson = false;
+        }
         if (otoko1_jab_distance == true || otoko1_kick_distance == true)
         {
             Debug.Log("距離");
             attack_distance_permission = true;
         }
-
+        else if (otoko1_jab_distance == false && otoko1_kick_distance == true || otoko1_jab_distance == true && otoko1_kick_distance == false)
+        {
+            attack_distance_permission = false;
+        }
         //移動制限
         Vector3 Pos = transform.position;
         //X座標
@@ -271,6 +282,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
             animator.SetTrigger("Trigger_attack");
+            Invoke(nameof(Hensuu_shoki), 0.5f);
             Jab();
         }
         //強攻撃（A or K）
@@ -279,6 +291,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
             animator.SetTrigger("Trigger_attack");
+            Invoke(nameof(Hensuu_shoki), 0.5f);
             Kick();
         }
         //必殺技（Y or I）
@@ -401,14 +414,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             Debug.Log("弱ヒット");
             otoko1_kougeki_hit = 1;
-            Invoke(nameof(Hensuu_shoki), 1f);
+            Invoke(nameof(Hensuu_shoki), 0.5f);
+            CoolTime_Shoki();
         }
         //強攻撃(ヒット時)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
         {
             Debug.Log("強ヒット");
             otoko1_kougeki_hit = 2;
-            Invoke(nameof(Hensuu_shoki), 1f);
+            Invoke(nameof(Hensuu_shoki), 0.5f);
+            CoolTime_Shoki();
         }
         //ガード
         if (otoko1_guard == true)
@@ -478,12 +493,15 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (!Input.anyKey)
         {
             //変数初期化
-            Invoke(nameof(Hensuu_shoki), 1f);
+            Invoke(nameof(Hensuu_shoki), 0.5f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
         }
         mytransform.eulerAngles = Local_angle;
-        Debug.Log(otoko1_kougeki_hit);
+        if (otoko1_kougeki_hit != 0)
+        {
+            Debug.Log(otoko1_kougeki_hit);
+        }
     }
     //停止状態の変数初期化
     void Hensuu_shoki()

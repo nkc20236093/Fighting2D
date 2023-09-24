@@ -38,30 +38,29 @@ public class gamedirector : MonoBehaviour
         Distance = Mathf.Abs(Distance_gamedirector);
 
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0) 
         {
             Debug.Log("男キャラ1攻撃");
             Otoko1_attack();
         }
+        if (otoko_Chara_Controller.attack_cooltime_permisson)
+        {
+            Debug.Log("条件1");
+        }
+        if (otoko_Chara_Controller.attack_distance_permission)
+        {
+            Debug.Log("条件2");
+        }
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        {
+            Debug.Log("条件3");
+        }
         //dekoiから攻撃
-        else if (Dekoi.dekoi_kougeki_hit != 0)
+        if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
         {
             Debug.Log("デコイ攻撃");
             Dekoi_attack();
         }
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
-        {
-            Debug.Log("条件1");
-        }
-        if (otoko_Chara_Controller.attack_cooltime_permisson)
-        {
-            Debug.Log("条件2");
-        }
-        if (otoko_Chara_Controller.attack_distance_permission)
-        {
-            Debug.Log("条件3");
-        }
-        Debug.Log(otoko_Chara_Controller.otoko1_kougeki_hit + "ディレクター");
     }
     public void Otoko1_attack()
     {
