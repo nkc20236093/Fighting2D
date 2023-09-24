@@ -370,9 +370,10 @@ public class dekoi : MonoBehaviour
             //ƒŒƒCƒ„[‰Šú
             Layer_Shoki();
             //•Ï”‰Šú‰»
-            Invoke(nameof(Attack_or_HIdan_Shoki), 0.1f);
+            Invoke(nameof(Attack_or_HIdan_Shoki), 0.5f);
         }
         mytransform.eulerAngles = World_angle;
+        Debug.Log(dekoi_kougeki_hidan+"B");
     }
     //’â~ó‘Ô‚Ì•Ï”‰Šú‰»
     void Attack_or_HIdan_Shoki()
