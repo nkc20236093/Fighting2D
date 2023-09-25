@@ -44,7 +44,7 @@ public class gamedirector : MonoBehaviour
         Distance = Mathf.Abs(Distance_gamedirector);
 
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 && otoko_Chara_Controller.otoko1_attack_bool) 
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 )
         {
             Debug.Log("男キャラ1攻撃");
             Otoko1_attack();
