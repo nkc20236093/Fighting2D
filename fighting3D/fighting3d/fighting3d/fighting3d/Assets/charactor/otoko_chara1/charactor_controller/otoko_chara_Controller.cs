@@ -3,11 +3,9 @@ using UnityEngine;
 public class Otoko_chara_Controller : MonoBehaviour
 {
     //Rayの長さ
-    [SerializeField] float Ray_length = 8;
+    public static float Ray_length = 8;
     //Rayがヒットしたオブジェクトを保存
     string hitname;
-    //Rayのヒットした座標
-    Vector3 Ray_hit;
     //レイを取得
     Ray otoko1_ray;
     //レイの原点
@@ -132,6 +130,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         speed_mode = false;
         //最初に現在のジャンプモードに通常モードを代入
         jump_mode = false;
+        //最初はfalse
+        otoko1_guard = false;
 
         //自分の回転度を取得
         mytransform = this.transform;
@@ -262,10 +262,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             jouge = -1f;
         }
         //入力マネージャーを使用した移動方法 ※Verticalは移動
-        sayuu = Input.GetAxis("Horizontal");
+        sayuu = Input.GetAxisRaw("Horizontal");
         //Vector3にHorizontal・Verticalを代入
-        idouVec = new Vector3(0, jouge, sayuu * chara_muki);
-
+        if (otoko1_guard == false)
+        {
+            idouVec = new Vector3(0, jouge, sayuu * chara_muki);
+        }
         //ジャンプ時間の計算
         if (jump_stop == true && Real_Time < JumpCoolTime)
         {
@@ -312,11 +314,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             gameObject.SetChildLayer(7);
             gameObject.layer = LayerMask.NameToLayer("Attack");
         }
-        //移動以外の入力がなかったときは boolを変更
-        if (!Input.GetButtonDown("Right(left) Bumper or space") || !Input.GetButtonDown("Y or I") || !Input.GetButtonDown("A or K") || !Input.GetButtonDown("X or J"))
-        {
 
-        }
         //ジャンプの入力があったときは横移動できないようにする
         if (jouge > 0)
         {
@@ -431,18 +429,21 @@ public class Otoko_chara_Controller : MonoBehaviour
             //ジャストガード
             if (otoko1_guard == true && otoko1_kougeki_hidan != 0)
             {
+                Debug.Log("ジャストガード");
                 animator.SetTrigger("Trigger_Move");
-                Guard();
+                Just_Guard();
             }
             //普通のガード
             else if (otoko1_guard == true)
             {
+                Debug.Log("ノーマルガード");
                 animator.SetTrigger("Trigger_Move");
                 Guard();
             }
+            Invoke(nameof(Guard_reset), 0.5f);
         }
         //被弾アニメーション
-        if (otoko1_kougeki_hidan != 0)
+        if (otoko1_kougeki_hidan != 0 && otoko1_guard == false)
         {
             //レイヤー変更
             gameObject.SetChildLayer(6);
@@ -564,6 +565,16 @@ public class Otoko_chara_Controller : MonoBehaviour
         animator.SetTrigger("Trigger_Jump");
     }
     public void Guard()
+    {
+        animator.SetTrigger("Trigger_guard");
+        Invoke(nameof(Guard_Chien), 0.3f);
+    }
+    public void Guard_Chien()
+    {
+        otoko1_kougeki_attack = 0;
+        idouVec = new Vector3(0, jouge, 0);
+    }
+    public void Just_Guard()
     {
         animator.SetTrigger("Trigger_guard");
     }
