@@ -27,7 +27,7 @@ public class gamedirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 60;
+
     }
 
     // Update is called once per frame
@@ -35,6 +35,7 @@ public class gamedirector : MonoBehaviour
     {
         //変数を常時更新
         hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+        hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
         //キャラクターを代入
         Player = otoko_Chara_Controller.transform.position;
         Enemy = Dekoi.transform.position;
@@ -44,24 +45,11 @@ public class gamedirector : MonoBehaviour
         Distance = Mathf.Abs(Distance_gamedirector);
 
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 && otoko_Chara_Controller.otoko1_attack_bool) 
+        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 )
         {
             Debug.Log("男キャラ1攻撃");
             Otoko1_attack();
         }
-        if (otoko_Chara_Controller.attack_cooltime_permisson)
-        {
-            Debug.Log("条件1");
-        }
-        if (otoko_Chara_Controller.attack_distance_permission)
-        {
-            Debug.Log("条件2");
-        }
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
-        {
-            Debug.Log("条件3");
-        }
-        Debug.Log(hidan + "A");
         //dekoiから攻撃
         if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
         {
@@ -71,8 +59,22 @@ public class gamedirector : MonoBehaviour
     }
     public void Otoko1_attack()
     {
-
+        //非ガード時処理
         if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true)
+        {
+            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+            Debug.Log("kougekiPlayerToEnmey");
+            GauMan.DecreaseEnemyHPGauge(10);
+        }
+        //ジャストガード時処理
+        else if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_just_guard)
+        {
+            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+            Debug.Log("kougekiPlayerToEnmey");
+            GauMan.DecreaseEnemyHPGauge(10);
+        }
+        //ノーマルガード時処理
+        else if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_normal_guard)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");
@@ -81,6 +83,7 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
+        //非ガード時処理
         if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true)
         {
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
