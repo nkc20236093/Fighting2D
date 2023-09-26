@@ -27,7 +27,7 @@ public class gamedirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 60;
+
     }
 
     // Update is called once per frame
@@ -61,6 +61,20 @@ public class gamedirector : MonoBehaviour
     {
         //非ガード時処理
         if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true)
+        {
+            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+            Debug.Log("kougekiPlayerToEnmey");
+            GauMan.DecreaseEnemyHPGauge(10);
+        }
+        //ジャストガード時処理
+        else if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_just_guard)
+        {
+            hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
+            Debug.Log("kougekiPlayerToEnmey");
+            GauMan.DecreaseEnemyHPGauge(10);
+        }
+        //ノーマルガード時処理
+        else if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_normal_guard)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");

@@ -39,10 +39,7 @@ public class dekoi : MonoBehaviour
     public int dekoi_kougeki_attack;
     public int dekoi_kougeki_hidan;
     public int dekoi_kougeki_hit;
-    //攻撃距離判定用bool
-    public bool jab__distance;
-    public bool kick__distance;
-    //攻撃距離判定用(ゲームディレクター)
+    //攻撃距離判定用(自分用)
     public bool jab_dekoi_distance;
     public bool kick_dekoi_distance;
     //攻撃クールタイム用変数
@@ -94,7 +91,7 @@ public class dekoi : MonoBehaviour
     //現在のジャンプ力
     float now_jumppower;
     //2段ジャンプ禁止用
-    public bool jump_stop;
+    public bool jump_stop_dekoi;
     //false = 禁止
     //true  = 許可
 
@@ -128,27 +125,27 @@ public class dekoi : MonoBehaviour
         dekoi_kougeki_hidan = gamedirector.hidan;
 
         //弱攻撃用距離
-        if (gamedirector.Distance <= 0.73f && Input.GetButtonDown("X or J") && Ray_player_hit_dekoi == true)
+        if (gamedirector.Distance <= 0.73f)
         {
             Debug.Log("dekoi弱範囲");
-            jab__distance = true;
+            jab_dekoi_distance = true;
         }
         //強攻撃用距離
-        if (gamedirector.Distance <= 1.71f && Input.GetButtonDown("A or K") && Ray_player_hit_dekoi == true)
+        if (gamedirector.Distance <= 1.71f )
         {
             Debug.Log("dekoi強範囲");
-            kick__distance = true;
+            kick_dekoi_distance = true;
         }
         //範囲外に出た用
         //弱攻撃
         if (gamedirector.Distance > 0.73f)
         {
-            jab__distance = false;
+            jab_dekoi_distance = false;
         }
         //強攻撃
         if (gamedirector.Distance > 1.71f)
         {
-            kick__distance = false;
+            kick_dekoi_distance = false;
         }
 
         //座標を代入
@@ -185,6 +182,11 @@ public class dekoi : MonoBehaviour
         Pos.y = Mathf.Clamp(Pos.y, 4.8f, 6.62f);
         //範囲を越えたらテレポート
         transform.position = Pos;
+        //天井にぶつかったら落下
+        if (transform.position.y >= 6.62f)
+        {
+            jouge = -1f;
+        }
 
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("H or F");
@@ -192,17 +194,17 @@ public class dekoi : MonoBehaviour
         Vector3 idouVec = new Vector3(0, jouge , sayuu * chara_muki_dekoi);
 
         //ジャンプ時間の計算
-        if (jump_stop == true && Real_Time < JumpCoolTime)
+        if (jump_stop_dekoi == true && Real_Time < JumpCoolTime)
         {
             Real_Time += Time.deltaTime;
         }
         //弱攻撃クールタイム計算
-        if (Input.GetKeyDown(KeyCode.Return) && dekoi_kougeki_cooltime_jaku < 1f)
+        if (dekoi_kougeki_cooltime_jaku < 1f)
         {
             dekoi_kougeki_cooltime_jaku += Time.deltaTime;
         }
         //強攻撃クールタイム計算
-        if (Input.GetKeyDown(KeyCode.Z) && dekoi_kougeki_cooltime_kyou < 1.5f)
+        if (dekoi_kougeki_cooltime_kyou < 1.5f)
         {
             dekoi_kougeki_cooltime_kyou += Time.deltaTime;
         }
@@ -235,7 +237,7 @@ public class dekoi : MonoBehaviour
         {
             dekoi_attack_permission = true;
         }
-        else if (jab__distance && kick__distance == false || jab__distance == false || kick__distance)
+        else if (jab_dekoi_distance && kick_dekoi_distance == false || jab_dekoi_distance == false || kick_dekoi_distance)
         {
             dekoi_attack_permission = false;
         }
@@ -250,15 +252,23 @@ public class dekoi : MonoBehaviour
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && jump_stop_dekoi && jab_dekoi_cooltime)
         {
             Debug.Log("dekoi弱攻撃");
             dekoi_kougeki_attack = 1;
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_jab();
         }
+        if (jump_stop_dekoi)
+        {
+            Debug.Log("条件1");
+        }
+        if (jab_dekoi_cooltime)
+        {
+            Debug.Log("条件2");
+        }
         //強攻撃（A or K）
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && jump_stop_dekoi && kick_dekoi_cooltime)
         {
             Debug.Log("dekoi強攻撃");
             dekoi_kougeki_attack = 2;
@@ -286,7 +296,7 @@ public class dekoi : MonoBehaviour
         }
 
         //横移動の処理
-        if (sayuu != 0 && jump_stop == true)
+        if (sayuu != 0 && jump_stop_dekoi == true)
         {
             if (speed_mode == true)
             {
@@ -309,10 +319,9 @@ public class dekoi : MonoBehaviour
         }
         //ジャンプの処理
         //地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
+        if (jump_stop_dekoi == true && jouge != 0 && Real_Time > JumpCoolTime)
         {
             Real_Time = 0;
-            Invoke(nameof(Chien), 0.43f);
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -354,13 +363,31 @@ public class dekoi : MonoBehaviour
         }
         //各攻撃用アニメーション
         //弱攻撃
-        if (jump_stop == true && dekoi_kougeki_attack == 1 && dekoi_attack_permission == true && jab_dekoi_cooltime == true)
+        if (jump_stop_dekoi == true && dekoi_kougeki_attack == 1 && jab_dekoi_distance == true && jab_dekoi_cooltime == true)
         {
             Debug.Log("弱攻撃ヒット");
             dekoi_kougeki_hit = 1;
         }
+        if (jump_stop_dekoi == true )
+        {
+            Debug.Log("弱条件1");
+        }
+        if ( dekoi_kougeki_attack == 1 )
+        {
+            Debug.Log("弱条件2");
+        }
+        if (jab_dekoi_distance == true )
+        {
+            Debug.Log("弱条件3");
+        }
+        if (jab_dekoi_cooltime == true)
+        {
+            Debug.Log("弱条件4");
+        }
+
+
         //強攻撃
-        if (jump_stop == true && dekoi_kougeki_attack == 2 && dekoi_attack_permission == true && kick_dekoi_cooltime == true)
+        if (jump_stop_dekoi == true && dekoi_kougeki_attack == 2 && jab_dekoi_distance == true && kick_dekoi_cooltime == true)
         {
             Debug.Log("強攻撃ヒット");
             dekoi_kougeki_hit = 2;
@@ -390,17 +417,23 @@ public class dekoi : MonoBehaviour
             Invoke(nameof(Attack_Shoki), 0.5f);
         }
         mytransform.eulerAngles = World_angle;
-        Debug.Log(dekoi_kougeki_hidan+"B");
+
+        //ヒット初期化
+        if (dekoi_kougeki_hit != 0)
+        {
+            Invoke(nameof(Hit_Shoki_dekoi), 0.0475f);
+        }
     }
     //停止状態の変数初期化
     void Attack_Shoki()
     {
         dekoi_kougeki_attack = 0;
+        dekoi_kougeki_hidan = 0;
     }
     //特定の変数を初期化
-    public void Hidan_Shoki()
+    public void Hit_Shoki_dekoi()
     {
-        dekoi_kougeki_hidan = 0;
+        dekoi_kougeki_hit = 0;
     }
     void Cooltime_Shoki()
     {
@@ -427,9 +460,10 @@ public class dekoi : MonoBehaviour
             {
                 jouge = jump;
             }
-            jump_stop = true;
+            jump_stop_dekoi = true;
         }
     }
+    //触れた瞬間判定
     public void OnTriggerEnter(Collider enter_other)
     {
         if (enter_other.CompareTag("tenjou"))
@@ -437,36 +471,9 @@ public class dekoi : MonoBehaviour
             jouge = -1f;
         }
     }
-    void Chien()
-    {
-        jump_stop = false;
-        Debug.Log("遅延");
-        jouge = -1f;
-    }
     //攻撃・被弾まとめ
 
     //与ダメージ時
-    public void Attack()
-    {
-        //地上攻撃
-        if (jump_stop == true)
-        {
-            //弱攻撃
-            if (dekoi_kougeki_attack == 1 && dekoi_attack_permission == true)
-            {
-                dekoi_kougeki_hit = 1;
-                Debug.Log("player_kougeki_attack1");
-            }
-            //強攻撃
-            if (dekoi_kougeki_attack == 2 && dekoi_attack_permission == true)
-            {
-                dekoi_kougeki_hit = 2;
-                Debug.Log("player_kougeki_attack2");
-            }
-            Invoke(nameof(Cooltime_Shoki), 0.1f);
-        }
-    }
-
     public void Dekoi_jab()
     {
         animator.SetTrigger("dekoi_jab");
