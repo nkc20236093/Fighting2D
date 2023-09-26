@@ -3,32 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags: []
-=======
-  tags:
-  - jimen
-  - kabe
-  - Hantei
-  - tenjou
->>>>>>> parent of ad3e025 (???)
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-<<<<<<< HEAD
   - 
   - Water
   - UI
   - 
   - 
-=======
-  - Player
-  - Water
-  - UI
-  - Hantei
-  - Attack
->>>>>>> parent of ad3e025 (???)
   - 
   - 
   - 

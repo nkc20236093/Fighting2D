@@ -1,0 +1,393 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.7f1 (b16b3b16c7a0) revision 11627323'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ja' Physical Memory: 16085 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Users\eita0\OneDrive\デスクトップ\個人\2022.3.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+64949
+Successfully changed project path to: C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
+C:/Github/fighting3d/fighting3D/fighting3d/fighting3d
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [27192] Host "[IP] 192.168.0.109 [Port] 0 [Flags] 2 [Guid] 901759981 [EditorId] 901759981 [Version] 1048832 [Id] WindowsEditor(7,MSI) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [27192] Host "[IP] 192.168.0.109 [Port] 0 [Flags] 2 [Guid] 901759981 [EditorId] 901759981 [Version] 1048832 [Id] WindowsEditor(7,MSI) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 68.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.7f1 (b16b3b16c7a0)
+[Subsystems] Discovering subsystems at path C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Github/fighting3d/fighting3D/fighting3d/fighting3d/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4050 Laptop GPU (ID=0x28a1)
+    Vendor:   NVIDIA
+    VRAM:     5935 MB
+    Driver:   31.0.15.3667
+Initialize mono
+Mono path[0] = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56352
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Users/eita0/OneDrive/デスクトップ/個人/2022.3.7f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Registered in 0.029142 seconds.
+- Loaded All Assemblies, in  1.126 seconds
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+The file 'ProjectSettings/PackageManagerSettings.asset' seems to have merge conflicts. Please open it in a text editor and fix the merge.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.ScriptableSingleton`1<UnityEditor.PackageManager.UI.Internal.PackageManagerProjectSettings>:CreateAndLoad ()
+UnityEditor.ScriptableSingleton`1<UnityEditor.PackageManager.UI.Internal.PackageManagerProjectSettings>:get_instance ()
+UnityEditor.PackageManager.UI.Internal.PackageManagerProjectSettingsProxy:OnEnable ()
+UnityEditor.PackageManager.UI.Internal.ServicesContainer:Initialize ()
+UnityEditor.PackageManager.UI.Internal.ServicesContainer:Resolve<UnityEditor.PackageManager.UI.Internal.ApplicationProxy> ()
+UnityEditor.PackageManager.UI.PackageManagerWindow:OnEditorFinishLoadingProject ()
+UnityEditor.PackageManager.UI.PackageManagerWindow:EditorInitializedInSafeMode ()
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[ line 0]
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.607 seconds
+Domain Reload Profiling: 1731ms
+	BeginReloadAssembly (467ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (89ms)
+	RebuildNativeTypeToScriptingClass (34ms)
+	initialDomainReloadingComplete (184ms)
+	LoadAllAssembliesAndSetupDomain (348ms)
+		LoadAssemblies (461ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (343ms)
+			TypeCache.Refresh (340ms)
+				TypeCache.ScanAssembly (316ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (609ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (457ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (29ms)
+			SetLoadedEditorAssemblies (23ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (5ms)
+			ProcessInitializeOnLoadAttributes (305ms)
+			ProcessInitializeOnLoadMethodAttributes (94ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.444 seconds
+Refreshing native plugins compatible for Editor in 28.18 ms, found 2 plugins.
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.300 seconds
+Domain Reload Profiling: 2730ms
+	BeginReloadAssembly (243ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (76ms)
+	LoadAllAssembliesAndSetupDomain (1047ms)
+		LoadAssemblies (864ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (331ms)
+			TypeCache.Refresh (269ms)
+				TypeCache.ScanAssembly (235ms)
+			ScanForSourceGeneratedMonoScriptInfo (48ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1301ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1031ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (222ms)
+			ProcessInitializeOnLoadAttributes (453ms)
+			ProcessInitializeOnLoadMethodAttributes (322ms)
+			AfterProcessingInitializeOnLoad (12ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 1.40 seconds
+Refreshing native plugins compatible for Editor in 41.63 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5219 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 109 unused Assets / (0.9 MB). Loaded Objects now: 5650.
+Memory consumption went from 201.8 MB to 200.9 MB.
+Total: 17.594700 ms (FindLiveObjects: 0.587100 ms CreateObjectMapping: 0.327100 ms MarkObjects: 15.895100 ms  DeleteObjects: 0.783000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: a3ef5dd2817f97addfee359851a9dba5 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 804328.534035 seconds.
+  path: Assets/Animator/otoko2/goudouotoko2jyanpu.fbx
+  artifactKey: Guid(6966530da76e93a4693e668f7a940a6c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Animator/otoko2/goudouotoko2jyanpu.fbx using Guid(6966530da76e93a4693e668f7a940a6c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a95ef5443e6391919d308f048ee36436') in 0.724209 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 319
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Vroid_otoko1/合同企画１.vroid
+  artifactKey: Guid(02ce7ca43905e624e8db96748b6011ce) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Vroid_otoko1/合同企画１.vroid using Guid(02ce7ca43905e624e8db96748b6011ce) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9902655e691f4f816922ca069cf5f416') in 0.158602 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/UI/Hp_Gauge×2.png
+  artifactKey: Guid(85f1ba1e2305de0498b18afd4084e76b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/UI/Hp_Gauge×2.png using Guid(85f1ba1e2305de0498b18afd4084e76b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '094fa8113cb73abd4b2b12dbf3ccc519') in 0.509888 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/charactor/onnna_chara1/合同企画女１.1.prefab
+  artifactKey: Guid(b30549c47aaf0874291da3be9efaa7fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/charactor/onnna_chara1/合同企画女１.1.prefab using Guid(b30549c47aaf0874291da3be9efaa7fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0b33c06cee15199f31a3c77fb71044f7') in 0.954506 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 373
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/BGM-Romance/3.Rainbow(Casual).ogg
+  artifactKey: Guid(2ab58db4d4ec0334d804cb3319daf7ee) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/BGM-Romance/3.Rainbow(Casual).ogg using Guid(2ab58db4d4ec0334d804cb3319daf7ee) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'fce52bdaddcf1b2c1ada17431aae9553') in 0.159355 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/effect/kirakira.bmp
+  artifactKey: Guid(d7ca2c338bc85894295846863ab14159) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/effect/kirakira.bmp using Guid(d7ca2c338bc85894295846863ab14159) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3e65eac8bcf6586467593f4214bf0423') in 0.424854 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000468 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/hd_front_A.fbx
+  artifactKey: Guid(b1d836fe66d68fe4b9921d0d510eee15) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/hd_front_A.fbx using Guid(b1d836fe66d68fe4b9921d0d510eee15) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '12253b2c4ebee553f61c0fcf742eea64') in 0.130047 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/VRMShaders/README.md
+  artifactKey: Guid(4918a8517e721c5429d0f8033ae065c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/VRMShaders/README.md using Guid(4918a8517e721c5429d0f8033ae065c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0a20fad07ace6799a3e399e2fa670538') in 0.042563 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/BlueGuy.fbx
+  artifactKey: Guid(0bf37dc7372c57146bfc553d666ef609) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/BlueGuy.fbx using Guid(0bf37dc7372c57146bfc553d666ef609) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2de37c2b155340792cdfa681e0ba9863') in 0.069043 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/sound_effect/kyou_kougeki_tanpatu.mp3
+  artifactKey: Guid(3b73bfbbccf6b98469ad9712c333ad4f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/sound_effect/kyou_kougeki_tanpatu.mp3 using Guid(3b73bfbbccf6b98469ad9712c333ad4f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ca44a6560a9ebfa3b91a8c42b3e3d4f7') in 0.204580 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/hp_upper_right_A.fbx
+  artifactKey: Guid(59c7dab75889cc747a38565aacf425cb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/hp_upper_right_A.fbx using Guid(59c7dab75889cc747a38565aacf425cb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '34c7676b242b14c61582e59958827224') in 0.580547 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Material/toumei.mat
+  artifactKey: Guid(19a1e89165c79a74a82b1f29b60803a2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Material/toumei.mat using Guid(19a1e89165c79a74a82b1f29b60803a2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '505b40247d2ab7e0d094dc1c2a309f74') in 0.062682 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/hp_straight_left_A.fbx
+  artifactKey: Guid(e0ad8083c895ff74ea01f55b82884971) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/hp_straight_left_A.fbx using Guid(e0ad8083c895ff74ea01f55b82884971) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9aaf38e166d5c37e0ee9e2cef9cdb0e4') in 0.075227 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/BGM/taikai_yosenn.mp3
+  artifactKey: Guid(80e0ee42ea574bd4db8eee7f75ec504c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/BGM/taikai_yosenn.mp3 using Guid(80e0ee42ea574bd4db8eee7f75ec504c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a63de46917962515b02e612848d10fbe') in 0.755153 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/charactor/otoko_chara1/企画_男キャラ１.prefab
+  artifactKey: Guid(822ccc3b36eca454a9e674b4b69b98e4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/charactor/otoko_chara1/企画_男キャラ１.prefab using Guid(822ccc3b36eca454a9e674b4b69b98e4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '77558bc9019f0d4f916f38554274653c') in 0.351602 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 390
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/VRM/README.url
+  artifactKey: Guid(b6360e0694ca54c57b83fa6a73e2261a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/VRM/README.url using Guid(b6360e0694ca54c57b83fa6a73e2261a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c5a2da0c81b29efa03d58ebd27b426b5') in 0.091198 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/lk_rh_right_Tiramis.fbx
+  artifactKey: Guid(96bd314225bd5934dbcde0048ded2180) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/lk_rh_right_Tiramis.fbx using Guid(96bd314225bd5934dbcde0048ded2180) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ca5325280e9986a6aa6726e09f6b94f9') in 0.095463 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/effect/jump_type2.zip
+  artifactKey: Guid(4722699eae0658244b5f8d1e7f8dcb60) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/effect/jump_type2.zip using Guid(4722699eae0658244b5f8d1e7f8dcb60) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '794c19a9e1cc0a7c856f6f6dad2f3cb0') in 0.056002 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000382 seconds.
+  path: Assets/FightingMotionsVolume1/FBX/getup_A.fbx
+  artifactKey: Guid(17004ac38f600ff4f90db12b9b2d5433) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/FightingMotionsVolume1/FBX/getup_A.fbx using Guid(17004ac38f600ff4f90db12b9b2d5433) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '66ac080c3eabd089dcf214ed3aac5da8') in 0.046350 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 54
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/BGM/taikai_yosenn2.mp3
+  artifactKey: Guid(ef21097fe1e94744baf3a3841fe6adc7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/BGM/taikai_yosenn2.mp3 using Guid(ef21097fe1e94744baf3a3841fe6adc7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0e8bcd94fb8593fdcc64706110154c4b') in 0.109983 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/UniGLTF/LICENSE.md
+  artifactKey: Guid(43de50058826c4b42857c7eadcc32794) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/UniGLTF/LICENSE.md using Guid(43de50058826c4b42857c7eadcc32794) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dcc8915b5245dc0ef5761ecda4872c22') in 0.026656 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/sound_effect/guard.mp3
+  artifactKey: Guid(a04799aa6ecf50d45a18d6e517eae571) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/sound_effect/guard.mp3 using Guid(a04799aa6ecf50d45a18d6e517eae571) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b94a5d0d827178a99294f3ae372eb6f5') in 0.169312 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
