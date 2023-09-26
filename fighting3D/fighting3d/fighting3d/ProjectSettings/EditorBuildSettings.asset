@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
+  m_Scenes: []
+=======
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/TitleScene.unity
@@ -29,4 +32,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/FightingMotionsVolume1/Scenes/HomeScene's/Home'sShop.unity
     guid: 174232191207f7e4a9b57b69f4d55872
+>>>>>>> parent of ad3e025 (???)
   m_configObjects: {}

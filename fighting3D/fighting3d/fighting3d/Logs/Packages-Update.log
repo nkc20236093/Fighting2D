@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
+=== Tue Sep 26 15:05:34 2023
+=======
 === Fri Aug 11 16:40:05 2023
+>>>>>>> parent of ad3e025 (???)
 
 Packages were changed.
 Update Mode: resetToDefaultDependencies
@@ -36,6 +40,8 @@ The following packages were 追加済:
   com.unity.modules.vr@1.0.0
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
+<<<<<<< HEAD
+=======
 
 === Fri Aug 11 16:41:42 2023
 
@@ -58,3 +64,4 @@ The following packages were 追加済:
   com.unity.ugui@1.0.0
   com.unity.xr.legacyinputhelpers@2.1.10
   com.unity.ai.navigation@1.1.4
+>>>>>>> parent of ad3e025 (???)

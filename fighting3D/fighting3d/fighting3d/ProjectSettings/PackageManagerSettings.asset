@@ -31,6 +31,11 @@ MonoBehaviour:
   m_RegistryInfoDraft:
     m_Modified: 0
     m_ErrorMessage: 
+<<<<<<< HEAD
+    m_UserModificationsInstanceId: -868
+    m_OriginalInstanceId: -870
+=======
     m_UserModificationsInstanceId: -832
     m_OriginalInstanceId: -834
+>>>>>>> parent of ad3e025 (???)
   m_LoadAssets: 0

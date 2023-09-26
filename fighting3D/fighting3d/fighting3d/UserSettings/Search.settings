@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+{}
+=======
 trackSelection = true
 refreshSearchWindowsInPlayMode = false
 fetchPreview = true
@@ -76,3 +79,4 @@ helperWidgetCurrentArea = "all"
 disabledIndexers = ""
 minIndexVariations = 2
 findProviderIndexHelper = true
+>>>>>>> parent of ad3e025 (???)

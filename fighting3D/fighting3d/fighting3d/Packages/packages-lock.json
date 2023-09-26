@@ -1,5 +1,7 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+=======
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -230,6 +232,7 @@
       },
       "url": "https://packages.unity.com"
     },
+>>>>>>> parent of ad3e025 (???)
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
