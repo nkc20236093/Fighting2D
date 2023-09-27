@@ -43,27 +43,24 @@ public class gamedirector : MonoBehaviour
         Distance_gamedirector = Player.x - Enemy.x;
         //絶対値化
         Distance = Mathf.Abs(Distance_gamedirector);
-
+        
         //男キャラ1から攻撃
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0)
-        {
-            Debug.Log("男キャラ1攻撃");
-            Otoko1_attack();
-        }
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
-        {
-            Debug.Log("条件1");
-        }
-        //dekoiから攻撃
-        if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
-        {
-            Debug.Log("デコイ攻撃");
-            Dekoi_attack();
-        }
+        //if (otoko_Chara_Controller.otoko1_kougeki_hit != 0 && Dekoi.dekoi_kougeki_hit == 0 && otoko_Chara_Controller.otoko1_attack_timing == true) ;
+        //{
+        //    Debug.Log("男キャラ1攻撃");
+        //    Otoko1_attack();
+        //}
+        ////dekoiから攻撃
+        //if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
+        //{
+        //    Debug.Log("デコイ攻撃");
+        //    Dekoi_attack();
+        //}
     }
     public void Otoko1_attack()
     {
-        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        //非ガード時処理
+        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_guard == false)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");
