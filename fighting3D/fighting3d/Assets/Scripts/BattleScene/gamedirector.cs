@@ -15,7 +15,9 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
     public object HPgauge;
 
+    //’jƒLƒƒƒ‰1‚ğæ“¾
     public Otoko_chara_Controller otoko_Chara_Controller;
+    //dekoi‚ğæ“¾
     public dekoi Dekoi;
 
     //UŒ‚”í’e•Ï”
@@ -47,10 +49,6 @@ public class gamedirector : MonoBehaviour
         {
             Debug.Log("’jƒLƒƒƒ‰1UŒ‚");
             Otoko1_attack();
-        }
-        if (otoko_Chara_Controller.otoko1_kougeki_hit != 0)
-        {
-            Debug.Log("ğŒ1");
         }
         //dekoi‚©‚çUŒ‚
         if (Dekoi.dekoi_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_kougeki_hit == 0)
