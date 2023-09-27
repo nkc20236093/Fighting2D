@@ -66,11 +66,11 @@ public class gamedirector : MonoBehaviour
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
+        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true && Dekoi.dekoi_kougeki_hit != 0)
         {
             hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
             Debug.Log("kougekiEnemyToPlayer");
-           GauMan.DecreaseEnemyHPGauge(10);
+            GauMan.DecreaseEnemyHPGauge(10);
         }
     }
 }

@@ -231,12 +231,14 @@ public class dekoi : MonoBehaviour
         {
             Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
+            dekoi_kougeki_cooltime_jaku = 0;
         }
         //強攻撃（A or K）
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("強攻撃");
             dekoi_kougeki_attack = 2;
+            dekoi_kougeki_cooltime_kyou = 0;
         }
         //必殺技（Y or I）
         if (Input.GetAxisRaw("Y or I") != 0)
@@ -285,7 +287,6 @@ public class dekoi : MonoBehaviour
         if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
         {
             Real_Time = 0;
-            Invoke(nameof(Chien), 0.43f);
             if (jump_mode == true)
             {
                 now_jumppower = jump_power;
@@ -313,7 +314,7 @@ public class dekoi : MonoBehaviour
                 chara_muki_dekoi = 1;
                 World_angle.y = -90;
                 //アニメーション変更
-                animator.SetTrigger("dekoi_zensin");
+                Dekoi_Move();
             }
             //左移動
             else if (sayuu < 0)
@@ -322,7 +323,7 @@ public class dekoi : MonoBehaviour
                 chara_muki_dekoi = -1;
                 World_angle.y = 90;
                 //アニメーション変更
-                animator.SetTrigger("dekoi_zensin");
+                Dekoi_Move();
             }
         }
         //各攻撃用アニメーション
@@ -369,22 +370,9 @@ public class dekoi : MonoBehaviour
         {
             //レイヤー初期
             Layer_Shoki();
-            //変数初期化
-            Invoke(nameof(Attack_or_HIdan_Shoki), 0.5f);
         }
         mytransform.eulerAngles = World_angle;
         Debug.Log(dekoi_kougeki_hidan+"B");
-    }
-    //停止状態の変数初期化
-    void Attack_or_HIdan_Shoki()
-    {
-        dekoi_kougeki_attack = 0;
-        dekoi_kougeki_hidan = 0;
-    }
-    void Cooltime_Shoki()
-    {
-        dekoi_kougeki_cooltime_jaku = 0;
-        dekoi_kougeki_cooltime_kyou = 0;
     }
     public void Layer_Shoki()
     {
@@ -416,36 +404,7 @@ public class dekoi : MonoBehaviour
             jouge = -1f;
         }
     }
-    void Chien()
-    {
-        jump_stop = false;
-        Debug.Log("遅延");
-        jouge = -1f;
-    }
     //攻撃・被弾まとめ
-
-    //与ダメージ時
-    public void Attack()
-    {
-        //地上攻撃
-        if (jump_stop == true)
-        {
-            //弱攻撃
-            if (dekoi_kougeki_attack == 1 && dekoi_attack_permission == true)
-            {
-                dekoi_kougeki_hit = 1;
-                Debug.Log("player_kougeki_attack1");
-            }
-            //強攻撃
-            if (dekoi_kougeki_attack == 2 && dekoi_attack_permission == true)
-            {
-                dekoi_kougeki_hit = 2;
-                Debug.Log("player_kougeki_attack2");
-            }
-            Invoke(nameof(Cooltime_Shoki), 0.1f);
-        }
-    }
-
     public void Dekoi_jab()
     {
         animator.SetTrigger("dekoi_jab");
@@ -463,5 +422,14 @@ public class dekoi : MonoBehaviour
     public void Dekoi_down()
     {
         animator.SetTrigger("dekoi_down");
+    }
+    public void Dekoi_Jump()
+    {
+
+    }
+    public void Dekoi_Move()
+    {
+        animator.SetTrigger("dekoi_zensin");
+
     }
 }
