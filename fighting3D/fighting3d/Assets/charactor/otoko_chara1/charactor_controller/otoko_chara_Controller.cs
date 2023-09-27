@@ -193,7 +193,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
 
         //座標を代入
-        otoko1_ray_Origin = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z) ;
+        otoko1_ray_Origin = new Vector3(transform.position.x + 0.3f, transform.position.y + 0.1f, transform.position.z) ;
         //方向を代入
         otoko1_ray_Vector3 = new Vector3(-chara_muki, 0, 0);
         //レイを生成
@@ -203,7 +203,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //当たり判定用レイ
         if (Physics.Raycast(otoko1_ray, out hit, Ray_length))
         {
-            Debug.Log(hit.collider.gameObject.name);
             //ヒットしたオブジェクトのタグを取得
             hitname = hit.collider.gameObject.tag;
             //ヒットしたオブジェクトののタグがPlayerだったら
@@ -284,7 +283,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetButtonDown("X or J") && jump_stop == true)
+        if (Input.GetButtonDown("X or J") && jump_stop == true && jab_attack_cooltime_permission)
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
@@ -297,7 +296,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             //GauMan.DecreaseStaGauge(30);
         }
         //強攻撃（A or K）
-        if (Input.GetButtonDown("A or K") && jump_stop == true && jab_attack_cooltime_permission == true) 
+        if (Input.GetButtonDown("A or K") && jump_stop == true && kick_attack_cooltime_permission)  
         {
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;

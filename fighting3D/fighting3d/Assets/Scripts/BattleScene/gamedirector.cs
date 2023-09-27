@@ -15,7 +15,9 @@ public class gamedirector : MonoBehaviour
     public GauMan GauMan;
     public object HPgauge;
 
+    //’jƒLƒƒƒ‰1‚ğæ“¾
     public Otoko_chara_Controller otoko_Chara_Controller;
+    //dekoi‚ğæ“¾
     public dekoi Dekoi;
 
     //UŒ‚”í’e•Ï”
