@@ -66,16 +66,15 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float Real_Time;
 
     //攻撃を受けた・与えた状態を管理する用の変数等
-    public int otoko1_kougeki_hidan;        //攻撃を受けた用(ゲームディレクターから受け取り)
-    public int otoko1_kougeki_attack;       //攻撃確認用
-    public bool otoko1_kougeki_hit_bool;    //攻撃ヒット用bool
-    public int otoko1_kougeki_hit;          //攻撃ヒット用int
-    public bool otoko1_guard;               //ガード用bool
-    public bool otoko1_just_guard;          //ジャストガード判定用bool
-    public bool otoko1_normal_guard;        //ノーマルガード判定用bool
+    public int otoko1_kougeki_hidan;                //攻撃を受けた用(ゲームディレクターから受け取り)
+    public int otoko1_kougeki_attack;               //攻撃確認用
+    public int otoko1_kougeki_hit;                  //攻撃ヒット用int
+    public bool otoko1_guard = false;               //ガード用bool
+    public bool otoko1_just_guard = false;          //ジャストガード判定用bool
+    public bool otoko1_normal_guard = false;        //ノーマルガード判定用bool
     //攻撃距離判定用bool
-    public bool otoko1_jab_distance;
-    public bool otoko1_kick_distance;
+    public bool otoko1_jab_distance = false;
+    public bool otoko1_kick_distance = false;
     //攻撃クールタイム
     public bool jaku_stop;
     public bool kyou_stop;
@@ -83,12 +82,12 @@ public class Otoko_chara_Controller : MonoBehaviour
     public float attack_cooltime_jaku;
     public float attack_cooltime_kyou;
     //弱攻撃許可用bool
-    public bool jab_attack_cooltime_permission;
+    public bool jab_attack_cooltime_permission = false;
     //強攻撃許可用bool
-    public bool kick_attack_cooltime_permission;
+    public bool kick_attack_cooltime_permission = false;
     //ゲームディレクター用攻撃許可用bool
-    public bool attack_cooltime_permisson;
-    public bool attack_distance_permission;
+    public bool attack_cooltime_permisson = false;
+    public bool attack_distance_permission = false;
     //true = 許可
     //false= 不許可
     //攻撃回数用変数
@@ -110,7 +109,7 @@ public class Otoko_chara_Controller : MonoBehaviour
     //スピード設定
     float speed_origin;
     //ダッシュモード切替
-    public bool speed_mode;
+    public bool speed_mode = false;
     //false = 通常
     //true  = ダッシュ
 
@@ -133,13 +132,13 @@ public class Otoko_chara_Controller : MonoBehaviour
     //現在のジャンプ力
     float now_jumppower;
     //2段ジャンプ禁止用
-    public bool jump_stop;
+    public bool jump_stop = false;
     //false = 禁止
     //true  = 許可
     //ジャンプ回数用
     public float first_jump;
     //ジャンプ状態切り替え
-    public bool jump_mode;
+    public bool jump_mode = false;
     //false = 通常状態
     //true  = ハイジャンプ状態
 
@@ -154,7 +153,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //最初に現在のジャンプモードに通常モードを代入
         jump_mode = false;
         //最初はオフ
-        otoko1_kougeki_hit_bool = false;
 
         //自分の回転度を取得
         mytransform = this.transform;
@@ -225,11 +223,11 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_obj_Child.GetComponentInChildren<Transform>();
 
         //クールタイムに時間を入れる
-        if (attack_cooltime_jaku < 0.5f && first_attack == false)
+        if (attack_cooltime_jaku < 1f && first_attack == false)
         {
             attack_cooltime_jaku += Time.deltaTime;
         }
-        if (attack_cooltime_kyou < 1 && first_attack == false)
+        if (attack_cooltime_kyou < 1.5f && first_attack == false)
         {
             attack_cooltime_kyou += Time.deltaTime;
         }
@@ -239,11 +237,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             jab_attack_cooltime_permission = true;
             kick_attack_cooltime_permission = true;
         }
-        if (attack_cooltime_jaku >= 0.5f)
+        if (attack_cooltime_jaku >= 1f)
         {
             jab_attack_cooltime_permission = true;
         }
-        if (attack_cooltime_kyou >= 1)
+        if (attack_cooltime_kyou >= 1.5f)
         {
             kick_attack_cooltime_permission = true;
         }
@@ -270,7 +268,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //天井にぶつかったら落下
         if (transform.position.y >= 6.62f)
         {
-            jouge = -1f;
+            jouge = -2f;
         }
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
@@ -425,26 +423,15 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (otoko1_kougeki_attack == 1 && jump_stop && otoko1_jab_distance && Ray_player_hit && jab_attack_cooltime_permission)
         {
             otoko1_kougeki_hit = 1;
-            otoko1_kougeki_hit_bool = true;
             Debug.Log("弱ヒット");
             Attack_Shoki();
-        }
-        if (otoko1_kougeki_attack != 0)
-        {
-            Debug.Log("条件1");
         }
         //強攻撃(ヒット時)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
         {
             otoko1_kougeki_hit = 2;
-            otoko1_kougeki_hit_bool = true;
             Debug.Log("強ヒット");
             Attack_Shoki();
-        }
-        //ヒットしたら遅延して処理
-        if (otoko1_kougeki_hit_bool)
-        {
-            Invoke(nameof(Chien), 5 / 60);
         }
         //ガード
         if (otoko1_guard == true)
@@ -534,10 +521,10 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_kougeki_attack = 0;
     }
     //遅延処理
-    public void Chien()
-    {
-        otoko1_kougeki_hit_bool = false;
-    }
+    //public void Chien()
+    //{
+    //    otoko1_kougeki_hit_bool = false;
+    //}
     //レイヤー初期化
     void Layer_shoki()
     {
