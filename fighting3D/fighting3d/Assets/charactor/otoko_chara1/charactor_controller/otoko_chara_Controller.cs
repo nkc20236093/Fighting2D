@@ -434,26 +434,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
         }
-        if (otoko1_kougeki_attack == 1)
-        {
-            Debug.Log("ğŒ1");
-        }
-        if (jump_stop)
-        {
-            Debug.Log("ğŒ2");
-        }
-        if (otoko1_jab_distance)
-        {
-            Debug.Log("ğŒ3");
-        }
-        if (Ray_player_hit)
-        {
-            Debug.Log("ğŒ4");
-        }
-        if (jab_attack_cooltime_permission)
-        {
-            Debug.Log("ğŒ5");
-        }
         //‹­UŒ‚(ƒqƒbƒg)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
         {
