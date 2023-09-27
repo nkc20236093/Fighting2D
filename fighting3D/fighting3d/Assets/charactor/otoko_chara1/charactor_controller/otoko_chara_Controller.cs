@@ -428,7 +428,6 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_hit_bool = true;
             Debug.Log("弱ヒット");
             Attack_Shoki();
-            Invoke(nameof(Chien), 1 / 60);
         }
         if (otoko1_kougeki_attack != 0)
         {
@@ -441,7 +440,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_hit_bool = true;
             Debug.Log("強ヒット");
             Attack_Shoki();
-            Invoke(nameof(Chien), 1 / 60);
+        }
+        //ヒットしたら遅延して処理
+        if (otoko1_kougeki_hit_bool)
+        {
+            Invoke(nameof(Chien), 5 / 60);
         }
         //ガード
         if (otoko1_guard == true)
@@ -517,7 +520,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (!Input.anyKey)
         {
             //変数初期化
-            Invoke(nameof(Hensuu_shoki), 1f);
+            Invoke(nameof(Attack_Shoki), 1f);
             //Invoke(nameof(Hit_Shoki), 0.4f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
@@ -525,12 +528,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         mytransform.eulerAngles = Local_angle;
     }
     //停止状態の変数初期化
-    void Hensuu_shoki()
-    {
-        otoko1_kougeki_attack = 0;
-        otoko1_kougeki_hidan = 0;
-    }
-    //特定の条件で変数を初期化
     public void Attack_Shoki()
     {
         otoko1_kougeki_hit = 0;
