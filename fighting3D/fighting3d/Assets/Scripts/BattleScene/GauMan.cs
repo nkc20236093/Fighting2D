@@ -9,6 +9,32 @@ using UnityEngine.SceneManagement;
 
 public class GauMan : MonoBehaviour
 {
+
+
+    [SerializeField] private GameObject WinAudioMan;
+
+    
+    AudioSource battleAudio;
+
+
+    AudioSource WinAudio;
+
+
+
+
+
+
+    public float JakuDamage;
+    public  float KyouDamage;
+    public float JakuSta;
+    public  float KyouSta;
+
+
+
+
+
+
+
     [SerializeField] GameObject MakePanel;
 
 
@@ -21,7 +47,7 @@ public class GauMan : MonoBehaviour
 
 
 
-    private float StaSpan = 1;   //ŒJ‚è•Ô‚·ŠÔŠu
+    public float StaSpan;   //ŒJ‚è•Ô‚·ŠÔŠu
     private float StaSpanTime = 0;   //Œo‰ßŽžŠÔ
 
 
@@ -35,8 +61,7 @@ public class GauMan : MonoBehaviour
     public Slider EnemyHPGaugeSlider;
     public Slider StaGaugeSlider;
     public Slider EnemyStaGaugeSlider;
-    public Slider SkiGaugeSlider;
-    public Slider EnemySkiGaugeSlider;
+   
 
 
     public static float maxHPGauge = 100f;
@@ -51,11 +76,7 @@ public class GauMan : MonoBehaviour
     public static float maxEnemyStaGauge = 100f;
     public static float currentEnemyStaGauge;
 
-    public static float maxSkiGauge = 100f;
-    public static float currentSkiGauge;
-
-    public static float maxEnemySkiGauge = 100f;
-    public static float currentEnemySkiGauge;
+    
 
 
     // Start is called before the first frame update
@@ -72,10 +93,7 @@ public class GauMan : MonoBehaviour
 
         currentEnemyStaGauge = maxEnemyStaGauge;
 
-        currentSkiGauge = maxSkiGauge;
-
-        currentEnemySkiGauge = maxEnemySkiGauge;
-        UpdateGaugeUI();
+  
 
 
     
@@ -97,11 +115,7 @@ public class GauMan : MonoBehaviour
         EnemyStaGaugeSlider.value =
             currentEnemyStaGauge / maxEnemyStaGauge;
 
-        SkiGaugeSlider.value = currentSkiGauge / maxSkiGauge;
-
-        EnemySkiGaugeSlider.value =
-            currentEnemySkiGauge / maxEnemySkiGauge;
-
+   
 
 
 
@@ -194,51 +208,7 @@ public class GauMan : MonoBehaviour
 
 
 
-    // Player Ski Increase Decrease 
-
-
-    public void DecreaseSkiGauge(float amount)
-    {
-        currentSkiGauge -= amount;
-        if (currentSkiGauge < 0)
-            currentSkiGauge = 0;
-
-       // UpdateGaugeUI();
-    }
-
-    public void IncreaseSkiGauge(float amount)
-    {
-        currentSkiGauge += amount;
-        if (currentSkiGauge > maxSkiGauge)
-            currentSkiGauge = maxSkiGauge;
-
-       // UpdateGaugeUI();
-    }
-
-
-
-    //Enemy Sta increase decrease
-
-
-
-    public void DecreaseEnemySkiGauge(float amount)
-    {
-        currentEnemySkiGauge -= amount;
-        if (currentEnemySkiGauge < 0)
-            currentEnemySkiGauge = 0;
-
-       // UpdateGaugeUI();
-    }
-
-    public void IncreaseEnemySkiGauge(float amount)
-    {
-        currentEnemySkiGauge += amount;
-        if (currentEnemySkiGauge > maxEnemySkiGauge)
-            currentEnemySkiGauge = maxEnemySkiGauge;
-
-       // UpdateGaugeUI();
-    }
-
+   
 
 
 
@@ -267,6 +237,14 @@ public class GauMan : MonoBehaviour
           if (currentHPGauge == 0)
         {
             MakePanel.SetActive(true);
+            //battleAudio = this.GetComponent<AudioSource>();
+            //battleAudio.Stop();
+
+
+            //WinAudio = WinAudioMan.GetComponent<AudioSource>();
+            //WinAudio.Play();
+
+
 
 
         }
@@ -275,6 +253,12 @@ public class GauMan : MonoBehaviour
           if(currentEnemyHPGauge == 0)
         {
             KatiPanel.SetActive(true);
+            //battleAudio = this.GetComponent<AudioSource>();
+            //battleAudio.Stop();
+
+
+            //WinAudio = WinAudioMan.GetComponent<AudioSource>();
+            //WinAudio.Play();
         }
 
 

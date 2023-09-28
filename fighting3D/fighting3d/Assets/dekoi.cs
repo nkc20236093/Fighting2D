@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class dekoi : MonoBehaviour
 {
+
+    //GunMan‚ğæ“¾
+    public GauMan GauMan;
+
     //Ray‚Ì’·‚³
     float Ray_length_dekoi = 8;
     //ƒŒƒC‚ğæ“¾
@@ -235,7 +239,7 @@ public class dekoi : MonoBehaviour
         //ˆÈ‰ºŠî–{“®ì
 
         //ãUŒ‚iX or Jj
-        if (Input.GetButtonDown("Jab_dekoi") && jab_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 15)
+        if (Input.GetButtonDown("Jab_dekoi") && jab_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= GauMan.JakuSta)
         {
             Debug.Log("ãUŒ‚");
             dekoi_kougeki_attack = 1;
@@ -243,10 +247,11 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_jab();
             Invoke(nameof(Dekoi_Attack_Shoki), 1 / 60f);
-            GauMan.currentEnemyStaGauge -= 15;
+            GauMan.DecreaseEnemyStaGauge(GauMan.JakuSta);
+            GauMan.UpdateGaugeUI();
         }
         //‹­UŒ‚iA or Kj
-        if (Input.GetButtonDown("kick_dekoi") && kick_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 30)
+        if (Input.GetButtonDown("kick_dekoi") && kick_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= GauMan.KyouSta)
         {
             Debug.Log("‹­UŒ‚");
             dekoi_kougeki_attack = 2;
@@ -254,7 +259,8 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_attack");
             Dekoi_kick();
             Invoke(nameof(Dekoi_Attack_Shoki), 1 / 60f);
-            GauMan.currentEnemyStaGauge -= 30;
+            GauMan.DecreaseEnemyStaGauge(GauMan.KyouSta);
+            GauMan.UpdateGaugeUI();
         }
         //ˆÚ“®ˆÈŠO‚Ì“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚Í ‚·‚è”²‚¯‚È‚¢‚æ‚¤‚É‚·‚é or ˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
         if (Input.GetButtonDown("Jab_dekoi") || Input.GetButtonDown("kick_dekoi")) 
@@ -342,6 +348,12 @@ public class dekoi : MonoBehaviour
             gamedirector.Dekoi_attack();
             dekoi_kougeki_hit = 0;
             dekoi_damage = 0;
+
+            GauMan.DecreaseEnemyStaGauge(GauMan.JakuSta);
+            GauMan.DecreaseHPGauge(GauMan.JakuDamage);
+            GauMan.UpdateGaugeUI();
+
+
         }
         //‹­UŒ‚(ƒqƒbƒg)
         if (jump_stop == true && Input.GetButtonDown("kick_dekoi") && kick_distance == true && kick_dekoi_cooltime == true && Ray_player_hit_dekoi)
@@ -351,6 +363,12 @@ public class dekoi : MonoBehaviour
             gamedirector.Dekoi_attack();
             dekoi_kougeki_hit = 0;
             dekoi_damage = 0;
+
+
+            GauMan.DecreaseEnemyStaGauge(GauMan.KyouSta);
+            GauMan.DecreaseHPGauge(GauMan.KyouDamage);
+            GauMan.UpdateGaugeUI();
+
         }
         //”í’eƒ‚[ƒVƒ‡ƒ“
         if (dekoi_kougeki_hidan != 0)
