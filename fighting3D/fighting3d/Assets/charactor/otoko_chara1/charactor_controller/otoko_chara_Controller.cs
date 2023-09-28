@@ -198,7 +198,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //弱攻撃用距離
         if (gamedirector.Distance <= 0.73f)
         {
-            Debug.Log("弱距離内");
             otoko1_jab_distance = true;
         }
         else
@@ -208,7 +207,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //強攻撃用距離
         if (gamedirector.Distance <= 1.71f)
         {
-            Debug.Log("強距離内");
             otoko1_kick_distance = true;
         }
         else
@@ -232,13 +230,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             //ヒットしたオブジェクトののタグがPlayerだったら
             if (hitname.Equals("Player"))
             {
-                Debug.Log("Ray_Hit_plaeyr");
                 Ray_player_hit = true;
             }
         }
         else
         {
-            Debug.Log("No_ray_hit");
             Ray_player_hit = false;
         }
 
@@ -271,7 +267,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //ゲームディレクター用
         if (jab_attack_cooltime_permission == true || kick_attack_cooltime_permission == true)
         {
-            Debug.Log("クールタイム");
             attack_cooltime_permisson = true;
         }
         else
@@ -280,7 +275,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
         if (otoko1_jab_distance == true || otoko1_kick_distance == true)
         {
-            Debug.Log("距離");
             attack_distance_permission = true;
         }
         else
@@ -298,7 +292,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //天井にぶつかったら落下
         if (transform.position.y >= 6.62f)
         {
-            jouge = -2f;
+            jouge = -1f;
         }
         //入力マネージャーを使用した移動方法 ※Verticalは移動
         sayuu = Input.GetAxisRaw("Horizontal");
@@ -312,11 +306,10 @@ public class Otoko_chara_Controller : MonoBehaviour
         }
 
         //以下基本動作
-        GauMan.currentStaGauge = 100;
+
         //弱攻撃（X or J）
-        if (Input.GetButtonDown("X or J") && jump_stop == true && jab_attack_cooltime_permission && GauMan.currentStaGauge >= 15)
+        if (Input.GetButtonDown("X or Q") && jump_stop == true && jab_attack_cooltime_permission && GauMan.currentStaGauge >= 15)
         {
-            Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
             animator.SetTrigger("Trigger_attack");
             Jab();
@@ -328,9 +321,8 @@ public class Otoko_chara_Controller : MonoBehaviour
             GauMan.currentStaGauge -= 15;
         }
         //強攻撃（A or K）
-        if (Input.GetButtonDown("A or K") && jump_stop == true && kick_attack_cooltime_permission && GauMan.currentStaGauge >= 30) 
+        if (Input.GetButtonDown("A or E") && jump_stop == true && kick_attack_cooltime_permission && GauMan.currentStaGauge >= 30) 
         {
-            Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
             animator.SetTrigger("Trigger_attack");
             Kick();
@@ -338,7 +330,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             GauMan.currentStaGauge -= 30;
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if ( Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
+        if ( Input.GetButtonDown("A or E") || Input.GetButtonDown("X or Q")) 
         {
             //レイヤー変更
             gameObject.SetChildLayer(7);
@@ -389,7 +381,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         //1回目&地面についてたら&ジャンプ入力がされてたら
         if (jump_stop == true && Input.GetAxisRaw("Vertical") > 0 && first_jump == 1)
         {
-            Debug.Log("first_jump");
             jump_stop = false;
             Real_Time = 0;
             if (jump_mode == true)
@@ -441,7 +432,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             otoko1_kougeki_hit = 1;
             otoko1_damage = 5;
-            Debug.Log("弱ヒット");
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
             otoko1_damage = 0;
@@ -451,7 +441,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             otoko1_kougeki_hit = 2;
             otoko1_damage = 10;
-            Debug.Log("強ヒット");
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
             otoko1_damage = 0;
@@ -469,12 +458,10 @@ public class Otoko_chara_Controller : MonoBehaviour
             hair.GetComponentInChildren<otoko1_tenmetu_hair>();
             if (otoko1_kougeki_hidan == 1)
             {
-                Debug.Log("otoko1ひるみ");
                 Hirumi();
             }
             else if (otoko1_kougeki_hidan == 2)
             {
-                Debug.Log("otokoダウン");
                 Down();
             }
             hidan_bool = true;
@@ -515,7 +502,6 @@ public class Otoko_chara_Controller : MonoBehaviour
         {
             //変数初期化
             Invoke(nameof(Attack_Shoki),1/60f);
-            //Invoke(nameof(Hit_Shoki), 0.4f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
         }
