@@ -228,11 +228,11 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_obj_Child.GetComponentInChildren<Transform>();
 
         //クールタイムに時間を入れる
-        if (attack_cooltime_jaku < 1f && first_attack == false)
+        if (attack_cooltime_jaku < 1.5f && first_attack == false)
         {
             attack_cooltime_jaku += Time.deltaTime;
         }
-        if (attack_cooltime_kyou < 1.5f && first_attack == false)
+        if (attack_cooltime_kyou < 2 && first_attack == false)
         {
             attack_cooltime_kyou += Time.deltaTime;
         }
@@ -242,11 +242,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             jab_attack_cooltime_permission = true;
             kick_attack_cooltime_permission = true;
         }
-        if (attack_cooltime_jaku >= 1f)
+        if (attack_cooltime_jaku >= 1.5f)
         {
             jab_attack_cooltime_permission = true;
         }
-        if (attack_cooltime_kyou >= 1.5f)
+        if (attack_cooltime_kyou >= 2f)
         {
             kick_attack_cooltime_permission = true;
         }
@@ -295,7 +295,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_attack = 1;
             animator.SetTrigger("Trigger_attack");
             Jab();
-            otoko1_kougeki_attack = 0;
+            Invoke(nameof(Attack_Shoki), 1 / 60f);
             //攻撃を押したら距離関係なくHPゲージを
             //減らす処理（当たり判定できたら移動）
             // GauMan.DecreaseEnemyHPGauge(AttackJakuTakeru);
@@ -309,19 +309,19 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_attack = 2;
             animator.SetTrigger("Trigger_attack");
             Kick();
-            otoko1_kougeki_attack = 0;
+            Invoke(nameof(Attack_Shoki), 1 / 60f);
         }
         //必殺技（Y or I）
-        if (Input.GetButtonDown("Y or I") && jump_stop == true && kick_attack_cooltime_permission == true)
-        {
-            Debug.Log("必殺技");
-        }
+        //if (Input.GetButtonDown("Y or I") && jump_stop == true && kick_attack_cooltime_permission == true)
+        //{
+        //    Debug.Log("必殺技");
+        //}
         //ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        if (Input.GetButtonDown("Right(left) Bumper or space") && jump_stop == true)
-        {
-            otoko1_guard = true;
-            Debug.Log("ガード");
-        }
+        //if (Input.GetButtonDown("Right(left) Bumper or space") && jump_stop == true)
+        //{
+        //    otoko1_guard = true;
+        //    Debug.Log("ガード");
+        //}
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
         {
@@ -442,27 +442,27 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_hit = 0;
         }
         //ガード
-        if (otoko1_guard == true)
-        {
-            //ジャストガード
-            if (otoko1_guard == true && otoko1_kougeki_hidan != 0)
-            {
-                otoko1_just_guard = true;
-                Debug.Log("ジャストガード");
-                animator.SetTrigger("Trigger_Move");
-                Guard();
-                //後隙を減らす処理
-            }
-            //普通のガード
-            else if (otoko1_guard == true)
-            {
-                otoko1_normal_guard = true;
-                Debug.Log("ノーマルガード");
-                animator.SetTrigger("Trigger_Move");
-                Guard();
-            }
-            otoko1_guard = false;
-        }
+        //if (otoko1_guard == true)
+        //{
+        //    //ジャストガード
+        //    if (otoko1_guard == true && otoko1_kougeki_hidan != 0)
+        //    {
+        //        otoko1_just_guard = true;
+        //        Debug.Log("ジャストガード");
+        //        animator.SetTrigger("Trigger_Move");
+        //        Guard();
+        //        //後隙を減らす処理
+        //    }
+        //    //普通のガード
+        //    else if (otoko1_guard == true)
+        //    {
+        //        otoko1_normal_guard = true;
+        //        Debug.Log("ノーマルガード");
+        //        animator.SetTrigger("Trigger_Move");
+        //        Guard();
+        //    }
+        //    otoko1_guard = false;
+        //}
         //被弾アニメーション
         if (otoko1_kougeki_hidan != 0)
         {
@@ -515,7 +515,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         if (!Input.anyKey)
         {
             //変数初期化
-            Invoke(nameof(Attack_Shoki), 1f);
+            Invoke(nameof(Attack_Shoki),1/60f);
             //Invoke(nameof(Hit_Shoki), 0.4f);
             //レイヤー初期化
             Invoke(nameof(Layer_shoki), 0.5f);
@@ -583,8 +583,8 @@ public class Otoko_chara_Controller : MonoBehaviour
         animator.SetTrigger("Trigger_Jump");
     }
     //ガード
-    public void Guard()
-    {
-        animator.SetTrigger("Trigger_guard");
-    }
+    //public void Guard()
+    //{
+    //    animator.SetTrigger("Trigger_guard");
+    //}
 }
