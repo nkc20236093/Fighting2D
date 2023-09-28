@@ -9,8 +9,8 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
@@ -25,8 +25,8 @@ InputManager:
     m_Name: Vertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: s
     altPositiveButton: w
     gravity: 3
@@ -54,13 +54,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Right(left) Bumper or space
+    m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: space
-    altNegativeButton: joystick button 4
-    altPositiveButton: joystick button 5
+    positiveButton: left alt
+    altNegativeButton: 
+    altPositiveButton: mouse 1
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -70,13 +70,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Y or I
+    m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 3
+    positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: i
+    altPositiveButton: mouse 2
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -90,7 +90,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: space
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -182,15 +182,11 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: X or Q
+    m_Name: Fire1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-<<<<<<< HEAD
-    positiveButton: q
-=======
-    positiveButton: 2
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
+    positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -202,13 +198,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: A or E
+    m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 0
+    positiveButton: joystick button 1
     altNegativeButton: 
-    altPositiveButton: e
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -217,16 +213,14 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
-<<<<<<< HEAD
-=======
   - serializedVersion: 3
-    m_Name: B or L
+    m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 1
+    positiveButton: joystick button 2
     altNegativeButton: 
-    altPositiveButton: b
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -235,7 +229,6 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
   - serializedVersion: 3
     m_Name: Jump
     descriptiveName: 
@@ -461,155 +454,6 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Y or G
-    descriptiveName: 
-    descriptiveNegativeName: 
-<<<<<<< HEAD
-    negativeButton: 
-    positiveButton: l
-    altNegativeButton: j
-=======
-    negativeButton: y
-    positiveButton: g
-    altNegativeButton: 
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: H or F
-    descriptiveName: 
-    descriptiveNegativeName: 
-<<<<<<< HEAD
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: k
-    altPositiveButton: i
-    gravity: 3
-    dead: 0.001
-    sensitivity: 3
-    snap: 1
-=======
-    negativeButton: f
-    positiveButton: h
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Debug Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-<<<<<<< HEAD
-    negativeButton: u
-    positiveButton: u
-=======
-    negativeButton: left
-    positiveButton: right
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 1
-    invert: 0
-<<<<<<< HEAD
-    type: 0
-    axis: 0
-=======
-    type: 2
-    axis: 5
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Debug Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-<<<<<<< HEAD
-    negativeButton: o
-    positiveButton: o
-=======
-    negativeButton: left
-    positiveButton: right
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 1
-    invert: 0
-<<<<<<< HEAD
-    type: 0
-    axis: 0
-=======
-    type: 2
-    axis: 5
->>>>>>> parent of 36c7f7a (入力マネージャー編集中)
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Debug Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 5
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Debug Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 5
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Debug Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 5
-    joyNum: 0
-  - serializedVersion: 3
     m_Name: Debug Vertical
     descriptiveName: 
     descriptiveNegativeName: 
@@ -624,5 +468,21 @@ InputManager:
     invert: 0
     type: 2
     axis: 6
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Debug Horizontal
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: left
+    positiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 5
     joyNum: 0
   m_UsePhysicalKeys: 1

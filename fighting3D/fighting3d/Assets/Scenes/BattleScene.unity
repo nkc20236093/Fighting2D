@@ -2758,7 +2758,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortAtRoot: 0
-<<<<<<< HEAD
 --- !u!1 &1417838033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,20 +2796,17 @@ RectTransform:
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1417838035
-=======
 --- !u!1 &1423054106 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
   m_PrefabInstance: {fileID: 8929950096798429815}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1423054109
->>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1417838033}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2847,7 +2843,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417838033}
   m_CullTransparentMesh: 1
-=======
   m_GameObject: {fileID: 1423054106}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2855,7 +2850,6 @@ CanvasRenderer:
   m_Name: 
   m_EditorClassIdentifier: 
   SkinnedMeshRenderer_face: {fileID: 0}
->>>>>>> origin/main
 --- !u!1 &1589259198
 GameObject:
   m_ObjectHideFlags: 0

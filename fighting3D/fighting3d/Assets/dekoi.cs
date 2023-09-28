@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class dekoi : MonoBehaviour
 {
-    Vector3 idouVec;
     //Rayの長さ
     float Ray_length_dekoi = 8;
     //レイを取得
@@ -146,20 +145,21 @@ public class dekoi : MonoBehaviour
         {
             kick_distance = false;
         }
-        Debug.Log(jab_distance+"P");
-        Debug.Log(kick_distance + "@");
         //座標を代入
         otoko1_ray_Origin_dekoi = new Vector3(transform.position.x + (0.3f * chara_muki_dekoi), transform.position.y + 0.1f, transform.position.z) ;
         //方向を代入
         otoko1_ray_Vector3_dekoi = new Vector3(-chara_muki_dekoi, 0, 0);
         //レイを生成
         otoko1_ray_dekoi = new Ray(otoko1_ray_Origin_dekoi, otoko1_ray_Vector3_dekoi);
+        //デバッグ用レイ
+        Debug.DrawRay(otoko1_ray_Origin_dekoi, otoko1_ray_dekoi.direction * Ray_length_dekoi, Color.red, 1f, false) ;
         //当たり判定用レイ
         if (Physics.Raycast(otoko1_ray_dekoi, out hit_dekoi,Ray_length_dekoi)) 
         {
             string hitname_dekoi = hit_dekoi.collider.gameObject.tag;
             if (hitname_dekoi.Equals("Player")) 
             {
+                Debug.Log("Ray_hit_dekoi");
                 Ray_player_hit_dekoi = true;
             }
         }
@@ -177,9 +177,9 @@ public class dekoi : MonoBehaviour
         transform.position = Pos;
 
         //入力マネージャーを使用した移動方法 ※Verticalは移動
-        sayuu = Input.GetAxisRaw("H or F");
+        sayuu = Input.GetAxisRaw("Horizontal_dekoi");
         //Vector3にHorizontal・Verticalを代入
-        idouVec = new Vector3(0, jouge , sayuu * chara_muki_dekoi);
+        Vector3 idouVec = new Vector3(0, jouge , sayuu * chara_muki_dekoi);
 
         //ジャンプ時間の計算
         if (jump_stop == true && Real_Time < JumpCoolTime)
@@ -232,13 +232,12 @@ public class dekoi : MonoBehaviour
         {
             dekoi_cooltime_permisson = false;
         }
-        Debug.Log(dekoi_cooltime_permisson + "cool");
-        Debug.Log(dekoi_distance_permission + "distance");
         //以下基本動作
 
         //弱攻撃（X or J）
-        if (Input.GetKeyDown(KeyCode.Return) && jab_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 15)
+        if (Input.GetButtonDown("Jab_dekoi") && jab_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 15)
         {
+            Debug.Log("弱攻撃");
             dekoi_kougeki_attack = 1;
             dekoi_kougeki_cooltime_jaku = 0;
             animator.SetTrigger("Trigger_dekoi_attack");
@@ -247,8 +246,9 @@ public class dekoi : MonoBehaviour
             GauMan.currentEnemyStaGauge -= 15;
         }
         //強攻撃（A or K）
-        if (Input.GetKeyDown(KeyCode.Z) && kick_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 30)
+        if (Input.GetButtonDown("kick_dekoi") && kick_dekoi_cooltime && jump_stop && GauMan.currentEnemyStaGauge >= 30)
         {
+            Debug.Log("強攻撃");
             dekoi_kougeki_attack = 2;
             dekoi_kougeki_cooltime_kyou = 0;
             animator.SetTrigger("Trigger_dekoi_attack");
@@ -256,17 +256,24 @@ public class dekoi : MonoBehaviour
             Invoke(nameof(Dekoi_Attack_Shoki), 1 / 60f);
             GauMan.currentEnemyStaGauge -= 30;
         }
+        //必殺技（Y or I）
+        //if (Input.GetAxisRaw("Y or I") != 0)
+        //{
+        //    Debug.Log("必殺技");
+        //}
+        ////ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
+        //if (Input.GetButtonDown("Right(left) Bumper or space"))
+        //{
+        //    Debug.Log("ガード");
+        //}
+
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if (Input.GetButtonDown("Right(left) Bumper or space") || Input.GetButtonDown("Y or I") || Input.GetButtonDown("B or L") || Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("X or J") || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetButtonDown("Jab_dekoi") || Input.GetButtonDown("kick_dekoi")) 
         {
             dekoi_ray_layer = 6;
             gameObject.SetDekoiChild(6);
             gameObject.layer = LayerMask.NameToLayer("Attack");
-        }
-        //ジャンプの入力があったときは遅延して横移動できないようにする
-        if (jouge > 0)
-        {
-            idouVec = new Vector3(0, jouge, 0);
+            idouVec = Vector3.zero;
         }
 
         //横移動の処理
@@ -283,17 +290,17 @@ public class dekoi : MonoBehaviour
             speed_origin = now_speed * 5;
         }
         //speed_originに代入
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButtonDown("Horizontal_dekoi"))
         {
             speed_origin = now_speed;
         }
-        if (Input.GetButtonDown("Vertical"))
+        if (Input.GetButtonDown("Vertical_dekoi"))
         {
             speed_origin = now_jumppower;
         }
         //ジャンプの処理
         //地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge != 0)
+        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
         {
             animator.SetTrigger("Trigger_dekoi_Move");
             Real_Time = 0;
@@ -306,8 +313,8 @@ public class dekoi : MonoBehaviour
                 now_jumppower = high_jump;
             }
             speed_origin = now_jumppower;
+            Dekoi_Jump();
         }
-
         //移動処理
         transform.Translate(speed_origin * Time.deltaTime * idouVec);
 
@@ -340,9 +347,8 @@ public class dekoi : MonoBehaviour
         }
         //各攻撃用アニメーション
         //弱攻撃(ヒット時)
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Return) && jab_distance == true && jab_dekoi_cooltime == true && Ray_player_hit_dekoi)
+        if (jump_stop == true && Input.GetButtonDown("Jab_dekoi") && jab_distance == true && jab_dekoi_cooltime == true && Ray_player_hit_dekoi)
         {
-            Debug.Log("弱攻撃がヒットdekoi");
             dekoi_kougeki_hit = 1;
             dekoi_damage = 5;
             gamedirector.Dekoi_attack();
@@ -350,9 +356,8 @@ public class dekoi : MonoBehaviour
             dekoi_damage = 0;
         }
         //強攻撃(ヒット時)
-        if (jump_stop == true && Input.GetKeyDown(KeyCode.Z) && kick_distance == true && kick_dekoi_cooltime == true && Ray_player_hit_dekoi)
+        if (jump_stop == true && Input.GetButtonDown("kick_dekoi") && kick_distance == true && kick_dekoi_cooltime == true && Ray_player_hit_dekoi)
         {
-            Debug.Log("強攻撃がヒットdekoi");
             dekoi_kougeki_hit = 2;
             dekoi_damage = 10;
             gamedirector.Dekoi_attack();
@@ -365,12 +370,10 @@ public class dekoi : MonoBehaviour
             animator.SetTrigger("Trigger_dekoi_Move");
             if (dekoi_kougeki_hidan == 1)
             {
-                Debug.Log("dekoiひるみ");
                 Dekoi_hirumi();
             }
             if (dekoi_kougeki_hidan == 2)
             {
-                Debug.Log("dekoiダウン");
                 Dekoi_down();
             }
         }
@@ -406,7 +409,7 @@ public class dekoi : MonoBehaviour
         if (stay_other.CompareTag("jimen"))
         {
             //変数にHorizontal・Verticalを代入 ※jougeのみ制限
-            jump = Input.GetAxisRaw("Y or G");
+            jump = Input.GetAxisRaw("Vertical_dekoi");
             if (jump >= 0)
             {
                 jouge = jump;
@@ -437,6 +440,10 @@ public class dekoi : MonoBehaviour
     public void Dekoi_down()
     {
         animator.SetTrigger("dekoi_down");
+    }
+    public void Dekoi_Jump()
+    {
+        animator.SetTrigger("dekoi_jump");
     }
     public void Dekoi_Move()
     {
