@@ -9,7 +9,7 @@ public class TitleSceneSwitcher : MonoBehaviour
 
     public void FromTitleToHome()       //タイトルシーンからホームズホームシーンにシーン遷移します
     {
-        SceneManager.LoadScene("Home'sHome");
+        SceneManager.LoadScene("BattleScene");
     }
 
 

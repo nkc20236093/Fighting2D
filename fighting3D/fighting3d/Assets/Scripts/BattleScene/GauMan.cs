@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using UniGLTF;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 
 public class GauMan : MonoBehaviour
 {
+    [SerializeField] GameObject MakePanel;
+
+
+    [SerializeField] GameObject KatiPanel;
+
+
+
+
+
+
+
+
     private float StaSpan = 1;   //繰り返す間隔
     private float StaSpanTime = 0;   //経過時間
 
@@ -25,10 +39,10 @@ public class GauMan : MonoBehaviour
     public Slider EnemySkiGaugeSlider;
 
 
-    public static float maxHPGauge = 130f;
+    public static float maxHPGauge = 100f;
     public static float currentHPGauge;
 
-    public static float maxEnemyHPGauge = 130f;
+    public static float maxEnemyHPGauge = 100f;
     public static float currentEnemyHPGauge;
 
     public static float maxStaGauge = 100f;
@@ -103,7 +117,7 @@ public class GauMan : MonoBehaviour
         if (currentHPGauge < 0)
             currentHPGauge = 0;
 
-        UpdateGaugeUI();
+        //UpdateGaugeUI();
     }
 
     public void IncreaseHPGauge(float amount)
@@ -112,7 +126,7 @@ public class GauMan : MonoBehaviour
         if (currentHPGauge > maxHPGauge)
             currentHPGauge = maxHPGauge;
 
-        UpdateGaugeUI();
+        //UpdateGaugeUI();
     }
 
     // Enemy HP increase  decrease
@@ -124,7 +138,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemyHPGauge < 0)
             currentEnemyHPGauge = 0;
 
-        UpdateGaugeUI();
+        //UpdateGaugeUI();
     }
 
     public void IncreaseEnemyHPGauge(float amount)
@@ -133,7 +147,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemyHPGauge > maxEnemyHPGauge)
             currentEnemyHPGauge = maxEnemyHPGauge;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
     // Player Sta increase decrease 
@@ -153,7 +167,7 @@ public class GauMan : MonoBehaviour
         if (currentStaGauge > maxStaGauge)
             currentStaGauge = maxStaGauge;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
 
@@ -166,7 +180,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemyStaGauge < 0)
             currentEnemyStaGauge = 0;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
     public void IncreaseEnemyStaGauge(float amount)
@@ -175,7 +189,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemyStaGauge > maxEnemyStaGauge)
             currentEnemyStaGauge = maxEnemyStaGauge;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
 
@@ -189,7 +203,7 @@ public class GauMan : MonoBehaviour
         if (currentSkiGauge < 0)
             currentSkiGauge = 0;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
     public void IncreaseSkiGauge(float amount)
@@ -198,7 +212,7 @@ public class GauMan : MonoBehaviour
         if (currentSkiGauge > maxSkiGauge)
             currentSkiGauge = maxSkiGauge;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
 
@@ -213,7 +227,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemySkiGauge < 0)
             currentEnemySkiGauge = 0;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
     public void IncreaseEnemySkiGauge(float amount)
@@ -222,7 +236,7 @@ public class GauMan : MonoBehaviour
         if (currentEnemySkiGauge > maxEnemySkiGauge)
             currentEnemySkiGauge = maxEnemySkiGauge;
 
-        UpdateGaugeUI();
+       // UpdateGaugeUI();
     }
 
 
@@ -230,7 +244,7 @@ public class GauMan : MonoBehaviour
 
     private void Update()
     {
-        StaSpanTime += Time.deltaTime;     //時間をカウントする
+       StaSpanTime += Time.deltaTime;     //時間をカウントする
 
         //経過時間が繰り返す間隔を経過したら
         if (StaSpanTime >= StaSpan)
@@ -240,19 +254,47 @@ public class GauMan : MonoBehaviour
             StaSpanTime = 0;   //経過時間をリセットする
 
 
-            DecreaseStaGauge(10);                         //1秒に回復する　持久値
+            IncreaseStaGauge(10);                         //1秒に回復する　持久値
             
-            DecreaseEnemyStaGauge(10);
+            IncreaseEnemyStaGauge(10);
             
 
             // Debug.Log("ahoshineBaka");
-            UpdateGaugeUI();
+           UpdateGaugeUI();
 
+        }
 
+          if (currentHPGauge == 0)
+        {
+            MakePanel.SetActive(true);
 
 
         }
+
+
+          if(currentEnemyHPGauge == 0)
+        {
+            KatiPanel.SetActive(true);
+        }
+
+
+
     }
+
+
+    public void ToTitleSceneFromBattleScene()
+    { 
+
+        SceneManager.LoadScene("TitleScene");
+
+
+    }
+
+
+
+
+
+
 
 
 

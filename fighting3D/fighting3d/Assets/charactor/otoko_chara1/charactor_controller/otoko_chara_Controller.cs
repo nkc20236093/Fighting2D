@@ -228,11 +228,11 @@ public class Otoko_chara_Controller : MonoBehaviour
         otoko1_obj_Child.GetComponentInChildren<Transform>();
 
         //クールタイムに時間を入れる
-        if (attack_cooltime_jaku < 1.5f && first_attack == false)
+        if (attack_cooltime_jaku < 3f && first_attack == false)
         {
             attack_cooltime_jaku += Time.deltaTime;
         }
-        if (attack_cooltime_kyou < 2 && first_attack == false)
+        if (attack_cooltime_kyou < 4 && first_attack == false)
         {
             attack_cooltime_kyou += Time.deltaTime;
         }
@@ -300,7 +300,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             //減らす処理（当たり判定できたら移動）
             // GauMan.DecreaseEnemyHPGauge(AttackJakuTakeru);
             //すたみなへらす
-            //GauMan.DecreaseStaGauge(30);
+           GauMan.DecreaseStaGauge(15);
         }
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or K") && jump_stop == true && kick_attack_cooltime_permission)  
@@ -310,6 +310,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             animator.SetTrigger("Trigger_attack");
             Kick();
             Invoke(nameof(Attack_Shoki), 1 / 60f);
+            GauMan.DecreaseStaGauge(30);
         }
         //必殺技（Y or I）
         //if (Input.GetButtonDown("Y or I") && jump_stop == true && kick_attack_cooltime_permission == true)
@@ -433,6 +434,12 @@ public class Otoko_chara_Controller : MonoBehaviour
             Debug.Log("弱ヒット");
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
+
+            GauMan.DecreaseEnemyHPGauge(5);
+            GauMan.DecreaseStaGauge(15);
+            GauMan.UpdateGaugeUI();
+
+
         }
         //強攻撃(ヒット時)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
@@ -440,6 +447,11 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_kougeki_hit = 2;
             Debug.Log("強ヒット");
             otoko1_kougeki_hit = 0;
+
+            GauMan.DecreaseEnemyHPGauge(10);
+            GauMan.DecreaseStaGauge(30);
+            GauMan.UpdateGaugeUI();
+
         }
         //ガード
         //if (otoko1_guard == true)
