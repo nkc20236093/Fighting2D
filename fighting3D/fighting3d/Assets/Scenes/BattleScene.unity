@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2040381613}
-  m_IndirectSpecularColor: {r: 0.18154839, g: 0.22718915, b: 0.30740654, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154866, g: 0.22718975, b: 0.3074077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2758,7 +2758,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortAtRoot: 0
-<<<<<<< HEAD
 --- !u!1 &1417838033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,7 +2768,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1417838034}
   - component: {fileID: 1417838036}
-  - component: {fileID: 1417838035}
   m_Layer: 5
   m_Name: make
   m_TagString: Untagged
@@ -2796,49 +2794,6 @@ RectTransform:
   m_AnchoredPosition: {x: -279.85, y: 174.58}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1417838035
-=======
---- !u!1 &1423054106 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
-  m_PrefabInstance: {fileID: 8929950096798429815}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1423054109
->>>>>>> origin/main
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1417838033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 105
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 105
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: "\u8CA0\u3051"
 --- !u!222 &1417838036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2847,15 +2802,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417838033}
   m_CullTransparentMesh: 1
-=======
-  m_GameObject: {fileID: 1423054106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43270bbb4ac1c3446860e77d562c80d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkinnedMeshRenderer_face: {fileID: 0}
->>>>>>> origin/main
 --- !u!1 &1589259198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,9 +4145,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1423054109}
     - targetCorrespondingSourceObject: {fileID: 4922290852595101204, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 427305565}

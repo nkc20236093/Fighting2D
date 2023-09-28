@@ -9,7 +9,7 @@ public class gamedirector : MonoBehaviour
     //PlayerÇÃtransformóp
     Vector3 Player;
     //EnemyÇ∆PlayerÇÃç∑
-    float Distance_gamedirector;
+    private float Distance_gamedirector;
     public float Distance;
 
     public GauMan GauMan;
@@ -49,14 +49,7 @@ public class gamedirector : MonoBehaviour
         if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
-<<<<<<< HEAD
             Debug.Log("kougekiPlayerToEnmey");
-            //GauMan.DecreaseEnemyHPGauge(10);
-            //GauMan.DecreaseStaGauge(40);
-            //GauMan.UpdateGaugeUI();
-=======
-            GauMan.DecreaseEnemyHPGauge(otoko_Chara_Controller.otoko1_damage);
->>>>>>> origin/main
         }
     }
     public void Dekoi_attack()
