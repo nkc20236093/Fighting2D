@@ -56,24 +56,28 @@ public class gamedirector : MonoBehaviour
         //    Debug.Log("デコイ攻撃");
         //    Dekoi_attack();
         //}
+        if (Dekoi.jab_distance||Dekoi.kick_distance)
+        {
+            Debug.Log("条件1");
+        }
+        if (Dekoi.dekoi_cooltime_permisson)
+        {
+            Debug.Log("条件2");
+        }
     }
     public void Otoko1_attack()
     {
-        //非ガード時処理
-        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0 && otoko_Chara_Controller.otoko1_guard == false)
+        if (otoko_Chara_Controller.attack_distance_permission == true && otoko_Chara_Controller.attack_cooltime_permisson == true && otoko_Chara_Controller.otoko1_kougeki_hit != 0)
         {
             hidan = otoko_Chara_Controller.otoko1_kougeki_hit;
             Debug.Log("kougekiPlayerToEnmey");
-            GauMan.DecreaseEnemyHPGauge(10);
+            GauMan.DecreaseEnemyHPGauge(otoko_Chara_Controller.otoko1_damage);
         }
     }
     public void Dekoi_attack()
     {
-        if (Dekoi.dekoi_attack_permission == true && Dekoi.dekoi_cooltime_permisson == true && Dekoi.dekoi_kougeki_hit != 0)
-        {
-            hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
-            Debug.Log("kougekiEnemyToPlayer");
-            GauMan.DecreaseEnemyHPGauge(10);
-        }
+        hidan_otoko1 = Dekoi.dekoi_kougeki_hit;
+        Debug.Log("kougekiEnemyToPlayer");
+        GauMan.DecreaseHPGauge(Dekoi.dekoi_damage);
     }
 }

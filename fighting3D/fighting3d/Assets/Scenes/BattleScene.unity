@@ -680,6 +680,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bf11e47adbdd4542a4be54c81dac563, type: 3}
+--- !u!1 &427305562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4922290852595101204, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+  m_PrefabInstance: {fileID: 8929950096798429815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &427305565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427305562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844c8d67f8988a94ab119d460e80ba8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer_body: {fileID: 0}
 --- !u!1 &459117965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,16 +1526,17 @@ MonoBehaviour:
   dekoi_kougeki_attack: 0
   dekoi_kougeki_hidan: 0
   dekoi_kougeki_hit: 0
-  jab__distance: 0
-  kick__distance: 0
+  jab_distance: 0
+  kick_distance: 0
   jab_dekoi_distance: 0
   kick_dekoi_distance: 0
   dekoi_kougeki_cooltime_jaku: 0
   dekoi_kougeki_cooltime_kyou: 0
   jab_dekoi_cooltime: 0
   kick_dekoi_cooltime: 0
+  dekoi_damage: 0
   dekoi_cooltime_permisson: 0
-  dekoi_attack_permission: 0
+  dekoi_distance_permission: 0
   chara_muki_dekoi: 0
   speed_mode: 0
   sayuu: 0
@@ -2218,6 +2237,24 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortAtRoot: 0
+--- !u!1 &1423054106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+  m_PrefabInstance: {fileID: 8929950096798429815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1423054109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423054106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43270bbb4ac1c3446860e77d562c80d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkinnedMeshRenderer_face: {fileID: 0}
 --- !u!1 &1589259198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,6 +2366,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591453125}
   m_CullTransparentMesh: 1
+--- !u!1 &1692356954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8650484255286624820, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+  m_PrefabInstance: {fileID: 8929950096798429815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1692356957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692356954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e9f4261e883df4aad5b11c77d0f43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1701276725
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,9 +3221,21 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2750799554875237027, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873420047425401922, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4922290852595101204, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6528803500793861466, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
       propertyPath: m_Name
@@ -3177,6 +3243,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6528803500793861466, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528803500793861466, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179809276396426004, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700187935166998048, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8515577765449977188, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
@@ -3219,10 +3297,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8650484255286624820, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4139885737884486443, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423054109}
+    - targetCorrespondingSourceObject: {fileID: 4922290852595101204, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 427305565}
+    - targetCorrespondingSourceObject: {fileID: 8650484255286624820, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1692356957}
   m_SourcePrefab: {fileID: 100100000, guid: 822ccc3b36eca454a9e674b4b69b98e4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
