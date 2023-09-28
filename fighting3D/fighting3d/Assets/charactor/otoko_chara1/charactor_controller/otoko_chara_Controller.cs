@@ -318,11 +318,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             //減らす処理（当たり判定できたら移動）
             // GauMan.DecreaseEnemyHPGauge(AttackJakuTakeru);
             //すたみなへらす
-<<<<<<< HEAD
            GauMan.DecreaseStaGauge(15);
-=======
-            GauMan.currentStaGauge -= 15;
->>>>>>> origin/main
         }
         //強攻撃（A or K）
         if (Input.GetButtonDown("A or E") && jump_stop == true && kick_attack_cooltime_permission && GauMan.currentStaGauge >= 30) 
@@ -331,11 +327,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             animator.SetTrigger("Trigger_attack");
             Kick();
             Invoke(nameof(Attack_Shoki), 1 / 60f);
-<<<<<<< HEAD
             GauMan.DecreaseStaGauge(30);
-=======
-            GauMan.currentStaGauge -= 30;
->>>>>>> origin/main
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if ( Input.GetButtonDown("A or E") || Input.GetButtonDown("X or Q")) 
@@ -442,16 +434,10 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_damage = 5;
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
-<<<<<<< HEAD
-
             GauMan.DecreaseEnemyHPGauge(5);
             GauMan.DecreaseStaGauge(15);
             GauMan.UpdateGaugeUI();
-
-
-=======
             otoko1_damage = 0;
->>>>>>> origin/main
         }
         //強攻撃(ヒット時)
         if (jump_stop == true && otoko1_kougeki_attack == 2 && kick_attack_cooltime_permission == true && otoko1_kick_distance == true && Ray_player_hit == true)
@@ -460,15 +446,10 @@ public class Otoko_chara_Controller : MonoBehaviour
             otoko1_damage = 10;
             gamedirector.Otoko1_attack();
             otoko1_kougeki_hit = 0;
-<<<<<<< HEAD
-
             GauMan.DecreaseEnemyHPGauge(10);
             GauMan.DecreaseStaGauge(30);
             GauMan.UpdateGaugeUI();
-
-=======
             otoko1_damage = 0;
->>>>>>> origin/main
         }
         //被弾アニメーション
         if (otoko1_kougeki_hidan != 0 && hidan_bool == true)
