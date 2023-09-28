@@ -9,7 +9,7 @@ public class gamedirector : MonoBehaviour
     //Player‚Ìtransform—p
     Vector3 Player;
     //Enemy‚ÆPlayer‚Ì·
-    float Distance_gamedirector;
+    private float Distance_gamedirector;
     public float Distance;
 
     public GauMan GauMan;

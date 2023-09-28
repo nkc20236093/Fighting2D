@@ -314,7 +314,7 @@ public class Otoko_chara_Controller : MonoBehaviour
         //以下基本動作
         GauMan.currentStaGauge = 100;
         //弱攻撃（X or J）
-        if (Input.GetButtonDown("X or J") && jump_stop == true && jab_attack_cooltime_permission && GauMan.currentStaGauge >= 15)
+        if (Input.GetButtonDown("X or Q") && jump_stop == true && jab_attack_cooltime_permission && GauMan.currentStaGauge >= 15)
         {
             Debug.Log("弱攻撃");
             otoko1_kougeki_attack = 1;
@@ -328,7 +328,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             GauMan.currentStaGauge -= 15;
         }
         //強攻撃（A or K）
-        if (Input.GetButtonDown("A or K") && jump_stop == true && kick_attack_cooltime_permission && GauMan.currentStaGauge >= 30) 
+        if (Input.GetButtonDown("A or E") && jump_stop == true && kick_attack_cooltime_permission && GauMan.currentStaGauge >= 30) 
         {
             Debug.Log("強攻撃");
             otoko1_kougeki_attack = 2;
@@ -338,7 +338,7 @@ public class Otoko_chara_Controller : MonoBehaviour
             GauMan.currentStaGauge -= 30;
         }
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
-        if ( Input.GetButtonDown("A or K") || Input.GetButtonDown("X or J")) 
+        if ( Input.GetButtonDown("A or E") || Input.GetButtonDown("X or Q")) 
         {
             //レイヤー変更
             gameObject.SetChildLayer(7);

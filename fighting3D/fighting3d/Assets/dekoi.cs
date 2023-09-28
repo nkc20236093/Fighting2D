@@ -256,17 +256,6 @@ public class dekoi : MonoBehaviour
             Invoke(nameof(Dekoi_Attack_Shoki), 1 / 60f);
             GauMan.currentEnemyStaGauge -= 30;
         }
-        //必殺技（Y or I）
-        //if (Input.GetAxisRaw("Y or I") != 0)
-        //{
-        //    Debug.Log("必殺技");
-        //}
-        ////ガード(Right(left) Bumper or sperce)   ※ジャストガードも検討
-        //if (Input.GetButtonDown("Right(left) Bumper or space"))
-        //{
-        //    Debug.Log("ガード");
-        //}
-
         //移動以外の入力があったときは すり抜けないようにする or 移動できないようにする
         if (Input.GetButtonDown("Jab_dekoi") || Input.GetButtonDown("kick_dekoi")) 
         {
@@ -300,7 +289,7 @@ public class dekoi : MonoBehaviour
         }
         //ジャンプの処理
         //地面についてたら&ジャンプ入力がされてたら
-        if (jump_stop == true && jouge != 0 && Real_Time > JumpCoolTime)
+        if (jump_stop == true && jouge != 0 && Real_Time >= JumpCoolTime)
         {
             animator.SetTrigger("Trigger_dekoi_Move");
             Real_Time = 0;
@@ -313,7 +302,6 @@ public class dekoi : MonoBehaviour
                 now_jumppower = high_jump;
             }
             speed_origin = now_jumppower;
-            Dekoi_Jump();
         }
         //移動処理
         transform.Translate(speed_origin * Time.deltaTime * idouVec);
@@ -440,10 +428,6 @@ public class dekoi : MonoBehaviour
     public void Dekoi_down()
     {
         animator.SetTrigger("dekoi_down");
-    }
-    public void Dekoi_Jump()
-    {
-        animator.SetTrigger("dekoi_jump");
     }
     public void Dekoi_Move()
     {
